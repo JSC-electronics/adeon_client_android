@@ -9,9 +9,9 @@ import cz.jsc.electronics.arduinosms.utilities.DATABASE_NAME
 /**
  * The Room database for this app
  */
-@Database(entities = [SmartDevice::class], version = 1, exportSchema = false)
+@Database(entities = [Device::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun smartDeviceDao(): SmartDeviceDao
+    abstract fun deviceDao(): DeviceDao
 
     companion object {
 

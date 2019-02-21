@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import cz.jsc.electronics.arduinosms.databinding.FragmentDevicesBinding
 
-class DevicesFragment : Fragment() {
+class DeviceListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,7 +17,7 @@ class DevicesFragment : Fragment() {
     ): View? {
         val binding = FragmentDevicesBinding.inflate(inflater, container, false).apply {
             fab.setOnClickListener { view ->
-                val direction = DevicesFragmentDirections.actionDevicesFragmentToAddDeviceFragment()
+                val direction = DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment()
                 view.findNavController().navigate(direction)
             }
         }

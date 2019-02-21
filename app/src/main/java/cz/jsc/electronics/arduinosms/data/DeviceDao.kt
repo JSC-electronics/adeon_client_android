@@ -7,16 +7,16 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 /**
- * The Data Access Object for the SmartDevice class.
+ * The Data Access Object for the Device class.
  */
 @Dao
-interface SmartDeviceDao {
+interface DeviceDao {
     @Query("SELECT * FROM devices ORDER BY id")
-    fun getDevices(): LiveData<List<SmartDevice>>
+    fun getDevices(): LiveData<List<Device>>
 
     @Query("SELECT * FROM devices WHERE id = :deviceId")
-    fun getDevice(deviceId: Long): LiveData<SmartDevice>
+    fun getDevice(deviceId: Long): LiveData<Device>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(devices: List<SmartDevice>)
+    fun insertAll(devices: List<Device>)
 }

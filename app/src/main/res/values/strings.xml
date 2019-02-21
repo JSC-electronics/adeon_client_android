@@ -7,6 +7,11 @@
             translation_description="Content description for the image that is shown at the top of the navigation drawer.">
         Navigation drawer header logo
     </string>
+    <string name="device_name_hint">Device name</string>
+    <string name="location_hint">Location</string>
+    <string name="phone_hint">Device phone number</string>
+
+    <string name="add_device_button">@string/add_device_title</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

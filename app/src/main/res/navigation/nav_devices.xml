@@ -2,16 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/devices_fragment">
+    app:startDestination="@+id/device_list_fragment">
 
     <fragment
-        android:id="@+id/devices_fragment"
-        android:name="cz.jsc.electronics.arduinosms.DevicesFragment"
+        android:id="@+id/device_list_fragment"
+        android:name="cz.jsc.electronics.arduinosms.DeviceListFragment"
         android:label="@string/my_devices_title"
         tools:layout="@layout/fragment_devices">
 
         <action
-            android:id="@+id/action_devices_fragment_to_add_device_fragment"
+            android:id="@+id/action_device_list_fragment_to_add_device_fragment"
             app:destination="@id/add_device_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
