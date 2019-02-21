@@ -10,13 +10,13 @@
         android:label="@string/my_devices_title"
         tools:layout="@layout/fragment_devices">
 
-        <!--<action-->
-            <!--android:id="@+id/action_garden_fragment_to_plant_detail_fragment"-->
-            <!--app:destination="@id/plant_detail_fragment"-->
-            <!--app:enterAnim="@anim/slide_in_right"-->
-            <!--app:exitAnim="@anim/slide_out_left"-->
-            <!--app:popEnterAnim="@anim/slide_in_left"-->
-            <!--app:popExitAnim="@anim/slide_out_right" />-->
+        <action
+            android:id="@+id/action_devices_fragment_to_add_device_fragment"
+            app:destination="@id/add_device_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -24,14 +24,11 @@
             android:name="cz.jsc.electronics.arduinosms.AboutFragment"
             android:label="@string/about_title"
             tools:layout="@layout/fragment_about">
-
-        <!--<action-->
-        <!--android:id="@+id/action_garden_fragment_to_plant_detail_fragment"-->
-        <!--app:destination="@id/plant_detail_fragment"-->
-        <!--app:enterAnim="@anim/slide_in_right"-->
-        <!--app:exitAnim="@anim/slide_out_left"-->
-        <!--app:popEnterAnim="@anim/slide_in_left"-->
-        <!--app:popExitAnim="@anim/slide_out_right" />-->
     </fragment>
+
+    <fragment android:id="@+id/add_device_fragment"
+              android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
+              android:label="@string/add_device_title"
+              tools:layout="@layout/fragment_add_device"/>
 
 </navigation>
