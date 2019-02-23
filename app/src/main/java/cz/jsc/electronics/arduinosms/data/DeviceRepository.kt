@@ -1,9 +1,24 @@
 package cz.jsc.electronics.arduinosms.data
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 /**
  * Repository module for handling data operations.
  */
 class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
+
+    suspend fun addDevice(device: Device) {
+        withContext(Dispatchers.IO) {
+            deviceDao.insertDevice(device)
+        }
+    }
+
+    suspend fun deleteDevice(device: Device) {
+        withContext(Dispatchers.IO) {
+            deviceDao.deleteDevice(device)
+        }
+    }
 
     fun getDevices() = deviceDao.getDevices()
 

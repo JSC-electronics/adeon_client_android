@@ -12,6 +12,7 @@
     <string name="phone_hint">Device phone number</string>
 
     <string name="add_device_button">@string/add_device_title</string>
+    <string name="invalid_phone_number">Please enter a valid phone number</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

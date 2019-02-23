@@ -29,6 +29,15 @@
     <fragment android:id="@+id/add_device_fragment"
               android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
               android:label="@string/add_device_title"
-              tools:layout="@layout/fragment_add_device"/>
+              tools:layout="@layout/fragment_add_device">
+
+        <action
+                android:id="@+id/action_add_device_fragment_to_device_list_fragment"
+                app:destination="@id/device_list_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 </navigation>

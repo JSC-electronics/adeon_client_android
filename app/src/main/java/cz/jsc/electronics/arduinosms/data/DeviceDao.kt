@@ -1,10 +1,7 @@
 package cz.jsc.electronics.arduinosms.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 /**
  * The Data Access Object for the Device class.
@@ -17,6 +14,9 @@ interface DeviceDao {
     @Query("SELECT * FROM devices WHERE id = :deviceId")
     fun getDevice(deviceId: Long): LiveData<Device>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(devices: List<Device>)
+    @Insert
+    fun insertDevice(device: Device): Long
+
+    @Delete
+    fun deleteDevice(device: Device)
 }

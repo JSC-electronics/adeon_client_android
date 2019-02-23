@@ -3,6 +3,7 @@ package cz.jsc.electronics.arduinosms.utilities
 import android.content.Context
 import cz.jsc.electronics.arduinosms.data.AppDatabase
 import cz.jsc.electronics.arduinosms.data.DeviceRepository
+import cz.jsc.electronics.arduinosms.viewmodels.AddDeviceViewModelFactory
 import cz.jsc.electronics.arduinosms.viewmodels.DeviceListViewModelFactory
 
 /**
@@ -18,5 +19,10 @@ object InjectorUtils {
     fun provideDeviceListViewModelFactory(context: Context): DeviceListViewModelFactory {
         val repository = getDeviceRepository(context)
         return DeviceListViewModelFactory(repository)
+    }
+
+    fun provideAddDeviceViewModelFactory(context: Context): AddDeviceViewModelFactory {
+        val repository = getDeviceRepository(context)
+        return AddDeviceViewModelFactory(repository)
     }
 }
