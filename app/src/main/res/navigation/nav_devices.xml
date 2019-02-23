@@ -8,7 +8,7 @@
         android:id="@+id/device_list_fragment"
         android:name="cz.jsc.electronics.arduinosms.DeviceListFragment"
         android:label="@string/my_devices_title"
-        tools:layout="@layout/fragment_devices">
+        tools:layout="@layout/fragment_device_list">
 
         <action
             android:id="@+id/action_device_list_fragment_to_add_device_fragment"

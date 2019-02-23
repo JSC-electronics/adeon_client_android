@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import cz.jsc.electronics.arduinosms.databinding.ActivityDevicesBinding
+import cz.jsc.electronics.arduinosms.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityDevicesBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_devices)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
+                R.layout.activity_main)
         drawerLayout = binding.drawerLayout
 
-        navController = Navigation.findNavController(this, R.id.devices_nav_fragment)
+        navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
         // Set up ActionBar
