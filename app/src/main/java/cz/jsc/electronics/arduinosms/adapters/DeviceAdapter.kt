@@ -3,13 +3,14 @@ package cz.jsc.electronics.arduinosms.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.jsc.electronics.arduinosms.DeviceListFragmentDirections
+import cz.jsc.electronics.arduinosms.R
 import cz.jsc.electronics.arduinosms.data.Device
 import cz.jsc.electronics.arduinosms.databinding.ListItemDeviceBinding
+
 
 /**
  * Adapter for the [RecyclerView] in [DeviceListFragment].
@@ -45,8 +46,23 @@ class DeviceAdapter : ListAdapter<Device, DeviceAdapter.ViewHolder>(DeviceDiffCa
             binding.apply {
                 clickListener = listener
                 device = item
+                overflow.setOnClickListener {
+                    showPopupMenu(it)
+                }
                 executePendingBindings()
             }
+        }
+
+        /**
+         * Showing popup menu when tapping on 3 dots
+         */
+        private fun showPopupMenu(view: View) {
+            // inflate menu
+            val popup = PopupMenu(view.context, view)
+            val inflater = popup.getMenuInflater()
+            inflater.inflate(R.menu.menu_device_card, popup.getMenu())
+//            popup.setOnMenuItemClickListener(MyMenuItemClickListener())
+            popup.show()
         }
     }
 }

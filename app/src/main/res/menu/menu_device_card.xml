@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_remove_device"
+        android:title="@string/action_remove_device"/>
+    <item
+        android:id="@+id/action_duplicate_entry"
+        android:title="@string/action_duplicate"/>
+
+</menu>

@@ -9,6 +9,7 @@ buildscript {
         targetSdkVersion = 28
 
         // App dependencies
+        cardViewVersion = '1.0.0'
         constraintLayoutVersion = '2.0.0-alpha3'
         coroutinesVersion = "1.1.1"
         espressoVersion = '3.1.2-alpha01'
