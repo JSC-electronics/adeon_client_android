@@ -1,22 +1,21 @@
 <resources>
     <string name="app_name">Arduino SMS</string>
     <string name="my_devices_title">My devices</string>
-    <string name="add_device_title">Add device</string>
     <string name="about_title">About</string>
     <string name="navigation_drawer_header_content_description"
             translation_description="Content description for the image that is shown at the top of the navigation drawer.">
         Navigation drawer header logo
     </string>
+    <string name="empty_device_list">Please add a device.</string>
     <string name="device_name_hint">Device name</string>
     <string name="location_hint">Location</string>
     <string name="phone_hint">Device phone number</string>
-
-    <string name="add_device_button">@string/add_device_title</string>
     <string name="invalid_phone_number">Please enter a valid phone number</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="empty_device_list">Please add a device.</string>
+    <string name="add_device_title">Add device</string>
+    <string name="add_device_button" translatable="false">@string/add_device_title</string>
+    <string name="edit_device_title">Edit device</string>
+    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
 </resources>

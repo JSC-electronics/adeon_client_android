@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Arduino SMS</string>
+    <string name="my_devices_title">Moje zařízení</string>
+    <string name="about_title">O aplikaci</string>
+    <string name="navigation_drawer_header_content_description">Logo v záhlaví navigační lišty</string>
+    <string name="empty_device_list">Přidejte zařízení.</string>
+    <string name="device_name_hint">Název zařízení</string>
+    <string name="location_hint">Umístění</string>
+    <string name="phone_hint">Telefonní číslo zařízení</string>
+    <string name="invalid_phone_number">Zadejte platné telefonní číslo</string>
+    <string name="add_device_title">Přidat zařízení</string>
+    <string name="edit_device_title">Upravit zařízení</string>
+    <string name="action_duplicate">Duplikovat</string>
+    <string name="action_remove_device">Vymazat zařízení</string>
+</resources>

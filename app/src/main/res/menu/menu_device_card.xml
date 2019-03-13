@@ -2,10 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_remove_device"
-        android:title="@string/action_remove_device"/>
+            android:id="@+id/action_edit_device_entry"
+            android:title="@string/action_edit_device"/>
+
     <item
-        android:id="@+id/action_duplicate_entry"
-        android:title="@string/action_duplicate"/>
+            android:id="@+id/action_remove_device"
+            android:title="@string/action_remove_device"/>
+
+    <item
+            android:id="@+id/action_duplicate_entry"
+            android:title="@string/action_duplicate"/>
 
 </menu>

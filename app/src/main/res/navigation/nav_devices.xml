@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/device_list_fragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/device_list_fragment">
 
     <fragment
-        android:id="@+id/device_list_fragment"
-        android:name="cz.jsc.electronics.arduinosms.DeviceListFragment"
-        android:label="@string/my_devices_title"
-        tools:layout="@layout/fragment_device_list">
+            android:id="@+id/device_list_fragment"
+            android:name="cz.jsc.electronics.arduinosms.DeviceListFragment"
+            android:label="@string/my_devices_title"
+            tools:layout="@layout/fragment_device_list">
 
         <action
-            android:id="@+id/action_device_list_fragment_to_add_device_fragment"
-            app:destination="@id/add_device_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_device_list_fragment_to_add_device_fragment"
+                app:destination="@id/add_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_device_list_fragment_to_edit_device_fragment"
+                app:destination="@id/edit_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -37,7 +45,13 @@
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment android:id="@+id/edit_device_fragment"
+              android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
+              android:label="@string/edit_device_title"
+              tools:layout="@layout/fragment_add_device">
     </fragment>
 
 </navigation>
