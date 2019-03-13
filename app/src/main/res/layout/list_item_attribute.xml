@@ -5,18 +5,14 @@
 
     <data>
         <variable
-                name="clickListener"
-                type="android.view.View.OnClickListener"/>
-        <variable
-                name="device"
-                type="cz.jsc.electronics.arduinosms.data.Device"/>
+                name="attribute"
+                type="cz.jsc.electronics.arduinosms.data.Attribute"/>
     </data>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:onClick="@{clickListener}"
             android:elevation="3dp"
             app:cardCornerRadius="@dimen/card_corner_radius">
 

@@ -1,7 +1,9 @@
 package cz.jsc.electronics.arduinosms.viewmodels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.data.Device
 import cz.jsc.electronics.arduinosms.data.DeviceRepository
 import kotlinx.coroutines.launch
@@ -23,5 +25,16 @@ class AddDeviceViewModel internal constructor(
                     attributes = attributes)
             )
         }
+    }
+
+    private val attributes = MutableLiveData<ArrayList<Attribute>>()
+
+    init {
+        attributes.value = ArrayList()
+        attributes.value!!.add(Attribute())
+    }
+
+    fun getAttributes(): MutableLiveData<ArrayList<Attribute>> {
+        return attributes
     }
 }

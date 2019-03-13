@@ -75,7 +75,8 @@
                 tools:listitem="@layout/list_item_attribute" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/attributes_title"
                 android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-        />
+                app:layout_constraintBottom_toTopOf="@+id/add_device_button" android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"/>
 
         <Button
                 android:text="@string/add_device_button"
@@ -84,8 +85,7 @@
                 android:id="@+id/add_device_button" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/attribute_list"
-        />
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
