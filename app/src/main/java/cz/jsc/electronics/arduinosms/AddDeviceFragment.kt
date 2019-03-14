@@ -25,14 +25,17 @@ class AddDeviceFragment : Fragment() {
     ): View? {
 
         val factory = InjectorUtils.provideAddDeviceViewModelFactory(requireActivity())
-        viewModel = ViewModelProviders.of(this, factory).
-            get(AddDeviceViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(AddDeviceViewModel::class.java)
 
         val binding = FragmentAddDeviceBinding.inflate(inflater, container, false).apply {
             phoneNumber.setHint(R.string.phone_hint)
             phoneNumber.setDefaultCountry(Locale.getDefault().country)
 
-            addDeviceButton.setOnClickListener {view ->
+            fab.setOnClickListener { view ->
+                viewModel.addNewAttribute()
+            }
+
+            addDeviceButton.setOnClickListener { view ->
                 when (phoneNumber.isValid) {
                     true -> {
                         phoneNumber.setError(null)

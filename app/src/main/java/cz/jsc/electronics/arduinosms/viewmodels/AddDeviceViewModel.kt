@@ -22,19 +22,28 @@ class AddDeviceViewModel internal constructor(
                     name = name,
                     location = location,
                     phoneNumber = phoneNumber,
-                    attributes = attributes)
+                    attributes = attributes
+                )
             )
         }
     }
 
-    private val attributes = MutableLiveData<ArrayList<Attribute>>()
+    private val attributes = ArrayList<Attribute>()
+    private val attributesLiveData = MutableLiveData<List<Attribute>>()
 
     init {
-        attributes.value = ArrayList()
-        attributes.value!!.add(Attribute())
+        if (attributes.isEmpty()) {
+            attributes.add(Attribute())
+        }
+        attributesLiveData.value = attributes
     }
 
-    fun getAttributes(): MutableLiveData<ArrayList<Attribute>> {
-        return attributes
+    fun getAttributes(): MutableLiveData<List<Attribute>> {
+        return attributesLiveData
+    }
+
+    fun addNewAttribute() {
+        attributes.add(Attribute())
+        attributesLiveData.value = attributes
     }
 }
