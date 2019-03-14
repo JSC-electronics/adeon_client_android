@@ -18,8 +18,8 @@
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
-    <string name="attributes">Attributes</string>
+    <string name="properties">Properties</string>
 
-    <string name="attribute_key">Key</string>
-    <string name="attribute_value">Value</string>
+    <string name="property_key">Key</string>
+    <string name="property_value">Value</string>
 </resources>

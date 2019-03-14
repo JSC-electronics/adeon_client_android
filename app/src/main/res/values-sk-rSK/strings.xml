@@ -13,4 +13,7 @@
     <string name="edit_device_title">Upraviť zariadenie</string>
     <string name="action_duplicate">Duplikovať</string>
     <string name="action_remove_device">Odstrániť zariadenie</string>
+    <string name="properties">Vlastnosti</string>
+    <string name="property_value">Hodnota</string>
+    <string name="property_key">Kľúč</string>
 </resources>
