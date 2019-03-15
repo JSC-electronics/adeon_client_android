@@ -35,13 +35,16 @@
                         android:id="@+id/key_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="16"
+                        android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
                         android:hint="@string/property_key"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/attribute_value"
-                    android:layout_width="0dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     app:layout_constraintStart_toEndOf="@+id/attribute_key"
@@ -54,6 +57,9 @@
                         android:id="@+id/value_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="5"
+                        android:inputType="number"
+                        android:digits="0123456789"
                         android:hint="@string/property_value"/>
 
             </com.google.android.material.textfield.TextInputLayout>
