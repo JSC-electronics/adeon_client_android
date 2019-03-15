@@ -21,8 +21,7 @@ object InjectorUtils {
         return DeviceListViewModelFactory(repository)
     }
 
-    fun provideAddDeviceViewModelFactory(context: Context): AddDeviceViewModelFactory {
-        val repository = getDeviceRepository(context)
-        return AddDeviceViewModelFactory(repository)
+    fun provideAddDeviceViewModelFactory(context: Context, deviceId: Long?): AddDeviceViewModelFactory {
+        return AddDeviceViewModelFactory(getDeviceRepository(context), deviceId)
     }
 }

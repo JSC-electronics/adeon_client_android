@@ -16,4 +16,5 @@
     <string name="properties">Vlastnosti</string>
     <string name="property_key">Klíč</string>
     <string name="property_value">Hodnota</string>
+    <string name="save_changes_button">Uložit změny</string>
 </resources>

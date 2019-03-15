@@ -15,6 +15,7 @@
     <string name="add_device_title">Add device</string>
     <string name="add_device_button" translatable="false">@string/add_device_title</string>
     <string name="edit_device_title">Edit device</string>
+    <string name="save_changes_button">Save changes</string>
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>

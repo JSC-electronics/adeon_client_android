@@ -8,9 +8,10 @@ import cz.jsc.electronics.arduinosms.data.DeviceRepository
  * Factory for creating a [AddDeviceViewModel] with a constructor that takes a [DeviceRepository].
  */
 class AddDeviceViewModelFactory(
-    private val repository: DeviceRepository
+    private val repository: DeviceRepository,
+    private val deviceId: Long?
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) = AddDeviceViewModel(repository) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>) = AddDeviceViewModel(repository, deviceId) as T
 }

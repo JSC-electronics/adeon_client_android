@@ -34,7 +34,7 @@ class DeviceListFragment : Fragment() {
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
         viewModel = ViewModelProviders.of(this, factory).get(DeviceListViewModel::class.java)
 
-        val adapter = DeviceAdapter()
+        val adapter = DeviceAdapter(viewModel)
         binding.deviceList.adapter = adapter
         subscribeUi(adapter, binding)
 
