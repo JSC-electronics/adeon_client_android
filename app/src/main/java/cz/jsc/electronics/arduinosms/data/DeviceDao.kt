@@ -17,6 +17,9 @@ interface DeviceDao {
     @Insert
     fun insertDevice(device: Device): Long
 
+    @Update
+    fun updateDevice(device: Device)
+
     @Delete
     fun deleteDevice(device: Device)
 }

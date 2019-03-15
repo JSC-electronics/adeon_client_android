@@ -2,6 +2,7 @@ package cz.jsc.electronics.arduinosms.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,16 @@ class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(A
             binding.apply {
                 attribute = item
                 executePendingBindings()
+                keyEditText.addTextChangedListener {
+                    attribute?.apply {
+                        key = keyEditText.text.toString()
+                    }
+                }
+                valueEditText.addTextChangedListener {
+                    attribute?.apply {
+                        value = valueEditText.text.toString().toInt()
+                    }
+                }
             }
         }
     }

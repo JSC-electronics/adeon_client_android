@@ -33,6 +33,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/key_edit_text"
+                        android:text="@{attribute.key != null ? `` + attribute.key : ``}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="16"
@@ -55,6 +56,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/value_edit_text"
+                        android:text="@{attribute.value != null ? `` + attribute.value : ``}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="5"

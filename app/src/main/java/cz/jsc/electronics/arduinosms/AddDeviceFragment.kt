@@ -47,16 +47,11 @@ class AddDeviceFragment : Fragment() {
                     true -> {
                         phoneNumber.setError(null)
 
-                        // FIXME update db on edit
-                        if (!addDeviceViewModel.isEditingDevice()) {
-
-                            addDeviceViewModel.addDeviceToList(
-                                deviceNameEditText.text.toString(),
-                                locationEditText.text.toString(),
-                                phoneNumber.phoneNumber,
-                                null
-                            )
-                        }
+                        addDeviceViewModel.addOrUpdateDevice(
+                            deviceNameEditText.text.toString(),
+                            locationEditText.text.toString(),
+                            phoneNumber.phoneNumber
+                        )
 
                         val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
                         view.findNavController().navigate(direction)
@@ -78,6 +73,10 @@ class AddDeviceFragment : Fragment() {
 
                     device.location?.let { location ->
                         binding.locationEditText.setText(location)
+                    }
+
+                    device.attributes?.let {
+                        addDeviceViewModel.restoreAttributes(it)
                     }
             })
         }

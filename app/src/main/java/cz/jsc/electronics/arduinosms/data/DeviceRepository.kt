@@ -14,6 +14,12 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         }
     }
 
+    suspend fun updateDevice(device: Device) {
+        withContext(Dispatchers.IO) {
+            deviceDao.updateDevice(device)
+        }
+    }
+
     suspend fun deleteDevice(device: Device) {
         withContext(Dispatchers.IO) {
             deviceDao.deleteDevice(device)

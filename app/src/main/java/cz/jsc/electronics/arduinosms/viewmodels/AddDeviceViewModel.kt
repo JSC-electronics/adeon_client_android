@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  */
 class AddDeviceViewModel internal constructor(
     private val deviceRepository: DeviceRepository,
-    deviceId: Long?
+    private val deviceId: Long?
 ) : ViewModel() {
 
     private var device: LiveData<Device>? = null
@@ -49,16 +49,33 @@ class AddDeviceViewModel internal constructor(
         attributesLiveData.value = attributes
     }
 
-    fun addDeviceToList(name: String, location: String?, phoneNumber: String, attributes: String?) {
+    fun restoreAttributes(attrString: String) {
+        attributes.clear()
+
+        attrString.split(";").dropLast(1).forEach {
+            val attrs = it.split("=")
+            attributes.add(Attribute(attrs.get(0).trim(), attrs.get(1).trim().toIntOrNull()))
+        }
+        attributesLiveData.value = attributes
+    }
+
+    fun addOrUpdateDevice(name: String, location: String?, phoneNumber: String) {
         viewModelScope.launch {
-            deviceRepository.addDevice(
-                Device(
-                    name = name,
-                    location = location,
-                    phoneNumber = phoneNumber,
-                    attributes = attributes
-                )
+            val entry = Device(
+                deviceId = if(deviceId != null) deviceId else 0,
+                name = name,
+                location = location,
+                phoneNumber = phoneNumber,
+                attributes = attributes.filter { it.key != null && it.value != null }.
+                    joinToString (separator = ";", postfix = ";")
             )
+
+            // Update entry
+            if (entry.deviceId > 0) {
+                deviceRepository.updateDevice(entry)
+            } else {
+                deviceRepository.addDevice(entry)
+            }
         }
     }
 }
