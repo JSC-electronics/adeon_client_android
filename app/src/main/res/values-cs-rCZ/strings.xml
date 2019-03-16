@@ -25,4 +25,5 @@
     <string name="location_info">Umístění: %s</string>
     <string name="phone_number_info">Telefonní číslo: %s</string>
     <string name="no_attributes_error">Nebyla přidána žádná vlastnost!</string>
+    <string name="sms_permissions_not_granted">SMS zpráva nebyla poslána. Neudelili jste potřebná povolení.</string>
 </resources>

@@ -37,4 +37,8 @@ class SendSmsViewModel internal constructor(
         }
         attributesLiveData.value = attributes
     }
+
+    fun sendSmsMessage() {
+
+    }
 }
