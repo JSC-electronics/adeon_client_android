@@ -75,8 +75,8 @@ class AddDeviceFragment : Fragment() {
                         binding.locationEditText.setText(location)
                     }
 
-                    device.attributes?.let {
-                        addDeviceViewModel.restoreAttributes(it)
+                    device.attributes?.let { attributes ->
+                        addDeviceViewModel.restoreAttributes(attributes)
                     }
             })
         }

@@ -13,6 +13,7 @@ import cz.jsc.electronics.arduinosms.R
 import cz.jsc.electronics.arduinosms.data.Device
 import cz.jsc.electronics.arduinosms.databinding.ListItemDeviceBinding
 import cz.jsc.electronics.arduinosms.viewmodels.DeviceListViewModel
+import cz.jsc.electronics.arduinosms.DeviceListFragment
 
 
 /**

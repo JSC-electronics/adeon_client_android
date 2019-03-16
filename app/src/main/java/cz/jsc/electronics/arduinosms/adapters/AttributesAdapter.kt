@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.databinding.ListItemAttributeBinding
+import cz.jsc.electronics.arduinosms.AddDeviceFragment
 
 
 /**

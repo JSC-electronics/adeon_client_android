@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cz.jsc.electronics.arduinosms.AddDeviceFragment
 import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.data.Device
 import cz.jsc.electronics.arduinosms.data.DeviceRepository
@@ -54,7 +55,7 @@ class AddDeviceViewModel internal constructor(
 
         attrString.split(";").dropLast(1).forEach {
             val attrs = it.split("=")
-            attributes.add(Attribute(attrs.get(0).trim(), attrs.get(1).trim().toIntOrNull()))
+            attributes.add(Attribute(attrs[0].trim(), attrs[1].trim().toIntOrNull()))
         }
         attributesLiveData.value = attributes
     }
@@ -62,7 +63,7 @@ class AddDeviceViewModel internal constructor(
     fun addOrUpdateDevice(name: String, location: String?, phoneNumber: String) {
         viewModelScope.launch {
             val entry = Device(
-                deviceId = if(deviceId != null) deviceId else 0,
+                deviceId = deviceId ?: 0,
                 name = name,
                 location = location,
                 phoneNumber = phoneNumber,

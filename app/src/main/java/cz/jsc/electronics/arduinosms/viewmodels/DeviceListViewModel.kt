@@ -7,12 +7,13 @@ import cz.jsc.electronics.arduinosms.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import cz.jsc.electronics.arduinosms.DeviceListFragment
 
 /**
  * The ViewModel for [DeviceListFragment].
  */
 class DeviceListViewModel internal constructor(
-    val deviceRepository: DeviceRepository
+    private val deviceRepository: DeviceRepository
 ) : ViewModel() {
 
     private val deviceList = deviceRepository.getDevices()

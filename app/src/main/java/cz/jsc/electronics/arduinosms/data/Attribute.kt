@@ -5,5 +5,5 @@ data class Attribute(
     var value: Int? = null
 ) {
 
-    override fun toString() = "${key} = ${value}"
+    override fun toString() = "$key = $value"
 }
