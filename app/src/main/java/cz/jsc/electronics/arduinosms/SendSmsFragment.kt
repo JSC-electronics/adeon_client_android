@@ -53,9 +53,7 @@ class SendSmsFragment : Fragment() {
         binding.attributeList.adapter = adapter
 
         sendSmsViewModel.device.observe(this, Observer { device ->
-                device.attributes?.let { attributes ->
-                    sendSmsViewModel.restoreAttributes(attributes)
-                }
+            sendSmsViewModel.restoreData(device)
             })
 
         subscribeUi(adapter)
