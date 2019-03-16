@@ -24,6 +24,14 @@
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_device_list_fragment_to_send_sms_fragment"
+                app:destination="@id/send_sms_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"
         />
     </fragment>
@@ -53,12 +61,31 @@
               android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
               android:label="@string/edit_device_title"
               tools:layout="@layout/fragment_add_device">
+
         <argument
                 android:name="deviceId"
                 app:argType="long"/>
 
         <action
                 android:id="@+id/action_add_device_fragment_to_device_list_fragment"
+                app:destination="@id/device_list_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment android:id="@+id/send_sms_fragment"
+              android:name="cz.jsc.electronics.arduinosms.SendSmsFragment"
+              android:label="@string/send_sms_title"
+              tools:layout="@layout/fragment_send_sms">
+
+        <argument
+                android:name="deviceId"
+                app:argType="long"/>
+
+        <action
+                android:id="@+id/action_send_sms_fragment_to_device_list_fragment"
                 app:destination="@id/device_list_fragment"
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"

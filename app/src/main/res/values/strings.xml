@@ -23,6 +23,8 @@
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
     <string name="properties">Properties</string>
+    <string name="send_sms_title">Send SMS</string>
+    <string name="send_sms_button" translatable="false">@string/send_sms_title</string>
 
     <string name="property_key">Key</string>
     <string name="property_value">Value</string>

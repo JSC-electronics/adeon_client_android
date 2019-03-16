@@ -37,8 +37,8 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
 
     private fun createOnClickListener(deviceId: Long): View.OnClickListener {
         return View.OnClickListener {
-            //val direction = DeviceListFragmentDirections.actionPlantListFragmentToPlantDetailFragment(plantId)
-            //it.findNavController().navigate(direction)
+            val direction = DeviceListFragmentDirections.actionDeviceListFragmentToSendSmsFragment(deviceId)
+            it.findNavController().navigate(direction)
         }
     }
 
