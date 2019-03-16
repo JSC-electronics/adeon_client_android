@@ -21,4 +21,8 @@
     <string name="attribute_value_out_of_range">Není v rozsahu 0 – 65535!</string>
     <string name="invalid_attributes">Některé vlastnosti jsou neplatné!</string>
     <string name="send_sms_title">Odeslat SMS zprávu</string>
+    <string name="device_name_info">Název zařízení: %s</string>
+    <string name="location_info">Umístění: %s</string>
+    <string name="phone_number_info">Telefonní číslo: %s</string>
+    <string name="no_attributes_error">Nebyla přidána žádná vlastnost!</string>
 </resources>

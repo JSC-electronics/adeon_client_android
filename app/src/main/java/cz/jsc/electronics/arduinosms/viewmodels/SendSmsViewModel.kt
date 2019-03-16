@@ -16,16 +16,12 @@ class SendSmsViewModel internal constructor(
     deviceId: Long
 ) : ViewModel() {
 
-    private val device: LiveData<Device> = deviceRepository.getDevice(deviceId)
+    val device: LiveData<Device> = deviceRepository.getDevice(deviceId)
     private val attributes = ArrayList<Attribute>()
     private val attributesLiveData = MutableLiveData<List<Attribute>>()
 
     init {
         attributesLiveData.value = attributes
-    }
-
-    fun getDevice(): LiveData<Device> {
-        return device
     }
 
     fun getAttributes(): MutableLiveData<List<Attribute>> {

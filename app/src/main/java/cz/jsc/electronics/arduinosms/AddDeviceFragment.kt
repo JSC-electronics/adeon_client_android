@@ -65,6 +65,11 @@ class AddDeviceFragment : Fragment() {
                     phoneNumber.setError(getString(R.string.invalid_phone_number))
                 }
 
+                if (addDeviceViewModel.isAttributeListEmpty()) {
+                    isError = true
+                    Snackbar.make(view, R.string.no_attributes_error, Snackbar.LENGTH_LONG).show()
+                }
+
                 if (!addDeviceViewModel.isAttributeListValid()) {
                     isError = true
                     Snackbar.make(view, R.string.invalid_attributes, Snackbar.LENGTH_LONG).show()

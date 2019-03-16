@@ -18,12 +18,42 @@
 
         <TextView
                 android:id="@+id/device_name"
+                android:text="@{@string/device_name_info(viewModel.device.name)}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin" app:layout_constraintStart_toStartOf="parent"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="8dp"
+                tools:text="Device name: Arduino"
+        />
+
+        <TextView
+                android:id="@+id/location"
+                android:text="@{@string/location_info(viewModel.device.location)}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/device_name"
+                android:layout_marginTop="8dp"
+                tools:text="Location: Living Room"
+        />
+
+        <TextView
+                android:id="@+id/phone_number"
+                android:text="@{@string/phone_number_info(viewModel.device.phoneNumber)}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/location"
+                android:layout_marginTop="8dp"
+                tools:text="Phone number: +420910654321"
+        />
 
         <!--<com.google.android.material.textfield.TextInputLayout-->
                 <!--android:id="@+id/location"-->

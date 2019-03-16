@@ -2,6 +2,7 @@ package cz.jsc.electronics.arduinosms.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +16,7 @@ import cz.jsc.electronics.arduinosms.databinding.ListItemAttributeBinding
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
+class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val attribute = getItem(position)
@@ -28,11 +29,12 @@ class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemAttributeBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false))
+                LayoutInflater.from(parent.context), parent, false), showCheckbox)
     }
 
     class ViewHolder(
-        private val binding: ListItemAttributeBinding
+        private val binding: ListItemAttributeBinding,
+        private val showCheckbox: Boolean
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Attribute) {
@@ -53,6 +55,14 @@ class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(A
                             } else {
                                 attributeValue.error = null
                             }
+                        }
+                    }
+                }
+                if (showCheckbox) {
+                    binding.attributeCheckbox.isVisible = showCheckbox
+                    attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                        attribute?.apply {
+                            checked = isChecked
                         }
                     }
                 }

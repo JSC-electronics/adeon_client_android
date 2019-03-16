@@ -21,4 +21,8 @@
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0 – 65535!</string>
     <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
     <string name="send_sms_title">Poslať SMS správu</string>
+    <string name="device_name_info">Názov zariadenia: %s</string>
+    <string name="location_info">Umiestnenie: %s</string>
+    <string name="phone_number_info">Telefónne číslo: %s</string>
+    <string name="no_attributes_error">Nebola pridaná žiadna vlastnosť!</string>
 </resources>
