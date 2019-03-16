@@ -56,7 +56,7 @@ class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(A
 private class AttributesDiffCallback : DiffUtil.ItemCallback<Attribute>() {
 
     override fun areItemsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.key == newItem.key
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {

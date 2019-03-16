@@ -1,9 +1,13 @@
 package cz.jsc.electronics.arduinosms
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +20,7 @@ import java.util.*
 
 class AddDeviceFragment : Fragment() {
 
+    private lateinit var layout: ConstraintLayout
     private lateinit var addDeviceViewModel: AddDeviceViewModel
 
     override fun onCreateView(
@@ -52,7 +57,7 @@ class AddDeviceFragment : Fragment() {
                             locationEditText.text.toString(),
                             phoneNumber.phoneNumber
                         )
-
+                        hideKeyboardFrom(context, view)
                         val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
                         view.findNavController().navigate(direction)
                     }
@@ -62,6 +67,7 @@ class AddDeviceFragment : Fragment() {
                 }
             }
         }
+        layout = binding.addDeviceLayout
 
         val adapter = AttributesAdapter()
         binding.attributeList.adapter = adapter
@@ -92,4 +98,15 @@ class AddDeviceFragment : Fragment() {
             }
         })
     }
+
+    override fun onPause() {
+        hideKeyboardFrom(context, layout)
+        super.onPause()
+    }
+
+    private fun hideKeyboardFrom(context: Context?, view: View) {
+        val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
 }

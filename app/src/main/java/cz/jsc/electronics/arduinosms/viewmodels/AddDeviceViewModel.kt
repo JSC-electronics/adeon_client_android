@@ -28,7 +28,7 @@ class AddDeviceViewModel internal constructor(
         }
 
         if (attributes.isEmpty()) {
-            attributes.add(Attribute())
+            attributes.add(Attribute(0))
         }
         attributesLiveData.value = attributes
     }
@@ -46,7 +46,7 @@ class AddDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute())
+        attributes.add(Attribute(attributes.size.toLong()))
         attributesLiveData.value = attributes
     }
 
@@ -55,7 +55,7 @@ class AddDeviceViewModel internal constructor(
 
         attrString.split(";").dropLast(1).forEach {
             val attrs = it.split("=")
-            attributes.add(Attribute(attrs[0].trim(), attrs[1].trim().toIntOrNull()))
+            attributes.add(Attribute(attributes.size.toLong(), attrs[0].trim(), attrs[1].trim().toIntOrNull()))
         }
         attributesLiveData.value = attributes
     }
