@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.databinding.FragmentSendSmsBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
 import cz.jsc.electronics.arduinosms.viewmodels.SendSmsViewModel
@@ -34,18 +36,27 @@ class SendSmsFragment : Fragment() {
             lifecycleOwner = this@SendSmsFragment
         }
         layout = binding.sendSmsLayout
-//        subscribeUi(adapter)
+        val adapter = AttributesAdapter(true)
+        binding.attributeList.adapter = adapter
+
+        sendSmsViewModel.device.observe(this, Observer { device ->
+                device.attributes?.let { attributes ->
+                    sendSmsViewModel.restoreAttributes(attributes)
+                }
+            })
+
+        subscribeUi(adapter)
 
         return binding.root
     }
 
-//    private fun subscribeUi(adapter: AttributesAdapter) {
-//        addDeviceViewModel.getAttributes().observe(viewLifecycleOwner, Observer { attributes ->
-//            if (attributes != null && attributes.isNotEmpty()) {
-//                adapter.submitList(attributes.toList())
-//            }
-//        })
-//    }
+    private fun subscribeUi(adapter: AttributesAdapter) {
+        sendSmsViewModel.getAttributes().observe(viewLifecycleOwner, Observer { attributes ->
+            if (attributes != null && attributes.isNotEmpty()) {
+                adapter.submitList(attributes.toList())
+            }
+        })
+    }
 
     override fun onPause() {
         hideKeyboardFrom(context, layout)
