@@ -60,6 +60,17 @@ class AddDeviceViewModel internal constructor(
         attributesLiveData.value = attributes
     }
 
+    fun isAttributeListValid(): Boolean {
+        attributes.forEach {
+            if ((it.key.isNullOrEmpty() && it.value != null) ||
+                (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < 0 || it.value!! > 65535))) {
+                return false
+            }
+        }
+
+        return true
+    }
+
     fun addOrUpdateDevice(name: String, location: String?, phoneNumber: String) {
         viewModelScope.launch {
             val entry = Device(

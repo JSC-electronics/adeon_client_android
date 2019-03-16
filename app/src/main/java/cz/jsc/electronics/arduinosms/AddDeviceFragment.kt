@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
@@ -48,22 +49,37 @@ class AddDeviceFragment : Fragment() {
             }
 
             addDeviceButton.setOnClickListener { view ->
-                when (phoneNumber.isValid) {
-                    true -> {
-                        phoneNumber.setError(null)
+                var isError = false
 
-                        addDeviceViewModel.addOrUpdateDevice(
-                            deviceNameEditText.text.toString(),
-                            locationEditText.text.toString(),
-                            phoneNumber.phoneNumber
-                        )
-                        hideKeyboardFrom(context, view)
-                        val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
-                        view.findNavController().navigate(direction)
-                    }
-                    else -> {
-                        phoneNumber.setError(getString(R.string.invalid_phone_number))
-                    }
+                if (deviceName.editText!!.text.isNullOrEmpty()) {
+                    isError = true
+                    deviceName.error = getString(R.string.invalid_device_name)
+                } else {
+                    deviceName.error = null
+                }
+
+                if (phoneNumber.isValid) {
+                    phoneNumber.setError(null)
+                } else {
+                    isError = true
+                    phoneNumber.setError(getString(R.string.invalid_phone_number))
+                }
+
+                if (!addDeviceViewModel.isAttributeListValid()) {
+                    isError = true
+                    Snackbar.make(view, R.string.invalid_attributes, Snackbar.LENGTH_LONG).show()
+                }
+
+                if (!isError) {
+                    addDeviceViewModel.addOrUpdateDevice(
+                        deviceNameEditText.text.toString(),
+                        locationEditText.text.toString(),
+                        phoneNumber.phoneNumber
+                    )
+
+                    hideKeyboardFrom(context, view)
+                    val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
+                    view.findNavController().navigate(direction)
                 }
             }
         }

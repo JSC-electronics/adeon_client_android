@@ -6,9 +6,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.jsc.electronics.arduinosms.AddDeviceFragment
+import cz.jsc.electronics.arduinosms.R
 import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.databinding.ListItemAttributeBinding
-import cz.jsc.electronics.arduinosms.AddDeviceFragment
 
 
 /**
@@ -45,7 +46,14 @@ class AttributesAdapter : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(A
                 }
                 valueEditText.addTextChangedListener {
                     attribute?.apply {
-                        value = valueEditText.text.toString().toInt()
+                        value = valueEditText.text.toString().toIntOrNull()
+                        value?.let {
+                            if (it > 65535 || it < 0) {
+                                attributeValue.error = binding.root.context.getString(R.string.attribute_value_out_of_range)
+                            } else {
+                                attributeValue.error = null
+                            }
+                        }
                     }
                 }
             }

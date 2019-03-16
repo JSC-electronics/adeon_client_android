@@ -17,4 +17,7 @@
     <string name="property_value">Hodnota</string>
     <string name="property_key">Kľúč</string>
     <string name="save_changes_button">Uložiť zmeny</string>
+    <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
+    <string name="attribute_value_out_of_range">Nie je v rozsahu 0 – 65535!</string>
+    <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
 </resources>

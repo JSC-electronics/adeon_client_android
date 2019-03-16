@@ -11,6 +11,9 @@
     <string name="location_hint">Location</string>
     <string name="phone_hint">Device phone number</string>
     <string name="invalid_phone_number">Please enter a valid phone number</string>
+    <string name="invalid_device_name">Device name should not be empty!</string>
+    <string name="attribute_value_out_of_range">Not in range 0 – 65535!</string>
+    <string name="invalid_attributes">Some of the attributes are invalid!</string>
 
     <string name="add_device_title">Add device</string>
     <string name="add_device_button" translatable="false">@string/add_device_title</string>
