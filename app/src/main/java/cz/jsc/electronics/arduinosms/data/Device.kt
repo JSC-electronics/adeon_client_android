@@ -10,7 +10,7 @@ data class Device(
     val name: String,
     val location: String?,
     val phoneNumber: String,
-    val attributes: String?
+    val attributes: List<Attribute> = ArrayList()
 ) {
 
     override fun toString() = name

@@ -1,7 +1,7 @@
 package cz.jsc.electronics.arduinosms.data
 
 data class Attribute(
-    val id: Long,
+    val id: Long = 0,
     var key: String? = null,
     var value: Int? = null,
     var checked: Boolean = true

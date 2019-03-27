@@ -1,12 +1,9 @@
 package cz.jsc.electronics.arduinosms
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
+import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
 import cz.jsc.electronics.arduinosms.viewmodels.AddDeviceViewModel
 import java.util.*
 
@@ -82,7 +80,7 @@ class AddDeviceFragment : Fragment() {
                         phoneNumber.phoneNumber
                     )
 
-                    hideKeyboardFrom(context, view)
+                    view.hideSoftKeyboard()
                     val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
                     view.findNavController().navigate(direction)
                 }
@@ -102,9 +100,7 @@ class AddDeviceFragment : Fragment() {
                         binding.locationEditText.setText(location)
                     }
 
-                    device.attributes?.let { attributes ->
-                        addDeviceViewModel.restoreAttributes(attributes)
-                    }
+                    addDeviceViewModel.restoreData(device)
             })
         }
         subscribeUi(adapter)
@@ -121,13 +117,8 @@ class AddDeviceFragment : Fragment() {
     }
 
     override fun onPause() {
-        hideKeyboardFrom(context, layout)
+        layout.hideSoftKeyboard()
         super.onPause()
-    }
-
-    private fun hideKeyboardFrom(context: Context?, view: View) {
-        val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

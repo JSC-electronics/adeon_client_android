@@ -19,18 +19,13 @@ class AddDeviceViewModel internal constructor(
 ) : ViewModel() {
 
     private var device: LiveData<Device>? = null
-    private val attributes = ArrayList<Attribute>()
+    private var attributes = ArrayList<Attribute>()
     private val attributesLiveData = MutableLiveData<List<Attribute>>()
 
     init {
         deviceId?.let {
             device = deviceRepository.getDevice(it)
         }
-
-        if (attributes.isEmpty()) {
-            attributes.add(Attribute(0))
-        }
-        attributesLiveData.value = attributes
     }
 
     fun getDevice(): LiveData<Device>? {
@@ -50,16 +45,9 @@ class AddDeviceViewModel internal constructor(
         attributesLiveData.value = attributes
     }
 
-    fun restoreAttributes(attrString: String) {
-        attributes.clear()
-
-        attrString.split(";").dropLast(1).forEach {
-            val attrs = it.split("=")
-            if (attrs.size == 2) {
-                attributes.add(Attribute(attributes.size.toLong(), attrs[0].trim(), attrs[1].trim().toIntOrNull()))
-            }
-        }
-        attributesLiveData.value = attributes
+    fun restoreData(device: Device) {
+        attributes = device.attributes as ArrayList<Attribute>
+        attributesLiveData.value = device.attributes
     }
 
     fun isAttributeListValid(): Boolean {
@@ -88,8 +76,7 @@ class AddDeviceViewModel internal constructor(
                 name = name,
                 location = location,
                 phoneNumber = phoneNumber,
-                attributes = attributes.filter { it.key != null && it.value != null }.
-                    joinToString (separator = ";", postfix = ";")
+                attributes = attributes
             )
 
             // Update entry
