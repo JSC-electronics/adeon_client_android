@@ -34,4 +34,7 @@
     <string name="location_info">Location: %s</string>
     <string name="phone_number_info">Phone number: %s</string>
     <string name="sms_permissions_not_granted">SMS was not sent. Permissions were not granted.</string>
+    <string name="content_desc_application_logo">Application Logo</string>
+    <string name="content_desc_device_icon">Device icon</string>
+    <string name="content_desc_device_item_menu">Device item menu</string>
 </resources>

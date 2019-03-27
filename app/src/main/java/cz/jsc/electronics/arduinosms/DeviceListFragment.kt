@@ -30,7 +30,6 @@ class DeviceListFragment : Fragment() {
         }
 
         val context = context ?: return binding.root
-
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
         viewModel = ViewModelProviders.of(this, factory).get(DeviceListViewModel::class.java)
 

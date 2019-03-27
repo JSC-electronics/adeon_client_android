@@ -30,7 +30,8 @@
                     android:id="@+id/arduino_logo" app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
                     app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/content_desc_device_icon"/>
             <TextView
                     android:text="@{device.name}"
                     android:layout_width="0dp"
@@ -61,7 +62,7 @@
                     android:id="@+id/overflow" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="8dp" app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="16dp"
-            />
+                    android:contentDescription="@string/content_desc_device_item_menu"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

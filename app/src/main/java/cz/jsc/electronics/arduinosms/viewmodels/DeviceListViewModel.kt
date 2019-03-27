@@ -31,9 +31,7 @@ class DeviceListViewModel internal constructor(
     fun duplicateDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val duplicate = Device(name = device.name, location = device.location,
-                    phoneNumber = device.phoneNumber, attributes = device.attributes)
-
+                val duplicate = device.copy(deviceId = 0)
                 deviceRepository.addDevice(duplicate)
             }
         }
