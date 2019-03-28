@@ -37,7 +37,7 @@ class ManageDeviceViewModel internal constructor(
 
     fun getAttributesAdapter(showCheckbox: Boolean = false) =
         attributesAdapter ?: synchronized(this) {
-            attributesAdapter ?: AttributesAdapter(showCheckbox)
+            attributesAdapter ?: AttributesAdapter(showCheckbox).also { attributesAdapter = it }
         }
 
     fun isEditingDevice(): Boolean {
