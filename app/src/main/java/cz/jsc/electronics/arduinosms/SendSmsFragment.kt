@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.databinding.FragmentSendSmsBinding
@@ -23,6 +27,8 @@ class SendSmsFragment : Fragment() {
 
     private lateinit var layout: ConstraintLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
+    private lateinit var interstitialAd: InterstitialAd
+
 
     companion object {
         const val REQUEST_SEND_SMS = 187
@@ -52,6 +58,19 @@ class SendSmsFragment : Fragment() {
         binding.attributeList.adapter = adapter
 
         subscribeUi(adapter)
+        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
+
+        interstitialAd = InterstitialAd(this.requireContext())
+        interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        interstitialAd.loadAd(AdRequest.Builder().build())
+        interstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                interstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
+
+
+
 
         return binding.root
     }
@@ -76,6 +95,9 @@ class SendSmsFragment : Fragment() {
             manageDeviceViewModel.sendSmsMessage()
             val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
             layout.findNavController().navigate(direction)
+            if (interstitialAd.isLoaded) {
+                interstitialAd.show()
+            }
         }
 
     }
@@ -90,6 +112,9 @@ class SendSmsFragment : Fragment() {
                     manageDeviceViewModel.sendSmsMessage()
                     val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
                     layout.findNavController().navigate(direction)
+                    if (interstitialAd.isLoaded) {
+                        interstitialAd.show()
+                    }
                 } else {
                     Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()
                 }
