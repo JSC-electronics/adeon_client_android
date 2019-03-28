@@ -26,4 +26,7 @@
     <string name="phone_number_info">Telefonní číslo: %s</string>
     <string name="no_attributes_error">Nebyla přidána žádná vlastnost!</string>
     <string name="sms_permissions_not_granted">SMS zpráva nebyla poslána. Neudelili jste potřebná povolení.</string>
+    <string name="content_desc_application_logo">Logo aplikace</string>
+    <string name="content_desc_device_icon">Ikona zařízení</string>
+    <string name="content_desc_device_item_menu">Menu položky zařízení</string>
 </resources>
