@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "devices")
 data class Device(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val deviceId: Long = 0,
-    val name: String,
-    val location: String?,
-    val phoneNumber: String,
-    val attributes: List<Attribute> = ArrayList()
+    var name: String,
+    var location: String?,
+    var phoneNumber: String,
+    val attributes: MutableList<Attribute> = arrayListOf()
 ) {
 
     override fun toString() = name

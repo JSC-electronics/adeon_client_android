@@ -5,12 +5,12 @@ import androidx.room.TypeConverter
 class Converters {
 
     @TypeConverter
-    fun attributeListToString(attributes: List<Attribute>): String =
+    fun attributeListToString(attributes: MutableList<Attribute>): String =
         attributes.filter { it.key != null && it.value != null }.joinToString(separator = ";", postfix = ";")
 
     @TypeConverter
-    fun stringToAttributeList(attributeString: String): List<Attribute> {
-        val attributes = ArrayList<Attribute>()
+    fun stringToAttributeList(attributeString: String): MutableList<Attribute> {
+        val attributes = arrayListOf<Attribute>()
 
         attributeString.split(";").dropLast(1).forEach {
             val attrs = it.split("=")
@@ -19,10 +19,6 @@ class Converters {
             if (attrs.size == 2) {
                 attributes.add(Attribute(attributes.size.toLong(), attrs[0].trim(), attrs[1].trim().toIntOrNull()))
             }
-        }
-
-        if (attributes.isEmpty()) {
-            attributes.add(Attribute())
         }
 
         return attributes

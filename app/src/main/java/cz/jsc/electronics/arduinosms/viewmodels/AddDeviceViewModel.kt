@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.jsc.electronics.arduinosms.AddDeviceFragment
+import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.data.Device
 import cz.jsc.electronics.arduinosms.data.DeviceRepository
@@ -18,43 +19,30 @@ class AddDeviceViewModel internal constructor(
     private val deviceId: Long?
 ) : ViewModel() {
 
-    private var device: LiveData<Device>? = null
-    private var attributes = ArrayList<Attribute>()
-    private val attributesLiveData = MutableLiveData<List<Attribute>>()
+    val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
+    else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
-    init {
-        deviceId?.let {
-            device = deviceRepository.getDevice(it)
-        }
-    }
-
-    fun getDevice(): LiveData<Device>? {
-        return device
-    }
+    val attributeAdapter = AttributesAdapter()
 
     fun isEditingDevice(): Boolean {
-        return device != null
-    }
-
-    fun getAttributes(): MutableLiveData<List<Attribute>> {
-        return attributesLiveData
+        return deviceId != null
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute(attributes.size.toLong()))
-        attributesLiveData.value = attributes
-    }
-
-    fun restoreData(device: Device) {
-        attributes = device.attributes as ArrayList<Attribute>
-        attributesLiveData.value = device.attributes
+        device.value?.let {
+            it.attributes.add(Attribute(it.attributes.size.toLong()))
+            attributeAdapter.submitList(it.attributes.toList())
+        }
     }
 
     fun isAttributeListValid(): Boolean {
-        attributes.forEach {
-            if ((it.key.isNullOrEmpty() && it.value != null) ||
-                (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < 0 || it.value!! > 65535))) {
-                return false
+        device.value?.apply {
+            attributes.forEach {
+                if ((it.key.isNullOrEmpty() && it.value != null) ||
+                    (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < 0 || it.value!! > 65535))
+                ) {
+                    return false
+                }
             }
         }
 
@@ -62,28 +50,25 @@ class AddDeviceViewModel internal constructor(
     }
 
     fun isAttributeListEmpty(): Boolean {
-        attributes.forEach {
-            if (!it.key.isNullOrEmpty())
-                return false
+        device.value?.apply {
+            attributes.forEach {
+                if (!it.key.isNullOrEmpty())
+                    return false
+            }
         }
+
         return true
     }
 
-    fun addOrUpdateDevice(name: String, location: String?, phoneNumber: String) {
+    fun addOrUpdateDevice() {
         viewModelScope.launch {
-            val entry = Device(
-                deviceId = deviceId ?: 0,
-                name = name,
-                location = location,
-                phoneNumber = phoneNumber,
-                attributes = attributes
-            )
 
-            // Update entry
-            if (entry.deviceId > 0) {
-                deviceRepository.updateDevice(entry)
-            } else {
-                deviceRepository.addDevice(entry)
+            device.value?.let {
+                if (deviceId == null) {
+                    deviceRepository.addDevice(it)
+                } else {
+                    deviceRepository.updateDevice(it)
+                }
             }
         }
     }

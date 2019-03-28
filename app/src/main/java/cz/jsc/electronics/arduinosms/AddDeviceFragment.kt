@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
+import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
 import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
@@ -74,11 +75,13 @@ class AddDeviceFragment : Fragment() {
                 }
 
                 if (!isError) {
-                    addDeviceViewModel.addOrUpdateDevice(
-                        deviceNameEditText.text.toString(),
-                        locationEditText.text.toString(),
-                        phoneNumber.phoneNumber
-                    )
+                        viewModel?.device?.value?.let {
+                            it.name = deviceNameEditText.text.toString()
+                            it.location = locationEditText.text.toString()
+                            it.phoneNumber = phoneNumber.phoneNumber
+
+                            addDeviceViewModel.addOrUpdateDevice()
+                        }
 
                     view.hideSoftKeyboard()
                     val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
@@ -88,31 +91,27 @@ class AddDeviceFragment : Fragment() {
         }
         layout = binding.addDeviceLayout
 
-        val adapter = AttributesAdapter()
-        binding.attributeList.adapter = adapter
-
-        addDeviceViewModel.getDevice()?.let {
-                it.observe(this, Observer { device ->
-                    binding.deviceNameEditText.setText(device.name)
-                    binding.phoneNumber.phoneNumber = device.phoneNumber
-
-                    device.location?.let { location ->
-                        binding.locationEditText.setText(location)
-                    }
-
-                    addDeviceViewModel.restoreData(device)
-            })
-        }
-        subscribeUi(adapter)
+        binding.attributeList.adapter = addDeviceViewModel.attributeAdapter
+        subscribeUi(binding, addDeviceViewModel.attributeAdapter)
 
         return binding.root
     }
 
-    private fun subscribeUi(adapter: AttributesAdapter) {
-        addDeviceViewModel.getAttributes().observe(viewLifecycleOwner, Observer { attributes ->
-            if (attributes != null && attributes.isNotEmpty()) {
-                adapter.submitList(attributes.toList())
+    private fun subscribeUi(binding: FragmentAddDeviceBinding, adapter: AttributesAdapter) {
+        addDeviceViewModel.device.observe(this, Observer { device ->
+            binding.deviceNameEditText.setText(device.name)
+            binding.phoneNumber.phoneNumber = device.phoneNumber
+
+            device.location?.let { location ->
+                binding.locationEditText.setText(location)
             }
+
+            if (device.attributes.isEmpty()) {
+                device.attributes.add(Attribute())
+            }
+
+            adapter.submitList(device.attributes.toList())
+
         })
     }
 
