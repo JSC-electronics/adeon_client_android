@@ -17,12 +17,12 @@ import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
 import cz.jsc.electronics.arduinosms.databinding.FragmentSendSmsBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
 import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
-import cz.jsc.electronics.arduinosms.viewmodels.SendSmsViewModel
+import cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel
 
 class SendSmsFragment : Fragment() {
 
     private lateinit var layout: ConstraintLayout
-    private lateinit var sendSmsViewModel: SendSmsViewModel
+    private lateinit var manageDeviceViewModel: ManageDeviceViewModel
 
     companion object {
         const val REQUEST_SEND_SMS = 187
@@ -35,11 +35,11 @@ class SendSmsFragment : Fragment() {
     ): View? {
         val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
 
-        val factory = InjectorUtils.provideSendSmsViewModelFactory(requireActivity(), deviceId)
-        sendSmsViewModel = ViewModelProviders.of(this, factory).get(SendSmsViewModel::class.java)
+        val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
+        manageDeviceViewModel = ViewModelProviders.of(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
-            viewModel = sendSmsViewModel
+            viewModel = manageDeviceViewModel
             lifecycleOwner = this@SendSmsFragment
 
             sendSmsButton.setOnClickListener {
@@ -47,12 +47,9 @@ class SendSmsFragment : Fragment() {
             }
         }
         layout = binding.sendSmsLayout
-        val adapter = AttributesAdapter(true)
-        binding.attributeList.adapter = adapter
 
-        sendSmsViewModel.device.observe(this, Observer { device ->
-            sendSmsViewModel.restoreData(device)
-            })
+        val adapter = manageDeviceViewModel.getAttributesAdapter(true)
+        binding.attributeList.adapter = adapter
 
         subscribeUi(adapter)
 
@@ -60,33 +57,37 @@ class SendSmsFragment : Fragment() {
     }
 
     private fun subscribeUi(adapter: AttributesAdapter) {
-        sendSmsViewModel.getAttributes().observe(viewLifecycleOwner, Observer { attributes ->
-            if (attributes != null && attributes.isNotEmpty()) {
-                adapter.submitList(attributes.toList())
-            }
+        manageDeviceViewModel.device.observe(this, Observer { device ->
+            adapter.submitList(device.attributes.toList())
+
         })
     }
 
     private fun requestSmsPermissions() {
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.SEND_SMS)
-            != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.SEND_SMS
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
 
             requestPermissions(arrayOf(Manifest.permission.SEND_SMS), REQUEST_SEND_SMS)
         } else {
-            sendSmsViewModel.sendSmsMessage()
+            manageDeviceViewModel.sendSmsMessage()
             val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
             layout.findNavController().navigate(direction)
         }
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
         when (requestCode) {
             REQUEST_SEND_SMS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    sendSmsViewModel.sendSmsMessage()
+                    manageDeviceViewModel.sendSmsMessage()
                     val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
                     layout.findNavController().navigate(direction)
                 } else {
@@ -99,7 +100,6 @@ class SendSmsFragment : Fragment() {
             }
         }
     }
-
 
     override fun onPause() {
         layout.hideSoftKeyboard()

@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="cz.jsc.electronics.arduinosms.viewmodels.SendSmsViewModel" />
+                type="cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

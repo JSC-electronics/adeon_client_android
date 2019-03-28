@@ -15,13 +15,13 @@ import cz.jsc.electronics.arduinosms.data.Attribute
 import cz.jsc.electronics.arduinosms.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
 import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
-import cz.jsc.electronics.arduinosms.viewmodels.AddDeviceViewModel
+import cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel
 import java.util.*
 
 class AddDeviceFragment : Fragment() {
 
     private lateinit var layout: ConstraintLayout
-    private lateinit var addDeviceViewModel: AddDeviceViewModel
+    private lateinit var manageDeviceViewModel: ManageDeviceViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,18 +33,18 @@ class AddDeviceFragment : Fragment() {
             deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
         }
 
-        val factory = InjectorUtils.provideAddDeviceViewModelFactory(requireActivity(), deviceId)
-        addDeviceViewModel = ViewModelProviders.of(this, factory).get(AddDeviceViewModel::class.java)
+        val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
+        manageDeviceViewModel = ViewModelProviders.of(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentAddDeviceBinding.inflate(inflater, container, false).apply {
-            viewModel = addDeviceViewModel
+            viewModel = manageDeviceViewModel
             lifecycleOwner = this@AddDeviceFragment
 
             phoneNumber.setHint(R.string.phone_hint)
             phoneNumber.setDefaultCountry(Locale.getDefault().country)
 
             fab.setOnClickListener {
-                addDeviceViewModel.addNewAttribute()
+                manageDeviceViewModel.addNewAttribute()
             }
 
             addDeviceButton.setOnClickListener { view ->
@@ -64,24 +64,24 @@ class AddDeviceFragment : Fragment() {
                     phoneNumber.setError(getString(R.string.invalid_phone_number))
                 }
 
-                if (addDeviceViewModel.isAttributeListEmpty()) {
+                if (manageDeviceViewModel.isAttributeListEmpty()) {
                     isError = true
                     Snackbar.make(view, R.string.no_attributes_error, Snackbar.LENGTH_LONG).show()
                 }
 
-                if (!addDeviceViewModel.isAttributeListValid()) {
+                if (!manageDeviceViewModel.isAttributeListValid()) {
                     isError = true
                     Snackbar.make(view, R.string.invalid_attributes, Snackbar.LENGTH_LONG).show()
                 }
 
                 if (!isError) {
-                        viewModel?.device?.value?.let {
-                            it.name = deviceNameEditText.text.toString()
-                            it.location = locationEditText.text.toString()
-                            it.phoneNumber = phoneNumber.phoneNumber
+                    viewModel?.device?.value?.let {
+                        it.name = deviceNameEditText.text.toString()
+                        it.location = locationEditText.text.toString()
+                        it.phoneNumber = phoneNumber.phoneNumber
 
-                            addDeviceViewModel.addOrUpdateDevice()
-                        }
+                        manageDeviceViewModel.addOrUpdateDevice()
+                    }
 
                     view.hideSoftKeyboard()
                     val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
@@ -91,14 +91,15 @@ class AddDeviceFragment : Fragment() {
         }
         layout = binding.addDeviceLayout
 
-        binding.attributeList.adapter = addDeviceViewModel.attributeAdapter
-        subscribeUi(binding, addDeviceViewModel.attributeAdapter)
+        val adapter = manageDeviceViewModel.getAttributesAdapter()
+        binding.attributeList.adapter = adapter
+        subscribeUi(binding, adapter)
 
         return binding.root
     }
 
     private fun subscribeUi(binding: FragmentAddDeviceBinding, adapter: AttributesAdapter) {
-        addDeviceViewModel.device.observe(this, Observer { device ->
+        manageDeviceViewModel.device.observe(this, Observer { device ->
             binding.deviceNameEditText.setText(device.name)
             binding.phoneNumber.phoneNumber = device.phoneNumber
 

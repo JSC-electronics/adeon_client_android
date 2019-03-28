@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModelProvider
 import cz.jsc.electronics.arduinosms.data.DeviceRepository
 
 /**
- * Factory for creating a [SendSmsViewModel] with a constructor that takes a [DeviceRepository].
+ * Factory for creating a [ManageDeviceViewModel] with a constructor that takes a [DeviceRepository].
  */
-class SendSmsViewModelFactory(
+class ManageDeviceViewModelFactory(
     private val repository: DeviceRepository,
-    private val deviceId: Long
+    private val deviceId: Long?
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) = SendSmsViewModel(repository, deviceId) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>) = ManageDeviceViewModel(repository, deviceId) as T
 }
