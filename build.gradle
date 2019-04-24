@@ -5,7 +5,7 @@ buildscript {
     ext {
         // Sdk and tools
         compileSdkVersion = 28
-        minSdkVersion = 21
+        minSdkVersion = 19
         targetSdkVersion = 28
 
         // App dependencies
@@ -14,7 +14,6 @@ buildscript {
         coroutinesVersion = "1.1.1"
         espressoVersion = '3.1.2-alpha01'
         gradleVersion = '3.3.2'
-        gsonVersion = '2.8.2'
         junitVersion = '4.12'
         kotlinVersion = '1.3.21'
         ktlintVersion = '0.30.0'
@@ -25,7 +24,6 @@ buildscript {
         recyclerViewVersion = '1.1.0-alpha04'
         roomVersion = '2.1.0-alpha06'
         supportLibraryVersion = '1.1.0-alpha04'
-        workVersion = '1.0.1'
         playServicesAddsVersion = '17.2.0'
     }
 
