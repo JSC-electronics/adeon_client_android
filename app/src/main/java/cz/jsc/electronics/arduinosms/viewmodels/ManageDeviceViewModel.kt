@@ -23,9 +23,20 @@ class ManageDeviceViewModel internal constructor(
 ) : ViewModel() {
 
     companion object {
-        const val CHECKSUM_SIZE = 5
-        const val ATTRIBUTE_VAL_MIN = 0
-        const val ATTRIBUTE_VAL_MAX = 65535
+        private const val CHECKSUM_SIZE = 5
+        private const val ATTRIBUTE_VAL_MIN = 0
+        private const val ATTRIBUTE_VAL_MAX = 65535
+
+        /* We've limited the field names to basic ASCII characters only (code below 128),
+           which allows for 7-bit encoding. We won't ever send multipart SMS messages
+           (due to limitations on receiving end) and hence we don't need to count the overhead.
+         */
+        private const val MAX_MESSAGE_SIZE = 160
+
+        /* PAYLOAD are in this context comma-separated fields, i.e. attr1 = 1; attr2 = 2; ...
+           We also need to take into account part containing MD5 hash and separating characters.
+         */
+        private const val MAX_PAYLOAD_SIZE = MAX_MESSAGE_SIZE - CHECKSUM_SIZE - 2
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
@@ -95,15 +106,38 @@ class ManageDeviceViewModel internal constructor(
                 val smsManager = SmsManager.getDefault()
 
                 val smsAttributes = device.attributes.filter { it.checked && it.key != null && it.value != null }
-                    .joinToString(separator = ";", postfix = ";")
-                val md5 = computeMd5(smsAttributes)
-                val smsMessage =
-                    smsManager.divideMessage("${md5.substring(md5.length - CHECKSUM_SIZE)}: $smsAttributes")
-                smsManager.sendMultipartTextMessage(
-                    device.phoneNumber,
-                    null, smsMessage, null, null
-                )
+
+                composeMessage(smsAttributes).forEach { message ->
+                    val md5 = computeMd5(message)
+                    val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                    smsManager.sendTextMessage(
+                        device.phoneNumber, null, smsMessage,
+                        null, null
+                    )
+                }
             }
         }
+    }
+
+    private fun composeMessage(attributes: List<Attribute>): List<String> {
+        val messages = ArrayList<String>()
+        var message = ""
+
+        attributes.forEach { attribute ->
+            // If we append the attribute, max message length will be exceeded
+            if (message.length + attribute.toString().length + 1 > MAX_PAYLOAD_SIZE) {
+                messages.add(message)
+                message = "$attribute;"
+            } else {
+                message += "$attribute;"
+            }
+        }
+
+        // Put last message into the list
+        if (message.isNotEmpty()) {
+            messages.add(message)
+        }
+
+        return messages
     }
 }
