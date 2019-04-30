@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Arduino SMS</string>
+    <string name="app_name">SMS control</string>
     <string name="my_devices_title">My devices</string>
     <string name="about_title">About</string>
     <string name="navigation_drawer_header_content_description"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Arduino SMS</string>
+    <string name="app_name">SMS control</string>
     <string name="my_devices_title">Moje zařízení</string>
     <string name="about_title">O aplikaci</string>
     <string name="navigation_drawer_header_content_description">Logo v záhlaví navigační lišty</string>
