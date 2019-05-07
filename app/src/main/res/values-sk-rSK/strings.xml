@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SMS control</string>
     <string name="my_devices_title">Moje zariadenia</string>
     <string name="about_title">O aplikácii</string>
     <string name="navigation_drawer_header_content_description">Logo v hlavičke navigačnej lišty</string>
@@ -18,7 +17,7 @@
     <string name="property_key">Kľúč</string>
     <string name="save_changes_button">Uložiť zmeny</string>
     <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
-    <string name="attribute_value_out_of_range">Nie je v rozsahu 0 – 65535!</string>
+    <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>
     <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
     <string name="send_sms_title">Poslať SMS správu</string>
     <string name="device_name_info">Názov zariadenia: %s</string>
