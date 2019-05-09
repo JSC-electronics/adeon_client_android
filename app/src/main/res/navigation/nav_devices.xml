@@ -6,7 +6,7 @@
 
     <fragment
             android:id="@+id/device_list_fragment"
-            android:name="cz.jsc.electronics.arduinosms.DeviceListFragment"
+            android:name="cz.jsc.electronics.smscontrol.DeviceListFragment"
             android:label="@string/my_devices_title"
             tools:layout="@layout/fragment_device_list">
 
@@ -38,13 +38,13 @@
 
     <fragment
             android:id="@+id/about_fragment"
-            android:name="cz.jsc.electronics.arduinosms.AboutFragment"
+            android:name="cz.jsc.electronics.smscontrol.AboutFragment"
             android:label="@string/about_title"
             tools:layout="@layout/fragment_about">
     </fragment>
 
     <fragment android:id="@+id/add_device_fragment"
-              android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
+              android:name="cz.jsc.electronics.smscontrol.AddDeviceFragment"
               android:label="@string/add_device_title"
               tools:layout="@layout/fragment_add_device">
 
@@ -58,7 +58,7 @@
     </fragment>
 
     <fragment android:id="@+id/edit_device_fragment"
-              android:name="cz.jsc.electronics.arduinosms.AddDeviceFragment"
+              android:name="cz.jsc.electronics.smscontrol.AddDeviceFragment"
               android:label="@string/edit_device_title"
               tools:layout="@layout/fragment_add_device">
 
@@ -76,7 +76,7 @@
     </fragment>
 
     <fragment android:id="@+id/send_sms_fragment"
-              android:name="cz.jsc.electronics.arduinosms.SendSmsFragment"
+              android:name="cz.jsc.electronics.smscontrol.SendSmsFragment"
               android:label="@string/send_sms_title"
               tools:layout="@layout/fragment_send_sms">
 

@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms
+package cz.jsc.electronics.smscontrol
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import cz.jsc.electronics.arduinosms.adapters.DeviceAdapter
-import cz.jsc.electronics.arduinosms.databinding.FragmentDeviceListBinding
-import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
-import cz.jsc.electronics.arduinosms.viewmodels.DeviceListViewModel
+import cz.jsc.electronics.smscontrol.adapters.DeviceAdapter
+import cz.jsc.electronics.smscontrol.databinding.FragmentDeviceListBinding
+import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
+import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModel
 
 class DeviceListFragment : Fragment() {
 

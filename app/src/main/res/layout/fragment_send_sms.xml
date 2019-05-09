@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel"/>
+                type="cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -19,7 +19,7 @@
                 android:id="@+id/send_sms_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="cz.jsc.electronics.arduinosms.SendSmsFragment"
+                tools:context="cz.jsc.electronics.smscontrol.SendSmsFragment"
         >
 
             <TextView

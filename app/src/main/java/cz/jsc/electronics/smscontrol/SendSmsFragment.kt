@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms
+package cz.jsc.electronics.smscontrol
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -17,11 +17,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
-import cz.jsc.electronics.arduinosms.databinding.FragmentSendSmsBinding
-import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
-import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
-import cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel
+import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
+import cz.jsc.electronics.smscontrol.databinding.FragmentSendSmsBinding
+import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
+import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
+import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
 
 class SendSmsFragment : Fragment() {
 

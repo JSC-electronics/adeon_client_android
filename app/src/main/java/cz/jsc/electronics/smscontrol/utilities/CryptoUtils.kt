@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms.utilities
+package cz.jsc.electronics.smscontrol.utilities
 
 import java.security.NoSuchAlgorithmException
 

@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms
+package cz.jsc.electronics.smscontrol
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import cz.jsc.electronics.arduinosms.databinding.ActivityMainBinding
+import cz.jsc.electronics.smscontrol.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms.adapters
+package cz.jsc.electronics.smscontrol.adapters
 
 import android.view.View
 import androidx.databinding.BindingAdapter

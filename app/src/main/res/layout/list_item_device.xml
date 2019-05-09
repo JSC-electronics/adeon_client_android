@@ -9,7 +9,7 @@
                 type="android.view.View.OnClickListener"/>
         <variable
                 name="device"
-                type="cz.jsc.electronics.arduinosms.data.Device"/>
+                type="cz.jsc.electronics.smscontrol.data.Device"/>
     </data>
 
     <androidx.cardview.widget.CardView

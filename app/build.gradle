@@ -10,7 +10,7 @@ android {
         enabled = true
     }
     defaultConfig {
-        applicationId "cz.jsc.electronics.arduinosms"
+        applicationId "cz.jsc.electronics.smscontrol"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1

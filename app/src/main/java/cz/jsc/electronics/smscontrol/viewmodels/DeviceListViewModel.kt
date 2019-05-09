@@ -1,13 +1,13 @@
-package cz.jsc.electronics.arduinosms.viewmodels
+package cz.jsc.electronics.smscontrol.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.jsc.electronics.arduinosms.data.Device
-import cz.jsc.electronics.arduinosms.data.DeviceRepository
+import cz.jsc.electronics.smscontrol.data.Device
+import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import cz.jsc.electronics.arduinosms.DeviceListFragment
+import cz.jsc.electronics.smscontrol.DeviceListFragment
 
 /**
  * The ViewModel for [DeviceListFragment].

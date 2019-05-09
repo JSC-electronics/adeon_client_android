@@ -1,10 +1,10 @@
-package cz.jsc.electronics.arduinosms.utilities
+package cz.jsc.electronics.smscontrol.utilities
 
 import android.content.Context
-import cz.jsc.electronics.arduinosms.data.AppDatabase
-import cz.jsc.electronics.arduinosms.data.DeviceRepository
-import cz.jsc.electronics.arduinosms.viewmodels.DeviceListViewModelFactory
-import cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModelFactory
+import cz.jsc.electronics.smscontrol.data.AppDatabase
+import cz.jsc.electronics.smscontrol.data.DeviceRepository
+import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModelFactory
+import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModelFactory
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.

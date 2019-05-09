@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms.data
+package cz.jsc.electronics.smscontrol.data
 
 data class Attribute(
     val id: Long = 0,

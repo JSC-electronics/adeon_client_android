@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms
+package cz.jsc.electronics.smscontrol
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
-import cz.jsc.electronics.arduinosms.data.Attribute
-import cz.jsc.electronics.arduinosms.databinding.FragmentAddDeviceBinding
-import cz.jsc.electronics.arduinosms.utilities.InjectorUtils
-import cz.jsc.electronics.arduinosms.utilities.hideSoftKeyboard
-import cz.jsc.electronics.arduinosms.viewmodels.ManageDeviceViewModel
+import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
+import cz.jsc.electronics.smscontrol.data.Attribute
+import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
+import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
+import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
+import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
 import java.util.*
 
 class AddDeviceFragment : Fragment() {

@@ -1,17 +1,17 @@
-package cz.jsc.electronics.arduinosms.viewmodels
+package cz.jsc.electronics.smscontrol.viewmodels
 
 import android.telephony.SmsManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.jsc.electronics.arduinosms.AddDeviceFragment
-import cz.jsc.electronics.arduinosms.SendSmsFragment
-import cz.jsc.electronics.arduinosms.adapters.AttributesAdapter
-import cz.jsc.electronics.arduinosms.data.Attribute
-import cz.jsc.electronics.arduinosms.data.Device
-import cz.jsc.electronics.arduinosms.data.DeviceRepository
-import cz.jsc.electronics.arduinosms.utilities.computeMd5
+import cz.jsc.electronics.smscontrol.AddDeviceFragment
+import cz.jsc.electronics.smscontrol.SendSmsFragment
+import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
+import cz.jsc.electronics.smscontrol.data.Attribute
+import cz.jsc.electronics.smscontrol.data.Device
+import cz.jsc.electronics.smscontrol.data.DeviceRepository
+import cz.jsc.electronics.smscontrol.utilities.computeMd5
 import kotlinx.coroutines.launch
 
 /**

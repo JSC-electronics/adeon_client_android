@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms.data
+package cz.jsc.electronics.smscontrol.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

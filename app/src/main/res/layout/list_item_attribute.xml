@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="attribute"
-                type="cz.jsc.electronics.arduinosms.data.Attribute"/>
+                type="cz.jsc.electronics.smscontrol.data.Attribute"/>
     </data>
 
     <androidx.cardview.widget.CardView

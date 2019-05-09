@@ -1,4 +1,4 @@
-package cz.jsc.electronics.arduinosms.data
+package cz.jsc.electronics.smscontrol.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
