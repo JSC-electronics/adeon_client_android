@@ -5,7 +5,7 @@ buildscript {
     ext {
         // Sdk and tools
         compileSdkVersion = 28
-        minSdkVersion = 21
+        minSdkVersion = 19
         targetSdkVersion = 28
 
         // App dependencies
@@ -25,6 +25,7 @@ buildscript {
         roomVersion = '2.1.0-alpha07'
         supportLibraryVersion = '1.1.0-alpha04'
         playServicesAddsVersion = '17.2.0'
+        multiDexLibraryVersion = '2.0.1'
     }
 
     repositories {

@@ -69,9 +69,6 @@ class SendSmsFragment : Fragment() {
             }
         }
 
-
-
-
         return binding.root
     }
 
