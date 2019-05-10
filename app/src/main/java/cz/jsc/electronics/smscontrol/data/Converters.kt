@@ -1,26 +1,18 @@
 package cz.jsc.electronics.smscontrol.data
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class Converters {
 
     @TypeConverter
     fun attributeListToString(attributes: MutableList<Attribute>): String =
-        attributes.filter { it.key != null && it.value != null }.joinToString(separator = ";", postfix = ";")
+        Gson().toJson(attributes.filter { (it.key != null && it.value != null) || it.text != null })
 
     @TypeConverter
     fun stringToAttributeList(attributeString: String): MutableList<Attribute> {
-        val attributes = arrayListOf<Attribute>()
-
-        attributeString.split(";").dropLast(1).forEach {
-            val attrs = it.split("=")
-
-            // Attribute has proper key and value
-            if (attrs.size == 2) {
-                attributes.add(Attribute(attributes.size.toLong(), attrs[0].trim(), attrs[1].trim().toIntOrNull()))
-            }
-        }
-
-        return attributes
+        val attributeType = object : TypeToken<List<Attribute>>() {}.type
+        return Gson().fromJson<MutableList<Attribute>>(attributeString, attributeType)
     }
 }
