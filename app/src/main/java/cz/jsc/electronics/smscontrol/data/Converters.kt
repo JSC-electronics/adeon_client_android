@@ -7,12 +7,12 @@ import com.google.gson.reflect.TypeToken
 class Converters {
 
     @TypeConverter
-    fun attributeListToString(attributes: MutableList<Attribute>): String =
+    fun attributeListToString(attributes: List<Attribute>): String =
         Gson().toJson(attributes.filter { (it.key != null && it.value != null) || it.text != null })
 
     @TypeConverter
-    fun stringToAttributeList(attributeString: String): MutableList<Attribute> {
+    fun stringToAttributeList(attributeString: String): List<Attribute> {
         val attributeType = object : TypeToken<List<Attribute>>() {}.type
-        return Gson().fromJson<MutableList<Attribute>>(attributeString, attributeType)
+        return Gson().fromJson<List<Attribute>>(attributeString, attributeType)
     }
 }

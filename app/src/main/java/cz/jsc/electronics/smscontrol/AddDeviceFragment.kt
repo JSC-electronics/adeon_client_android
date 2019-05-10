@@ -107,12 +107,7 @@ class AddDeviceFragment : Fragment() {
                 binding.locationEditText.setText(location)
             }
 
-            if (device.attributes.isEmpty()) {
-                device.attributes.add(Attribute())
-            }
-
-            adapter.submitList(device.attributes.toList())
-
+            manageDeviceViewModel.initAttributes(device)
         })
     }
 

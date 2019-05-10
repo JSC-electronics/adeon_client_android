@@ -5,7 +5,7 @@ data class Attribute(
     var key: String? = null,
     var value: Int? = null,
     var text: String? = null,
-    var checked: Boolean = true
+    var isChecked: Boolean = true
 ) {
 
     override fun toString(): String {

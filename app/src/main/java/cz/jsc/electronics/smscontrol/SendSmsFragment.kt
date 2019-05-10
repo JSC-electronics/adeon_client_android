@@ -74,7 +74,7 @@ class SendSmsFragment : Fragment() {
 
     private fun subscribeUi(adapter: AttributesAdapter) {
         manageDeviceViewModel.device.observe(this, Observer { device ->
-            adapter.submitList(device.attributes.toList())
+            manageDeviceViewModel.initAttributes(device)
 
         })
     }

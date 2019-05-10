@@ -42,6 +42,8 @@ class ManageDeviceViewModel internal constructor(
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
+    private var attributes = mutableListOf<Attribute>()
+
     // For Singleton instantiation
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
@@ -51,25 +53,32 @@ class ManageDeviceViewModel internal constructor(
             attributesAdapter ?: AttributesAdapter(showCheckbox).also { attributesAdapter = it }
         }
 
+    fun initAttributes(device: Device) {
+        attributes = device.attributes.map { it.copy(id = it.id, key = it.key, value = it.value,
+            text = it.text, isChecked = it.isChecked) }.toMutableList()
+
+        if (attributes.isEmpty()) {
+            attributes.add(Attribute())
+        }
+
+        attributesAdapter?.submitList( attributes.toList())
+    }
+
     fun isEditingDevice(): Boolean {
         return deviceId != null
     }
 
     fun addNewAttribute() {
-        device.value?.let {
-            it.attributes.add(Attribute(it.attributes.size.toLong()))
-            attributesAdapter?.submitList(it.attributes.toList())
-        }
+        attributes.add(Attribute(attributes.size.toLong()))
+        attributesAdapter?.submitList(attributes.toList())
     }
 
     fun isAttributeListValid(): Boolean {
-        device.value?.apply {
-            attributes.forEach {
-                if ((it.key.isNullOrEmpty() && it.value != null) ||
-                    (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < ATTRIBUTE_VAL_MIN || it.value!! > ATTRIBUTE_VAL_MAX))
-                ) {
-                    return false
-                }
+        attributes.forEach {
+            if ((it.key.isNullOrEmpty() && it.value != null) ||
+                (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < ATTRIBUTE_VAL_MIN || it.value!! > ATTRIBUTE_VAL_MAX))
+            ) {
+                return false
             }
         }
 
@@ -77,11 +86,9 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun isAttributeListEmpty(): Boolean {
-        device.value?.apply {
-            attributes.forEach {
-                if (!it.key.isNullOrEmpty())
-                    return false
-            }
+        attributes.forEach {
+            if (!it.key.isNullOrEmpty())
+                return false
         }
 
         return true
@@ -90,11 +97,21 @@ class ManageDeviceViewModel internal constructor(
     fun addOrUpdateDevice() {
         viewModelScope.launch {
 
-            device.value?.let {
-                if (deviceId == null) {
-                    deviceRepository.addDevice(it)
+            device.value?.let { device ->
+                if (device.attributes.isEmpty() || device.attributes.size != attributes.size) {
+                    device.attributes = attributes.toList()
                 } else {
-                    deviceRepository.updateDevice(it)
+                    val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
+
+                    device.attributes.onEach { attribute ->
+                        attribute.isChecked = attribute.id in checkedAttributes
+                    }
+                }
+
+                if (deviceId == null) {
+                    deviceRepository.addDevice(device)
+                } else {
+                    deviceRepository.updateDevice(device)
                 }
             }
         }
@@ -105,7 +122,7 @@ class ManageDeviceViewModel internal constructor(
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
 
-                val smsAttributes = device.attributes.filter { it.checked && it.key != null && it.value != null }
+                val smsAttributes = attributes.filter { it.isChecked }
 
                 composeMessage(smsAttributes).forEach { message ->
                     val md5 = computeMd5(message)
@@ -115,6 +132,9 @@ class ManageDeviceViewModel internal constructor(
                         null, null
                     )
                 }
+
+                // Store which attributes are checked
+                addOrUpdateDevice()
             }
         }
     }
