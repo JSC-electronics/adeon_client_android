@@ -15,4 +15,8 @@ data class Attribute(
             return "$text"
         }
     }
+
+    fun isValid(): Boolean {
+        return (!key.isNullOrEmpty() && value != null) || !text.isNullOrEmpty()
+    }
 }

@@ -89,11 +89,16 @@ class SendSmsFragment : Fragment() {
 
             requestPermissions(arrayOf(Manifest.permission.SEND_SMS), REQUEST_SEND_SMS)
         } else {
-            manageDeviceViewModel.sendSmsMessage()
-            val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-            layout.findNavController().navigate(direction)
-            if (interstitialAd.isLoaded) {
-                interstitialAd.show()
+            if (manageDeviceViewModel.areAttributesChecked()) {
+                manageDeviceViewModel.sendSmsMessage()
+
+                val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                layout.findNavController().navigate(direction)
+                if (interstitialAd.isLoaded) {
+                    interstitialAd.show()
+                }
+            } else {
+                Snackbar.make(layout, R.string.no_attribute_selected, Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -106,11 +111,16 @@ class SendSmsFragment : Fragment() {
         when (requestCode) {
             REQUEST_SEND_SMS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    manageDeviceViewModel.sendSmsMessage()
-                    val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-                    layout.findNavController().navigate(direction)
-                    if (interstitialAd.isLoaded) {
-                        interstitialAd.show()
+                    if (manageDeviceViewModel.areAttributesChecked()) {
+                        manageDeviceViewModel.sendSmsMessage()
+
+                        val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                        layout.findNavController().navigate(direction)
+                        if (interstitialAd.isLoaded) {
+                            interstitialAd.show()
+                        }
+                    } else {
+                        Snackbar.make(layout, R.string.no_attribute_selected, Snackbar.LENGTH_LONG).show()
                     }
                 } else {
                     Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()

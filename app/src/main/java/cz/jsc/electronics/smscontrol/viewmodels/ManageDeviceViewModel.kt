@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.smscontrol.AddDeviceFragment
 import cz.jsc.electronics.smscontrol.SendSmsFragment
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
@@ -37,6 +38,9 @@ class ManageDeviceViewModel internal constructor(
            We also need to take into account part containing MD5 hash and separating characters.
          */
         private const val MAX_PAYLOAD_SIZE = MAX_MESSAGE_SIZE - CHECKSUM_SIZE - 2
+
+        const val SMS_SENT_SUCCESSFULLY = 1
+        const val NO_ATTRIBUTE_SELECTED = 2
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
@@ -94,6 +98,10 @@ class ManageDeviceViewModel internal constructor(
         return true
     }
 
+    fun areAttributesChecked(): Boolean {
+        return attributes.filter { it.isChecked }.isNotEmpty()
+    }
+
     fun addOrUpdateDevice() {
         viewModelScope.launch {
 
@@ -122,19 +130,21 @@ class ManageDeviceViewModel internal constructor(
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
 
-                val smsAttributes = attributes.filter { it.isChecked }
+                val smsAttributes = attributes.filter { it.isChecked && it.isValid() }
 
-                composeMessage(smsAttributes).forEach { message ->
-                    val md5 = computeMd5(message)
-                    val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                    smsManager.sendTextMessage(
-                        device.phoneNumber, null, smsMessage,
-                        null, null
-                    )
+                if (smsAttributes.isNotEmpty()) {
+                    // Store which attributes are checked
+                    addOrUpdateDevice()
+
+                    composeMessage(smsAttributes).forEach { message ->
+                        val md5 = computeMd5(message)
+                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                        smsManager.sendTextMessage(
+                            device.phoneNumber, null, smsMessage,
+                            null, null
+                        )
+                    }
                 }
-
-                // Store which attributes are checked
-                addOrUpdateDevice()
             }
         }
     }
