@@ -38,9 +38,6 @@ class ManageDeviceViewModel internal constructor(
            We also need to take into account part containing MD5 hash and separating characters.
          */
         private const val MAX_PAYLOAD_SIZE = MAX_MESSAGE_SIZE - CHECKSUM_SIZE - 2
-
-        const val SMS_SENT_SUCCESSFULLY = 1
-        const val NO_ATTRIBUTE_SELECTED = 2
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
