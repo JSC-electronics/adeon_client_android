@@ -29,6 +29,7 @@
 
     <string name="property_key">Key</string>
     <string name="property_value">Value</string>
+    <string name="property_text">Plain text</string>
 
     <string name="device_name_info">Device name: %s</string>
     <string name="location_info">Location: %s</string>

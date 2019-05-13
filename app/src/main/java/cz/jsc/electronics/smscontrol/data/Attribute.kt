@@ -26,4 +26,8 @@ data class Attribute(
                 value!! >= ATTRIBUTE_VAL_MIN && value!! <= ATTRIBUTE_VAL_MAX) ||
                 !text.isNullOrEmpty()
     }
+
+    fun hasOnlyPlainText(): Boolean {
+        return !text.isNullOrEmpty() && key.isNullOrEmpty()
+    }
 }

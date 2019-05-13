@@ -29,4 +29,5 @@
     <string name="content_desc_device_icon">Ikona zariadenia</string>
     <string name="content_desc_device_item_menu">Menu položky zariadenia</string>
     <string name="no_attribute_selected">Vyberte aspoň jednu vlastnosť pred poslaním SMS.</string>
+    <string name="property_text">Obyčajný text</string>
 </resources>
