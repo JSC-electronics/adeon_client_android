@@ -25,8 +25,6 @@ class ManageDeviceViewModel internal constructor(
 
     companion object {
         private const val CHECKSUM_SIZE = 5
-        private const val ATTRIBUTE_VAL_MIN = 0
-        private const val ATTRIBUTE_VAL_MAX = 65535
 
         /* We've limited the field names to basic ASCII characters only (code below 128),
            which allows for 7-bit encoding. We won't ever send multipart SMS messages
@@ -76,23 +74,14 @@ class ManageDeviceViewModel internal constructor(
 
     fun isAttributeListValid(): Boolean {
         attributes.forEach {
-            if ((it.key.isNullOrEmpty() && it.value != null) ||
-                (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < ATTRIBUTE_VAL_MIN || it.value!! > ATTRIBUTE_VAL_MAX))
-            ) {
+            if (!it.isValid())
                 return false
-            }
         }
-
         return true
     }
 
     fun isAttributeListEmpty(): Boolean {
-        attributes.forEach {
-            if (!it.key.isNullOrEmpty())
-                return false
-        }
-
-        return true
+        return attributes.isEmpty()
     }
 
     fun areAttributesChecked(): Boolean {

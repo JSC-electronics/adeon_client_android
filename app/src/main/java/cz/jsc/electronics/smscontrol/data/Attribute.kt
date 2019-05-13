@@ -8,6 +8,11 @@ data class Attribute(
     var isChecked: Boolean = true
 ) {
 
+    companion object {
+        private const val ATTRIBUTE_VAL_MIN = 0
+        private const val ATTRIBUTE_VAL_MAX = 65535
+    }
+
     override fun toString(): String {
         if (key != null) {
             return "$key = $value"
@@ -17,6 +22,8 @@ data class Attribute(
     }
 
     fun isValid(): Boolean {
-        return (!key.isNullOrEmpty() && value != null) || !text.isNullOrEmpty()
+        return (!key.isNullOrEmpty() && value != null &&
+                value!! >= ATTRIBUTE_VAL_MIN && value!! <= ATTRIBUTE_VAL_MAX) ||
+                !text.isNullOrEmpty()
     }
 }
