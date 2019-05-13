@@ -39,4 +39,7 @@
     <string name="content_desc_device_icon">Device icon</string>
     <string name="content_desc_device_item_menu">Device item menu</string>
     <string name="no_attribute_selected">Please select at least one attribute before sending the SMS.</string>
+    <string name="message_type">Message type</string>
+    <string name="key_value_type">Array of properties having key = value pairs</string>
+    <string name="plain_text_type">Plain text within 160 characters</string>
 </resources>
