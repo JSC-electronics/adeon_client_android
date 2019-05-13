@@ -58,13 +58,13 @@ class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter
                         }
                     }
                 }
+                attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                    attribute?.apply {
+                        this.isChecked = isChecked
+                    }
+                }
                 if (showCheckbox) {
                     binding.attributeCheckbox.isVisible = showCheckbox
-                    attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
-                        attribute?.apply {
-                            checked = isChecked
-                        }
-                    }
                 }
             }
         }

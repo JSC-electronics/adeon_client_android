@@ -28,4 +28,5 @@
     <string name="content_desc_application_logo">Logo aplikace</string>
     <string name="content_desc_device_icon">Ikona zařízení</string>
     <string name="content_desc_device_item_menu">Menu položky zařízení</string>
+    <string name="no_attribute_selected">Vyberte alespoň jednu vlastnost před odesláním SMS.</string>
 </resources>

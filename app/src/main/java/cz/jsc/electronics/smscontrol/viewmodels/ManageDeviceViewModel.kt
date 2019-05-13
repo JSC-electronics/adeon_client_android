@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.smscontrol.AddDeviceFragment
 import cz.jsc.electronics.smscontrol.SendSmsFragment
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
@@ -24,8 +25,6 @@ class ManageDeviceViewModel internal constructor(
 
     companion object {
         private const val CHECKSUM_SIZE = 5
-        private const val ATTRIBUTE_VAL_MIN = 0
-        private const val ATTRIBUTE_VAL_MAX = 65535
 
         /* We've limited the field names to basic ASCII characters only (code below 128),
            which allows for 7-bit encoding. We won't ever send multipart SMS messages
@@ -42,6 +41,8 @@ class ManageDeviceViewModel internal constructor(
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
+    private var attributes = mutableListOf<Attribute>()
+
     // For Singleton instantiation
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
@@ -51,50 +52,60 @@ class ManageDeviceViewModel internal constructor(
             attributesAdapter ?: AttributesAdapter(showCheckbox).also { attributesAdapter = it }
         }
 
+    fun initAttributes(device: Device) {
+        attributes = device.attributes.map { it.copy(id = it.id, key = it.key, value = it.value,
+            text = it.text, isChecked = it.isChecked) }.toMutableList()
+
+        if (attributes.isEmpty()) {
+            attributes.add(Attribute())
+        }
+
+        attributesAdapter?.submitList( attributes.toList())
+    }
+
     fun isEditingDevice(): Boolean {
         return deviceId != null
     }
 
     fun addNewAttribute() {
-        device.value?.let {
-            it.attributes.add(Attribute(it.attributes.size.toLong()))
-            attributesAdapter?.submitList(it.attributes.toList())
-        }
+        attributes.add(Attribute(attributes.size.toLong()))
+        attributesAdapter?.submitList(attributes.toList())
     }
 
     fun isAttributeListValid(): Boolean {
-        device.value?.apply {
-            attributes.forEach {
-                if ((it.key.isNullOrEmpty() && it.value != null) ||
-                    (!it.key.isNullOrEmpty() && (it.value == null || it.value!! < ATTRIBUTE_VAL_MIN || it.value!! > ATTRIBUTE_VAL_MAX))
-                ) {
-                    return false
-                }
-            }
+        attributes.forEach {
+            if (!it.isValid())
+                return false
         }
-
         return true
     }
 
     fun isAttributeListEmpty(): Boolean {
-        device.value?.apply {
-            attributes.forEach {
-                if (!it.key.isNullOrEmpty())
-                    return false
-            }
-        }
+        return attributes.isEmpty()
+    }
 
-        return true
+    fun areAttributesChecked(): Boolean {
+        return attributes.filter { it.isChecked }.isNotEmpty()
     }
 
     fun addOrUpdateDevice() {
         viewModelScope.launch {
 
-            device.value?.let {
-                if (deviceId == null) {
-                    deviceRepository.addDevice(it)
+            device.value?.let { device ->
+                if (device.attributes.isEmpty() || device.attributes.size != attributes.size) {
+                    device.attributes = attributes.toList()
                 } else {
-                    deviceRepository.updateDevice(it)
+                    val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
+
+                    device.attributes.onEach { attribute ->
+                        attribute.isChecked = attribute.id in checkedAttributes
+                    }
+                }
+
+                if (deviceId == null) {
+                    deviceRepository.addDevice(device)
+                } else {
+                    deviceRepository.updateDevice(device)
                 }
             }
         }
@@ -105,15 +116,20 @@ class ManageDeviceViewModel internal constructor(
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
 
-                val smsAttributes = device.attributes.filter { it.checked && it.key != null && it.value != null }
+                val smsAttributes = attributes.filter { it.isChecked && it.isValid() }
 
-                composeMessage(smsAttributes).forEach { message ->
-                    val md5 = computeMd5(message)
-                    val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                    smsManager.sendTextMessage(
-                        device.phoneNumber, null, smsMessage,
-                        null, null
-                    )
+                if (smsAttributes.isNotEmpty()) {
+                    // Store which attributes are checked
+                    addOrUpdateDevice()
+
+                    composeMessage(smsAttributes).forEach { message ->
+                        val md5 = computeMd5(message)
+                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                        smsManager.sendTextMessage(
+                            device.phoneNumber, null, smsMessage,
+                            null, null
+                        )
+                    }
                 }
             }
         }

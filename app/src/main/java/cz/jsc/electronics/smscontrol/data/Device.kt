@@ -10,7 +10,7 @@ data class Device(
     var name: String,
     var location: String?,
     var phoneNumber: String,
-    val attributes: MutableList<Attribute> = arrayListOf()
+    var attributes: List<Attribute> = arrayListOf()
 ) {
 
     override fun toString() = name
