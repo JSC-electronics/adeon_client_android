@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
-import cz.jsc.electronics.smscontrol.data.Attribute
+import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
 import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
@@ -80,7 +80,7 @@ class AddDeviceFragment : Fragment() {
                         it.location = locationEditText.text.toString()
                         it.phoneNumber = phoneNumber.phoneNumber
 
-                        manageDeviceViewModel.addOrUpdateDevice()
+                        manageDeviceViewModel.addOrUpdateDevice(overwriteAttributes = true)
                     }
 
                     view.hideSoftKeyboard()
@@ -103,10 +103,27 @@ class AddDeviceFragment : Fragment() {
             binding.deviceNameEditText.setText(device.name)
             binding.phoneNumber.phoneNumber = device.phoneNumber
 
+            if (device.messageType == Device.KEY_VALUE_FORMAT) {
+                binding.keyValue.isChecked = true
+            } else {
+                binding.plainText.isChecked = true
+            }
+
+            binding.messageTypeSelect.setOnCheckedChangeListener { _, checkedId ->
+                when(checkedId) {
+                    binding.keyValue.id -> manageDeviceViewModel.setMessageType(Device.KEY_VALUE_FORMAT)
+                    binding.plainText.id -> manageDeviceViewModel.setMessageType(Device.PLAIN_TEXT_FORMAT)
+                }
+                // RecyclerView cannot be focused during its update (e.g. if we click on EditText field),
+                // otherwise its items may not be shown.
+                binding.locationEditText.requestFocus()
+            }
+            
             device.location?.let { location ->
                 binding.locationEditText.setText(location)
             }
 
+            manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
     }

@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.snackbar.Snackbar
 import cz.jsc.electronics.smscontrol.AddDeviceFragment
 import cz.jsc.electronics.smscontrol.SendSmsFragment
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
@@ -42,6 +41,7 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
     private var attributes = mutableListOf<Attribute>()
+    private var messageType: Int = Device.KEY_VALUE_FORMAT
 
     // For Singleton instantiation
     @Volatile
@@ -53,14 +53,18 @@ class ManageDeviceViewModel internal constructor(
         }
 
     fun initAttributes(device: Device) {
-        attributes = device.attributes.map { it.copy(id = it.id, key = it.key, value = it.value,
-            text = it.text, isChecked = it.isChecked) }.toMutableList()
+        attributes = device.attributes.map {
+            it.copy(
+                id = it.id, key = it.key, value = it.value,
+                text = it.text, isChecked = it.isChecked
+            )
+        }.toMutableList()
 
         if (attributes.isEmpty()) {
             attributes.add(Attribute())
         }
 
-        attributesAdapter?.submitList( attributes.toList())
+        attributesAdapter?.submitList(attributes.toList())
     }
 
     fun isEditingDevice(): Boolean {
@@ -85,14 +89,38 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun areAttributesChecked(): Boolean {
-        return attributes.filter { it.isChecked }.isNotEmpty()
+        return attributes.any { it.isChecked }
     }
 
-    fun addOrUpdateDevice() {
+    fun setMessageType(messageType: Int, refreshAttributes: Boolean = true) {
+        if (this.messageType != messageType) {
+            this.messageType = messageType
+            attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)
+
+            device.value?.let {
+                if (it.messageType != messageType) {
+                    attributes.clear()
+                    attributes.add(Attribute())
+                    attributesAdapter?.submitList(attributes.toList())
+                } else if (refreshAttributes) {
+                    initAttributes(it)
+                } else {
+                    // Do nothing
+                }
+            }
+        }
+    }
+
+    fun addOrUpdateDevice(overwriteAttributes: Boolean = false) {
         viewModelScope.launch {
 
             device.value?.let { device ->
-                if (device.attributes.isEmpty() || device.attributes.size != attributes.size) {
+                if (device.messageType != messageType) {
+                    device.messageType = messageType
+                    device.attributes = attributes
+                }
+
+                if (device.attributes.isEmpty() || device.attributes.size != attributes.size || overwriteAttributes) {
                     device.attributes = attributes.toList()
                 } else {
                     val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
@@ -122,13 +150,22 @@ class ManageDeviceViewModel internal constructor(
                     // Store which attributes are checked
                     addOrUpdateDevice()
 
-                    composeMessage(smsAttributes).forEach { message ->
-                        val md5 = computeMd5(message)
-                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                        smsManager.sendTextMessage(
-                            device.phoneNumber, null, smsMessage,
-                            null, null
-                        )
+                    if (messageType == Device.KEY_VALUE_FORMAT) {
+                        composeMessage(smsAttributes).forEach { message ->
+                            val md5 = computeMd5(message)
+                            val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                            smsManager.sendTextMessage(
+                                device.phoneNumber, null, smsMessage,
+                                null, null
+                            )
+                        }
+                    } else if (messageType == Device.PLAIN_TEXT_FORMAT) {
+                        smsAttributes.forEach {
+                            if (it.containsPlainText()) {
+                                smsManager.sendMultipartTextMessage(device.phoneNumber, null,
+                                    smsManager.divideMessage(it.text), null, null)
+                            }
+                        }
                     }
                 }
             }
@@ -140,12 +177,14 @@ class ManageDeviceViewModel internal constructor(
         var message = ""
 
         attributes.forEach { attribute ->
-            // If we append the attribute, max message length will be exceeded
-            if (message.length + attribute.toString().length + 1 > MAX_PAYLOAD_SIZE) {
-                messages.add(message)
-                message = "$attribute;"
-            } else {
-                message += "$attribute;"
+            if (attribute.containsKeyValuePair()) {
+                // If we append the attribute, max message length will be exceeded
+                if (message.length + attribute.toString().length + 1 > MAX_PAYLOAD_SIZE) {
+                    messages.add(message)
+                    message = "$attribute;"
+                } else {
+                    message += "$attribute;"
+                }
             }
         }
 

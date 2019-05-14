@@ -7,6 +7,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:elevation="3dp"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
         <include android:id="@+id/content"
