@@ -16,7 +16,8 @@ import cz.jsc.electronics.smscontrol.databinding.ListItemAttributeBinding
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
+class AttributesAdapter(private val showCheckbox: Boolean = false, private var preferPlainText: Boolean = false) :
+    ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val attribute = getItem(position)
@@ -26,20 +27,26 @@ class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter
         }
     }
 
+    fun setAttributeFormat(preferPlainText: Boolean = false) {
+        this.preferPlainText = preferPlainText
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemAttributeBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false), showCheckbox)
+                LayoutInflater.from(parent.context), parent, false),
+                    this)
     }
 
     class ViewHolder(
         private val binding: ListItemAttributeBinding,
-        private val showCheckbox: Boolean
+        private val adapter: AttributesAdapter
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Attribute) {
-            binding.apply {
+            binding.content.apply {
                 attribute = item
+                showPlainText = adapter.preferPlainText
                 executePendingBindings()
                 keyEditText.addTextChangedListener {
                     attribute?.apply {
@@ -50,7 +57,7 @@ class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter
                     attribute?.apply {
                         value = valueEditText.text.toString().toIntOrNull()
                         value?.let {
-                            if (it > 65535 || it < 0) {
+                            if (it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
                                 attributeValue.error = binding.root.context.getString(R.string.attribute_value_out_of_range)
                             } else {
                                 attributeValue.error = null
@@ -58,13 +65,16 @@ class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter
                         }
                     }
                 }
+                plainEditText.addTextChangedListener {
+                    attribute?.apply {
+                        text = plainEditText.text.toString()
+                    }
+                }
+                attributeCheckbox.isVisible = adapter.showCheckbox
                 attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
                     attribute?.apply {
                         this.isChecked = isChecked
                     }
-                }
-                if (showCheckbox) {
-                    binding.attributeCheckbox.isVisible = showCheckbox
                 }
             }
         }
@@ -74,10 +84,10 @@ class AttributesAdapter(private val showCheckbox: Boolean = false) : ListAdapter
 private class AttributesDiffCallback : DiffUtil.ItemCallback<Attribute>() {
 
     override fun areItemsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem === newItem
     }
 
     override fun areContentsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.key == newItem.key && oldItem.value == newItem.value
+        return oldItem.key == newItem.key && oldItem.value == newItem.value && oldItem.text == newItem.text
     }
 }

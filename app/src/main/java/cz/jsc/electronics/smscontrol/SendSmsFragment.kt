@@ -17,7 +17,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
 import cz.jsc.electronics.smscontrol.databinding.FragmentSendSmsBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
 import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
@@ -57,7 +56,7 @@ class SendSmsFragment : Fragment() {
         val adapter = manageDeviceViewModel.getAttributesAdapter(true)
         binding.attributeList.adapter = adapter
 
-        subscribeUi(adapter)
+        subscribeUi()
         MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
 
         interstitialAd = InterstitialAd(this.requireContext())
@@ -72,8 +71,9 @@ class SendSmsFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi(adapter: AttributesAdapter) {
+    private fun subscribeUi() {
         manageDeviceViewModel.device.observe(this, Observer { device ->
+            manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
 
         })
