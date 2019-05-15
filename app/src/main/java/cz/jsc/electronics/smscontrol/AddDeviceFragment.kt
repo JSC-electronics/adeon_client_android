@@ -93,25 +93,25 @@ class AddDeviceFragment : Fragment() {
 
         val adapter = manageDeviceViewModel.getAttributesAdapter()
         binding.attributeList.adapter = adapter
-        subscribeUi(binding, adapter)
+        subscribeUi(binding)
 
         return binding.root
     }
 
-    private fun subscribeUi(binding: FragmentAddDeviceBinding, adapter: AttributesAdapter) {
+    private fun subscribeUi(binding: FragmentAddDeviceBinding) {
         manageDeviceViewModel.device.observe(this, Observer { device ->
             binding.deviceNameEditText.setText(device.name)
             binding.phoneNumber.phoneNumber = device.phoneNumber
 
-            if (device.messageType == Device.KEY_VALUE_FORMAT) {
-                binding.keyValue.isChecked = true
+            if (device.messageType == Device.INT_VALUE_FORMAT) {
+                binding.nameValue.isChecked = true
             } else {
                 binding.plainText.isChecked = true
             }
 
             binding.messageTypeSelect.setOnCheckedChangeListener { _, checkedId ->
                 when(checkedId) {
-                    binding.keyValue.id -> manageDeviceViewModel.setMessageType(Device.KEY_VALUE_FORMAT)
+                    binding.nameValue.id -> manageDeviceViewModel.setMessageType(Device.INT_VALUE_FORMAT)
                     binding.plainText.id -> manageDeviceViewModel.setMessageType(Device.PLAIN_TEXT_FORMAT)
                 }
                 // RecyclerView cannot be focused during its update (e.g. if we click on EditText field),

@@ -2,7 +2,7 @@ package cz.jsc.electronics.smscontrol.data
 
 data class Attribute(
     val id: Long = 0,
-    var key: String? = null,
+    var name: String? = null,
     var value: Int? = null,
     var text: String? = null,
     var isChecked: Boolean = true
@@ -21,15 +21,11 @@ data class Attribute(
     }
 
     override fun toString(): String {
-        if (key != null) {
-            return "$key = $value"
-        } else {
-            return "$text"
-        }
+        return "$name = ${value ?: text}"
     }
 
     fun isValid(): Boolean {
-        return (containsKeyValuePair() &&
+        return (containsNameValuePair() &&
                 value!! >= ATTRIBUTE_VAL_MIN && value!! <= ATTRIBUTE_VAL_MAX) ||
                 containsPlainText() && text!!.length <= PLAIN_TEXT_MAX_LEN
     }
@@ -38,7 +34,7 @@ data class Attribute(
         return !text.isNullOrEmpty()
     }
 
-    fun containsKeyValuePair(): Boolean {
-        return !key.isNullOrEmpty() && value != null
+    fun containsNameValuePair(): Boolean {
+        return !name.isNullOrEmpty() && value != null
     }
 }

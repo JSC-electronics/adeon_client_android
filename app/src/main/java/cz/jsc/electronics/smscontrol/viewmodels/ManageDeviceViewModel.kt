@@ -41,7 +41,7 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
     private var attributes = mutableListOf<Attribute>()
-    private var messageType: Int = Device.KEY_VALUE_FORMAT
+    private var messageType: Int = Device.INT_VALUE_FORMAT
 
     // For Singleton instantiation
     @Volatile
@@ -55,7 +55,7 @@ class ManageDeviceViewModel internal constructor(
     fun initAttributes(device: Device) {
         attributes = device.attributes.map {
             it.copy(
-                id = it.id, key = it.key, value = it.value,
+                id = it.id, name = it.name, value = it.value,
                 text = it.text, isChecked = it.isChecked
             )
         }.toMutableList()
@@ -150,7 +150,7 @@ class ManageDeviceViewModel internal constructor(
                     // Store which attributes are checked
                     addOrUpdateDevice()
 
-                    if (messageType == Device.KEY_VALUE_FORMAT) {
+                    if (messageType == Device.INT_VALUE_FORMAT) {
                         composeMessage(smsAttributes).forEach { message ->
                             val md5 = computeMd5(message)
                             val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
@@ -177,7 +177,7 @@ class ManageDeviceViewModel internal constructor(
         var message = ""
 
         attributes.forEach { attribute ->
-            if (attribute.containsKeyValuePair()) {
+            if (attribute.containsNameValuePair()) {
                 // If we append the attribute, max message length will be exceeded
                 if (message.length + attribute.toString().length + 1 > MAX_PAYLOAD_SIZE) {
                     messages.add(message)

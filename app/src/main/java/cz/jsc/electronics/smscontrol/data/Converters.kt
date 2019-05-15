@@ -8,7 +8,7 @@ class Converters {
 
     @TypeConverter
     fun attributeListToString(attributes: List<Attribute>): String =
-        Gson().toJson(attributes.filter { (it.key != null && it.value != null) || it.text != null })
+        Gson().toJson(attributes.filter { (it.name != null && it.value != null) || it.text != null })
 
     @TypeConverter
     fun stringToAttributeList(attributeString: String): List<Attribute> {

@@ -48,9 +48,9 @@ class AttributesAdapter(private val showCheckbox: Boolean = false, private var p
                 attribute = item
                 showPlainText = adapter.preferPlainText
                 executePendingBindings()
-                keyEditText.addTextChangedListener {
+                nameEditText.addTextChangedListener {
                     attribute?.apply {
-                        key = keyEditText.text.toString()
+                        name = nameEditText.text.toString()
                     }
                 }
                 valueEditText.addTextChangedListener {
@@ -88,6 +88,6 @@ private class AttributesDiffCallback : DiffUtil.ItemCallback<Attribute>() {
     }
 
     override fun areContentsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.key == newItem.key && oldItem.value == newItem.value && oldItem.text == newItem.text
+        return oldItem.name == newItem.name && oldItem.value == newItem.value && oldItem.text == newItem.text
     }
 }
