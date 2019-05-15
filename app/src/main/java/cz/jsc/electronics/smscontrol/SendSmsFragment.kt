@@ -53,7 +53,7 @@ class SendSmsFragment : Fragment() {
         }
         layout = binding.sendSmsLayout
 
-        val adapter = manageDeviceViewModel.getAttributesAdapter(true)
+        val adapter = manageDeviceViewModel.getAttributesAdapter()
         binding.attributeList.adapter = adapter
 
         subscribeUi()

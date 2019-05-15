@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
@@ -91,7 +90,7 @@ class AddDeviceFragment : Fragment() {
         }
         layout = binding.addDeviceLayout
 
-        val adapter = manageDeviceViewModel.getAttributesAdapter()
+        val adapter = manageDeviceViewModel.getAttributesAdapter(isEditMode = true)
         binding.attributeList.adapter = adapter
         subscribeUi(binding)
 

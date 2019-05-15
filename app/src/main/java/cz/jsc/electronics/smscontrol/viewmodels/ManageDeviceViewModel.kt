@@ -47,9 +47,9 @@ class ManageDeviceViewModel internal constructor(
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
 
-    fun getAttributesAdapter(showCheckbox: Boolean = false) =
+    fun getAttributesAdapter(isEditMode: Boolean = false) =
         attributesAdapter ?: synchronized(this) {
-            attributesAdapter ?: AttributesAdapter(showCheckbox).also { attributesAdapter = it }
+            attributesAdapter ?: AttributesAdapter(isEditMode).also { attributesAdapter = it }
         }
 
     fun initAttributes(device: Device) {
@@ -126,6 +126,12 @@ class ManageDeviceViewModel internal constructor(
                     val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
 
                     device.attributes.onEach { attribute ->
+                        attribute.name?.let {
+                            if (it.isEmpty()) {
+                                attribute.name = null
+                            }
+                        }
+
                         attribute.isChecked = attribute.id in checkedAttributes
                     }
                 }
