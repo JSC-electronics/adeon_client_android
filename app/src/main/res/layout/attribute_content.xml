@@ -52,6 +52,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/attribute_value"
+                app:isGone="@{safeUnbox(attribute.value == null &amp;&amp; showPlainText)}"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/attribute_name"
@@ -79,8 +80,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/attribute_checkbox"
-                android:layout_marginTop="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/attribute_name"
+                android:layout_marginTop="16dp" app:layout_constraintBottom_toBottomOf="parent"
                 app:counterEnabled="true"
                 app:counterMaxLength="160"
                 app:isGone="@{safeUnbox(!attribute.containsPlainText &amp;&amp; !showPlainText)}"
@@ -98,11 +99,5 @@
                     android:hint="@string/property_text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.constraintlayout.widget.Group android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                                android:id="@+id/input_name_value"
-                                                app:isGone="@{safeUnbox(!attribute.containsNameValuePair &amp;&amp; showPlainText)}"
-                                                app:constraint_referenced_ids="attribute_name,attribute_value"
-        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
