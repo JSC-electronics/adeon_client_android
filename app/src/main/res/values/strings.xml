@@ -29,6 +29,8 @@
 
     <string name="attribute_name">Name</string>
     <string name="attribute_value">Value</string>
+    <string name="attribute_command_description">Command description</string>
+    <string name="attribute_no_description">Unnamed command</string>
     <string name="attribute_text">Plain text</string>
 
     <string name="device_name_info">Device name: %s</string>

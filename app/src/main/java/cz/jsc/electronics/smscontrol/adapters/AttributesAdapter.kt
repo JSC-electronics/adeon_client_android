@@ -2,7 +2,6 @@ package cz.jsc.electronics.smscontrol.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,7 +15,7 @@ import cz.jsc.electronics.smscontrol.databinding.ListItemAttributeBinding
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class AttributesAdapter(private val showCheckbox: Boolean = false, private var preferPlainText: Boolean = false) :
+class AttributesAdapter(private val isEditMode: Boolean = false, private var preferPlainText: Boolean = false) :
     ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -47,6 +46,7 @@ class AttributesAdapter(private val showCheckbox: Boolean = false, private var p
             binding.content.apply {
                 attribute = item
                 showPlainText = adapter.preferPlainText
+                isEditMode = adapter.isEditMode
                 executePendingBindings()
                 nameEditText.addTextChangedListener {
                     attribute?.apply {
@@ -65,12 +65,16 @@ class AttributesAdapter(private val showCheckbox: Boolean = false, private var p
                         }
                     }
                 }
+                commandDescEditText.addTextChangedListener {
+                    attribute?.apply {
+                        name = commandDescEditText.text.toString()
+                    }
+                }
                 plainEditText.addTextChangedListener {
                     attribute?.apply {
                         text = plainEditText.text.toString()
                     }
                 }
-                attributeCheckbox.isVisible = adapter.showCheckbox
                 attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
                     attribute?.apply {
                         this.isChecked = isChecked
