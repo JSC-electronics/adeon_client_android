@@ -98,7 +98,7 @@
             </RadioGroup>
 
             <TextView
-                    android:text="@string/properties"
+                    android:text="@string/attributes"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:textAlignment="center"

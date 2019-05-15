@@ -12,9 +12,9 @@
     <string name="edit_device_title">Upraviť zariadenie</string>
     <string name="action_duplicate">Duplikovať</string>
     <string name="action_remove_device">Odstrániť zariadenie</string>
-    <string name="properties">Vlastnosti</string>
-    <string name="property_value">Hodnota</string>
-    <string name="property_name">Název</string>
+    <string name="attributes">Vlastnosti</string>
+    <string name="attribute_value">Hodnota</string>
+    <string name="attribute_name">Název</string>
     <string name="save_changes_button">Uložiť zmeny</string>
     <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>
@@ -29,8 +29,9 @@
     <string name="content_desc_device_icon">Ikona zariadenia</string>
     <string name="content_desc_device_item_menu">Menu položky zariadenia</string>
     <string name="no_attribute_selected">Vyberte aspoň jednu vlastnosť pred poslaním SMS.</string>
-    <string name="property_text">Obyčajný text</string>
+    <string name="attribute_text">Obyčajný text</string>
     <string name="name_value_type">Pole vlastností typu názov = hodnota</string>
     <string name="message_type">Typ správy</string>
     <string name="plain_text_type">Čistý text do 160 znakov</string>
+    <string name="checkbox_info">Zaškrtnite, prosím, všetky vlastnosti, ktoré chcete poslať.</string>
 </resources>
