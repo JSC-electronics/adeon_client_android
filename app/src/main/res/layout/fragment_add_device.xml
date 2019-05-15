@@ -87,10 +87,10 @@
                     android:layout_marginTop="8dp"
             >
                 <RadioButton
-                        android:text="@string/key_value_type"
+                        android:text="@string/name_value_type"
                         android:layout_width="wrap_content"
                         android:checked="true"
-                        android:layout_height="wrap_content" android:id="@+id/key_value" android:layout_weight="1"/>
+                        android:layout_height="wrap_content" android:id="@+id/name_value" android:layout_weight="1"/>
                 <RadioButton
                         android:text="@string/plain_text_type"
                         android:layout_width="wrap_content"
