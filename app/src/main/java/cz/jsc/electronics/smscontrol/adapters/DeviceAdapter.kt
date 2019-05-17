@@ -8,12 +8,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.jsc.electronics.smscontrol.DeviceListFragment
 import cz.jsc.electronics.smscontrol.DeviceListFragmentDirections
 import cz.jsc.electronics.smscontrol.R
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.databinding.ListItemDeviceBinding
 import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModel
-import cz.jsc.electronics.smscontrol.DeviceListFragment
 
 
 /**
@@ -55,6 +55,10 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
                     showPopupMenu(it, item)
                 }
                 executePendingBindings()
+
+                item.icon?.let {
+                    deviceIcon.setImageBitmap(it)
+                }
             }
         }
 

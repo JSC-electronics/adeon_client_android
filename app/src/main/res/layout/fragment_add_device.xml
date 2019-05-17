@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            android:id="@+id/add_device_layout"
             tools:context="cz.jsc.electronics.smscontrol.AddDeviceFragment"
             tools:ignore="MergeRootFrame">
 
@@ -61,7 +62,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/add_device_layout"
+                    android:id="@+id/add_device_content_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
