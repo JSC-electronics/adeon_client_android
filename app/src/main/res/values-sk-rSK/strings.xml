@@ -36,4 +36,7 @@
     <string name="checkbox_info">Zaškrtnite, prosím, všetky vlastnosti, ktoré chcete poslať.</string>
     <string name="attribute_command_description">Popis príkazu</string>
     <string name="attribute_no_description">Príkaz bez názvu</string>
+    <string name="change_device_icon">Zmeniť ikonu zariadenia</string>
+    <string name="select_image">Vybrať obrázok</string>
+    <string name="take_photo">Urobiť fotografiu</string>
 </resources>

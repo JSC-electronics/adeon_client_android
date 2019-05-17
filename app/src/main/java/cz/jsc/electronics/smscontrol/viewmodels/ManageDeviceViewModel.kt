@@ -1,5 +1,8 @@
 package cz.jsc.electronics.smscontrol.viewmodels
 
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.telephony.SmsManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +15,7 @@ import cz.jsc.electronics.smscontrol.data.Attribute
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import cz.jsc.electronics.smscontrol.utilities.computeMd5
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /**
@@ -200,5 +204,19 @@ class ManageDeviceViewModel internal constructor(
         }
 
         return messages
+    }
+
+    fun loadBitmapImage(uri: Uri, context: Context): Job {
+        return viewModelScope.launch {
+            val fileDescriptor = context.contentResolver?.openFileDescriptor(uri, "r")
+            fileDescriptor?.let {
+                val imgBitmap = BitmapFactory.decodeFileDescriptor(it.fileDescriptor)
+                fileDescriptor.close()
+
+                device.value?.apply {
+                    this.icon = imgBitmap
+                }
+            }
+        }
     }
 }

@@ -1,10 +1,15 @@
 package cz.jsc.electronics.smscontrol
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,11 +20,16 @@ import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
 import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
 import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
+import kotlinx.android.synthetic.main.fragment_add_device.view.*
 import java.util.*
 
-class AddDeviceFragment : Fragment() {
+class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialogListener {
+    companion object {
+        const val REQUEST_PHOTO_CAPTURE = 1
+        const val REQUEST_GALLERY_IMAGE = 2
+    }
 
-    private lateinit var layout: ConstraintLayout
+    private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
 
     override fun onCreateView(
@@ -88,6 +98,13 @@ class AddDeviceFragment : Fragment() {
                 }
             }
         }
+
+        binding.deviceIcon.setOnClickListener {
+            this.fragmentManager?.let {
+                IconCaptureDialogFragment(this).show(it, "Icon Select Dialog")
+            }
+        }
+
         layout = binding.addDeviceLayout
 
         val adapter = manageDeviceViewModel.getAttributesAdapter(isEditMode = true)
@@ -122,6 +139,10 @@ class AddDeviceFragment : Fragment() {
                 binding.locationEditText.setText(location)
             }
 
+            device.icon?.let {
+                binding.deviceIcon.setImageBitmap(it)
+            }
+
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
@@ -132,4 +153,48 @@ class AddDeviceFragment : Fragment() {
         super.onPause()
     }
 
+    override fun onDialogSelectImageActionClick(dialog: DialogFragment) {
+        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { getImageIntent ->
+            this.context?.let {
+                getImageIntent.resolveActivity(it.packageManager)?.also {
+                    startActivityForResult(getImageIntent, REQUEST_GALLERY_IMAGE)
+                }
+            }
+        }
+    }
+
+    override fun onDialogTakePhotoActionClick(dialog: DialogFragment) {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            this.context?.let {
+                takePictureIntent.resolveActivity(it.packageManager)?.also {
+                    startActivityForResult(takePictureIntent, REQUEST_PHOTO_CAPTURE)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK) {
+            when(requestCode) {
+                REQUEST_PHOTO_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    layout.device_icon.setImageBitmap(imageBitmap)
+                    manageDeviceViewModel.device.value?.apply {
+                        this.icon = imageBitmap
+                    }
+                }
+                REQUEST_GALLERY_IMAGE -> {
+                    data?.data?.let { uri ->
+                        context?.let {
+                            manageDeviceViewModel.loadBitmapImage(uri, it).invokeOnCompletion {
+                                manageDeviceViewModel.device.value?.let {
+                                    layout.device_icon.setImageBitmap(it.icon)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
