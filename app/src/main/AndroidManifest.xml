@@ -3,6 +3,9 @@
           xmlns:tools="http://schemas.android.com/tools" package="cz.jsc.electronics.smscontrol">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="false" />
+
 
     <application
             android:name="androidx.multidex.MultiDexApplication"

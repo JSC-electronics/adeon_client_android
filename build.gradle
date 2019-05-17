@@ -27,6 +27,7 @@ buildscript {
         playServicesAddsVersion = '17.2.0'
         multiDexLibraryVersion = '2.0.1'
         gsonVersion = '2.8.5'
+        circleImageViewVersion = '3.0.0'
     }
 
     repositories {
