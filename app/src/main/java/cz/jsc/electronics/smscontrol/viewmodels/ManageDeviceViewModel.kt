@@ -1,9 +1,10 @@
 package cz.jsc.electronics.smscontrol.viewmodels
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Environment
 import android.telephony.SmsManager
+import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,10 @@ import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import cz.jsc.electronics.smscontrol.utilities.computeMd5
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * The ViewModel for managing device properties in [AddDeviceFragment] and [SendSmsFragment].
@@ -206,15 +211,68 @@ class ManageDeviceViewModel internal constructor(
         return messages
     }
 
-    fun loadBitmapImage(uri: Uri, context: Context): Job {
-        return viewModelScope.launch {
-            val fileDescriptor = context.contentResolver?.openFileDescriptor(uri, "r")
-            fileDescriptor?.let {
-                val imgBitmap = BitmapFactory.decodeFileDescriptor(it.fileDescriptor)
-                fileDescriptor.close()
+    @Throws(IOException::class)
+    fun createImageFile(context: Context): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "Device_icon_${timeStamp}_",
+            ".jpg",
+            storageDir
+        )
+    }
 
-                device.value?.apply {
-                    this.icon = imgBitmap
+    fun storeGalleryImage(sourceUri: Uri, context: Context): Job {
+        return viewModelScope.launch {
+            val photoFile: File? = try {
+                createImageFile(context)
+            } catch (ex: IOException) {
+                null
+            }
+
+            // Continue only if the File was successfully created
+            photoFile?.also {
+                val destUri: Uri = FileProvider.getUriForFile(
+                    context,
+                    "cz.jsc.electronics.smscontrol.fileprovider",
+                    it
+                )
+
+                val srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                val dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+
+                if (srcFileDescriptor != null && dstFileDescriptor != null) {
+                    var bis: BufferedInputStream? = null
+                    var bos: BufferedOutputStream? = null
+                    var success = true
+
+                    try {
+                        bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
+                        bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
+
+                        val buf = ByteArray(size = 1024)
+                        bis.read(buf);
+                        do {
+                            bos.write(buf);
+                        } while (bis.read(buf) != -1)
+                    } catch (ex: IOException) {
+                        ex.printStackTrace()
+                        success = false
+                    } finally {
+                        try {
+                            if (bis != null) bis.close();
+                            if (bos != null) bos.close();
+                        } catch (ex: IOException) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    if (success) {
+                        device.value?.apply {
+                            icon = destUri
+                        }
+                    }
                 }
             }
         }

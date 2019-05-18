@@ -57,7 +57,7 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
                 executePendingBindings()
 
                 item.icon?.let {
-                    deviceIcon.setImageBitmap(it)
+                    deviceIcon.setImageURI(it)
                 }
             }
         }

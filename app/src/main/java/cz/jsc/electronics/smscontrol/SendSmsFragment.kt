@@ -77,7 +77,7 @@ class SendSmsFragment : Fragment() {
             manageDeviceViewModel.initAttributes(device)
 
             device.icon?.let {
-                binding.deviceIcon.setImageBitmap(it)
+                binding.deviceIcon.setImageURI(it)
             }
 
         })

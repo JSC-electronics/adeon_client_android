@@ -2,13 +2,14 @@ package cz.jsc.electronics.smscontrol
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,16 +22,20 @@ import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
 import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
 import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
 import kotlinx.android.synthetic.main.fragment_add_device.view.*
+import java.io.File
+import java.io.IOException
 import java.util.*
 
 class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialogListener {
     companion object {
-        const val REQUEST_PHOTO_CAPTURE = 1
+        const val REQUEST_TAKE_PHOTO = 1
         const val REQUEST_GALLERY_IMAGE = 2
     }
 
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
+
+    private var deviceImageUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -140,7 +145,7 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
             }
 
             device.icon?.let {
-                binding.deviceIcon.setImageBitmap(it)
+                binding.deviceIcon.setImageURI(it)
             }
 
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
@@ -165,9 +170,29 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
 
     override fun onDialogTakePhotoActionClick(dialog: DialogFragment) {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            this.context?.let {
-                takePictureIntent.resolveActivity(it.packageManager)?.also {
-                    startActivityForResult(takePictureIntent, REQUEST_PHOTO_CAPTURE)
+            this.context?.let { context ->
+                // Ensure that there's a camera activity to handle the intent
+                takePictureIntent.resolveActivity(context.packageManager)?.also {
+                    // Create the File where the photo should go
+                    val photoFile: File? = try {
+                        manageDeviceViewModel.createImageFile(context)
+                    } catch (ex: IOException) {
+                        null
+                    }
+
+                    // Continue only if the File was successfully created
+                    photoFile?.also {
+                        val photoURI: Uri = FileProvider.getUriForFile(
+                            context,
+                            "cz.jsc.electronics.smscontrol.fileprovider",
+                            it
+                        )
+
+                        deviceImageUri = photoURI
+
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
+                    }
                 }
             }
         }
@@ -175,22 +200,26 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK) {
-            when(requestCode) {
-                REQUEST_PHOTO_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    layout.device_icon.setImageBitmap(imageBitmap)
+            when (requestCode) {
+                REQUEST_TAKE_PHOTO -> {
+                    deviceImageUri?.let {
+                        manageDeviceViewModel.device.value?.apply {
+                            this.icon = deviceImageUri
+                        }
+
+                        layout.device_icon.setImageURI(deviceImageUri)
+                    }
+
                     manageDeviceViewModel.device.value?.apply {
-                        this.icon = imageBitmap
+                        this.icon = deviceImageUri
                     }
                 }
                 REQUEST_GALLERY_IMAGE -> {
                     data?.data?.let { uri ->
+                        layout.device_icon.setImageURI(uri)
+
                         context?.let {
-                            manageDeviceViewModel.loadBitmapImage(uri, it).invokeOnCompletion {
-                                manageDeviceViewModel.device.value?.let {
-                                    layout.device_icon.setImageBitmap(it.icon)
-                                }
-                            }
+                            manageDeviceViewModel.storeGalleryImage(uri, it)
                         }
                     }
                 }

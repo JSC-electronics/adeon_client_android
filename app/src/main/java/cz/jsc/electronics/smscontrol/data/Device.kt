@@ -1,6 +1,6 @@
 package cz.jsc.electronics.smscontrol.data
 
-import android.graphics.Bitmap
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,7 +12,7 @@ data class Device(
     var location: String?,
     var phoneNumber: String,
     var messageType: Int = INT_VALUE_FORMAT,
-    var icon: Bitmap? = null,
+    var icon: Uri? = null,
     var attributes: List<Attribute> = arrayListOf()
 ) {
 

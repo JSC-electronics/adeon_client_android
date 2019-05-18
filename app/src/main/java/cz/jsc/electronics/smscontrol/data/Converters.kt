@@ -1,12 +1,9 @@
 package cz.jsc.electronics.smscontrol.data
 
-import android.graphics.Bitmap
-import android.graphics.Bitmap.CompressFormat
-import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.ByteArrayOutputStream
 
 
 class Converters {
@@ -22,20 +19,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun bitmapToByteArray(bitmap: Bitmap?): ByteArray? {
-        bitmap?.let {
-            val stream = ByteArrayOutputStream()
-            bitmap.compress(CompressFormat.PNG, 0, stream)
-            return stream.toByteArray()
-        }
-
-        return null
-    }
+    fun uriToString(uri: Uri?): String? = uri?.toString()
 
     @TypeConverter
-    fun byteArrayToBitmap(bytes: ByteArray?): Bitmap? {
-        bytes?.let {
-            return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    fun stringToUri(string: String?): Uri? {
+        string?.let {
+            return Uri.parse(it)
         }
 
         return null
