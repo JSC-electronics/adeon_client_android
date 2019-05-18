@@ -11,9 +11,13 @@
 
     </data>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/devices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            tools:context="cz.jsc.electronics.smscontrol.DeviceListFragment"
+            tools:ignore="MergeRootFrame">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/device_list"
@@ -44,5 +48,5 @@
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/ic_plus"/>
 
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

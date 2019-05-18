@@ -14,6 +14,12 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         }
     }
 
+    suspend fun addDevices(devices: List<Device>) {
+        withContext(Dispatchers.IO) {
+            deviceDao.insertAll(devices)
+        }
+    }
+
     suspend fun updateDevice(device: Device) {
         withContext(Dispatchers.IO) {
             deviceDao.updateDevice(device)
@@ -23,6 +29,12 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
     suspend fun deleteDevice(device: Device) {
         withContext(Dispatchers.IO) {
             deviceDao.deleteDevice(device)
+        }
+    }
+
+    suspend fun deleteAllDevices() {
+        withContext(Dispatchers.IO) {
+            deviceDao.deleteAll()
         }
     }
 

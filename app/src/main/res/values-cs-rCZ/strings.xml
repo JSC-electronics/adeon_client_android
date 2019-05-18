@@ -39,4 +39,10 @@
     <string name="change_device_icon">Změnit ikonu zařízení</string>
     <string name="select_image">Vybrat obrázek</string>
     <string name="take_photo">Pořídit fotografii</string>
+    <string name="export_configuration">Exportovat konfiguraci</string>
+    <string name="import_configuration">Importovat konfiguraci</string>
+    <string name="warning">Upozornění</string>
+    <string name="import_overwrite_msg">Existující konfigurace bude přepsána! Přejete si pokračovat?</string>
+    <string name="import_btn_label">Importovat</string>
+    <string name="nothing_to_export">Není co exportovat! Nejprve přidejte nějaké zařízení.</string>
 </resources>
