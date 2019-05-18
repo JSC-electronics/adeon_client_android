@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,7 +24,7 @@ import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
 
 class SendSmsFragment : Fragment() {
 
-    private lateinit var layout: ConstraintLayout
+    private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
     private lateinit var interstitialAd: InterstitialAd
 
@@ -56,7 +56,7 @@ class SendSmsFragment : Fragment() {
         val adapter = manageDeviceViewModel.getAttributesAdapter()
         binding.attributeList.adapter = adapter
 
-        subscribeUi()
+        subscribeUi(binding)
         MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
 
         interstitialAd = InterstitialAd(this.requireContext())
@@ -71,10 +71,14 @@ class SendSmsFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi() {
+    private fun subscribeUi(binding: FragmentSendSmsBinding) {
         manageDeviceViewModel.device.observe(this, Observer { device ->
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
+
+            device.icon?.let {
+                binding.deviceIcon.setImageBitmap(it)
+            }
 
         })
     }
