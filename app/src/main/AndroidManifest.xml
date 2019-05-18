@@ -6,6 +6,10 @@
     <uses-feature android:name="android.hardware.camera"
                   android:required="false" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                     android:maxSdkVersion="19" />
+
+
 
     <application
             android:name="androidx.multidex.MultiDexApplication"

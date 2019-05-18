@@ -24,15 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="96dp" app:srcCompat="@drawable/arduino_logo"-->
-                    <!--android:id="@+id/arduino_logo" app:layout_constraintStart_toStartOf="parent"-->
-                    <!--android:layout_marginStart="8dp"-->
-                    <!--app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"-->
-                    <!--app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"-->
-                    <!--android:contentDescription="@string/content_desc_device_icon"/>-->
-
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/device_icon"
                     android:layout_width="80dp"
@@ -42,6 +33,7 @@
                     android:layout_marginStart="8dp"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#35000000"
+                    app:imageFromUrl="@{device.icon}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"

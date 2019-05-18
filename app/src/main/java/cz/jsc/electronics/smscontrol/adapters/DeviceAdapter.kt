@@ -55,10 +55,6 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
                     showPopupMenu(it, item)
                 }
                 executePendingBindings()
-
-                item.icon?.let {
-                    deviceIcon.setImageURI(it)
-                }
             }
         }
 

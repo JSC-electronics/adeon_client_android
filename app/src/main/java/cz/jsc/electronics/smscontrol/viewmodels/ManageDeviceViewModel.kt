@@ -177,8 +177,10 @@ class ManageDeviceViewModel internal constructor(
                     } else if (messageType == Device.PLAIN_TEXT_FORMAT) {
                         smsAttributes.forEach {
                             if (it.containsPlainText()) {
-                                smsManager.sendMultipartTextMessage(device.phoneNumber, null,
-                                    smsManager.divideMessage(it.text), null, null)
+                                smsManager.sendMultipartTextMessage(
+                                    device.phoneNumber, null,
+                                    smsManager.divideMessage(it.text), null, null
+                                )
                             }
                         }
                     }
@@ -239,15 +241,15 @@ class ManageDeviceViewModel internal constructor(
                     it
                 )
 
-                val srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
-                val dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+                var bis: BufferedInputStream? = null
+                var bos: BufferedOutputStream? = null
+                var success = true
 
-                if (srcFileDescriptor != null && dstFileDescriptor != null) {
-                    var bis: BufferedInputStream? = null
-                    var bos: BufferedOutputStream? = null
-                    var success = true
+                try {
+                    val srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                    val dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
 
-                    try {
+                    if (srcFileDescriptor != null && dstFileDescriptor != null) {
                         bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
                         bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
 
@@ -256,22 +258,23 @@ class ManageDeviceViewModel internal constructor(
                         do {
                             bos.write(buf);
                         } while (bis.read(buf) != -1)
-                    } catch (ex: IOException) {
-                        ex.printStackTrace()
-                        success = false
-                    } finally {
-                        try {
-                            if (bis != null) bis.close();
-                            if (bos != null) bos.close();
-                        } catch (ex: IOException) {
-                            ex.printStackTrace();
-                        }
                     }
 
-                    if (success) {
-                        device.value?.apply {
-                            icon = destUri
-                        }
+                } catch (ex: IOException) {
+                    ex.printStackTrace()
+                    success = false
+                } finally {
+                    try {
+                        if (bis != null) bis.close();
+                        if (bos != null) bos.close();
+                    } catch (ex: IOException) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                if (success) {
+                    device.value?.apply {
+                        icon = destUri
                     }
                 }
             }

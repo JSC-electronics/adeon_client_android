@@ -42,6 +42,7 @@
                         android:contentDescription="@string/content_desc_device_icon"
                         android:fitsSystemWindows="true"
                         android:src="@drawable/ic_camera"
+                        app:imageFromUrl="@{viewModel.device.icon}"
                         android:foreground="@drawable/app_icon_selector"
                         android:clickable="true"
                         android:focusable="true"

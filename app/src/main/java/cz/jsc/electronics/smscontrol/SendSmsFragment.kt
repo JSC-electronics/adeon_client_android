@@ -56,7 +56,7 @@ class SendSmsFragment : Fragment() {
         val adapter = manageDeviceViewModel.getAttributesAdapter()
         binding.attributeList.adapter = adapter
 
-        subscribeUi(binding)
+        subscribeUi()
         MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
 
         interstitialAd = InterstitialAd(this.requireContext())
@@ -71,15 +71,10 @@ class SendSmsFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi(binding: FragmentSendSmsBinding) {
+    private fun subscribeUi() {
         manageDeviceViewModel.device.observe(this, Observer { device ->
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
-
-            device.icon?.let {
-                binding.deviceIcon.setImageURI(it)
-            }
-
         })
     }
 

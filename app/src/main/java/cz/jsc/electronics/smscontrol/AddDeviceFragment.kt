@@ -1,8 +1,11 @@
 package cz.jsc.electronics.smscontrol
 
 import android.app.Activity.RESULT_OK
+import android.content.ClipData
 import android.content.Intent
+import android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -26,6 +29,7 @@ import java.io.File
 import java.io.IOException
 import java.util.*
 
+
 class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialogListener {
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
@@ -34,8 +38,6 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
 
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
-
-    private var deviceImageUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -144,10 +146,6 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
                 binding.locationEditText.setText(location)
             }
 
-            device.icon?.let {
-                binding.deviceIcon.setImageURI(it)
-            }
-
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
@@ -188,9 +186,22 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
                             it
                         )
 
-                        deviceImageUri = photoURI
+                        manageDeviceViewModel.device.value?.apply {
+                            this.icon = photoURI
+                        }
 
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+                        // Add compatibility code for Android API < 21
+                        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+                            takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
+                        } else {
+                            val clip = ClipData.newUri(context.contentResolver, "whatevs", photoURI)
+
+                            takePictureIntent.clipData = clip
+                            takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
+                        }
+
                         startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
                     }
                 }
@@ -202,16 +213,8 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 REQUEST_TAKE_PHOTO -> {
-                    deviceImageUri?.let {
-                        manageDeviceViewModel.device.value?.apply {
-                            this.icon = deviceImageUri
-                        }
-
-                        layout.device_icon.setImageURI(deviceImageUri)
-                    }
-
-                    manageDeviceViewModel.device.value?.apply {
-                        this.icon = deviceImageUri
+                    manageDeviceViewModel.device.value?.icon?.apply {
+                        layout.device_icon.setImageURI(this)
                     }
                 }
                 REQUEST_GALLERY_IMAGE -> {
