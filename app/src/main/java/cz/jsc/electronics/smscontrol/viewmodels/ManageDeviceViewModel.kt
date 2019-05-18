@@ -3,6 +3,7 @@ package cz.jsc.electronics.smscontrol.viewmodels
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
+import android.os.ParcelFileDescriptor
 import android.telephony.SmsManager
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
@@ -81,7 +82,7 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute(attributes.size.toLong()))
+        attributes.add(Attribute(attributes.get(attributes.size-1).id + 1))
         attributesAdapter?.submitList(attributes.toList())
     }
 
@@ -241,13 +242,15 @@ class ManageDeviceViewModel internal constructor(
                     it
                 )
 
+                var srcFileDescriptor: ParcelFileDescriptor? = null
+                var dstFileDescriptor: ParcelFileDescriptor? = null
                 var bis: BufferedInputStream? = null
                 var bos: BufferedOutputStream? = null
                 var success = true
 
                 try {
-                    val srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
-                    val dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+                    srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                    dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
 
                     if (srcFileDescriptor != null && dstFileDescriptor != null) {
                         bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
@@ -265,8 +268,10 @@ class ManageDeviceViewModel internal constructor(
                     success = false
                 } finally {
                     try {
-                        if (bis != null) bis.close();
-                        if (bos != null) bos.close();
+                        bis?.close();
+                        bos?.close();
+                        srcFileDescriptor?.close()
+                        dstFileDescriptor?.close()
                     } catch (ex: IOException) {
                         ex.printStackTrace();
                     }

@@ -47,7 +47,6 @@ class IconCaptureDialogFragment(private val fragment: Fragment) : DialogFragment
                         1 -> listener.onDialogTakePhotoActionClick(this)
                     }
                 }
-                .setTitle(R.string.change_device_icon)
                 .setNegativeButton(
                     android.R.string.cancel
                 ) { _, _ ->

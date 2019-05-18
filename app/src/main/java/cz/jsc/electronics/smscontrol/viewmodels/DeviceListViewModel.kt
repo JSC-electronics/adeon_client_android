@@ -1,13 +1,25 @@
 package cz.jsc.electronics.smscontrol.viewmodels
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import cz.jsc.electronics.smscontrol.DeviceListFragment
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import cz.jsc.electronics.smscontrol.DeviceListFragment
+import java.io.FileInputStream
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
+
 
 /**
  * The ViewModel for [DeviceListFragment].
@@ -35,5 +47,63 @@ class DeviceListViewModel internal constructor(
                 deviceRepository.addDevice(duplicate)
             }
         }
+    }
+
+    fun importConfiguration(uri: Uri, context: Context) {
+        viewModelScope.launch {
+            deviceList.value?.let {
+                try {
+                    context.contentResolver.openFileDescriptor(uri, "r")?.use {
+                        // use{} lets the document provider know you're done by automatically closing the stream
+                        FileInputStream(it.fileDescriptor).use {
+                            val reader = it.reader().buffered()
+                            val json = reader.readText()
+                            reader.close()
+
+                            val attributeType = object : TypeToken<List<Device>>() {}.type
+                            val devices = Gson().fromJson<List<Device>>(json, attributeType)
+                            deviceRepository.deleteAllDevices()
+                            deviceRepository.addDevices(devices)
+                        }
+                    }
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } catch (e: IllegalStateException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    fun exportConfiguration(uri: Uri, context: Context) {
+        viewModelScope.launch {
+            deviceList.value?.let { devices ->
+                try {
+                    context.contentResolver.openFileDescriptor(uri, "w")?.use {
+                        // use{} lets the document provider know you're done by automatically closing the stream
+                        FileOutputStream(it.fileDescriptor).use {
+                            it.write(
+                                GsonBuilder().addSerializationExclusionStrategy(GsonExludeIconStrategy())
+                                    .create().toJson(devices).toByteArray()
+                            )
+                        }
+                    }
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    // It doesn't make sense to store reference to internal device icon. The icon is not part of a backup.
+    private class GsonExludeIconStrategy : ExclusionStrategy {
+        override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
+
+        override fun shouldSkipField(f: FieldAttributes?): Boolean = "icon" == f?.name
+
     }
 }

@@ -48,6 +48,12 @@
     <string name="change_device_icon">Change device icon</string>
     <string name="take_photo">Take photo</string>
     <string name="select_image">Select image</string>
+    <string name="import_configuration">Import configuration</string>
+    <string name="export_configuration">Export configuration</string>
+    <string name="warning">Warning</string>
+    <string name="import_overwrite_msg">Existing configuration will be overwritten! Do you want to continue?</string>
+    <string name="import_btn_label">Import</string>
+    <string name="nothing_to_export">There is nothing to export! Please add some devices first.</string>
 
     <string-array name="change_device_icon_actions">
         <item>@string/select_image</item>

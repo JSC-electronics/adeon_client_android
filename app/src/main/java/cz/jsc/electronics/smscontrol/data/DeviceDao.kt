@@ -22,4 +22,10 @@ interface DeviceDao {
 
     @Delete
     fun deleteDevice(device: Device)
+
+    @Query("DELETE FROM devices")
+    fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(devices: List<Device>)
 }
