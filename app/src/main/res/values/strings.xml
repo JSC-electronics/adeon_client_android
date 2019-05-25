@@ -38,14 +38,14 @@
     <string name="phone_number_info">Phone number: %s</string>
     <string name="sms_permissions_not_granted">SMS was not sent. Permissions were not granted.</string>
     <string name="content_desc_application_logo">Application Logo</string>
-    <string name="content_desc_device_icon">Device icon</string>
+    <string name="content_desc_device_image">Device image</string>
     <string name="content_desc_device_item_menu">Device item menu</string>
     <string name="no_attribute_selected">Please select at least one attribute before sending the SMS.</string>
     <string name="message_type">Message type</string>
     <string name="name_value_type">Array of attributes having name = value pairs</string>
     <string name="plain_text_type">Plain text within 160 characters</string>
     <string name="checkbox_info">Please check all the attributes you would like to send.</string>
-    <string name="change_device_icon">Change device icon</string>
+    <string name="change_device_image">Change device image</string>
     <string name="take_photo">Take photo</string>
     <string name="select_image">Select image</string>
     <string name="import_configuration">Import configuration</string>
@@ -55,12 +55,12 @@
     <string name="import_btn_label">Import</string>
     <string name="nothing_to_export">There is nothing to export! Please add some devices first.</string>
 
-    <string-array name="change_device_icon_actions">
+    <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
         <item>@string/take_photo</item>
     </string-array>
 
-    <string-array name="change_device_icon_no_camera_actions">
+    <string-array name="change_device_image_no_camera_actions">
         <item>@string/select_image</item>
     </string-array>
 </resources>

@@ -12,7 +12,7 @@ data class Device(
     var location: String?,
     var phoneNumber: String,
     var messageType: Int = INT_VALUE_FORMAT,
-    var icon: Uri? = null,
+    var image: Uri? = null,
     var attributes: List<Attribute> = arrayListOf()
 ) {
 

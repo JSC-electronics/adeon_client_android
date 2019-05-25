@@ -1,5 +1,6 @@
 package cz.jsc.electronics.smscontrol.data
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -13,6 +14,9 @@ interface DeviceDao {
 
     @Query("SELECT * FROM devices WHERE id = :deviceId")
     fun getDevice(deviceId: Long): LiveData<Device>
+
+    @Query("SELECT image FROM devices")
+    fun getAllDeviceUris(): List<Uri>
 
     @Insert
     fun insertDevice(device: Device): Long

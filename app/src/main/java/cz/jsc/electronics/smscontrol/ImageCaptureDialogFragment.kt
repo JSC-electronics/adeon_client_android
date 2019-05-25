@@ -8,11 +8,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 
-class IconCaptureDialogFragment(private val fragment: Fragment) : DialogFragment() {
+class ImageCaptureDialogFragment(private val fragment: Fragment) : DialogFragment() {
 
-    internal lateinit var listener: IconCaptureDialogListener
+    internal lateinit var listener: ImageCaptureDialogListener
 
-    interface IconCaptureDialogListener {
+    interface ImageCaptureDialogListener {
         fun onDialogTakePhotoActionClick(dialog: DialogFragment)
         fun onDialogSelectImageActionClick(dialog: DialogFragment)
     }
@@ -20,11 +20,11 @@ class IconCaptureDialogFragment(private val fragment: Fragment) : DialogFragment
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = fragment as IconCaptureDialogListener
+            listener = fragment as ImageCaptureDialogListener
         } catch (e: ClassCastException) {
             // The fragment doesn't implement the interface, throw exception
             throw ClassCastException((context.toString() +
-                    " must implement IconCaptureDialogListener"))
+                    " must implement ImageCaptureDialogListener"))
         }
     }
 
@@ -32,13 +32,13 @@ class IconCaptureDialogFragment(private val fragment: Fragment) : DialogFragment
         return context?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
-                .setTitle(R.string.change_device_icon)
+                .setTitle(R.string.change_device_image)
                 .setItems(
                     // Devices with no camera can still set device icon
                     if (it.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY))
-                        R.array.change_device_icon_actions
+                        R.array.change_device_image_actions
                     else
-                        R.array.change_device_icon_no_camera_actions
+                        R.array.change_device_image_no_camera_actions
                 ) { _, which ->
                     // The 'which' argument contains the index position
                     // of the selected item

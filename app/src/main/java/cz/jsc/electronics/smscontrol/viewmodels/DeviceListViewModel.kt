@@ -62,7 +62,7 @@ class DeviceListViewModel internal constructor(
 
                             val attributeType = object : TypeToken<List<Device>>() {}.type
                             val devices = Gson().fromJson<List<Device>>(json, attributeType)
-                            deviceRepository.deleteAllDevices()
+                            deviceRepository.deleteAllDevices(context.contentResolver)
                             deviceRepository.addDevices(devices)
                         }
                     }
@@ -85,7 +85,7 @@ class DeviceListViewModel internal constructor(
                         // use{} lets the document provider know you're done by automatically closing the stream
                         FileOutputStream(it.fileDescriptor).use {
                             it.write(
-                                GsonBuilder().addSerializationExclusionStrategy(GsonExludeIconStrategy())
+                                GsonBuilder().addSerializationExclusionStrategy(GsonExludeImageStrategy())
                                     .create().toJson(devices).toByteArray()
                             )
                         }
@@ -99,11 +99,11 @@ class DeviceListViewModel internal constructor(
         }
     }
 
-    // It doesn't make sense to store reference to internal device icon. The icon is not part of a backup.
-    private class GsonExludeIconStrategy : ExclusionStrategy {
+    // It doesn't make sense to store reference to internal device image. The image is not part of a backup.
+    private class GsonExludeImageStrategy : ExclusionStrategy {
         override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
 
-        override fun shouldSkipField(f: FieldAttributes?): Boolean = "icon" == f?.name
+        override fun shouldSkipField(f: FieldAttributes?): Boolean = "image" == f?.name
 
     }
 }

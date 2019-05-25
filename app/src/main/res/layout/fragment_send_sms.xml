@@ -35,14 +35,14 @@
                     app:toolbarId="@+id/toolbar">
 
                 <ImageView
-                        android:id="@+id/device_icon"
+                        android:id="@+id/device_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="@string/content_desc_device_icon"
+                        android:contentDescription="@string/content_desc_device_image"
                         android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/arduino_board"
-                        app:imageFromUrl="@{viewModel.device.icon}"
+                        app:imageFromUrl="@{viewModel.device.image}"
                         app:layout_collapseMode="parallax" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -132,7 +132,7 @@
                         android:paddingLeft="@dimen/margin_normal"
                         android:paddingRight="@dimen/margin_normal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/circle_device_icon" app:layout_constraintStart_toStartOf="parent"
+                        tools:listitem="@layout/list_item_attribute" app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox_info"
                         android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"

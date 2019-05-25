@@ -50,6 +50,8 @@ class ManageDeviceViewModel internal constructor(
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
+    lateinit var photoUri: Uri
+
     private var attributes = mutableListOf<Attribute>()
     private var messageType: Int = Device.INT_VALUE_FORMAT
 
@@ -220,10 +222,16 @@ class ManageDeviceViewModel internal constructor(
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
-            "Device_icon_${timeStamp}_",
+            "Device_image_${timeStamp}_",
             ".jpg",
             storageDir
         )
+    }
+
+    fun deleteImage(uri: Uri, context: Context) {
+        viewModelScope.launch {
+            context.contentResolver.delete(uri, null, null)
+        }
     }
 
     fun storeGalleryImage(sourceUri: Uri, context: Context): Job {
@@ -279,7 +287,7 @@ class ManageDeviceViewModel internal constructor(
 
                 if (success) {
                     device.value?.apply {
-                        icon = destUri
+                        image = destUri
                     }
                 }
             }

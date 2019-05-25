@@ -26,7 +26,7 @@
     <string name="no_attributes_error">Nebyla přidána žádná vlastnost!</string>
     <string name="sms_permissions_not_granted">SMS zpráva nebyla odeslána. Neudělili jste potřebná povolení.</string>
     <string name="content_desc_application_logo">Logo aplikace</string>
-    <string name="content_desc_device_icon">Ikona zařízení</string>
+    <string name="content_desc_device_image">Obrázek zařízení</string>
     <string name="content_desc_device_item_menu">Menu položky zařízení</string>
     <string name="no_attribute_selected">Vyberte alespoň jednu vlastnost před odesláním SMS.</string>
     <string name="attribute_text">Obyčejný text</string>
@@ -36,7 +36,7 @@
     <string name="checkbox_info">Zaškrtněte, prosím, všechny vlastnosti, které chcete odeslat.</string>
     <string name="attribute_command_description">Popis příkazu</string>
     <string name="attribute_no_description">Příkaz bez názvu</string>
-    <string name="change_device_icon">Změnit ikonu zařízení</string>
+    <string name="change_device_image">Změnit obrázek zařízení</string>
     <string name="select_image">Vybrat obrázek</string>
     <string name="take_photo">Pořídit fotografii</string>
     <string name="export_configuration">Exportovat konfiguraci</string>

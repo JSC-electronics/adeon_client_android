@@ -1,5 +1,6 @@
 package cz.jsc.electronics.smscontrol
 
+import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.ClipData
 import android.content.Intent
@@ -30,7 +31,7 @@ import java.io.IOException
 import java.util.*
 
 
-class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialogListener {
+class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDialogListener {
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
         const val REQUEST_GALLERY_IMAGE = 2
@@ -106,9 +107,9 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
             }
         }
 
-        binding.deviceIcon.setOnClickListener {
+        binding.deviceImage.setOnClickListener {
             this.fragmentManager?.let {
-                IconCaptureDialogFragment(this).show(it, "Icon Select Dialog")
+                ImageCaptureDialogFragment(this).show(it, "Image Select Dialog")
             }
         }
 
@@ -133,7 +134,7 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
             }
 
             binding.messageTypeSelect.setOnCheckedChangeListener { _, checkedId ->
-                when(checkedId) {
+                when (checkedId) {
                     binding.nameValue.id -> manageDeviceViewModel.setMessageType(Device.INT_VALUE_FORMAT)
                     binding.plainText.id -> manageDeviceViewModel.setMessageType(Device.PLAIN_TEXT_FORMAT)
                 }
@@ -141,7 +142,7 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
                 // otherwise its items may not be shown.
                 binding.locationEditText.requestFocus()
             }
-            
+
             device.location?.let { location ->
                 binding.locationEditText.setText(location)
             }
@@ -180,23 +181,20 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
 
                     // Continue only if the File was successfully created
                     photoFile?.also {
-                        val photoURI: Uri = FileProvider.getUriForFile(
+                        manageDeviceViewModel.photoUri = FileProvider.getUriForFile(
                             context,
                             "cz.jsc.electronics.smscontrol.fileprovider",
                             it
                         )
 
-                        manageDeviceViewModel.device.value?.apply {
-                            this.icon = photoURI
-                        }
-
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, manageDeviceViewModel.photoUri)
 
                         // Add compatibility code for Android API < 21
-                        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
                         } else {
-                            val clip = ClipData.newUri(context.contentResolver, "whatevs", photoURI)
+                            val clip = ClipData.newUri(context.contentResolver, "whatevs",
+                                manageDeviceViewModel.photoUri)
 
                             takePictureIntent.clipData = clip
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
@@ -210,19 +208,41 @@ class AddDeviceFragment : Fragment(), IconCaptureDialogFragment.IconCaptureDialo
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == RESULT_OK) {
-            when (requestCode) {
-                REQUEST_TAKE_PHOTO -> {
-                    manageDeviceViewModel.device.value?.icon?.apply {
-                        layout.device_icon.setImageURI(this)
+        when (requestCode) {
+            REQUEST_TAKE_PHOTO -> {
+                if (resultCode == RESULT_OK) {
+                    manageDeviceViewModel.device.value?.apply {
+                        val previousImage = this.image
+                        this.image = manageDeviceViewModel.photoUri
+                        layout.device_image.setImageURI(manageDeviceViewModel.photoUri)
+
+                        previousImage?.apply {
+                            context?.let { context ->
+                                manageDeviceViewModel.deleteImage(this, context)
+                            }
+                        }
+                    }
+                } else if (resultCode == RESULT_CANCELED) {
+                    context?.let { context ->
+                        manageDeviceViewModel.deleteImage(manageDeviceViewModel.photoUri, context)
                     }
                 }
-                REQUEST_GALLERY_IMAGE -> {
-                    data?.data?.let { uri ->
-                        layout.device_icon.setImageURI(uri)
+            }
+            REQUEST_GALLERY_IMAGE -> {
+                if (resultCode == RESULT_OK) {
+                    data?.data?.apply {
+                        layout.device_image.setImageURI(this)
+
+                        manageDeviceViewModel.device.value?.apply {
+                            image?.let {
+                                context?.let { context ->
+                                    manageDeviceViewModel.deleteImage(it, context)
+                                }
+                            }
+                        }
 
                         context?.let {
-                            manageDeviceViewModel.storeGalleryImage(uri, it)
+                            manageDeviceViewModel.storeGalleryImage(this, it)
                         }
                     }
                 }

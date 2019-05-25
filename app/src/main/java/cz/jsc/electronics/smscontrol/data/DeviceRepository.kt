@@ -1,5 +1,6 @@
 package cz.jsc.electronics.smscontrol.data
 
+import android.content.ContentResolver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -32,8 +33,12 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         }
     }
 
-    suspend fun deleteAllDevices() {
+    suspend fun deleteAllDevices(resolver: ContentResolver) {
         withContext(Dispatchers.IO) {
+            deviceDao.getAllDeviceUris().forEach { uri ->
+                resolver.delete(uri, null, null)
+            }
+
             deviceDao.deleteAll()
         }
     }
