@@ -27,8 +27,12 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         }
     }
 
-    suspend fun deleteDevice(device: Device) {
+    suspend fun deleteDevice(device: Device, resolver: ContentResolver) {
         withContext(Dispatchers.IO) {
+            device.image?.let { uri ->
+                resolver.delete(uri, null, null)
+            }
+
             deviceDao.deleteDevice(device)
         }
     }

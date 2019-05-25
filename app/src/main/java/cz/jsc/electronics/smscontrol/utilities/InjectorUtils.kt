@@ -18,11 +18,10 @@ object InjectorUtils {
     }
 
     fun provideDeviceListViewModelFactory(context: Context): DeviceListViewModelFactory {
-        val repository = getDeviceRepository(context)
-        return DeviceListViewModelFactory(repository)
+        return DeviceListViewModelFactory(context.applicationContext, getDeviceRepository(context))
     }
 
     fun provideManageDeviceViewModelFactory(context: Context, deviceId: Long?): ManageDeviceViewModelFactory {
-        return ManageDeviceViewModelFactory(getDeviceRepository(context), deviceId)
+        return ManageDeviceViewModelFactory(context.applicationContext, getDeviceRepository(context), deviceId)
     }
 }

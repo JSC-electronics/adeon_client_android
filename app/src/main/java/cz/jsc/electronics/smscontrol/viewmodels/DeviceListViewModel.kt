@@ -25,6 +25,7 @@ import java.io.IOException
  * The ViewModel for [DeviceListFragment].
  */
 class DeviceListViewModel internal constructor(
+    private val context: Context,
     private val deviceRepository: DeviceRepository
 ) : ViewModel() {
 
@@ -35,7 +36,7 @@ class DeviceListViewModel internal constructor(
     fun deleteDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                deviceRepository.deleteDevice(device)
+                deviceRepository.deleteDevice(device, context.contentResolver)
             }
         }
     }
@@ -43,13 +44,13 @@ class DeviceListViewModel internal constructor(
     fun duplicateDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val duplicate = device.copy(deviceId = 0)
+                val duplicate = device.copy(deviceId = 0, image = null)
                 deviceRepository.addDevice(duplicate)
             }
         }
     }
 
-    fun importConfiguration(uri: Uri, context: Context) {
+    fun importConfiguration(uri: Uri) {
         viewModelScope.launch {
             deviceList.value?.let {
                 try {
@@ -77,7 +78,7 @@ class DeviceListViewModel internal constructor(
         }
     }
 
-    fun exportConfiguration(uri: Uri, context: Context) {
+    fun exportConfiguration(uri: Uri) {
         viewModelScope.launch {
             deviceList.value?.let { devices ->
                 try {

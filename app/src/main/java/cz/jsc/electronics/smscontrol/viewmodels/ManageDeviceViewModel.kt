@@ -6,11 +6,14 @@ import android.os.Environment
 import android.os.ParcelFileDescriptor
 import android.telephony.SmsManager
 import androidx.core.content.FileProvider
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.jsc.electronics.smscontrol.AddDeviceFragment
+import cz.jsc.electronics.smscontrol.BR
 import cz.jsc.electronics.smscontrol.SendSmsFragment
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
 import cz.jsc.electronics.smscontrol.data.Attribute
@@ -28,6 +31,7 @@ import kotlin.collections.ArrayList
  * The ViewModel for managing device properties in [AddDeviceFragment] and [SendSmsFragment].
  */
 class ManageDeviceViewModel internal constructor(
+    private val context: Context,
     private val deviceRepository: DeviceRepository,
     private val deviceId: Long?
 ) : ViewModel() {
@@ -50,10 +54,10 @@ class ManageDeviceViewModel internal constructor(
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
-    lateinit var photoUri: Uri
-
     private var attributes = mutableListOf<Attribute>()
     private var messageType: Int = Device.INT_VALUE_FORMAT
+
+    var uriHandler = ImageUriHandler()
 
     // For Singleton instantiation
     @Volatile
@@ -84,7 +88,7 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute(attributes.get(attributes.size-1).id + 1))
+        attributes.add(Attribute(attributes.get(attributes.size - 1).id + 1))
         attributesAdapter?.submitList(attributes.toList())
     }
 
@@ -125,7 +129,6 @@ class ManageDeviceViewModel internal constructor(
 
     fun addOrUpdateDevice(overwriteAttributes: Boolean = false) {
         viewModelScope.launch {
-
             device.value?.let { device ->
                 if (device.messageType != messageType) {
                     device.messageType = messageType
@@ -217,7 +220,7 @@ class ManageDeviceViewModel internal constructor(
     }
 
     @Throws(IOException::class)
-    fun createImageFile(context: Context): File {
+    fun createImageFile(): File {
         // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
@@ -228,68 +231,137 @@ class ManageDeviceViewModel internal constructor(
         )
     }
 
-    fun deleteImage(uri: Uri, context: Context) {
-        viewModelScope.launch {
-            context.contentResolver.delete(uri, null, null)
-        }
-    }
+    inner class ImageUriHandler : BaseObservable() {
 
-    fun storeGalleryImage(sourceUri: Uri, context: Context): Job {
-        return viewModelScope.launch {
+        private var currentUri: Uri? = null
+        private var tempUri: Uri? = null
+        private var deviceImageChanged = false
+        private var init = false
+
+        @Bindable
+        fun getUri(): Uri? {
+            return currentUri
+        }
+
+        @Bindable
+        fun setUri(uri: Uri?) {
+            currentUri?.let {
+                deleteImage(it)
+            }
+
+            currentUri = uri
+
+            device.value?.let {
+                it.image = uri
+            }
+
+            if (!init) {
+                init = true
+            } else {
+                deviceImageChanged = true
+            }
+            notifyPropertyChanged(BR.uri)
+        }
+
+        fun isDeviceImageChanged(): Boolean {
+            return deviceImageChanged
+        }
+
+        // Create new empty file and URI for it
+        fun createTempUri(): Uri? {
+            // Create the File where the photo should go
             val photoFile: File? = try {
-                createImageFile(context)
+                createImageFile()
             } catch (ex: IOException) {
                 null
             }
 
             // Continue only if the File was successfully created
             photoFile?.also {
-                val destUri: Uri = FileProvider.getUriForFile(
+                tempUri = FileProvider.getUriForFile(
                     context,
                     "cz.jsc.electronics.smscontrol.fileprovider",
                     it
                 )
 
-                var srcFileDescriptor: ParcelFileDescriptor? = null
-                var dstFileDescriptor: ParcelFileDescriptor? = null
-                var bis: BufferedInputStream? = null
-                var bos: BufferedOutputStream? = null
-                var success = true
+                return tempUri
+            }
 
-                try {
-                    srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
-                    dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+            return null
+        }
 
-                    if (srcFileDescriptor != null && dstFileDescriptor != null) {
-                        bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
-                        bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
+        fun makeTempUriPermanent() {
+            setUri(tempUri)
+        }
 
-                        val buf = ByteArray(size = 1024)
-                        bis.read(buf);
-                        do {
-                            bos.write(buf);
-                        } while (bis.read(buf) != -1)
-                    }
+        fun clearTempUri() {
+            tempUri?.let {
+                deleteImage(it)
+                tempUri = null
+            }
+        }
 
+        fun storeGalleryImage(sourceUri: Uri): Job {
+            return viewModelScope.launch {
+                val photoFile: File? = try {
+                    createImageFile()
                 } catch (ex: IOException) {
-                    ex.printStackTrace()
-                    success = false
-                } finally {
-                    try {
-                        bis?.close();
-                        bos?.close();
-                        srcFileDescriptor?.close()
-                        dstFileDescriptor?.close()
-                    } catch (ex: IOException) {
-                        ex.printStackTrace();
-                    }
+                    null
                 }
 
-                if (success) {
-                    device.value?.apply {
-                        image = destUri
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val destUri: Uri = FileProvider.getUriForFile(
+                        context,
+                        "cz.jsc.electronics.smscontrol.fileprovider",
+                        it
+                    )
+
+                    var srcFileDescriptor: ParcelFileDescriptor? = null
+                    var dstFileDescriptor: ParcelFileDescriptor? = null
+                    var bis: BufferedInputStream? = null
+                    var bos: BufferedOutputStream? = null
+                    var success = true
+
+                    try {
+                        srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                        dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+
+                        if (srcFileDescriptor != null && dstFileDescriptor != null) {
+                            bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
+                            bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
+
+                            val buf = ByteArray(size = 1024)
+                            bis.read(buf);
+                            do {
+                                bos.write(buf);
+                            } while (bis.read(buf) != -1)
+                        }
+
+                    } catch (ex: IOException) {
+                        ex.printStackTrace()
+                        success = false
+                    } finally {
+                        try {
+                            bis?.close();
+                            bos?.close();
+                            srcFileDescriptor?.close()
+                            dstFileDescriptor?.close()
+                        } catch (ex: IOException) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    if (success) {
+                        setUri(destUri)
                     }
                 }
+            }
+        }
+
+        private fun deleteImage(uri: Uri) {
+            viewModelScope.launch {
+                context.contentResolver.delete(uri, null, null)
             }
         }
     }

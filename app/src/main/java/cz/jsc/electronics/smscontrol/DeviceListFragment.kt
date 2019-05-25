@@ -124,16 +124,12 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
             when (requestCode) {
                 READ_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        context?.let {
-                            viewModel.importConfiguration(uri, it)
-                        }
+                        viewModel.importConfiguration(uri)
                     }
                 }
                 WRITE_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        context?.let {
-                            viewModel.exportConfiguration(uri, it)
-                        }
+                        viewModel.exportConfiguration(uri)
                     }
                 }
             }

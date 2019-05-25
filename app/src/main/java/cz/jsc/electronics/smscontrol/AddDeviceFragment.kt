@@ -5,7 +5,6 @@ import android.app.Activity.RESULT_OK
 import android.content.ClipData
 import android.content.Intent
 import android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,9 +23,6 @@ import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
 import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
 import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
-import kotlinx.android.synthetic.main.fragment_add_device.view.*
-import java.io.File
-import java.io.IOException
 import java.util.*
 
 
@@ -147,6 +142,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                 binding.locationEditText.setText(location)
             }
 
+            manageDeviceViewModel.uriHandler.setUri(device.image)
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
@@ -154,6 +150,13 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
     override fun onPause() {
         layout.hideSoftKeyboard()
+
+        // If we don't save the device, it will stay in inconsistent state. Old device image was
+        // already replaced and removed. We need to store reference to the new one.
+        if (manageDeviceViewModel.uriHandler.isDeviceImageChanged() && manageDeviceViewModel.isEditingDevice()) {
+            manageDeviceViewModel.addOrUpdateDevice(false)
+        }
+
         super.onPause()
     }
 
@@ -172,29 +175,15 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
             this.context?.let { context ->
                 // Ensure that there's a camera activity to handle the intent
                 takePictureIntent.resolveActivity(context.packageManager)?.also {
-                    // Create the File where the photo should go
-                    val photoFile: File? = try {
-                        manageDeviceViewModel.createImageFile(context)
-                    } catch (ex: IOException) {
-                        null
-                    }
-
-                    // Continue only if the File was successfully created
-                    photoFile?.also {
-                        manageDeviceViewModel.photoUri = FileProvider.getUriForFile(
-                            context,
-                            "cz.jsc.electronics.smscontrol.fileprovider",
-                            it
-                        )
-
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, manageDeviceViewModel.photoUri)
+                    manageDeviceViewModel.uriHandler.createTempUri()?.also { photoUri ->
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
 
                         // Add compatibility code for Android API < 21
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
                         } else {
                             val clip = ClipData.newUri(context.contentResolver, "whatevs",
-                                manageDeviceViewModel.photoUri)
+                                photoUri)
 
                             takePictureIntent.clipData = clip
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
@@ -211,39 +200,15 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         when (requestCode) {
             REQUEST_TAKE_PHOTO -> {
                 if (resultCode == RESULT_OK) {
-                    manageDeviceViewModel.device.value?.apply {
-                        val previousImage = this.image
-                        this.image = manageDeviceViewModel.photoUri
-                        layout.device_image.setImageURI(manageDeviceViewModel.photoUri)
-
-                        previousImage?.apply {
-                            context?.let { context ->
-                                manageDeviceViewModel.deleteImage(this, context)
-                            }
-                        }
-                    }
+                    manageDeviceViewModel.uriHandler.makeTempUriPermanent()
                 } else if (resultCode == RESULT_CANCELED) {
-                    context?.let { context ->
-                        manageDeviceViewModel.deleteImage(manageDeviceViewModel.photoUri, context)
-                    }
+                    manageDeviceViewModel.uriHandler.clearTempUri()
                 }
             }
             REQUEST_GALLERY_IMAGE -> {
                 if (resultCode == RESULT_OK) {
                     data?.data?.apply {
-                        layout.device_image.setImageURI(this)
-
-                        manageDeviceViewModel.device.value?.apply {
-                            image?.let {
-                                context?.let { context ->
-                                    manageDeviceViewModel.deleteImage(it, context)
-                                }
-                            }
-                        }
-
-                        context?.let {
-                            manageDeviceViewModel.storeGalleryImage(this, it)
-                        }
+                            manageDeviceViewModel.uriHandler.storeGalleryImage(this)
                     }
                 }
             }
