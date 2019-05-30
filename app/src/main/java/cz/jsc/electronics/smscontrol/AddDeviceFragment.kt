@@ -17,7 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
+import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
+import cz.jsc.electronics.smscontrol.adapters.RecyclerAttributeTouchHelper
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
 import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
@@ -112,6 +115,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
         val adapter = manageDeviceViewModel.getAttributesAdapter(isEditMode = true)
         binding.attributeList.adapter = adapter
+        ItemTouchHelper(RecyclerAttributeTouchHelper(0, ItemTouchHelper.LEFT)).
+            attachToRecyclerView(binding.attributeList)
+
         subscribeUi(binding)
 
         return binding.root

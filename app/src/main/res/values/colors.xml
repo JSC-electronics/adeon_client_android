@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorAppIconBackground">#F1F1F1</color>
+
+    <!-- Attribute list -->
+    <color name="bg_row_background">#fa315b</color>
 </resources>
