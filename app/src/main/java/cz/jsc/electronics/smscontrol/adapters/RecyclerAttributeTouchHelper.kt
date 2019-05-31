@@ -38,6 +38,26 @@ class RecyclerAttributeTouchHelper(
         }
     }
 
+    override fun onChildDraw(
+        c: Canvas,
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean
+    ) {
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+            val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
+            getDefaultUIUtil().onDraw(
+                c, recyclerView, foregroundView, dX, dY,
+                actionState, isCurrentlyActive
+            )
+        } else {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+        }
+    }
+
     override fun onChildDrawOver(
         c: Canvas,
         recyclerView: RecyclerView,
@@ -58,32 +78,6 @@ class RecyclerAttributeTouchHelper(
             }
         } else {
             super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-        }
-    }
-
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-        val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
-        getDefaultUIUtil().clearView(foregroundView)
-    }
-
-    override fun onChildDraw(
-        c: Canvas,
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        dX: Float,
-        dY: Float,
-        actionState: Int,
-        isCurrentlyActive: Boolean
-    ) {
-
-        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
-            getDefaultUIUtil().onDraw(
-                c, recyclerView, foregroundView, dX, dY,
-                actionState, isCurrentlyActive
-            )
-        } else {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         }
     }
 }
