@@ -16,6 +16,7 @@ import cz.jsc.electronics.smscontrol.AddDeviceFragment
 import cz.jsc.electronics.smscontrol.BR
 import cz.jsc.electronics.smscontrol.SendSmsFragment
 import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
+import cz.jsc.electronics.smscontrol.adapters.RecyclerAttributeTouchHelper
 import cz.jsc.electronics.smscontrol.data.Attribute
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.data.DeviceRepository
@@ -34,7 +35,7 @@ class ManageDeviceViewModel internal constructor(
     private val context: Context,
     private val deviceRepository: DeviceRepository,
     private val deviceId: Long?
-) : ViewModel() {
+) : ViewModel(), RecyclerAttributeTouchHelper.RecyclerAttributeTouchHelperListener {
 
     companion object {
         private const val CHECKSUM_SIZE = 5
@@ -71,7 +72,7 @@ class ManageDeviceViewModel internal constructor(
     fun initAttributes(device: Device) {
         attributes = device.attributes.map {
             it.copy(
-                id = it.id, name = it.name, value = it.value,
+                name = it.name, value = it.value,
                 text = it.text, isChecked = it.isChecked
             )
         }.toMutableList()
@@ -88,7 +89,7 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute(attributes.get(attributes.size - 1).id + 1))
+        attributes.add(Attribute())
         attributesAdapter?.submitList(attributes.toList())
     }
 
@@ -114,14 +115,16 @@ class ManageDeviceViewModel internal constructor(
             attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)
 
             device.value?.let {
-                if (it.messageType != messageType) {
-                    attributes.clear()
-                    attributes.add(Attribute())
-                    attributesAdapter?.submitList(attributes.toList())
-                } else if (refreshAttributes) {
-                    initAttributes(it)
-                } else {
-                    // Do nothing
+                when {
+                    it.messageType != messageType -> {
+                        attributes.clear()
+                        attributes.add(Attribute())
+                        attributesAdapter?.submitList(attributes.toList())
+                    }
+                    refreshAttributes -> initAttributes(it)
+                    else -> {
+                        // Do nothing
+                    }
                 }
             }
         }
@@ -138,7 +141,7 @@ class ManageDeviceViewModel internal constructor(
                 if (device.attributes.isEmpty() || device.attributes.size != attributes.size || overwriteAttributes) {
                     device.attributes = attributes.toList()
                 } else {
-                    val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
+                    val checkedAttributes = attributes.filter { it.isChecked }.toSet()
 
                     device.attributes.onEach { attribute ->
                         attribute.name?.let {
@@ -147,7 +150,9 @@ class ManageDeviceViewModel internal constructor(
                             }
                         }
 
-                        attribute.isChecked = attribute.id in checkedAttributes
+                        attribute.isChecked = checkedAttributes.any {
+                            attribute.hasTheSameContent(it)
+                        }
                     }
                 }
 
@@ -229,6 +234,17 @@ class ManageDeviceViewModel internal constructor(
             ".jpg",
             storageDir
         )
+    }
+
+    override fun onSwiped(position: Int) {
+        attributes.removeAt(position)
+        attributesAdapter?.submitList(attributes.toList())
+    }
+
+    override fun onMove(from: Int, to: Int) {
+        val attribute = attributes.removeAt(from)
+        attributes.add(to, attribute)
+        attributesAdapter?.submitList(attributes.toList())
     }
 
     inner class ImageUriHandler : BaseObservable() {
@@ -332,9 +348,9 @@ class ManageDeviceViewModel internal constructor(
                             bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
 
                             val buf = ByteArray(size = 1024)
-                            bis.read(buf);
+                            bis.read(buf)
                             do {
-                                bos.write(buf);
+                                bos.write(buf)
                             } while (bis.read(buf) != -1)
                         }
 
@@ -343,12 +359,12 @@ class ManageDeviceViewModel internal constructor(
                         success = false
                     } finally {
                         try {
-                            bis?.close();
-                            bos?.close();
+                            bis?.close()
+                            bos?.close()
                             srcFileDescriptor?.close()
                             dstFileDescriptor?.close()
                         } catch (ex: IOException) {
-                            ex.printStackTrace();
+                            ex.printStackTrace()
                         }
                     }
 

@@ -1,20 +1,15 @@
 package cz.jsc.electronics.smscontrol.adapters
 
-import android.graphics.Canvas
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.jsc.electronics.smscontrol.AddDeviceFragment
 import cz.jsc.electronics.smscontrol.R
 import cz.jsc.electronics.smscontrol.data.Attribute
 import cz.jsc.electronics.smscontrol.databinding.ListItemAttributeBinding
-
-
 
 
 /**
@@ -38,8 +33,10 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemAttributeBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false),
-                    this)
+                LayoutInflater.from(parent.context), parent, false
+            ),
+            this
+        )
     }
 
     class ViewHolder(
@@ -63,7 +60,8 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                         value = valueEditText.text.toString().toIntOrNull()
                         value?.let {
                             if (it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
-                                attributeValue.error = binding.root.context.getString(R.string.attribute_value_out_of_range)
+                                attributeValue.error =
+                                    binding.root.context.getString(R.string.attribute_value_out_of_range)
                             } else {
                                 attributeValue.error = null
                             }
@@ -97,64 +95,6 @@ private class AttributesDiffCallback : DiffUtil.ItemCallback<Attribute>() {
     }
 
     override fun areContentsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.name == newItem.name && oldItem.value == newItem.value && oldItem.text == newItem.text
+        return oldItem.hasTheSameContent(newItem)
     }
-}
-
-class RecyclerAttributeTouchHelper(dragDirs: Int, swipeDirs: Int): ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
-
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-    }
-
-    override fun onMove(
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
-    ): Boolean {
-        return false
-    }
-
-    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-        viewHolder?.let {
-            val foregroundView: View = it.itemView.findViewById(R.id.view_foreground);
-            getDefaultUIUtil().onSelected(foregroundView);
-        }
-    }
-
-    override fun onChildDrawOver(
-        c: Canvas,
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder?,
-        dX: Float,
-        dY: Float,
-        actionState: Int,
-        isCurrentlyActive: Boolean
-    ) {
-        viewHolder?.let {
-            val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground);
-            getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
-                actionState, isCurrentlyActive);
-        }
-    }
-
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-        val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground);
-        getDefaultUIUtil().clearView(foregroundView);
-    }
-
-    override fun onChildDraw(
-        c: Canvas,
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        dX: Float,
-        dY: Float,
-        actionState: Int,
-        isCurrentlyActive: Boolean
-    ) {
-        val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground);
-        getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY,
-            actionState, isCurrentlyActive);
-    }
-
 }
