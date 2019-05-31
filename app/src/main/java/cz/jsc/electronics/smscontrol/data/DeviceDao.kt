@@ -9,7 +9,7 @@ import androidx.room.*
  */
 @Dao
 interface DeviceDao {
-    @Query("SELECT * FROM devices ORDER BY id")
+    @Query("SELECT * FROM devices ORDER BY position ASC, id ASC")
     fun getDevices(): LiveData<List<Device>>
 
     @Query("SELECT * FROM devices WHERE id = :deviceId")
@@ -17,6 +17,9 @@ interface DeviceDao {
 
     @Query("SELECT image FROM devices")
     fun getAllDeviceUris(): List<Uri>
+
+    @Query("SELECT Count(*) from devices")
+    fun getDeviceCount(): Long
 
     @Insert
     fun insertDevice(device: Device): Long

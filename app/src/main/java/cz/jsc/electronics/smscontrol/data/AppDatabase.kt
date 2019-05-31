@@ -10,7 +10,7 @@ import cz.jsc.electronics.smscontrol.utilities.DATABASE_NAME
 /**
  * The Room database for this app
  */
-@Database(entities = [Device::class], version = 7, exportSchema = false)
+@Database(entities = [Device::class], version = 8, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun deviceDao(): DeviceDao

@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import cz.jsc.electronics.smscontrol.DeviceListFragment
+import cz.jsc.electronics.smscontrol.adapters.RecyclerAttributeTouchHelper
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ import java.io.IOException
 class DeviceListViewModel internal constructor(
     private val context: Context,
     private val deviceRepository: DeviceRepository
-) : ViewModel() {
+) : ViewModel(), RecyclerAttributeTouchHelper.RecyclerAttributeTouchHelperListener {
 
     private val deviceList = deviceRepository.getDevices()
 
@@ -36,6 +37,13 @@ class DeviceListViewModel internal constructor(
     fun deleteDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                deviceList.value?.let {
+                    it.subList(device.position.toInt() + 1, it.size).onEach { dev ->
+                        dev.position = dev.position - 1
+                        deviceRepository.updateDevice(dev)
+                    }
+                }
+
                 deviceRepository.deleteDevice(device, context.contentResolver)
             }
         }
@@ -44,7 +52,7 @@ class DeviceListViewModel internal constructor(
     fun duplicateDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val duplicate = device.copy(deviceId = 0, image = null)
+                val duplicate = device.copy(deviceId = 0, image = null, position = deviceRepository.getDeviceCount())
                 deviceRepository.addDevice(duplicate)
             }
         }
@@ -56,8 +64,8 @@ class DeviceListViewModel internal constructor(
                 try {
                     context.contentResolver.openFileDescriptor(uri, "r")?.use {
                         // use{} lets the document provider know you're done by automatically closing the stream
-                        FileInputStream(it.fileDescriptor).use {
-                            val reader = it.reader().buffered()
+                        FileInputStream(it.fileDescriptor).use { inputStream ->
+                            val reader = inputStream.reader().buffered()
                             val json = reader.readText()
                             reader.close()
 
@@ -67,7 +75,7 @@ class DeviceListViewModel internal constructor(
                             deviceRepository.addDevices(devices)
                         }
                     }
-                } catch (e: FileNotFoundException) {
+                } catch (e: FileNotFoundException ) {
                     e.printStackTrace()
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -83,9 +91,8 @@ class DeviceListViewModel internal constructor(
             deviceList.value?.let { devices ->
                 try {
                     context.contentResolver.openFileDescriptor(uri, "w")?.use {
-                        // use{} lets the document provider know you're done by automatically closing the stream
-                        FileOutputStream(it.fileDescriptor).use {
-                            it.write(
+                        FileOutputStream(it.fileDescriptor).use { outputStream ->
+                            outputStream.write(
                                 GsonBuilder().addSerializationExclusionStrategy(GsonExludeImageStrategy())
                                     .create().toJson(devices).toByteArray()
                             )
@@ -95,6 +102,42 @@ class DeviceListViewModel internal constructor(
                     e.printStackTrace()
                 } catch (e: IOException) {
                     e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    override fun onSwiped(position: Int) {
+        deviceList.value?.let {
+            deleteDevice(it[position])
+        }
+    }
+
+    override fun onMove(from: Int, to: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                deviceList.value?.let { list ->
+                    val movedDevice = list[from]
+                    val targetDevice = list[to]
+
+                    movedDevice.position = to.toLong()
+                    targetDevice.position = from.toLong()
+                    deviceRepository.updateDevice(movedDevice)
+                    deviceRepository.updateDevice(targetDevice)
+
+//                    if (from > to) {
+//                        list.subList(to, from).onEach {
+//                            it.position = it.position + 1
+//                            deviceRepository.updateDevice(it)
+//                        }
+//                    }
+//
+//                    if (from < to) {
+//                        list.subList(from + 1, to + 1).onEach {
+//                            it.position = it.position + 1
+//                            deviceRepository.updateDevice(it)
+//                        }
+//                    }
                 }
             }
         }

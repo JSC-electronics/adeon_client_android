@@ -27,20 +27,22 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         }
     }
 
-    suspend fun deleteDevice(device: Device, resolver: ContentResolver) {
+    suspend fun deleteDevice(device: Device, resolver: ContentResolver?) {
         withContext(Dispatchers.IO) {
             device.image?.let { uri ->
-                resolver.delete(uri, null, null)
+                resolver?.delete(uri, null, null)
             }
 
             deviceDao.deleteDevice(device)
         }
     }
 
-    suspend fun deleteAllDevices(resolver: ContentResolver) {
+    suspend fun deleteAllDevices(resolver: ContentResolver?) {
         withContext(Dispatchers.IO) {
-            deviceDao.getAllDeviceUris().forEach { uri ->
-                resolver.delete(uri, null, null)
+            resolver?.let {
+                deviceDao.getAllDeviceUris().forEach { uri ->
+                    it.delete(uri, null, null)
+                }
             }
 
             deviceDao.deleteAll()
@@ -50,6 +52,8 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
     fun getDevices() = deviceDao.getDevices()
 
     fun getDevice(deviceId: Long) = deviceDao.getDevice(deviceId)
+
+    fun getDeviceCount(): Long = deviceDao.getDeviceCount()
 
     companion object {
 

@@ -21,8 +21,10 @@ import cz.jsc.electronics.smscontrol.data.Attribute
 import cz.jsc.electronics.smscontrol.data.Device
 import cz.jsc.electronics.smscontrol.data.DeviceRepository
 import cz.jsc.electronics.smscontrol.utilities.computeMd5
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -157,7 +159,10 @@ class ManageDeviceViewModel internal constructor(
                 }
 
                 if (deviceId == null) {
-                    deviceRepository.addDevice(device)
+                    withContext(Dispatchers.IO) {
+                        device.position = deviceRepository.getDeviceCount()
+                        deviceRepository.addDevice(device)
+                    }
                 } else {
                     deviceRepository.updateDevice(device)
                 }
