@@ -12,6 +12,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cz.jsc.electronics.smscontrol.databinding.ActivityMainBinding
+import android.content.Intent
+import cz.jsc.electronics.smscontrol.intro.IntroActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // TODO Intro is run every time
+        val introIntent = Intent(this@MainActivity, IntroActivity::class.java)
+        startActivity(introIntent)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_main)
