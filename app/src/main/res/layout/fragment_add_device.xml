@@ -102,7 +102,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.lamudi.phonefield.PhoneInputLayout
+                <cz.jscelectronics.phonefield.PhoneInputLayout
                         android:id="@+id/phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
