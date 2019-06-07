@@ -1,16 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
 >
 
-    <androidx.cardview.widget.CardView
+    <data>
+        <import type="android.text.TextUtils"/>
+
+        <variable
+                name="attribute"
+                type="cz.jscelectronics.adeon.data.Attribute"/>
+
+        <variable name="showPlainText"
+                  type="boolean"/>
+
+        <variable name="isEditMode"
+                  type="boolean"/>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.CardView"
+            app:cardElevation="3dp"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
-        <include android:id="@+id/content"
-                 layout="@layout/attribute_content"/>
-    </androidx.cardview.widget.CardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+            <CheckBox
+                    android:id="@+id/attribute_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:isGone="@{isEditMode}"
+                    android:checked="@{attribute.checked}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp" app:layout_constraintBottom_toBottomOf="@+id/first_row_barrier"
+                    android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/attribute_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintStart_toEndOf="@+id/attribute_checkbox"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/attribute_value" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_edit_text"
+                        android:text="@{attribute.name != null ? `` + attribute.name : ``}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="16"
+                        android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                        android:hint="@string/attribute_name"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/attribute_value"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintStart_toEndOf="@id/attribute_name"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/value_edit_text"
+                        android:text="@{attribute.value != null ? `` + attribute.value : ``}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="5"
+                        android:inputType="number"
+                        android:digits="0123456789"
+                        android:hint="@string/attribute_value"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editable_command_description"
+                    android:layout_width="0dp"
+                    app:isGone="@{safeUnbox(!attribute.containsPlainText &amp;&amp; !showPlainText || !isEditMode)}"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintStart_toEndOf="@id/attribute_checkbox"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/command_desc_edit_text"
+                        android:text="@{attribute.name != null ? `` + attribute.name : ``}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textAutoComplete"
+                        android:hint="@string/attribute_command_description"
+                        tools:text="Open garage door"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                    android:id="@+id/command_description"
+                    android:text="@{!TextUtils.isEmpty(attribute.name) ? `` + attribute.name : @string/attribute_no_description}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/attribute_checkbox"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/first_row_barrier"
+                    android:layout_marginBottom="8dp"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    app:isGone="@{safeUnbox(!attribute.containsPlainText &amp;&amp; !showPlainText || isEditMode)}"
+                    tools:visibility="gone"
+            />
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/attribute_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/first_row_barrier"
+                    android:layout_marginTop="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="160"
+                    app:isGone="@{safeUnbox(!attribute.containsPlainText &amp;&amp; !showPlainText)}"
+                    android:layout_marginBottom="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/plain_edit_text"
+                        android:text="@{attribute.text != null ? `` + attribute.text : ``}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="160"
+                        android:inputType="textAutoComplete|textMultiLine"
+                        android:minLines="1"
+                        android:lines="5"
+                        android:hint="@string/attribute_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/name_value_group"
+                                                    app:isGone="@{safeUnbox(!attribute.containsNameValuePair &amp;&amp; showPlainText)}"
+                                                    app:constraint_referenced_ids="attribute_name,attribute_value"
+            />
+
+            <androidx.constraintlayout.widget.Barrier android:layout_width="wrap_content"
+                                                      android:layout_height="wrap_content"
+                                                      android:id="@+id/first_row_barrier"
+                                                      app:barrierDirection="bottom"
+                                                      app:constraint_referenced_ids="attribute_name,attribute_value,editable_command_description,command_description,attribute_checkbox"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            tools:context="cz.jsc.electronics.smscontrol.DeviceListFragment"
+            tools:context="cz.jscelectronics.adeon.DeviceListFragment"
             tools:ignore="MergeRootFrame">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -41,6 +41,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"

@@ -9,15 +9,16 @@
                 type="android.view.View.OnClickListener"/>
         <variable
                 name="device"
-                type="cz.jsc.electronics.smscontrol.data.Device"/>
+                type="cz.jscelectronics.adeon.data.Device"/>
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.CardView"
             android:onClick="@{clickListener}"
-            android:elevation="3dp"
+            app:cardElevation="3dp"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,6 +73,6 @@
                     android:contentDescription="@string/content_desc_device_item_menu"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
