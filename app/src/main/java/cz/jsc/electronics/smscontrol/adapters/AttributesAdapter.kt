@@ -43,7 +43,7 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Attribute) {
-            binding.content.apply {
+            binding.apply {
                 attribute = item
                 showPlainText = adapter.preferPlainText
                 isEditMode = adapter.isEditMode

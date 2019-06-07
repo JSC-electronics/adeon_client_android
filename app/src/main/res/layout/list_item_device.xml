@@ -15,9 +15,10 @@
     <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.CardView"
             android:onClick="@{clickListener}"
-            android:elevation="3dp"
+            app:cardElevation="3dp"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
