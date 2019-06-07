@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.adapters
+package cz.jscelectronics.adeon.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.jsc.electronics.smscontrol.AddDeviceFragment
-import cz.jsc.electronics.smscontrol.R
-import cz.jsc.electronics.smscontrol.data.Attribute
-import cz.jsc.electronics.smscontrol.databinding.ListItemAttributeBinding
+import cz.jscelectronics.adeon.AddDeviceFragment
+import cz.jscelectronics.adeon.R
+import cz.jscelectronics.adeon.data.Attribute
+import cz.jscelectronics.adeon.databinding.ListItemAttributeBinding
 
 
 /**

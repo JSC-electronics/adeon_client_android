@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.data
+package cz.jscelectronics.adeon.data
 
 data class Attribute(
     val id: Long = 0,

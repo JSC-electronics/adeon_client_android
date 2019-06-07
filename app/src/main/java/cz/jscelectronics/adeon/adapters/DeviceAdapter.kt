@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.adapters
+package cz.jscelectronics.adeon.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.jsc.electronics.smscontrol.DeviceListFragment
-import cz.jsc.electronics.smscontrol.DeviceListFragmentDirections
-import cz.jsc.electronics.smscontrol.R
-import cz.jsc.electronics.smscontrol.data.Device
-import cz.jsc.electronics.smscontrol.databinding.ListItemDeviceBinding
-import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModel
+import cz.jscelectronics.adeon.DeviceListFragment
+import cz.jscelectronics.adeon.DeviceListFragmentDirections
+import cz.jscelectronics.adeon.R
+import cz.jscelectronics.adeon.data.Device
+import cz.jscelectronics.adeon.databinding.ListItemDeviceBinding
+import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
 
 
 /**

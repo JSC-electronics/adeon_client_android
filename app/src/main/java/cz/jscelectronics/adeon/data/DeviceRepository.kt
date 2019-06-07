@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.data
+package cz.jscelectronics.adeon.data
 
 import android.content.ContentResolver
 import kotlinx.coroutines.Dispatchers

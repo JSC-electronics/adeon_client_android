@@ -1,11 +1,11 @@
-package cz.jsc.electronics.smscontrol
+package cz.jscelectronics.adeon
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import cz.jsc.electronics.smscontrol.databinding.FragmentAboutBinding
+import cz.jscelectronics.adeon.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
 

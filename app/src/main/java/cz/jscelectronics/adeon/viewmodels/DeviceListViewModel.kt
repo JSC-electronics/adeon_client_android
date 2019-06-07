@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.viewmodels
+package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
 import android.net.Uri
@@ -9,9 +9,9 @@ import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import cz.jsc.electronics.smscontrol.DeviceListFragment
-import cz.jsc.electronics.smscontrol.data.Device
-import cz.jsc.electronics.smscontrol.data.DeviceRepository
+import cz.jscelectronics.adeon.DeviceListFragment
+import cz.jscelectronics.adeon.data.Device
+import cz.jscelectronics.adeon.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

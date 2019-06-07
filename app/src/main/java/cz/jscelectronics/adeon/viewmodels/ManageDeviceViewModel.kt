@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.viewmodels
+package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
 import android.net.Uri
@@ -12,14 +12,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.jsc.electronics.smscontrol.AddDeviceFragment
-import cz.jsc.electronics.smscontrol.BR
-import cz.jsc.electronics.smscontrol.SendSmsFragment
-import cz.jsc.electronics.smscontrol.adapters.AttributesAdapter
-import cz.jsc.electronics.smscontrol.data.Attribute
-import cz.jsc.electronics.smscontrol.data.Device
-import cz.jsc.electronics.smscontrol.data.DeviceRepository
-import cz.jsc.electronics.smscontrol.utilities.computeMd5
+import cz.jscelectronics.adeon.AddDeviceFragment
+import cz.jscelectronics.adeon.BR
+import cz.jscelectronics.adeon.SendSmsFragment
+import cz.jscelectronics.adeon.adapters.AttributesAdapter
+import cz.jscelectronics.adeon.data.Attribute
+import cz.jscelectronics.adeon.data.Device
+import cz.jscelectronics.adeon.data.DeviceRepository
+import cz.jscelectronics.adeon.utilities.computeMd5
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.io.*
@@ -280,7 +280,7 @@ class ManageDeviceViewModel internal constructor(
             photoFile?.also {
                 tempUri = FileProvider.getUriForFile(
                     context,
-                    "cz.jsc.electronics.smscontrol.fileprovider",
+                    "cz.jscelectronics.adeon.fileprovider",
                     it
                 )
 
@@ -313,7 +313,7 @@ class ManageDeviceViewModel internal constructor(
                 photoFile?.also {
                     val destUri: Uri = FileProvider.getUriForFile(
                         context,
-                        "cz.jsc.electronics.smscontrol.fileprovider",
+                        "cz.jscelectronics.adeon.fileprovider",
                         it
                     )
 

@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol
+package cz.jscelectronics.adeon
 
 import android.app.Dialog
 import android.content.Context

@@ -1,9 +1,9 @@
-package cz.jsc.electronics.smscontrol.viewmodels
+package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import cz.jsc.electronics.smscontrol.data.DeviceRepository
+import cz.jscelectronics.adeon.data.DeviceRepository
 
 /**
  * Factory for creating a [ManageDeviceViewModel] with a constructor that takes a [DeviceRepository].

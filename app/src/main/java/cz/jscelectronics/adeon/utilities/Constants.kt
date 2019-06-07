@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.utilities
+package cz.jscelectronics.adeon.utilities
 
 /**
  * Constants used throughout the app.

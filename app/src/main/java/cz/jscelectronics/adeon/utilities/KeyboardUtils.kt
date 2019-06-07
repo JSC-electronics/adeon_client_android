@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.utilities
+package cz.jscelectronics.adeon.utilities
 
 import android.app.Activity
 import android.view.View

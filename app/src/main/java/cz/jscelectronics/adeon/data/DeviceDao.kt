@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.data
+package cz.jscelectronics.adeon.data
 
 import android.net.Uri
 import androidx.lifecycle.LiveData

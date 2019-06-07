@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol.adapters
+package cz.jscelectronics.adeon.adapters
 
 import android.graphics.drawable.Drawable
 import android.net.Uri

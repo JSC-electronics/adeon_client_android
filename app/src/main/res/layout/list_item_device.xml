@@ -9,7 +9,7 @@
                 type="android.view.View.OnClickListener"/>
         <variable
                 name="device"
-                type="cz.jsc.electronics.smscontrol.data.Device"/>
+                type="cz.jscelectronics.adeon.data.Device"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView

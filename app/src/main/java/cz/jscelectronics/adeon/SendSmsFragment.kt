@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol
+package cz.jscelectronics.adeon
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -17,10 +17,10 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.smscontrol.databinding.FragmentSendSmsBinding
-import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
-import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
-import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
+import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
+import cz.jscelectronics.adeon.utilities.InjectorUtils
+import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
+import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModel
 
 class SendSmsFragment : Fragment() {
 

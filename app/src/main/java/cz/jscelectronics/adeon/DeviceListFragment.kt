@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol
+package cz.jscelectronics.adeon
 
 import android.app.Activity
 import android.content.Intent
@@ -11,10 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.smscontrol.adapters.DeviceAdapter
-import cz.jsc.electronics.smscontrol.databinding.FragmentDeviceListBinding
-import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
-import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModel
+import cz.jscelectronics.adeon.adapters.DeviceAdapter
+import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
+import cz.jscelectronics.adeon.utilities.InjectorUtils
+import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
 
 class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener {
 

@@ -1,11 +1,11 @@
-package cz.jsc.electronics.smscontrol.data
+package cz.jscelectronics.adeon.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import cz.jsc.electronics.smscontrol.utilities.DATABASE_NAME
+import cz.jscelectronics.adeon.utilities.DATABASE_NAME
 
 /**
  * The Room database for this app

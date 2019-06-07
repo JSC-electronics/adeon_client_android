@@ -1,4 +1,4 @@
-package cz.jsc.electronics.smscontrol
+package cz.jscelectronics.adeon
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
@@ -18,11 +18,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
-import cz.jsc.electronics.smscontrol.data.Device
-import cz.jsc.electronics.smscontrol.databinding.FragmentAddDeviceBinding
-import cz.jsc.electronics.smscontrol.utilities.InjectorUtils
-import cz.jsc.electronics.smscontrol.utilities.hideSoftKeyboard
-import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModel
+import cz.jscelectronics.adeon.data.Device
+import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
+import cz.jscelectronics.adeon.utilities.InjectorUtils
+import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
+import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModel
 import java.util.*
 
 

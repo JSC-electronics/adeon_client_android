@@ -1,10 +1,10 @@
-package cz.jsc.electronics.smscontrol.utilities
+package cz.jscelectronics.adeon.utilities
 
 import android.content.Context
-import cz.jsc.electronics.smscontrol.data.AppDatabase
-import cz.jsc.electronics.smscontrol.data.DeviceRepository
-import cz.jsc.electronics.smscontrol.viewmodels.DeviceListViewModelFactory
-import cz.jsc.electronics.smscontrol.viewmodels.ManageDeviceViewModelFactory
+import cz.jscelectronics.adeon.data.AppDatabase
+import cz.jscelectronics.adeon.data.DeviceRepository
+import cz.jscelectronics.adeon.viewmodels.DeviceListViewModelFactory
+import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModelFactory
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
