@@ -1,6 +1,7 @@
 package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.os.ParcelFileDescriptor
@@ -12,10 +13,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.AddDeviceFragment
 import cz.jscelectronics.adeon.BR
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.SendSmsFragment
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
@@ -34,7 +39,7 @@ class ManageDeviceViewModel internal constructor(
     private val context: Context,
     private val deviceRepository: DeviceRepository,
     private val deviceId: Long?
-) : ViewModel() {
+) : ViewModel(), RecyclerAttributeTouchHelper.RecyclerAttributeTouchHelperListener {
 
     companion object {
         private const val CHECKSUM_SIZE = 5
@@ -71,7 +76,7 @@ class ManageDeviceViewModel internal constructor(
     fun initAttributes(device: Device) {
         attributes = device.attributes.map {
             it.copy(
-                id = it.id, name = it.name, value = it.value,
+                name = it.name, value = it.value,
                 text = it.text, isChecked = it.isChecked
             )
         }.toMutableList()
@@ -88,7 +93,7 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute(attributes.get(attributes.size - 1).id + 1))
+        attributes.add(Attribute())
         attributesAdapter?.submitList(attributes.toList())
     }
 
@@ -114,14 +119,16 @@ class ManageDeviceViewModel internal constructor(
             attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)
 
             device.value?.let {
-                if (it.messageType != messageType) {
-                    attributes.clear()
-                    attributes.add(Attribute())
-                    attributesAdapter?.submitList(attributes.toList())
-                } else if (refreshAttributes) {
-                    initAttributes(it)
-                } else {
-                    // Do nothing
+                when {
+                    it.messageType != messageType -> {
+                        attributes.clear()
+                        attributes.add(Attribute())
+                        attributesAdapter?.submitList(attributes.toList())
+                    }
+                    refreshAttributes -> initAttributes(it)
+                    else -> {
+                        // Do nothing
+                    }
                 }
             }
         }
@@ -138,7 +145,7 @@ class ManageDeviceViewModel internal constructor(
                 if (device.attributes.isEmpty() || device.attributes.size != attributes.size || overwriteAttributes) {
                     device.attributes = attributes.toList()
                 } else {
-                    val checkedAttributes = attributes.filter { it.isChecked }.map { it.id }.toSet()
+                    val checkedAttributes = attributes.filter { it.isChecked }.toSet()
 
                     device.attributes.onEach { attribute ->
                         attribute.name?.let {
@@ -147,7 +154,9 @@ class ManageDeviceViewModel internal constructor(
                             }
                         }
 
-                        attribute.isChecked = attribute.id in checkedAttributes
+                        attribute.isChecked = checkedAttributes.any {
+                            attribute.hasTheSameContent(it)
+                        }
                     }
                 }
 
@@ -229,6 +238,26 @@ class ManageDeviceViewModel internal constructor(
             ".jpg",
             storageDir
         )
+    }
+
+    override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
+        val removedAttribute = attributes.removeAt(position)
+        attributesAdapter?.submitList(attributes.toList())
+
+        val snackbar = Snackbar.make(viewholder.itemView,
+            context.getString(R.string.attribute_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
+        snackbar.setAction(R.string.undo) {
+            attributes.add(position, removedAttribute)
+            attributesAdapter?.submitList(attributes.toList())
+        }
+        snackbar.setActionTextColor(Color.YELLOW)
+        snackbar.show()
+    }
+
+    override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
+        val attribute = attributes.removeAt(from)
+        attributes.add(to, attribute)
+        attributesAdapter?.submitList(attributes.toList())
     }
 
     inner class ImageUriHandler : BaseObservable() {
@@ -332,9 +361,9 @@ class ManageDeviceViewModel internal constructor(
                             bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
 
                             val buf = ByteArray(size = 1024)
-                            bis.read(buf);
+                            bis.read(buf)
                             do {
-                                bos.write(buf);
+                                bos.write(buf)
                             } while (bis.read(buf) != -1)
                         }
 
@@ -343,12 +372,12 @@ class ManageDeviceViewModel internal constructor(
                         success = false
                     } finally {
                         try {
-                            bis?.close();
-                            bos?.close();
+                            bis?.close()
+                            bos?.close()
                             srcFileDescriptor?.close()
                             dstFileDescriptor?.close()
                         } catch (ex: IOException) {
-                            ex.printStackTrace();
+                            ex.printStackTrace()
                         }
                     }
 

@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.adapters.DeviceAdapter
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
@@ -47,6 +49,13 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         layout = binding.devices
         val adapter = DeviceAdapter(viewModel)
         binding.deviceList.adapter = adapter
+        ItemTouchHelper(
+            RecyclerAttributeTouchHelper(
+                0 /* TODO: Device move not implemented */,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+                viewModel
+            )
+        ).attachToRecyclerView(binding.deviceList)
 
         subscribeUi(adapter, binding)
 

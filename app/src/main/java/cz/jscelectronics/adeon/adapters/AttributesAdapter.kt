@@ -33,8 +33,10 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemAttributeBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false),
-                    this)
+                LayoutInflater.from(parent.context), parent, false
+            ),
+            this
+        )
     }
 
     class ViewHolder(
@@ -58,7 +60,8 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                         value = valueEditText.text.toString().toIntOrNull()
                         value?.let {
                             if (it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
-                                attributeValue.error = binding.root.context.getString(R.string.attribute_value_out_of_range)
+                                attributeValue.error =
+                                    binding.root.context.getString(R.string.attribute_value_out_of_range)
                             } else {
                                 attributeValue.error = null
                             }
@@ -92,6 +95,6 @@ private class AttributesDiffCallback : DiffUtil.ItemCallback<Attribute>() {
     }
 
     override fun areContentsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
-        return oldItem.name == newItem.name && oldItem.value == newItem.value && oldItem.text == newItem.text
+        return oldItem.hasTheSameContent(newItem)
     }
 }

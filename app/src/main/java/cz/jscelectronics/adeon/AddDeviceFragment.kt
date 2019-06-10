@@ -17,7 +17,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
 import cz.jscelectronics.adeon.utilities.InjectorUtils
@@ -112,6 +114,14 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
         val adapter = manageDeviceViewModel.getAttributesAdapter(isEditMode = true)
         binding.attributeList.adapter = adapter
+        ItemTouchHelper(
+            RecyclerAttributeTouchHelper(
+                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+                manageDeviceViewModel
+            )
+        ).attachToRecyclerView(binding.attributeList)
+
         subscribeUi(binding)
 
         return binding.root
@@ -180,10 +190,12 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
                         // Add compatibility code for Android API < 21
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
+                            takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
                         } else {
-                            val clip = ClipData.newUri(context.contentResolver, "whatevs",
-                                photoUri)
+                            val clip = ClipData.newUri(
+                                context.contentResolver, "whatevs",
+                                photoUri
+                            )
 
                             takePictureIntent.clipData = clip
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
@@ -208,7 +220,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
             REQUEST_GALLERY_IMAGE -> {
                 if (resultCode == RESULT_OK) {
                     data?.data?.apply {
-                            manageDeviceViewModel.uriHandler.storeGalleryImage(this)
+                        manageDeviceViewModel.uriHandler.storeGalleryImage(this)
                     }
                 }
             }

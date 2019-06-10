@@ -1,7 +1,6 @@
 package cz.jscelectronics.adeon.data
 
 data class Attribute(
-    val id: Long = 0,
     var name: String? = null,
     var value: Int? = null,
     var text: String? = null,
@@ -36,5 +35,9 @@ data class Attribute(
 
     fun containsNameValuePair(): Boolean {
         return !name.isNullOrEmpty() && value != null
+    }
+
+    fun hasTheSameContent(other: Attribute): Boolean {
+        return name == other.name && value == other.value && text == other.text
     }
 }
