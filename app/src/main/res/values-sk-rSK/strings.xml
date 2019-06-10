@@ -14,7 +14,7 @@
     <string name="action_remove_device">Odstrániť zariadenie</string>
     <string name="attributes">Vlastnosti</string>
     <string name="attribute_value">Hodnota</string>
-    <string name="attribute_name">Název</string>
+    <string name="attribute_name">Názov</string>
     <string name="save_changes_button">Uložiť zmeny</string>
     <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>
@@ -45,4 +45,9 @@
     <string name="import_overwrite_msg">Existujúca konfigurácia bude prepísaná! Chcete pokračovať?</string>
     <string name="import_btn_label">Importovať</string>
     <string name="nothing_to_export">Nie je čo exportovať! Najprv pridajte nejaké zariadenie.</string>
+    <string name="content_desc_delete">Ikona pre vymazanie</string>
+    <string name="delete">Vymazať</string>
+    <string name="undo">Späť</string>
+    <string name="device_removed">Zariadenie %s bolo vymazané zo zoznamu!</string>
+    <string name="attribute_removed">Vlastnosť %s bola vymazaná zo zoznamu!</string>
 </resources>

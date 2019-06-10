@@ -45,4 +45,9 @@
     <string name="import_overwrite_msg">Existující konfigurace bude přepsána! Přejete si pokračovat?</string>
     <string name="import_btn_label">Importovat</string>
     <string name="nothing_to_export">Není co exportovat! Nejprve přidejte nějaké zařízení.</string>
+    <string name="content_desc_delete">Ikona pro smazání</string>
+    <string name="delete">Smazat</string>
+    <string name="undo">Zpět</string>
+    <string name="device_removed">Zařížení %s bylo vymazáno ze seznamu!</string>
+    <string name="attribute_removed">Vlastnost %s byla vymazána ze seznamu!</string>
 </resources>

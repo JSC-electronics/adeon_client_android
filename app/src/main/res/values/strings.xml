@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">SMS control</string>
+    <string name="app_name" translatable="false">Adeon</string>
     <string name="my_devices_title">My devices</string>
     <string name="about_title">About</string>
     <string name="navigation_drawer_header_content_description"
@@ -54,6 +54,11 @@
     <string name="import_overwrite_msg">Existing configuration will be overwritten! Do you want to continue?</string>
     <string name="import_btn_label">Import</string>
     <string name="nothing_to_export">There is nothing to export! Please add some devices first.</string>
+    <string name="content_desc_delete">Delete icon</string>
+    <string name="delete">Delete</string>
+    <string name="undo">Undo</string>
+    <string name="device_removed">Device %s removed from list!</string>
+    <string name="attribute_removed">Attribute %s removed from list!</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
