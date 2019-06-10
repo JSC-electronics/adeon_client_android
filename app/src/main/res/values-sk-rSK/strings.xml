@@ -14,7 +14,7 @@
     <string name="action_remove_device">Odstrániť zariadenie</string>
     <string name="attributes">Vlastnosti</string>
     <string name="attribute_value">Hodnota</string>
-    <string name="attribute_name">Název</string>
+    <string name="attribute_name">Názov</string>
     <string name="save_changes_button">Uložiť zmeny</string>
     <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>

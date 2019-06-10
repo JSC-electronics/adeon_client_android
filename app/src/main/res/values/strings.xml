@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">SMS control</string>
+    <string name="app_name" translatable="false">Adeon</string>
     <string name="my_devices_title">My devices</string>
     <string name="about_title">About</string>
     <string name="navigation_drawer_header_content_description"
