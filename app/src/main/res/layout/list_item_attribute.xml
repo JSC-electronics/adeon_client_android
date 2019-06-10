@@ -74,6 +74,8 @@
                             android:layout_height="wrap_content"
                             android:maxLength="16"
                             android:inputType="text"
+                            android:longClickable="false"
+                            android:textIsSelectable="false"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
                             android:hint="@string/attribute_name"/>
 
@@ -98,6 +100,8 @@
                             android:maxLength="5"
                             android:inputType="number"
                             android:digits="0123456789"
+                            android:longClickable="false"
+                            android:textIsSelectable="false"
                             android:hint="@string/attribute_value"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -120,6 +124,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textAutoComplete"
+                            android:longClickable="false"
+                            android:textIsSelectable="false"
                             android:hint="@string/attribute_command_description"
                             tools:text="Open garage door"
                     />
@@ -166,6 +172,8 @@
                             android:inputType="textAutoComplete|textMultiLine"
                             android:minLines="1"
                             android:lines="5"
+                            android:longClickable="false"
+                            android:textIsSelectable="false"
                             android:hint="@string/attribute_text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
