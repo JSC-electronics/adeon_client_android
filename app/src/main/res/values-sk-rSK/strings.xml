@@ -47,4 +47,7 @@
     <string name="nothing_to_export">Nie je čo exportovať! Najprv pridajte nejaké zariadenie.</string>
     <string name="content_desc_delete">Ikona pre vymazanie</string>
     <string name="delete">Vymazať</string>
+    <string name="undo">Späť</string>
+    <string name="device_removed">Zariadenie %s bolo vymazané zo zoznamu!</string>
+    <string name="attribute_removed">Vlastnosť %s bola vymazaná zo zoznamu!</string>
 </resources>

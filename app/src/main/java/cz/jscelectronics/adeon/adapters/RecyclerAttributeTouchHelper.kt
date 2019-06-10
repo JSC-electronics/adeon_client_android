@@ -14,12 +14,12 @@ class RecyclerAttributeTouchHelper(
     ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
 
     interface RecyclerAttributeTouchHelperListener {
-        fun onSwiped(position: Int)
-        fun onMove(from: Int, to: Int)
+        fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int)
+        fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int)
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        listener.onSwiped(viewHolder.adapterPosition)
+        listener.onSwiped(viewHolder, viewHolder.adapterPosition)
     }
 
     override fun onMove(
@@ -27,7 +27,7 @@ class RecyclerAttributeTouchHelper(
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        listener.onMove(viewHolder.adapterPosition, target.adapterPosition)
+        listener.onMove(viewHolder, viewHolder.adapterPosition, target.adapterPosition)
         return true
     }
 

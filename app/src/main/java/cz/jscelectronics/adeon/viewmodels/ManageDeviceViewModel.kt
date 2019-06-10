@@ -1,6 +1,7 @@
 package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.os.ParcelFileDescriptor
@@ -12,8 +13,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.AddDeviceFragment
 import cz.jscelectronics.adeon.BR
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.SendSmsFragment
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
@@ -23,7 +27,6 @@ import cz.jscelectronics.adeon.data.DeviceRepository
 import cz.jscelectronics.adeon.utilities.computeMd5
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -237,12 +240,21 @@ class ManageDeviceViewModel internal constructor(
         )
     }
 
-    override fun onSwiped(position: Int) {
-        attributes.removeAt(position)
+    override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
+        val removedAttribute = attributes.removeAt(position)
         attributesAdapter?.submitList(attributes.toList())
+
+        val snackbar = Snackbar.make(viewholder.itemView,
+            context.getString(R.string.attribute_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
+        snackbar.setAction(R.string.undo) {
+            attributes.add(position, removedAttribute)
+            attributesAdapter?.submitList(attributes.toList())
+        }
+        snackbar.setActionTextColor(Color.YELLOW)
+        snackbar.show()
     }
 
-    override fun onMove(from: Int, to: Int) {
+    override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
         val attribute = attributes.removeAt(from)
         attributes.add(to, attribute)
         attributesAdapter?.submitList(attributes.toList())

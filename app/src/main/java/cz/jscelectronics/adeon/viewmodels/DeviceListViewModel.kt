@@ -1,15 +1,19 @@
 package cz.jscelectronics.adeon.viewmodels
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.ExclusionStrategy
 import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import cz.jscelectronics.adeon.DeviceListFragment
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
@@ -100,13 +104,26 @@ class DeviceListViewModel internal constructor(
         }
     }
 
-    override fun onSwiped(position: Int) {
+    override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
         deviceList.value?.let {
-            deleteDevice(it[position])
+            val removedDevice = it[position]
+            deleteDevice(removedDevice)
+            // TODO: We don't support full undo. Image is deleted irreversibly.
+            removedDevice.image = null
+
+            val snackbar = Snackbar.make(viewholder.itemView,
+                context.getString(R.string.device_removed, removedDevice.name), Snackbar.LENGTH_LONG)
+            snackbar.setAction(R.string.undo) {
+                viewModelScope.launch {
+                    deviceRepository.addDevice(removedDevice)
+                }
+            }
+            snackbar.setActionTextColor(Color.YELLOW)
+            snackbar.show()
         }
     }
 
-    override fun onMove(from: Int, to: Int) {
+    override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
         // TODO Not impemented
     }
 
