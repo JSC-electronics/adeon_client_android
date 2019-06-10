@@ -16,7 +16,7 @@ interface DeviceDao {
     fun getDevice(deviceId: Long): LiveData<Device>
 
     @Query("SELECT image FROM devices")
-    fun getAllDeviceUris(): List<Uri>
+    fun getAllDeviceUris(): List<Uri?>
 
     @Insert
     fun insertDevice(device: Device): Long

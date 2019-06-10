@@ -21,7 +21,7 @@ import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
 class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener {
 
     companion object {
-        private const val JSON_MIME_TYPE = "text/json"
+        private const val JSON_MIME_TYPE = "application/json"
         private const val DEFAULT_CONFIG_NAME = "sms_control_config.json"
         private const val READ_CONFIG_REQUEST_CODE: Int = 42
         private const val WRITE_CONFIG_REQUEST_CODE: Int = 43
