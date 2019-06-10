@@ -13,7 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import android.content.Intent
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
-import cz.jscelectronics.smscontrol.intro.IntroActivity
+import cz.jscelectronics.adeon.intro.IntroActivity
 
 class MainActivity : AppCompatActivity() {
 
