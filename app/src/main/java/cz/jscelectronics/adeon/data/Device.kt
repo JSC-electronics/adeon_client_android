@@ -13,8 +13,7 @@ data class Device(
     var phoneNumber: String,
     var messageType: Int = INT_VALUE_FORMAT,
     var image: Uri? = null,
-    var attributes: List<Attribute> = arrayListOf(),
-    var position: Long = 0
+    var attributes: List<Attribute> = arrayListOf()
 ) {
 
     companion object {

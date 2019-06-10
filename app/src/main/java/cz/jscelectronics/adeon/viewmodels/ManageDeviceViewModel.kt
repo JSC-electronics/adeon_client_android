@@ -16,6 +16,7 @@ import cz.jscelectronics.adeon.AddDeviceFragment
 import cz.jscelectronics.adeon.BR
 import cz.jscelectronics.adeon.SendSmsFragment
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
@@ -157,10 +158,7 @@ class ManageDeviceViewModel internal constructor(
                 }
 
                 if (deviceId == null) {
-                    withContext(Dispatchers.IO) {
-                        device.position = deviceRepository.getDeviceCount()
-                        deviceRepository.addDevice(device)
-                    }
+                    deviceRepository.addDevice(device)
                 } else {
                     deviceRepository.updateDevice(device)
                 }

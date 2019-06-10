@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.adapters.DeviceAdapter
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
@@ -50,8 +51,9 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         binding.deviceList.adapter = adapter
         ItemTouchHelper(
             RecyclerAttributeTouchHelper(
-                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-                ItemTouchHelper.LEFT, viewModel
+                0 /* TODO: Device move not implemented */,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+                viewModel
             )
         ).attachToRecyclerView(binding.deviceList)
 

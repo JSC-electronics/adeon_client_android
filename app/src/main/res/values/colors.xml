@@ -6,5 +6,5 @@
     <color name="colorAppIconBackground">#F1F1F1</color>
 
     <!-- Attribute list -->
-    <color name="bg_row_background">#fa315b</color>
+    <color name="bg_row_background">@color/colorAccent</color>
 </resources>

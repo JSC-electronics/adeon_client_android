@@ -31,9 +31,10 @@
         />
 
         <com.google.android.material.card.MaterialCardView
+                android:id="@+id/view_foreground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/card_layout_margin"
                 style="@style/Widget.MaterialComponents.CardView"
                 app:cardElevation="3dp"
                 app:cardCornerRadius="@dimen/card_corner_radius">

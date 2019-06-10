@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
 import cz.jscelectronics.adeon.utilities.InjectorUtils
@@ -116,7 +117,8 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         ItemTouchHelper(
             RecyclerAttributeTouchHelper(
                 ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-                ItemTouchHelper.LEFT, manageDeviceViewModel
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+                manageDeviceViewModel
             )
         ).attachToRecyclerView(binding.attributeList)
 

@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import cz.jscelectronics.adeon.DeviceListFragment
+import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
 import kotlinx.coroutines.Dispatchers
@@ -106,6 +107,7 @@ class DeviceListViewModel internal constructor(
     }
 
     override fun onMove(from: Int, to: Int) {
+        // TODO Not impemented
     }
 
     // It doesn't make sense to store reference to internal device image. The image is not part of a backup.

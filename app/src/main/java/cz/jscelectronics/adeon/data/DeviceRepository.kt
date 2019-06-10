@@ -53,8 +53,6 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
 
     fun getDevice(deviceId: Long) = deviceDao.getDevice(deviceId)
 
-    fun getDeviceCount(): Long = deviceDao.getDeviceCount()
-
     companion object {
 
         // For Singleton instantiation
