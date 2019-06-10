@@ -3,11 +3,13 @@ package cz.jscelectronics.adeon
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +57,18 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
             lifecycleOwner = this@AddDeviceFragment
 
             phoneNumber.setHint(R.string.phone_hint)
-            phoneNumber.setDefaultCountry(Locale.getDefault().country)
+
+            context?.apply {
+                val telephonyMgr = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+                var country = telephonyMgr.networkCountryIso
+
+                // Fallback to locale based country detection if no SIM is inserted
+                if (country.isNullOrEmpty()) {
+                    country = Locale.getDefault().country
+                }
+
+                phoneNumber.setDefaultCountry(country)
+            }
 
             fab.setOnClickListener {
                 manageDeviceViewModel.addNewAttribute()
