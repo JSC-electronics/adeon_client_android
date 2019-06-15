@@ -54,10 +54,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "de.hdodenhof:circleimageview:$rootProject.circleImageViewVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-
-    // FIXME Remove direct libphonenumber dependency and include phone-field from JCenter
-    implementation project(path: ':phone-field')
-    implementation "com.googlecode.libphonenumber:libphonenumber:8.10.13"
+    implementation "cz.jscelectronics.phonefield:phone-field:$rootProject.phoneFieldVersion"
 
     // Testing dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
