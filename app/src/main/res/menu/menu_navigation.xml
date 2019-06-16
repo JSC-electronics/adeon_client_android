@@ -7,7 +7,7 @@
         android:title="@string/my_devices_title"/>
     <item
         android:id="@+id/about_fragment"
-        android:icon="@drawable/ic_info"
-        android:title="@string/about_title"/>
+        android:icon="@drawable/ic_outline_help_outline_24px"
+        android:title="@string/help_and_feedback_title"/>
 
 </menu>

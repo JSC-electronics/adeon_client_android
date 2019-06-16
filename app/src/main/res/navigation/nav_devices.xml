@@ -38,9 +38,9 @@
 
     <fragment
             android:id="@+id/about_fragment"
-            android:name="cz.jscelectronics.adeon.AboutFragment"
-            android:label="@string/about_title"
-            tools:layout="@layout/fragment_about">
+            android:name="cz.jscelectronics.adeon.help.HelpFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help">
     </fragment>
 
     <fragment android:id="@+id/add_device_fragment"
