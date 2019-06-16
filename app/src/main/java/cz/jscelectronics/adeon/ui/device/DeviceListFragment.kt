@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon
+package cz.jscelectronics.adeon.ui.device
 
 import android.app.Activity
 import android.content.Intent
@@ -12,11 +12,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.DeviceAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
+import cz.jscelectronics.adeon.ui.device.dialogs.ImportDialogFragment
+import cz.jscelectronics.adeon.ui.device.viewmodels.DeviceListViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
-import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
 
 class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener {
 
@@ -37,7 +39,8 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
     ): View? {
         val binding = FragmentDeviceListBinding.inflate(inflater, container, false).apply {
             fab.setOnClickListener { view ->
-                val direction = DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment()
+                val direction =
+                    DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment()
                 view.findNavController().navigate(direction)
             }
         }
@@ -115,17 +118,23 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
             type = JSON_MIME_TYPE
         }
 
-        startActivityForResult(intent, READ_CONFIG_REQUEST_CODE)
+        startActivityForResult(intent,
+            READ_CONFIG_REQUEST_CODE
+        )
     }
 
     private fun writeConfiguration() {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
             type = JSON_MIME_TYPE
-            putExtra(Intent.EXTRA_TITLE, DEFAULT_CONFIG_NAME)
+            putExtra(Intent.EXTRA_TITLE,
+                DEFAULT_CONFIG_NAME
+            )
         }
 
-        startActivityForResult(intent, WRITE_CONFIG_REQUEST_CODE)
+        startActivityForResult(intent,
+            WRITE_CONFIG_REQUEST_CODE
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -6,10 +6,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.jscelectronics.adeon.AddDeviceFragment
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.databinding.ListItemAttributeBinding
+import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
 
 
 /**

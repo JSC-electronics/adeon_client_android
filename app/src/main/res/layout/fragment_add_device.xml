@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModel"/>
+                type="cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:id="@+id/add_device_layout"
-            tools:context="cz.jscelectronics.adeon.AddDeviceFragment"
+            tools:context="cz.jscelectronics.adeon.ui.device.AddDeviceFragment"
             tools:ignore="MergeRootFrame">
 
         <com.google.android.material.appbar.AppBarLayout

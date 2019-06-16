@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.help
+package cz.jscelectronics.adeon.ui.help
 
 import android.os.Bundle
 import android.view.LayoutInflater
