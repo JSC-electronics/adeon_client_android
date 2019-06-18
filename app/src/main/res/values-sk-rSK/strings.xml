@@ -51,4 +51,12 @@
     <string name="undo">Späť</string>
     <string name="device_removed">Zariadenie %s bolo vymazané zo zoznamu!</string>
     <string name="attribute_removed">Vlastnosť %s bola vymazaná zo zoznamu!</string>
+    <string name="favorite_articles">Obľúbené články</string>
+    <string name="add_new_device_article">Pridanie nového zariadenia</string>
+    <string name="delete_a_device_article">Vymazanie zariadenia</string>
+    <string name="export_configuration_article">Export konfigurácie</string>
+    <string name="import_configuration_article">Import konfigurácie</string>
+    <string name="send_commands_article">Odosielanie príkazov</string>
+    <string name="browse_all_articles">Prehliadať všetky články</string>
+    <string name="send_feedback">Odoslať spätnú väzbu</string>
 </resources>

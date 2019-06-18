@@ -21,4 +21,10 @@
     <dimen name="app_bar_height">200dp</dimen>
 
     <dimen name="ic_delete">30dp</dimen>
+    <dimen name="help_icon_padding">16dp</dimen>
+    <dimen name="help_item_horizontal_margin">16dp</dimen>
+    <dimen name="help_item_vertical_margin">6dp</dimen>
+    <dimen name="help_item_vertical_padding">@dimen/help_item_vertical_margin</dimen>
+    <dimen name="help_separator_height">1dp</dimen>
+    <dimen name="help_item_without_icon_padding">40dp</dimen>
 </resources>

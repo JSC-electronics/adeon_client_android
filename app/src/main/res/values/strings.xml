@@ -61,6 +61,14 @@
     <string name="undo">Undo</string>
     <string name="device_removed">Device %s removed from list!</string>
     <string name="attribute_removed">Attribute %s removed from list!</string>
+    <string name="favorite_articles">Favorite articles</string>
+    <string name="add_new_device_article">Add a new device</string>
+    <string name="delete_a_device_article">Delete a device</string>
+    <string name="export_configuration_article">Export configuration</string>
+    <string name="import_configuration_article">Import configuration</string>
+    <string name="send_commands_article">Sending commands</string>
+    <string name="browse_all_articles">Browse all articles</string>
+    <string name="send_feedback">Send feedback</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

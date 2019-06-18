@@ -7,4 +7,7 @@
 
     <!-- Attribute list -->
     <color name="bg_row_background">@color/colorAccent</color>
+
+    <color name="help_icon_tint">#1c72e5</color>
+    <color name="help_separator_color">#d7d9dd</color>
 </resources>
