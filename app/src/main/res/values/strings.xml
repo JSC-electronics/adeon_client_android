@@ -128,6 +128,13 @@
     <string name="article_04_note_01_text">Import will override current app database.</string>
     <string name="article_04_note_02_text">Device images are not imported. Add device images manually after every import.</string>
 
+    <!-- Help article 05 -->
+    <string name="article_05_bullet_01_text">Select a device from the device list. A device-specific page will show up.</string>
+    <string name="article_05_bullet_02_text">Use checkbox [CHECKBOX] to choose command (or commands), which will be sent
+        into device over cellular network (see the %s for more information).
+    </string>
+    <string name="article_05_bullet_03_text">Click on %s button.</string>
+
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
         <item>@string/take_photo</item>

@@ -102,4 +102,11 @@
         importe.
     </string>
     <string name="article_04_note_text">Poznámka:</string>
+    <string name="article_05_bullet_01_text">Vyberte zariadenie zo zoznamu zariadení. Otvorí sa stránka špecifická pre
+        dané zariadenie.
+    </string>
+    <string name="article_05_bullet_02_text">Pomocou zaškrtávacieho políčka [CHECKBOX] vyberte príkaz (alebo príkazy),
+        ktorý sa odošle do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).
+    </string>
+    <string name="article_05_bullet_03_text">Klepnite na tlačidlo %s.</string>
 </resources>

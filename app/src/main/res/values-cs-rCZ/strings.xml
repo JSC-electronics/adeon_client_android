@@ -65,7 +65,7 @@
     </string>
     <string name="article_01_bullet_04_text">(volitelné) Zadejte umístění zařízení.</string>
     <string name="article_01_bullet_05_text">Zadejte telefonní číslo zařízení.</string>
-    <string name="article_01_bullet_06_text">Vyberte typ příkazu (pro více informací se podívejte na %s).</string>
+    <string name="article_01_bullet_06_text">Vyberte typ příkazu (pro více informací si přečtěte %s).</string>
     <string name="article_01_bullet_06_text_docs">dokumentaci</string>
     <string name="article_01_bullet_07_text">Zadejte popis příkazu (příkaz typu standardní text) anebo název parametru
         (příkaz typu název-hodnota).
@@ -103,4 +103,11 @@
     <string name="article_04_bullet_03_text">Pokud už máte nějaké zařízení přidané, potvrďte, že chcete pokračovat s
         importem a přijít o aktuální nastavení.
     </string>
+    <string name="article_05_bullet_01_text">Vyberte zařízení ze seznamu zařízení. Otevře se stránka specifická pro dané
+        zařízení.
+    </string>
+    <string name="article_05_bullet_02_text">Pomocí zaškrtávacího políčka [CHECKBOX] vyberte příkaz (anebo příkazy),
+        který se odešle do zařízení přes mobilní síť (pro více informací si přečtěte %s).
+    </string>
+    <string name="article_05_bullet_03_text">Poklepejte na tlačítko %s.</string>
 </resources>

@@ -15,10 +15,6 @@ import cz.jscelectronics.adeon.ui.widget.CenteredImageSpan
 
 class AddNewDeviceFragment : Fragment() {
 
-    companion object {
-        const val DOCUMENTATION_URI = "https://github.com/JSC-electronics/adeon/wiki"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +45,7 @@ class AddNewDeviceFragment : Fragment() {
                 thirdBulletPointText.text = capturePhotoHelpText
 
                 val docsLabel = context.getString(R.string.article_01_bullet_06_text_docs)
-                val urlSpan = URLSpan(DOCUMENTATION_URI)
+                val urlSpan = URLSpan(DOCUMENTATION_ROOT_URI)
                 val docsHelpText = SpannableStringBuilder(
                     context.getString(
                         R.string.article_01_bullet_06_text, docsLabel
