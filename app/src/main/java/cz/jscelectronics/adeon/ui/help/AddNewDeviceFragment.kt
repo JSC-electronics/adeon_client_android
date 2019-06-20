@@ -26,17 +26,13 @@ class AddNewDeviceFragment : Fragment() {
     ): View? {
         val binding = FragmentHelpAddNewDeviceBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
-                val fabPlaceholder = "[FAB]"
-                val cameraPlaceholder = "[CAMERA]"
-                val moreOptionsPlaceholder = "[MORE_OPTIONS]"
-
                 val clickOnFabHelpText = SpannableStringBuilder(
                     context.getString(R.string.article_01_bullet_01_text)
                 ).apply {
-                    val startIdx = this.indexOf(fabPlaceholder)
+                    val startIdx = this.indexOf(FAB_PLACEHOLDER)
                     setSpan(
                         CenteredImageSpan(context, R.drawable.ic_baseline_add_circle_24px, ImageSpan.ALIGN_BASELINE),
-                        startIdx, startIdx + fabPlaceholder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        startIdx, startIdx + FAB_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
                 firstBulletPointText.text = clickOnFabHelpText
@@ -44,10 +40,10 @@ class AddNewDeviceFragment : Fragment() {
                 val capturePhotoHelpText = SpannableStringBuilder(
                     context.getString(R.string.article_01_bullet_03_text)
                 ).apply {
-                    val startIdx = this.indexOf(cameraPlaceholder)
+                    val startIdx = this.indexOf(CAMERA_PLACEHOLDER)
                     setSpan(
                         CenteredImageSpan(context, R.drawable.ic_baseline_camera_alt_24px, ImageSpan.ALIGN_BASELINE),
-                        startIdx, startIdx + cameraPlaceholder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        startIdx, startIdx + CAMERA_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
                 thirdBulletPointText.text = capturePhotoHelpText
@@ -75,10 +71,10 @@ class AddNewDeviceFragment : Fragment() {
                         R.string.article_01_bullet_09_text
                     )
                 ).apply {
-                    val startIdx = this.indexOf(fabPlaceholder)
+                    val startIdx = this.indexOf(FAB_PLACEHOLDER)
                     setSpan(
                         CenteredImageSpan(context, R.drawable.ic_baseline_add_circle_24px, ImageSpan.ALIGN_BASELINE),
-                        startIdx, startIdx + fabPlaceholder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        startIdx, startIdx + FAB_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
                 ninthBulletPointText.text = addAnotherCommandHelpText
@@ -110,10 +106,10 @@ class AddNewDeviceFragment : Fragment() {
                         android.text.style.StyleSpan(android.graphics.Typeface.BOLD), startIdx,
                         startIdx + duplicateDeviceText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
-                    startIdx = this.indexOf(moreOptionsPlaceholder)
+                    startIdx = this.indexOf(MORE_OPTIONS_PLACEHOLDER)
                     setSpan(
                         CenteredImageSpan(context, R.drawable.ic_more_options, ImageSpan.ALIGN_BASELINE),
-                        startIdx, startIdx + moreOptionsPlaceholder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        startIdx, startIdx + MORE_OPTIONS_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
                 noteText.text = noteHelpText

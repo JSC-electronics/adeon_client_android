@@ -21,8 +21,6 @@ class DeleteDeviceFragment : Fragment() {
     ): View? {
         val binding = FragmentHelpDeleteDeviceBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
-                val moreOptionsPlaceholder = "[MORE_OPTIONS]"
-
                 val deleteDeviceText = context.getString(R.string.action_remove_device)
                 val methodOneHelpText = SpannableStringBuilder(
                     context.getString(
@@ -35,10 +33,10 @@ class DeleteDeviceFragment : Fragment() {
                         android.text.style.StyleSpan(android.graphics.Typeface.BOLD), startIdx,
                         startIdx + deleteDeviceText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
-                    startIdx = this.indexOf(moreOptionsPlaceholder)
+                    startIdx = this.indexOf(MORE_OPTIONS_PLACEHOLDER)
                     setSpan(
                         CenteredImageSpan(context, R.drawable.ic_more_options, ImageSpan.ALIGN_BASELINE),
-                        startIdx, startIdx + moreOptionsPlaceholder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        startIdx, startIdx + MORE_OPTIONS_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
                 firstBulletPointText.text = methodOneHelpText

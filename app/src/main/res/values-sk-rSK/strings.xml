@@ -86,4 +86,20 @@
     <string name="article_02_note_text">Poznámka: Vymazanie zariadenia môžete vrátiť späť do 5 sekúnd klepnutím na
         tlačidlo %s v spodnom vyskakovacom paneli.
     </string>
+    <string name="save_button">Uložiť</string>
+    <string name="article_03_bullet_01_text">Klepnite na tlačidlo [MORE_OPTIONS] v menu horného panela.</string>
+    <string name="article_03_bullet_02_text">Vyberte %s.</string>
+    <string name="article_03_bullet_03_text">Vyberte cieľový priečinok.</string>
+    <string name="article_03_bullet_04_text">Upravte názov konfiguračného súboru.</string>
+    <string name="article_03_bullet_05_text">Klepnite na tlačidlo %s.</string>
+    <string name="article_03_note_text">Poznámka: Obrázky zariadení nie sú exportované.</string>
+    <string name="article_04_bullet_03_text">Pokiaľ už máte nejaké zariadenia pridané, potvrďte, že chcete pokračovať s
+        importom a prísť o aktuálne nastavenia.
+    </string>
+    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (.json)</string>
+    <string name="article_04_note_01_text">Import nahradí aktuálnu aplikačnú databázu.</string>
+    <string name="article_04_note_02_text">Obrázky zariadení nie sú importované. Pridajte obrázky ručne po každom
+        importe.
+    </string>
+    <string name="article_04_note_text">Poznámka:</string>
 </resources>

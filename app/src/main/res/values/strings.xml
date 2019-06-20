@@ -22,6 +22,7 @@
     <string name="add_device_button" translatable="false">@string/add_device_title</string>
     <string name="edit_device_title">Edit device</string>
     <string name="save_changes_button">Save changes</string>
+    <string name="save_button">Save</string>
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
@@ -91,8 +92,8 @@
     <string name="article_01_bullet_05_text">Insert device phone number.</string>
     <string name="article_01_bullet_06_text">Choose command type (see the %s for more information).</string>
     <string name="article_01_bullet_06_text_docs">documentation</string>
-    <string name="article_01_bullet_07_text">"Insert command description (standard-text type command) or parameter name
-        (parameter-value type command). "
+    <string name="article_01_bullet_07_text">Insert command description (standard-text type command) or parameter name
+        (parameter-value type command).
     </string>
     <string name="article_01_bullet_08_text">Insert command text (standard-text type command) or value (parameter-value
         type command).
@@ -104,11 +105,28 @@
     </string>
 
     <!-- Help article 02 -->
-    <string name="article_02_bullet_01_text">Method #1: Click on [MORE_OPTIONS] button and then click on %s."</string>
-    <string name="article_02_bullet_02_text">Method #2: Swipe left or right to delete a device."</string>
-    <string name="article_02_note_text">"Note: You can undo device deletion within next 5 seconds by clicking on %s
-        button in bottom pop-up bar. "
+    <string name="article_02_bullet_01_text">Method #1: Click on [MORE_OPTIONS] button and then click on %s.</string>
+    <string name="article_02_bullet_02_text">Method #2: Swipe left or right to delete a device.</string>
+    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by clicking on %s
+        button in bottom pop-up bar.
     </string>
+
+    <!-- Help article 03 -->
+    <string name="article_03_bullet_01_text">Click on [MORE_OPTIONS] button in top bar menu.</string>
+    <string name="article_03_bullet_02_text">Select %s.</string>
+    <string name="article_03_bullet_03_text">Choose destination folder.</string>
+    <string name="article_03_bullet_04_text">Edit config file name.</string>
+    <string name="article_03_bullet_05_text">Click on %s button.</string>
+    <string name="article_03_note_text">Note: Device images are not exported.</string>
+
+    <!-- Help article 04 -->
+    <string name="article_04_bullet_03_text">If you already have some devices added, please confirm that you want to
+        continue with import and loose current settings.
+    </string>
+    <string name="article_04_bullet_04_text">Choose exported configuration file (.json)</string>
+    <string name="article_04_note_text">Note:</string>
+    <string name="article_04_note_01_text">Import will override current app database.</string>
+    <string name="article_04_note_02_text">Device images are not imported. Add device images manually after every import.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
