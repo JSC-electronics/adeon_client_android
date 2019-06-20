@@ -3,8 +3,6 @@ package cz.jscelectronics.adeon.ui.help
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.BulletSpan
-import android.text.style.DynamicDrawableSpan
 import android.text.style.ImageSpan
 import android.text.style.URLSpan
 import android.view.LayoutInflater

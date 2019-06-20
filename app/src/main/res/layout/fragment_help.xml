@@ -62,7 +62,7 @@
                 android:paddingTop="@dimen/help_item_vertical_padding"
                 android:paddingBottom="@dimen/help_item_vertical_padding"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/export_config"
+                android:layout_height="wrap_content" android:id="@+id/export_configuration"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
@@ -78,13 +78,13 @@
                 android:paddingTop="@dimen/help_item_vertical_padding"
                 android:paddingBottom="@dimen/help_item_vertical_padding"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/import_config"
+                android:layout_height="wrap_content" android:id="@+id/import_configuration"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/help_item_horizontal_margin" android:layout_marginStart="@dimen/help_item_horizontal_margin"
-                app:layout_constraintTop_toBottomOf="@+id/export_config" android:layout_marginTop="@dimen/help_item_vertical_margin"/>
+                app:layout_constraintTop_toBottomOf="@+id/export_configuration" android:layout_marginTop="@dimen/help_item_vertical_margin"/>
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:text="@string/send_commands_article"
@@ -100,7 +100,7 @@
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/help_item_horizontal_margin"
-                app:layout_constraintTop_toBottomOf="@+id/import_config" android:layout_marginTop="@dimen/help_item_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@+id/import_configuration" android:layout_marginTop="@dimen/help_item_vertical_margin"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_item_horizontal_margin"/>
 
         <androidx.appcompat.widget.AppCompatTextView

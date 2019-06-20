@@ -27,6 +27,21 @@ class HelpFragment : Fragment() {
                     HelpFragmentDirections.actionHelpFragmentToHelpDeleteDeviceFragment()
                 view.findNavController().navigate(direction)
             }
+            exportConfiguration.setOnClickListener { view ->
+                val direction =
+                    HelpFragmentDirections.actionHelpFragmentToHelpExportConfigurationFragment()
+                view.findNavController().navigate(direction)
+            }
+            importConfiguration.setOnClickListener { view ->
+                val direction =
+                    HelpFragmentDirections.actionHelpFragmentToHelpImportConfigurationFragment()
+                view.findNavController().navigate(direction)
+            }
+            sendCommands.setOnClickListener { view ->
+                val direction =
+                    HelpFragmentDirections.actionHelpFragmentToHelpSendCommandsFragment()
+                view.findNavController().navigate(direction)
+            }
         }
         return binding.root
     }

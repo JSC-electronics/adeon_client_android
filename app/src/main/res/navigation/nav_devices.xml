@@ -107,6 +107,30 @@
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_export_configuration_fragment"
+                app:destination="@id/help_export_configuration_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_import_configuration_fragment"
+                app:destination="@id/help_import_configuration_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_send_commands_fragment"
+                app:destination="@id/help_send_commands_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -121,6 +145,27 @@
             android:name="cz.jscelectronics.adeon.ui.help.DeleteDeviceFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_delete_device">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_export_configuration_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.ExportConfigurationFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_export_configuration">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_import_configuration_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.ImportConfigurationFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_import_configuration">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_send_commands_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.SendCommandsFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_send_commands">
     </fragment>
 
 </navigation>
