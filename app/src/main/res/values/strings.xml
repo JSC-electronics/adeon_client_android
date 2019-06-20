@@ -70,6 +70,34 @@
     <string name="browse_all_articles">Browse all articles</string>
     <string name="send_feedback">Send feedback</string>
 
+    <!-- Help article bullet point IDs -->
+    <string name="first_bullet_point_id" translatable="false">1.</string>
+    <string name="second_bullet_point_id" translatable="false">2.</string>
+    <string name="third_bullet_point_id" translatable="false">3.</string>
+    <string name="fourth_bullet_point_id" translatable="false">4.</string>
+    <string name="fifth_bullet_point_id" translatable="false">5.</string>
+    <string name="sixth_bullet_point_id" translatable="false">6.</string>
+    <string name="seventh_bullet_point_id" translatable="false">7.</string>
+    <string name="eight_bullet_point_id" translatable="false">8.</string>
+    <string name="ninth_bullet_point_id" translatable="false">9.</string>
+    <string name="tenth_bullet_point_id" translatable="false">10.</string>
+
+    <!-- Help article 01 -->
+    <string name="article_01_bullet_01_text">Click on [FAB] button.</string>
+    <string name="article_01_bullet_02_text">Insert device name.</string>
+    <string name="article_01_bullet_03_text">(optional) Set device image by clicking on [CAMERA] button.</string>
+    <string name="article_01_bullet_04_text">(optional) Insert device location.</string>
+    <string name="article_01_bullet_05_text">Insert GSM device number.</string>
+    <string name="article_01_bullet_06_text">Choose command type (see the [DOCS] for more information).</string>
+    <string name="article_01_bullet_07_text">Insert command description (standard-text type command) or parameter name
+        (parameter-value type command).
+    </string>
+    <string name="article_01_bullet_08_text">Insert command text (standard-text type command) or value (parameter-value
+        type command).
+    </string>
+    <string name="article_01_bullet_09_text">(optional) Add another command by clicking on [FAB] button.</string>
+    <string name="article_01_bullet_10_text">Click on “Add device” button.</string>
+
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
         <item>@string/take_photo</item>
