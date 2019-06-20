@@ -41,7 +41,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/content_desc_device_image"
                         android:fitsSystemWindows="true"
-                        android:src="@drawable/ic_camera"
+                        android:src="@drawable/ic_camera_legacy"
                         app:imageFromUrl="@{viewModel.uriHandler.uri}"
                         android:foreground="@drawable/app_icon_selector"
                         android:clickable="true"

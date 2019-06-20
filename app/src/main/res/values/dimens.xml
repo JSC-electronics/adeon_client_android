@@ -32,4 +32,5 @@
     <dimen name="help_article_text_start_offset">8dp</dimen>
     <dimen name="help_article_text_end_offset">32dp</dimen>
     <dimen name="help_article_top_offset">8dp</dimen>
+    <dimen name="help_note_text_top_offset">32dp</dimen>
 </resources>

@@ -59,4 +59,23 @@
     <string name="send_commands_article">Odosielanie príkazov</string>
     <string name="browse_all_articles">Prehliadať všetky články</string>
     <string name="send_feedback">Odoslať spätnú väzbu</string>
+    <string name="article_01_bullet_01_text">Klepnite na tlačidlo [FAB].</string>
+    <string name="article_01_bullet_02_text">Zadajte názov zariadenia.</string>
+    <string name="article_01_bullet_03_text">(voliteľné) Nastavte obrázok zariadenia klepnutím na tlačidlo [CAMERA].
+    </string>
+    <string name="article_01_bullet_04_text">(voliteľné) Zadajte umiestnenie zariadenia.</string>
+    <string name="article_01_bullet_05_text">Zadajte telefónne číslo zariadenia.</string>
+    <string name="article_01_bullet_06_text">Vyberte si typ príkazu (pre viac informácií si pozrite %s).</string>
+    <string name="article_01_bullet_06_text_docs">dokumentáciu</string>
+    <string name="article_01_bullet_07_text">Zadajte popis príkazu (príkaz typu štandardný text) alebo názov parametra
+        (príkaz typu názov-hodnota).
+    </string>
+    <string name="article_01_bullet_08_text">Zadajte text príkazu (príkaz typu štandardný text) alebo názov parametra
+        (príkaz typu názov-hodnota).
+    </string>
+    <string name="article_01_bullet_09_text">(voliteľné) Pridajte ďalší príkaz klepnutím na tlačidlo [FAB].</string>
+    <string name="article_01_bullet_10_text">Klepnite na tlačidlo %s.</string>
+    <string name="article_01_note_text">Poznámka: V kontextovom menu zariadenia [MORE_OPTIONS] môžete použiť voľbu %s
+        na pridanie dvoch alebo viacerých podobných zariadení.
+    </string>
 </resources>

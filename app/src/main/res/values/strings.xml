@@ -87,16 +87,20 @@
     <string name="article_01_bullet_02_text">Insert device name.</string>
     <string name="article_01_bullet_03_text">(optional) Set device image by clicking on [CAMERA] button.</string>
     <string name="article_01_bullet_04_text">(optional) Insert device location.</string>
-    <string name="article_01_bullet_05_text">Insert GSM device number.</string>
-    <string name="article_01_bullet_06_text">Choose command type (see the [DOCS] for more information).</string>
-    <string name="article_01_bullet_07_text">Insert command description (standard-text type command) or parameter name
-        (parameter-value type command).
+    <string name="article_01_bullet_05_text">Insert device phone number.</string>
+    <string name="article_01_bullet_06_text">Choose command type (see the %s for more information).</string>
+    <string name="article_01_bullet_06_text_docs">documentation</string>
+    <string name="article_01_bullet_07_text">"Insert command description (standard-text type command) or parameter name
+        (parameter-value type command). "
     </string>
     <string name="article_01_bullet_08_text">Insert command text (standard-text type command) or value (parameter-value
         type command).
     </string>
     <string name="article_01_bullet_09_text">(optional) Add another command by clicking on [FAB] button.</string>
-    <string name="article_01_bullet_10_text">Click on “Add device” button.</string>
+    <string name="article_01_bullet_10_text">Click on %s button.</string>
+    <string name="article_01_note_text">Note: You can use %s option in device context menu [MORE_OPTIONS] for adding two
+        or more similar devices.
+    </string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

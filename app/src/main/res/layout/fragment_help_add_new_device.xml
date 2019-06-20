@@ -39,8 +39,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/first_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/article_title" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/first_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_01_text"
@@ -56,8 +56,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/second_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/first_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/second_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_02_text"
@@ -73,8 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/third_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/second_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/third_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_03_text"
@@ -90,8 +90,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fourth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/third_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/fourth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_04_text"
@@ -107,8 +107,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fifth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/fourth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/fifth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_05_text"
@@ -124,14 +124,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/sixth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/fifth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/sixth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_06_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sixth_bullet_point_text"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
                     app:layout_constraintTop_toBottomOf="@+id/fifth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
@@ -141,8 +143,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/seventh_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/sixth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/seventh_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_07_text"
@@ -158,8 +160,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/eigth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/seventh_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/eigth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_08_text"
@@ -175,8 +177,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ninth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/eigth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/ninth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_09_text"
@@ -192,8 +194,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tenth_bullet_point"
-                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"
-                    app:layout_constraintTop_toBottomOf="@+id/ninth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"/>
+                    app:layout_constraintBaseline_toBaselineOf="@id/tenth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:text="@string/article_01_bullet_10_text"
@@ -204,6 +206,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/ninth_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_01_note_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_text"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="@dimen/help_item_horizontal_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/tenth_bullet_point_text" android:layout_marginTop="@dimen/help_note_text_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
