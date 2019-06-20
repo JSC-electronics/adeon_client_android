@@ -22,6 +22,11 @@ class HelpFragment : Fragment() {
                     HelpFragmentDirections.actionHelpFragmentToHelpAddNewDeviceFragment()
                 view.findNavController().navigate(direction)
             }
+            deleteDevice.setOnClickListener { view ->
+                val direction =
+                    HelpFragmentDirections.actionHelpFragmentToHelpDeleteDeviceFragment()
+                view.findNavController().navigate(direction)
+            }
         }
         return binding.root
     }

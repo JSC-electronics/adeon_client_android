@@ -99,6 +99,14 @@
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_delete_device_fragment"
+                app:destination="@id/help_delete_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -106,6 +114,13 @@
             android:name="cz.jscelectronics.adeon.ui.help.AddNewDeviceFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_add_new_device">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_delete_device_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.DeleteDeviceFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_delete_device">
     </fragment>
 
 </navigation>

@@ -78,4 +78,13 @@
     <string name="article_01_note_text">Poznámka: V kontextovém menu zařízení [MORE_OPTIONS] můžete použít volbu %s na
         přídání dvou anebo více podobných zařízení.
     </string>
+    <string name="article_02_bullet_01_text">První způsob: Poklepejte na tlačítko [MORE_OPTIONS] a potom poklepejte na
+        %s.
+    </string>
+    <string name="article_02_bullet_02_text">Druhý způsob: Pro vymazání zařízení potáhněte zařízení doleva anebo
+        doprava.
+    </string>
+    <string name="article_02_note_text">Poznámka: Vymazání zařízení je možné vrátit zpět do 5 sekund poklepáním na
+        tlačítko %s na spodném vyskakovacím panelu.
+    </string>
 </resources>
