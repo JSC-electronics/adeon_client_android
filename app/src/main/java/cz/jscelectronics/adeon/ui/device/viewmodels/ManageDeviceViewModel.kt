@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.viewmodels
+package cz.jscelectronics.adeon.ui.device.viewmodels
 
 import android.content.Context
 import android.graphics.Color
@@ -15,15 +15,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import cz.jscelectronics.adeon.AddDeviceFragment
 import cz.jscelectronics.adeon.BR
 import cz.jscelectronics.adeon.R
-import cz.jscelectronics.adeon.SendSmsFragment
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
+import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
+import cz.jscelectronics.adeon.ui.device.SendSmsFragment
 import cz.jscelectronics.adeon.utilities.computeMd5
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

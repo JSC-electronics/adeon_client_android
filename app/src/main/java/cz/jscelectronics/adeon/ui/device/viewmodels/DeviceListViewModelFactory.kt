@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.viewmodels
+package cz.jscelectronics.adeon.ui.device.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.viewmodels
+package cz.jscelectronics.adeon.ui.device.viewmodels
 
 import android.content.Context
 import android.graphics.Color
@@ -12,11 +12,11 @@ import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import cz.jscelectronics.adeon.DeviceListFragment
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
+import cz.jscelectronics.adeon.ui.device.DeviceListFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

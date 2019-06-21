@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/import_configuration_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                tools:context=".ui.help.content.ImportConfigurationFragment"
+        >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/import_configuration_article"
+                    android:textAppearance="?textAppearanceHeadline5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/help_item_vertical_padding"
+                    android:paddingBottom="@dimen/help_item_vertical_padding"
+                    android:id="@+id/article_title" android:layout_marginEnd="@dimen/help_item_horizontal_margin"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/help_item_horizontal_margin"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:layout_constraintGuide_begin="@dimen/help_guideline_start_offset"
+                    android:id="@+id/listGuideline"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/first_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/first_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_03_bullet_01_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_bullet_point_text"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/article_title" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/second_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/second_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/second_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_03_bullet_02_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/second_bullet_point_text"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/first_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/third_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/third_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/third_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_04_bullet_03_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/third_bullet_point_text"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/second_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/fourth_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fourth_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/fourth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_04_bullet_04_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fourth_bullet_point_text"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/third_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_04_note_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/help_item_horizontal_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/fourth_bullet_point_text" android:layout_marginTop="@dimen/help_note_text_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/first_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_first_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/note_subtext_01"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_04_note_01_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_subtext_01"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/note_text" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/second_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_second_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/note_subtext_02"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_04_note_02_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_subtext_02"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/note_subtext_01" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

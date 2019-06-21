@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="my_devices_title">Moje zařízení</string>
-    <string name="about_title">O aplikaci</string>
+    <string name="help_and_feedback_title">Nápověda a zpětná vazba</string>
+    <string name="support_title">Podpora</string>
     <string name="navigation_drawer_header_content_description">Logo v záhlaví navigační lišty</string>
     <string name="empty_device_list">Přidejte zařízení.</string>
     <string name="device_name_hint">Název zařízení</string>
@@ -50,4 +51,66 @@
     <string name="undo">Zpět</string>
     <string name="device_removed">Zařížení %s bylo vymazáno ze seznamu!</string>
     <string name="attribute_removed">Vlastnost %s byla vymazána ze seznamu!</string>
+    <string name="favorite_articles">Oblíbené články</string>
+    <string name="add_new_device_article">Přidání nového zařízení</string>
+    <string name="delete_a_device_article">Vymazání zařízení</string>
+    <string name="export_configuration_article">Export konfigurace</string>
+    <string name="import_configuration_article">Import konfigurace</string>
+    <string name="send_commands_article">Odesílaní příkazů</string>
+    <string name="browse_all_articles">Prohledávat všechny články</string>
+    <string name="send_feedback">Odeslat zpětnou vazbu</string>
+    <string name="article_01_bullet_01_text">Poklepejte na tlačítko [FAB].</string>
+    <string name="article_01_bullet_02_text">Zadejte název zařízení.</string>
+    <string name="article_01_bullet_03_text">(volitelné) Nastavte obrázek zařízení poklepáním na tlačítko [CAMERA].
+    </string>
+    <string name="article_01_bullet_04_text">(volitelné) Zadejte umístění zařízení.</string>
+    <string name="article_01_bullet_05_text">Zadejte telefonní číslo zařízení.</string>
+    <string name="article_01_bullet_06_text">Vyberte typ příkazu (pro více informací si přečtěte %s).</string>
+    <string name="article_01_bullet_06_text_docs">dokumentaci</string>
+    <string name="article_01_bullet_07_text">Zadejte popis příkazu (příkaz typu standardní text) anebo název parametru
+        (příkaz typu název-hodnota).
+    </string>
+    <string name="article_01_bullet_08_text">Zadejte text příkazu (příkaz typu standardní text) anebo název parametru
+        (příkaz typu název-hodnota).
+    </string>
+    <string name="article_01_bullet_09_text">(volitelné) Přidejte další příkaz poklepáním na tlačítko [FAB].</string>
+    <string name="article_01_bullet_10_text">Poklepejte na tlačítko %s.</string>
+    <string name="article_01_note_text">Poznámka: V kontextovém menu zařízení [MORE_OPTIONS] můžete použít volbu %s na
+        přídání dvou anebo více podobných zařízení.
+    </string>
+    <string name="article_02_bullet_01_text">První způsob: Poklepejte na tlačítko [MORE_OPTIONS] a potom poklepejte na
+        %s.
+    </string>
+    <string name="article_02_bullet_02_text">Druhý způsob: Pro vymazání zařízení potáhněte zařízení doleva anebo
+        doprava.
+    </string>
+    <string name="article_02_note_text">Poznámka: Vymazání zařízení je možné vrátit zpět do 5 sekund poklepáním na
+        tlačítko %s na spodném vyskakovacím panelu.
+    </string>
+    <string name="save_button">Uložit</string>
+    <string name="article_03_note_text">Poznámka: Obrázky zařízení nejsou exportovány.</string>
+    <string name="article_03_bullet_05_text">Poklepejte na tlačítko %s.</string>
+    <string name="article_03_bullet_04_text">Upravte název konfiguračního souboru.</string>
+    <string name="article_03_bullet_03_text">Vyberte cílovou složku.</string>
+    <string name="article_03_bullet_02_text">Vyberte %s.</string>
+    <string name="article_03_bullet_01_text">Poklepejte na tlačítko [MORE_OPTIONS] v menu horního panelu.</string>
+    <string name="article_04_note_text">Poznámka:</string>
+    <string name="article_04_note_02_text">Obrázky zařízení nejsou importovány. Přidejte obrázky ručně po každém
+        importu.
+    </string>
+    <string name="article_04_note_01_text">Import nahradí aktuální aplikační databázi.</string>
+    <string name="article_04_bullet_04_text">Vyberte vyexportovaný konfigurační soubor (.json)</string>
+    <string name="article_04_bullet_03_text">Pokud už máte nějaké zařízení přidané, potvrďte, že chcete pokračovat s
+        importem a přijít o aktuální nastavení.
+    </string>
+    <string name="article_05_bullet_01_text">Vyberte zařízení ze seznamu zařízení. Otevře se stránka specifická pro dané
+        zařízení.
+    </string>
+    <string name="article_05_bullet_02_text">Pomocí zaškrtávacího políčka [CHECKBOX] vyberte příkaz (anebo příkazy),
+        který se odešle do zařízení přes mobilní síť (pro více informací si přečtěte %s).
+    </string>
+    <string name="article_05_bullet_03_text">Poklepejte na tlačítko %s.</string>
+    <string name="help_menu_action_about">Informace o verzi</string>
+    <string name="help_menu_action_licenses">Licence open source</string>
+    <string name="app_version">Verze 1.0.0</string>
 </resources>

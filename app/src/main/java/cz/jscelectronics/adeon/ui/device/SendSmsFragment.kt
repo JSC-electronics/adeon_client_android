@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon
+package cz.jscelectronics.adeon.ui.device
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -17,10 +17,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
+import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
-import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModel
 
 class SendSmsFragment : Fragment() {
 
@@ -86,12 +87,15 @@ class SendSmsFragment : Fragment() {
             != PackageManager.PERMISSION_GRANTED
         ) {
 
-            requestPermissions(arrayOf(Manifest.permission.SEND_SMS), REQUEST_SEND_SMS)
+            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
+                REQUEST_SEND_SMS
+            )
         } else {
             if (manageDeviceViewModel.areAttributesChecked()) {
                 manageDeviceViewModel.sendSmsMessage()
 
-                val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                val direction =
+                    SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
                 layout.findNavController().navigate(direction)
                 if (interstitialAd.isLoaded) {
                     interstitialAd.show()
@@ -113,7 +117,8 @@ class SendSmsFragment : Fragment() {
                     if (manageDeviceViewModel.areAttributesChecked()) {
                         manageDeviceViewModel.sendSmsMessage()
 
-                        val direction = SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                        val direction =
+                            SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
                         layout.findNavController().navigate(direction)
                         if (interstitialAd.isLoaded) {
                             interstitialAd.show()

@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon
+package cz.jscelectronics.adeon.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_main)
+            R.layout.activity_main
+        )
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)

@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon
+package cz.jscelectronics.adeon.ui.device
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
@@ -21,12 +21,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
+import cz.jscelectronics.adeon.ui.device.dialogs.ImageCaptureDialogFragment
+import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
-import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModel
 import java.util.*
 
 
@@ -111,7 +113,8 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                     }
 
                     view.hideSoftKeyboard()
-                    val direction = AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
+                    val direction =
+                        AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
                     view.findNavController().navigate(direction)
                 }
             }
@@ -187,7 +190,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { getImageIntent ->
             this.context?.let {
                 getImageIntent.resolveActivity(it.packageManager)?.also {
-                    startActivityForResult(getImageIntent, REQUEST_GALLERY_IMAGE)
+                    startActivityForResult(getImageIntent,
+                        REQUEST_GALLERY_IMAGE
+                    )
                 }
             }
         }
@@ -214,7 +219,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
                         }
 
-                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
+                        startActivityForResult(takePictureIntent,
+                            REQUEST_TAKE_PHOTO
+                        )
                     }
                 }
             }

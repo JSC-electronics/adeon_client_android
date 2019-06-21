@@ -8,12 +8,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.jscelectronics.adeon.DeviceListFragment
-import cz.jscelectronics.adeon.DeviceListFragmentDirections
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.ListItemDeviceBinding
-import cz.jscelectronics.adeon.viewmodels.DeviceListViewModel
+import cz.jscelectronics.adeon.ui.device.DeviceListFragment
+import cz.jscelectronics.adeon.ui.device.DeviceListFragmentDirections
+import cz.jscelectronics.adeon.ui.device.viewmodels.DeviceListViewModel
 
 
 /**

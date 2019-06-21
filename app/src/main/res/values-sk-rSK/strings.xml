@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="my_devices_title">Moje zariadenia</string>
-    <string name="about_title">O aplikácii</string>
+    <string name="help_and_feedback_title">Pomocník a spätná väzba</string>
+    <string name="support_title">Podpora</string>
     <string name="navigation_drawer_header_content_description">Logo v hlavičke navigačnej lišty</string>
     <string name="empty_device_list">Pridajte zariadenie.</string>
     <string name="device_name_hint">Názov zariadenia</string>
@@ -50,4 +51,65 @@
     <string name="undo">Späť</string>
     <string name="device_removed">Zariadenie %s bolo vymazané zo zoznamu!</string>
     <string name="attribute_removed">Vlastnosť %s bola vymazaná zo zoznamu!</string>
+    <string name="favorite_articles">Obľúbené články</string>
+    <string name="add_new_device_article">Pridanie nového zariadenia</string>
+    <string name="delete_a_device_article">Vymazanie zariadenia</string>
+    <string name="export_configuration_article">Export konfigurácie</string>
+    <string name="import_configuration_article">Import konfigurácie</string>
+    <string name="send_commands_article">Odosielanie príkazov</string>
+    <string name="browse_all_articles">Prehliadať všetky články</string>
+    <string name="send_feedback">Odoslať spätnú väzbu</string>
+    <string name="article_01_bullet_01_text">Klepnite na tlačidlo [FAB].</string>
+    <string name="article_01_bullet_02_text">Zadajte názov zariadenia.</string>
+    <string name="article_01_bullet_03_text">(voliteľné) Nastavte obrázok zariadenia klepnutím na tlačidlo [CAMERA].
+    </string>
+    <string name="article_01_bullet_04_text">(voliteľné) Zadajte umiestnenie zariadenia.</string>
+    <string name="article_01_bullet_05_text">Zadajte telefónne číslo zariadenia.</string>
+    <string name="article_01_bullet_06_text">Vyberte si typ príkazu (pre viac informácií si pozrite %s).</string>
+    <string name="article_01_bullet_06_text_docs">dokumentáciu</string>
+    <string name="article_01_bullet_07_text">Zadajte popis príkazu (príkaz typu štandardný text) alebo názov parametra
+        (príkaz typu názov-hodnota).
+    </string>
+    <string name="article_01_bullet_08_text">Zadajte text príkazu (príkaz typu štandardný text) alebo názov parametra
+        (príkaz typu názov-hodnota).
+    </string>
+    <string name="article_01_bullet_09_text">(voliteľné) Pridajte ďalší príkaz klepnutím na tlačidlo [FAB].</string>
+    <string name="article_01_bullet_10_text">Klepnite na tlačidlo %s.</string>
+    <string name="article_01_note_text">Poznámka: V kontextovom menu zariadenia [MORE_OPTIONS] môžete použiť voľbu %s
+        na pridanie dvoch alebo viacerých podobných zariadení.
+    </string>
+    <string name="article_02_bullet_01_text">Prvý spôsob: Klepnite na tlačidlo [MORE_OPTIONS] a potom klepnite na %s.
+    </string>
+    <string name="article_02_bullet_02_text">Druhý spôsob: Pre vymazanie zariadenia potiahnite zariadenie doľava alebo
+        doprava.
+    </string>
+    <string name="article_02_note_text">Poznámka: Vymazanie zariadenia môžete vrátiť späť do 5 sekúnd klepnutím na
+        tlačidlo %s v spodnom vyskakovacom paneli.
+    </string>
+    <string name="save_button">Uložiť</string>
+    <string name="article_03_bullet_01_text">Klepnite na tlačidlo [MORE_OPTIONS] v menu horného panela.</string>
+    <string name="article_03_bullet_02_text">Vyberte %s.</string>
+    <string name="article_03_bullet_03_text">Vyberte cieľový priečinok.</string>
+    <string name="article_03_bullet_04_text">Upravte názov konfiguračného súboru.</string>
+    <string name="article_03_bullet_05_text">Klepnite na tlačidlo %s.</string>
+    <string name="article_03_note_text">Poznámka: Obrázky zariadení nie sú exportované.</string>
+    <string name="article_04_bullet_03_text">Pokiaľ už máte nejaké zariadenia pridané, potvrďte, že chcete pokračovať s
+        importom a prísť o aktuálne nastavenia.
+    </string>
+    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (.json)</string>
+    <string name="article_04_note_01_text">Import nahradí aktuálnu aplikačnú databázu.</string>
+    <string name="article_04_note_02_text">Obrázky zariadení nie sú importované. Pridajte obrázky ručne po každom
+        importe.
+    </string>
+    <string name="article_04_note_text">Poznámka:</string>
+    <string name="article_05_bullet_01_text">Vyberte zariadenie zo zoznamu zariadení. Otvorí sa stránka špecifická pre
+        dané zariadenie.
+    </string>
+    <string name="article_05_bullet_02_text">Pomocou zaškrtávacieho políčka [CHECKBOX] vyberte príkaz (alebo príkazy),
+        ktorý sa odošle do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).
+    </string>
+    <string name="article_05_bullet_03_text">Klepnite na tlačidlo %s.</string>
+    <string name="help_menu_action_about">Informácie o verzii</string>
+    <string name="help_menu_action_licenses">Licencie open source</string>
+    <string name="app_version">Verzia 1.0.0</string>
 </resources>
