@@ -112,4 +112,5 @@
     <string name="article_05_bullet_03_text">Poklepejte na tlačítko %s.</string>
     <string name="help_menu_action_about">Informace o verzi</string>
     <string name="help_menu_action_licenses">Licence open source</string>
+    <string name="app_version">Verze 1.0.0</string>
 </resources>

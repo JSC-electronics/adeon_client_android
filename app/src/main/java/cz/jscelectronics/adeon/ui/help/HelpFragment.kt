@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpBinding
+import cz.jscelectronics.adeon.ui.device.dialogs.ImageCaptureDialogFragment
+import cz.jscelectronics.adeon.ui.help.content.dialogs.AboutDialogFragment
 
 
 class HelpFragment : Fragment() {
@@ -78,6 +80,9 @@ class HelpFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_about -> {
+                this.fragmentManager?.let {
+                    AboutDialogFragment().show(it, "About Dialog")
+                }
                 return true
             }
             R.id.action_licences -> {

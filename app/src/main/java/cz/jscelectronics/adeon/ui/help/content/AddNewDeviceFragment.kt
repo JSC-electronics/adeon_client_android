@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.ui.help
+package cz.jscelectronics.adeon.ui.help.content
 
 import android.os.Bundle
 import android.text.Spannable
@@ -11,6 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpAddNewDeviceBinding
+import cz.jscelectronics.adeon.ui.help.CAMERA_PLACEHOLDER
+import cz.jscelectronics.adeon.ui.help.DOCUMENTATION_ROOT_URI
+import cz.jscelectronics.adeon.ui.help.FAB_PLACEHOLDER
+import cz.jscelectronics.adeon.ui.help.MORE_OPTIONS_PLACEHOLDER
 import cz.jscelectronics.adeon.ui.widget.CenteredImageSpan
 
 class AddNewDeviceFragment : Fragment() {

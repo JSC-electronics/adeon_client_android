@@ -135,35 +135,35 @@
 
     <fragment
             android:id="@+id/help_add_new_device_fragment"
-            android:name="cz.jscelectronics.adeon.ui.help.AddNewDeviceFragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.AddNewDeviceFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_add_new_device">
     </fragment>
 
     <fragment
             android:id="@+id/help_delete_device_fragment"
-            android:name="cz.jscelectronics.adeon.ui.help.DeleteDeviceFragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.DeleteDeviceFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_delete_device">
     </fragment>
 
     <fragment
             android:id="@+id/help_export_configuration_fragment"
-            android:name="cz.jscelectronics.adeon.ui.help.ExportConfigurationFragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.ExportConfigurationFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_export_configuration">
     </fragment>
 
     <fragment
             android:id="@+id/help_import_configuration_fragment"
-            android:name="cz.jscelectronics.adeon.ui.help.ImportConfigurationFragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.ImportConfigurationFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_import_configuration">
     </fragment>
 
     <fragment
             android:id="@+id/help_send_commands_fragment"
-            android:name="cz.jscelectronics.adeon.ui.help.SendCommandsFragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.SendCommandsFragment"
             android:label="@string/support_title"
             tools:layout="@layout/fragment_help_send_commands">
     </fragment>

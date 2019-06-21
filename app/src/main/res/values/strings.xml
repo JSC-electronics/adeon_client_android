@@ -137,6 +137,8 @@
         into device over cellular network (see the %s for more information).
     </string>
     <string name="article_05_bullet_03_text">Click on %s button.</string>
+    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
+    <string name="app_version">Version 1.0.0</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
