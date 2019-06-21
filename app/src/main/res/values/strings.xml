@@ -71,6 +71,9 @@
     <string name="browse_all_articles">Browse all articles</string>
     <string name="send_feedback">Send feedback</string>
 
+    <string name="help_menu_action_about">Version information</string>
+    <string name="help_menu_action_licenses">Open source licenses</string>
+
     <!-- Help article bullet point IDs -->
     <string name="first_bullet_point_id" translatable="false">1.</string>
     <string name="second_bullet_point_id" translatable="false">2.</string>

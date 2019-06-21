@@ -109,4 +109,6 @@
         ktorý sa odošle do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).
     </string>
     <string name="article_05_bullet_03_text">Klepnite na tlačidlo %s.</string>
+    <string name="help_menu_action_about">Informácie o verzii</string>
+    <string name="help_menu_action_licenses">Licencie open source</string>
 </resources>

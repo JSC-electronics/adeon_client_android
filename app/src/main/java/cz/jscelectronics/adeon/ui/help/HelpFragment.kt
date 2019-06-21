@@ -6,13 +6,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Browser
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpBinding
-import cz.jscelectronics.adeon.ui.device.DeviceListFragmentDirections
+
 
 class HelpFragment : Fragment() {
 
@@ -66,6 +66,27 @@ class HelpFragment : Fragment() {
                 startActivity(Intent.createChooser(intent, ""))
             }
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_help, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_about -> {
+                return true
+            }
+            R.id.action_licences -> {
+                startActivity(Intent(this.context, OssLicensesMenuActivity::class.java))
+                OssLicensesMenuActivity.setActivityTitle(getString(R.string.help_menu_action_licenses));
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }
