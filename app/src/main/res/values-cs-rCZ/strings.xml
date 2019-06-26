@@ -113,4 +113,8 @@
     <string name="help_menu_action_about">Informace o verzi</string>
     <string name="help_menu_action_licenses">Licence open source</string>
     <string name="app_version">Verze 1.0.0</string>
+    <string name="invalid_configuration">Neplatný soubor, import neúspěšný.</string>
+    <string name="configuration_import_successful">Konfigurace byla úspěšně importována.</string>
+    <string name="configuration_export_error">Při exportu konfigurace nastala chyba!</string>
+    <string name="configuration_export_successful">Export konfigurace proběhl úspěšně.</string>
 </resources>

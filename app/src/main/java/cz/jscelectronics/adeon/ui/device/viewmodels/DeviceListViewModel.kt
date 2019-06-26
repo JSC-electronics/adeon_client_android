@@ -3,6 +3,7 @@ package cz.jscelectronics.adeon.ui.device.viewmodels
 import android.content.Context
 import android.graphics.Color
 import android.net.Uri
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.FileInputStream
-import java.io.FileNotFoundException
 import java.io.FileOutputStream
-import java.io.IOException
 
 
 /**
@@ -55,9 +54,11 @@ class DeviceListViewModel internal constructor(
         }
     }
 
-    fun importConfiguration(uri: Uri) {
+    fun importConfiguration(uri: Uri, view: View) {
         viewModelScope.launch {
             deviceList.value?.let {
+                var success = true
+
                 try {
                     context.contentResolver.openFileDescriptor(uri, "r")?.use {
                         // use{} lets the document provider know you're done by automatically closing the stream
@@ -72,20 +73,25 @@ class DeviceListViewModel internal constructor(
                             deviceRepository.addDevices(devices)
                         }
                     }
-                } catch (e: FileNotFoundException) {
+                } catch (e: Exception) {
                     e.printStackTrace()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
+                    success = false
+                }
+
+                if (success) {
+                    Snackbar.make(view, R.string.configuration_import_successful, Snackbar.LENGTH_LONG).show()
+                } else {
+                    Snackbar.make(view, R.string.invalid_configuration, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
     }
 
-    fun exportConfiguration(uri: Uri) {
+    fun exportConfiguration(uri: Uri, view: View) {
         viewModelScope.launch {
             deviceList.value?.let { devices ->
+                var success = true
+
                 try {
                     context.contentResolver.openFileDescriptor(uri, "w")?.use {
                         FileOutputStream(it.fileDescriptor).use { outputStream ->
@@ -95,10 +101,14 @@ class DeviceListViewModel internal constructor(
                             )
                         }
                     }
-                } catch (e: FileNotFoundException) {
+                } catch (e: Exception) {
                     e.printStackTrace()
-                } catch (e: IOException) {
-                    e.printStackTrace()
+                }
+
+                if (success) {
+                    Snackbar.make(view, R.string.configuration_export_successful, Snackbar.LENGTH_LONG).show()
+                } else {
+                    Snackbar.make(view, R.string.configuration_export_error, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
@@ -111,8 +121,10 @@ class DeviceListViewModel internal constructor(
             // TODO: We don't support full undo. Image is deleted irreversibly.
             removedDevice.image = null
 
-            val snackbar = Snackbar.make(viewholder.itemView,
-                context.getString(R.string.device_removed, removedDevice.name), Snackbar.LENGTH_LONG)
+            val snackbar = Snackbar.make(
+                viewholder.itemView,
+                context.getString(R.string.device_removed, removedDevice.name), Snackbar.LENGTH_LONG
+            )
             snackbar.setAction(R.string.undo) {
                 viewModelScope.launch {
                     deviceRepository.addDevice(removedDevice)

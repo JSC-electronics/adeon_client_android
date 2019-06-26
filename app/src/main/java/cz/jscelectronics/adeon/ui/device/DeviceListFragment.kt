@@ -23,8 +23,11 @@ import cz.jscelectronics.adeon.utilities.InjectorUtils
 class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener {
 
     companion object {
-        private const val JSON_MIME_TYPE = "application/json"
-        private const val DEFAULT_CONFIG_NAME = "adeon_config.json"
+        // As a workaround for SAF, where JSON MIME type is not supported on some devices,
+        // we'll use TXT instead. In order to allow import between all of our devices, we'll
+        // use TEXT type on all devices.
+        private const val JSON_MIME_TYPE = "text/plain"
+        private const val DEFAULT_CONFIG_NAME = "adeon_config.txt"
         private const val READ_CONFIG_REQUEST_CODE: Int = 42
         private const val WRITE_CONFIG_REQUEST_CODE: Int = 43
     }
@@ -142,12 +145,12 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
             when (requestCode) {
                 READ_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        viewModel.importConfiguration(uri)
+                        viewModel.importConfiguration(uri, layout)
                     }
                 }
                 WRITE_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        viewModel.exportConfiguration(uri)
+                        viewModel.exportConfiguration(uri, layout)
                     }
                 }
             }

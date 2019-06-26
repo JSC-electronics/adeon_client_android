@@ -70,6 +70,10 @@
     <string name="send_commands_article">Sending commands</string>
     <string name="browse_all_articles">Browse all articles</string>
     <string name="send_feedback">Send feedback</string>
+    <string name="invalid_configuration">Invalid file, import not successful!</string>
+    <string name="configuration_import_successful">Configuration imported successfully.</string>
+    <string name="configuration_export_error">An error occurred during configuration export!</string>
+    <string name="configuration_export_successful">Configuration export was successful.</string>
 
     <string name="help_menu_action_about">Version information</string>
     <string name="help_menu_action_licenses">Open source licenses</string>
