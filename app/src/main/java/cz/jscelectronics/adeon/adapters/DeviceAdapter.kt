@@ -19,7 +19,8 @@ import cz.jscelectronics.adeon.ui.device.viewmodels.DeviceListViewModel
 /**
  * Adapter for the [RecyclerView] in [DeviceListFragment].
  */
-class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<Device, DeviceAdapter.ViewHolder>(DeviceDiffCallback()) {
+class DeviceAdapter(private val viewModel: DeviceListViewModel) :
+    ListAdapter<Device, DeviceAdapter.ViewHolder>(DeviceDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val device = getItem(position)
@@ -32,7 +33,9 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemDeviceBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false), viewModel)
+                LayoutInflater.from(parent.context), parent, false
+            ), viewModel
+        )
     }
 
     private fun createOnClickListener(deviceId: Long): View.OnClickListener {
@@ -45,7 +48,12 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
     class ViewHolder(
         private val binding: ListItemDeviceBinding,
         private val viewModel: DeviceListViewModel
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root), SwipableViewHolder {
+        private val mRemoveableView: View = binding.root.findViewById(R.id.view_foreground)
+
+        override fun getSwipableView(): View {
+            return mRemoveableView
+        }
 
         fun bind(listener: View.OnClickListener, item: Device) {
             binding.apply {
@@ -67,10 +75,10 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
             val inflater = popup.menuInflater
             inflater.inflate(R.menu.menu_device_card, popup.menu)
             popup.setOnMenuItemClickListener {
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.action_edit_device_entry -> {
-                        val direction = DeviceListFragmentDirections.
-                            actionDeviceListFragmentToEditDeviceFragment(device.deviceId)
+                        val direction =
+                            DeviceListFragmentDirections.actionDeviceListFragmentToEditDeviceFragment(device.deviceId)
                         view.findNavController().navigate(direction)
                         true
                     }

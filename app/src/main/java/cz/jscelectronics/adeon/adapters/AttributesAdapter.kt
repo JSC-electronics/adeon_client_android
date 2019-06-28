@@ -1,6 +1,7 @@
 package cz.jscelectronics.adeon.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DiffUtil
@@ -42,7 +43,12 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
     class ViewHolder(
         private val binding: ListItemAttributeBinding,
         private val adapter: AttributesAdapter
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root), SwipableViewHolder {
+        private val mRemoveableView: View = binding.root.findViewById(R.id.view_foreground)
+
+        override fun getSwipableView(): View {
+            return mRemoveableView
+        }
 
         fun bind(item: Attribute) {
             binding.apply {
