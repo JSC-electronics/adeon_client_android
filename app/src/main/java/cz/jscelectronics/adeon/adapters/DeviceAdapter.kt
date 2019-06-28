@@ -75,7 +75,7 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) : ListAdapter<De
                         true
                     }
                     R.id.action_remove_device -> {
-                        viewModel.deleteDevice(device)
+                        viewModel.deleteDeviceWithUndo(device, view)
                         true
                     }
                     R.id.action_duplicate_entry -> {

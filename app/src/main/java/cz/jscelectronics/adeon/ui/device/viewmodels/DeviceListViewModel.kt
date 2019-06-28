@@ -37,7 +37,25 @@ class DeviceListViewModel internal constructor(
 
     fun getDevices() = deviceList
 
-    fun deleteDevice(device: Device) {
+    fun deleteDeviceWithUndo(device: Device, view: View) {
+        deleteDevice(device)
+        // TODO: We don't support full undo. Image is deleted irreversibly.
+        device.image = null
+
+        val snackbar = Snackbar.make(
+            view,
+            context.getString(R.string.device_removed, device.name), Snackbar.LENGTH_LONG
+        )
+        snackbar.setAction(R.string.undo) {
+            viewModelScope.launch {
+                deviceRepository.addDevice(device)
+            }
+        }
+        snackbar.setActionTextColor(Color.YELLOW)
+        snackbar.show()
+    }
+
+    private fun deleteDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 deviceRepository.deleteDevice(device, context.contentResolver)
@@ -103,6 +121,7 @@ class DeviceListViewModel internal constructor(
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    success = false
                 }
 
                 if (success) {
@@ -116,22 +135,7 @@ class DeviceListViewModel internal constructor(
 
     override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
         deviceList.value?.let {
-            val removedDevice = it[position]
-            deleteDevice(removedDevice)
-            // TODO: We don't support full undo. Image is deleted irreversibly.
-            removedDevice.image = null
-
-            val snackbar = Snackbar.make(
-                viewholder.itemView,
-                context.getString(R.string.device_removed, removedDevice.name), Snackbar.LENGTH_LONG
-            )
-            snackbar.setAction(R.string.undo) {
-                viewModelScope.launch {
-                    deviceRepository.addDevice(removedDevice)
-                }
-            }
-            snackbar.setActionTextColor(Color.YELLOW)
-            snackbar.show()
+            deleteDeviceWithUndo(it[position], viewholder.itemView)
         }
     }
 
