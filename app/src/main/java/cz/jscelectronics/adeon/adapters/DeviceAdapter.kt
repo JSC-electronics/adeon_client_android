@@ -103,7 +103,13 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) :
 private class DeviceDiffCallback : DiffUtil.ItemCallback<Device>() {
 
     override fun areItemsTheSame(oldItem: Device, newItem: Device): Boolean {
-        return oldItem.deviceId == newItem.deviceId
+        /* FIXME: When last item is deleted from the list, probably due to a bug clearView() is not called.
+         * When the view is recycled, we see view in invalid state. For now we'll force this check to
+         * assume the items are different. This will create new object in proper state. If we find a proper solution,
+         * we should uncomment original code below.
+         */
+        // return oldItem.deviceId == newItem.deviceId
+        return oldItem === newItem
     }
 
     override fun areContentsTheSame(oldItem: Device, newItem: Device): Boolean {
