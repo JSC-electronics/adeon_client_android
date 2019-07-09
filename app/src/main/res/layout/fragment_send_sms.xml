@@ -41,7 +41,7 @@
                         android:contentDescription="@string/content_desc_device_image"
                         android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/arduino_board"
+                        app:srcCompat="@drawable/ic_device_icon_legacy_bg"
                         app:imageFromUrl="@{viewModel.device.image}"
                         app:layout_collapseMode="parallax" />
 
