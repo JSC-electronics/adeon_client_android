@@ -6,7 +6,7 @@
 
     <fragment
             android:id="@+id/device_list_fragment"
-            android:name="cz.jscelectronics.adeon.DeviceListFragment"
+            android:name="cz.jscelectronics.adeon.ui.device.DeviceListFragment"
             android:label="@string/my_devices_title"
             tools:layout="@layout/fragment_device_list">
 
@@ -36,15 +36,8 @@
         />
     </fragment>
 
-    <fragment
-            android:id="@+id/about_fragment"
-            android:name="cz.jscelectronics.adeon.AboutFragment"
-            android:label="@string/about_title"
-            tools:layout="@layout/fragment_about">
-    </fragment>
-
     <fragment android:id="@+id/add_device_fragment"
-              android:name="cz.jscelectronics.adeon.AddDeviceFragment"
+              android:name="cz.jscelectronics.adeon.ui.device.AddDeviceFragment"
               android:label="@string/add_device_title"
               tools:layout="@layout/fragment_add_device">
 
@@ -58,7 +51,7 @@
     </fragment>
 
     <fragment android:id="@+id/edit_device_fragment"
-              android:name="cz.jscelectronics.adeon.AddDeviceFragment"
+              android:name="cz.jscelectronics.adeon.ui.device.AddDeviceFragment"
               android:label="@string/edit_device_title"
               tools:layout="@layout/fragment_add_device">
 
@@ -76,7 +69,7 @@
     </fragment>
 
     <fragment android:id="@+id/send_sms_fragment"
-              android:name="cz.jscelectronics.adeon.SendSmsFragment"
+              android:name="cz.jscelectronics.adeon.ui.device.SendSmsFragment"
               android:label="@string/send_sms_title"
               tools:layout="@layout/fragment_send_sms">
 
@@ -91,6 +84,88 @@
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.HelpFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help">
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_add_new_device_fragment"
+                app:destination="@id/help_add_new_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_delete_device_fragment"
+                app:destination="@id/help_delete_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_export_configuration_fragment"
+                app:destination="@id/help_export_configuration_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_import_configuration_fragment"
+                app:destination="@id/help_import_configuration_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_help_fragment_to_help_send_commands_fragment"
+                app:destination="@id/help_send_commands_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_add_new_device_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.AddNewDeviceFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_add_new_device">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_delete_device_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.DeleteDeviceFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_delete_device">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_export_configuration_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.ExportConfigurationFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_export_configuration">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_import_configuration_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.ImportConfigurationFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_import_configuration">
+    </fragment>
+
+    <fragment
+            android:id="@+id/help_send_commands_fragment"
+            android:name="cz.jscelectronics.adeon.ui.help.content.SendCommandsFragment"
+            android:label="@string/support_title"
+            tools:layout="@layout/fragment_help_send_commands">
     </fragment>
 
 </navigation>

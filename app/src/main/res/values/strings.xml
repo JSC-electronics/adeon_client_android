@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Adeon</string>
     <string name="my_devices_title">My devices</string>
-    <string name="about_title">About</string>
+    <string name="help_and_feedback_title">Help and feedback</string>
+    <string name="support_title">Support</string>
     <string name="navigation_drawer_header_content_description"
             translation_description="Content description for the image that is shown at the top of the navigation drawer.">
         Navigation drawer header logo
@@ -20,6 +22,7 @@
     <string name="add_device_button" translatable="false">@string/add_device_title</string>
     <string name="edit_device_title">Edit device</string>
     <string name="save_changes_button">Save changes</string>
+    <string name="save_button">Save</string>
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
@@ -59,6 +62,87 @@
     <string name="undo">Undo</string>
     <string name="device_removed">Device %s removed from list!</string>
     <string name="attribute_removed">Attribute %s removed from list!</string>
+    <string name="favorite_articles">Favorite articles</string>
+    <string name="add_new_device_article">Add a new device</string>
+    <string name="delete_a_device_article">Delete a device</string>
+    <string name="export_configuration_article">Export configuration</string>
+    <string name="import_configuration_article">Import configuration</string>
+    <string name="send_commands_article">Sending commands</string>
+    <string name="browse_all_articles">Browse all articles</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="invalid_configuration">Invalid file, import not successful!</string>
+    <string name="configuration_import_successful">Configuration imported successfully.</string>
+    <string name="configuration_export_error">An error occurred during configuration export!</string>
+    <string name="configuration_export_successful">Configuration export was successful.</string>
+
+    <string name="help_menu_action_about">Version information</string>
+    <string name="help_menu_action_licenses">Open source licenses</string>
+
+    <!-- Help article bullet point IDs -->
+    <string name="first_bullet_point_id" translatable="false">1.</string>
+    <string name="second_bullet_point_id" translatable="false">2.</string>
+    <string name="third_bullet_point_id" translatable="false">3.</string>
+    <string name="fourth_bullet_point_id" translatable="false">4.</string>
+    <string name="fifth_bullet_point_id" translatable="false">5.</string>
+    <string name="sixth_bullet_point_id" translatable="false">6.</string>
+    <string name="seventh_bullet_point_id" translatable="false">7.</string>
+    <string name="eight_bullet_point_id" translatable="false">8.</string>
+    <string name="ninth_bullet_point_id" translatable="false">9.</string>
+    <string name="tenth_bullet_point_id" translatable="false">10.</string>
+    <string name="unordered_bullet_point" translatable="false">\u2022</string>
+
+    <!-- Help article 01 -->
+    <string name="article_01_bullet_01_text">Click on [FAB] button.</string>
+    <string name="article_01_bullet_02_text">Insert device name.</string>
+    <string name="article_01_bullet_03_text">(optional) Set device image by clicking on [CAMERA] button.</string>
+    <string name="article_01_bullet_04_text">(optional) Insert device location.</string>
+    <string name="article_01_bullet_05_text">Insert device phone number.</string>
+    <string name="article_01_bullet_06_text">Choose command type (see the %s for more information).</string>
+    <string name="article_01_bullet_06_text_docs">documentation</string>
+    <string name="article_01_bullet_07_text">Insert command description (standard-text type command) or parameter name
+        (parameter-value type command).
+    </string>
+    <string name="article_01_bullet_08_text">Insert command text (standard-text type command) or value (parameter-value
+        type command).
+    </string>
+    <string name="article_01_bullet_09_text">(optional) Add another command by clicking on [FAB] button.</string>
+    <string name="article_01_bullet_10_text">Click on %s button.</string>
+    <string name="article_01_note_text">Note: You can use %s option in device context menu [MORE_OPTIONS] for adding two
+        or more similar devices.
+    </string>
+
+    <!-- Help article 02 -->
+    <string name="article_02_bullet_01_text">Method #1: Click on [MORE_OPTIONS] button and then click on %s.</string>
+    <string name="article_02_bullet_02_text">Method #2: Swipe left or right to delete a device.</string>
+    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by clicking on %s
+        button in bottom pop-up bar.
+    </string>
+
+    <!-- Help article 03 -->
+    <string name="article_03_bullet_01_text">Click on [MORE_OPTIONS] button in top bar menu.</string>
+    <string name="article_03_bullet_02_text">Select %s.</string>
+    <string name="article_03_bullet_03_text">Choose destination folder.</string>
+    <string name="article_03_bullet_04_text">Edit config file name.</string>
+    <string name="article_03_bullet_05_text">Click on %s button.</string>
+    <string name="article_03_note_text">Note: Device images are not exported.</string>
+
+    <!-- Help article 04 -->
+    <string name="article_04_bullet_03_text">If you already have some devices added, please confirm that you want to
+        continue with import and loose current settings.
+    </string>
+    <string name="article_04_bullet_04_text">Choose exported configuration file (.json)</string>
+    <string name="article_04_note_text">Note:</string>
+    <string name="article_04_note_01_text">Import will override current app database.</string>
+    <string name="article_04_note_02_text">Device images are not imported. Add device images manually after every import.</string>
+
+    <!-- Help article 05 -->
+    <string name="article_05_bullet_01_text">Select a device from the device list. A device-specific page will show up.</string>
+    <string name="article_05_bullet_02_text">Use checkbox [CHECKBOX] to choose command (or commands), which will be sent
+        into device over cellular network (see the %s for more information).
+    </string>
+    <string name="article_05_bullet_03_text">Click on %s button.</string>
+    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
+    <string name="app_version">Version 1.0.0</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

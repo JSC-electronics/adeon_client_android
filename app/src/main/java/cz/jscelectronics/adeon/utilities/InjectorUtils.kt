@@ -3,8 +3,8 @@ package cz.jscelectronics.adeon.utilities
 import android.content.Context
 import cz.jscelectronics.adeon.data.AppDatabase
 import cz.jscelectronics.adeon.data.DeviceRepository
-import cz.jscelectronics.adeon.viewmodels.DeviceListViewModelFactory
-import cz.jscelectronics.adeon.viewmodels.ManageDeviceViewModelFactory
+import cz.jscelectronics.adeon.ui.device.viewmodels.DeviceListViewModelFactory
+import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModelFactory
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.

@@ -1,9 +1,18 @@
 package cz.jscelectronics.adeon.data
 
+import com.google.gson.annotations.SerializedName
+
 data class Attribute(
+    @SerializedName("name")
     var name: String? = null,
+
+    @SerializedName("value")
     var value: Int? = null,
+
+    @SerializedName("text")
     var text: String? = null,
+
+    @SerializedName("isChecked")
     var isChecked: Boolean = true
 ) {
 

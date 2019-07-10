@@ -41,7 +41,9 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         withContext(Dispatchers.IO) {
             resolver?.let {
                 deviceDao.getAllDeviceUris().forEach { uri ->
-                    it.delete(uri, null, null)
+                    if (uri != null) {
+                        it.delete(uri, null, null)
+                    }
                 }
             }
 

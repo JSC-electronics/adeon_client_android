@@ -32,9 +32,8 @@ class RecyclerAttributeTouchHelper(
     }
 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-        viewHolder?.let {
-            val foregroundView: View = it.itemView.findViewById(R.id.view_foreground)
-            getDefaultUIUtil().onSelected(foregroundView)
+        (viewHolder as SwipableViewHolder?)?.let {
+            getDefaultUIUtil().onSelected(it.swipableView)
         }
     }
 
@@ -48,9 +47,8 @@ class RecyclerAttributeTouchHelper(
         isCurrentlyActive: Boolean
     ) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
             getDefaultUIUtil().onDraw(
-                c, recyclerView, foregroundView, dX, dY,
+                c, recyclerView, (viewHolder as SwipableViewHolder).swipableView, dX, dY,
                 actionState, isCurrentlyActive
             )
         } else {
@@ -69,10 +67,9 @@ class RecyclerAttributeTouchHelper(
     ) {
 
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            viewHolder?.let {
-                val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
+            (viewHolder as SwipableViewHolder?)?.let {
                 getDefaultUIUtil().onDrawOver(
-                    c, recyclerView, foregroundView, dX, dY,
+                    c, recyclerView, it.swipableView, dX, dY,
                     actionState, isCurrentlyActive
                 )
             }
@@ -82,8 +79,6 @@ class RecyclerAttributeTouchHelper(
     }
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-        val foregroundView: View = viewHolder.itemView.findViewById(R.id.view_foreground)
-        getDefaultUIUtil().clearView(foregroundView)
-        super.clearView(recyclerView, viewHolder)
+        getDefaultUIUtil().clearView((viewHolder as SwipableViewHolder).swipableView)
     }
 }
