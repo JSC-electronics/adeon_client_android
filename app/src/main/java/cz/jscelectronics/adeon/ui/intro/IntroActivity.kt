@@ -1,4 +1,4 @@
-package cz.jscelectronics.adeon.intro
+package cz.jscelectronics.adeon.ui.intro
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

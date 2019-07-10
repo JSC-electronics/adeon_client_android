@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import cz.jscelectronics.adeon.R
 import android.content.Intent
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
-import cz.jscelectronics.adeon.intro.IntroActivity
+import cz.jscelectronics.adeon.ui.intro.IntroActivity
 
 class MainActivity : AppCompatActivity() {
 
