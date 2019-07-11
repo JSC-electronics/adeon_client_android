@@ -9,7 +9,7 @@ buildscript {
         targetSdkVersion = 29
 
         // App dependencies
-        appIntroVersion = '6.0.0-alpha2'
+        appIntroVersion = '6.0.0-alpha3'
         cardViewVersion = '1.0.0'
         circleImageViewVersion = '3.0.0'
         constraintLayoutVersion = '2.0.0-beta2'
