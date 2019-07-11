@@ -10,4 +10,6 @@
 
     <color name="help_icon_tint">#1c72e5</color>
     <color name="help_separator_color">#d7d9dd</color>
+
+    <color name="ic_launcher_background">#454545</color>
 </resources>
