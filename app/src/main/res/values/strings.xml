@@ -144,6 +144,18 @@
     <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Version 1.0.0</string>
 
+    <!-- Intro activity -->
+    <string name="intro_page1_title">Welcome!</string>
+    <string name="intro_page1_description">Manage your GSM devices easily.</string>
+    <string name="intro_page2_title">Go offline!</string>
+    <string name="intro_page2_description">Control your device using predefined SMS.</string>
+    <string name="intro_page3_title">One app to rule them all!</string>
+    <string name="intro_page3_description">Simple management on one screen. For unlimited number of devices.</string>
+    <string name="intro_page4_title">One device, many options.</string>
+    <string name="intro_page4_description">Multiple-command support. Send one or more commands at a time.</string>
+    <string name="intro_page5_title">For developers.</string>
+    <string name="intro_page5_description">Add support into your embedded device with our open-source library.</string>
+
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>
         <item>@string/take_photo</item>

@@ -19,10 +19,4 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
 
-    <style name="AppTheme.Intro" parent="AppTheme.NoActionBar">
-        <item name="colorPrimary">#1976D2</item>
-        <item name="colorPrimaryDark">#1565C0</item>
-        <item name="colorAccent">#E91E63</item>
-    </style>
-
 </resources>
