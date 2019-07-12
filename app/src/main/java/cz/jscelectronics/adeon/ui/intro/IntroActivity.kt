@@ -21,7 +21,7 @@ class IntroActivity: AppIntro2() {
         sliderPage1.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage1.descTypefaceFontRes = R.font.opensans_regular
         sliderPage1.imageDrawable = R.drawable.ic_intro_slide1
-        sliderPage1.bgDrawable = R.drawable.intro_slide_background
+        sliderPage1.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage1))
 
         val sliderPage2 = SliderPage()
@@ -30,7 +30,7 @@ class IntroActivity: AppIntro2() {
         sliderPage2.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage2.descTypefaceFontRes = R.font.opensans_regular
         sliderPage2.imageDrawable = R.drawable.ic_intro_slide2
-        sliderPage2.bgDrawable = R.drawable.intro_slide_background
+        sliderPage2.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage2))
 
         val sliderPage3 = SliderPage()
@@ -39,7 +39,7 @@ class IntroActivity: AppIntro2() {
         sliderPage3.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage3.descTypefaceFontRes = R.font.opensans_regular
         sliderPage3.imageDrawable = R.drawable.ic_intro_slide1
-        sliderPage3.bgDrawable = R.drawable.intro_slide_background
+        sliderPage3.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage3))
 
         val sliderPage4 = SliderPage()
@@ -48,7 +48,7 @@ class IntroActivity: AppIntro2() {
         sliderPage4.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage4.descTypefaceFontRes = R.font.opensans_regular
         sliderPage4.imageDrawable = R.drawable.ic_intro_slide1
-        sliderPage4.bgDrawable = R.drawable.intro_slide_background
+        sliderPage4.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage4))
 
         val sliderPage5 = SliderPage()
@@ -57,7 +57,7 @@ class IntroActivity: AppIntro2() {
         sliderPage5.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage5.descTypefaceFontRes = R.font.opensans_regular
         sliderPage5.imageDrawable = R.drawable.ic_intro_slide5
-        sliderPage5.bgDrawable = R.drawable.intro_slide_background
+        sliderPage5.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage5))
     }
 
