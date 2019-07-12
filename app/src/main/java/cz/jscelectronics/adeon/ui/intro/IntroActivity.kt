@@ -20,7 +20,7 @@ class IntroActivity: AppIntro2() {
         sliderPage1.description = getString(R.string.intro_page1_description)
         sliderPage1.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage1.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage1.imageDrawable = R.drawable.ic_slide1
+        sliderPage1.imageDrawable = R.drawable.ic_intro_slide1
         sliderPage1.bgDrawable = R.drawable.intro_slide_background
         addSlide(AppIntroFragment.newInstance(sliderPage1))
 
@@ -29,7 +29,7 @@ class IntroActivity: AppIntro2() {
         sliderPage2.description = getString(R.string.intro_page2_description)
         sliderPage2.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage2.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage2.imageDrawable = R.drawable.ic_slide1
+        sliderPage2.imageDrawable = R.drawable.ic_intro_slide2
         sliderPage2.bgDrawable = R.drawable.intro_slide_background
         addSlide(AppIntroFragment.newInstance(sliderPage2))
 
@@ -38,7 +38,7 @@ class IntroActivity: AppIntro2() {
         sliderPage3.description = getString(R.string.intro_page3_description)
         sliderPage3.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage3.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage3.imageDrawable = R.drawable.ic_slide1
+        sliderPage3.imageDrawable = R.drawable.ic_intro_slide1
         sliderPage3.bgDrawable = R.drawable.intro_slide_background
         addSlide(AppIntroFragment.newInstance(sliderPage3))
 
@@ -47,7 +47,7 @@ class IntroActivity: AppIntro2() {
         sliderPage4.description = getString(R.string.intro_page4_description)
         sliderPage4.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage4.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage4.imageDrawable = R.drawable.ic_slide1
+        sliderPage4.imageDrawable = R.drawable.ic_intro_slide1
         sliderPage4.bgDrawable = R.drawable.intro_slide_background
         addSlide(AppIntroFragment.newInstance(sliderPage4))
 
@@ -56,7 +56,7 @@ class IntroActivity: AppIntro2() {
         sliderPage5.description = getString(R.string.intro_page5_description)
         sliderPage5.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage5.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage5.imageDrawable = R.drawable.ic_slide1
+        sliderPage5.imageDrawable = R.drawable.ic_intro_slide1
         sliderPage5.bgDrawable = R.drawable.intro_slide_background
         addSlide(AppIntroFragment.newInstance(sliderPage5))
     }
