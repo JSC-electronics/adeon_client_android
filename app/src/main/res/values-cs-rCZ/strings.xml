@@ -78,11 +78,8 @@
     <string name="article_01_note_text">Poznámka: V kontextovém menu zařízení [MORE_OPTIONS] můžete použít volbu %s na
         přídání dvou anebo více podobných zařízení.
     </string>
-    <string name="article_02_bullet_01_text">První způsob: Poklepejte na tlačítko [MORE_OPTIONS] a potom poklepejte na
+    <string name="article_02_bullet_01_text">Poklepejte na tlačítko [MORE_OPTIONS] a potom poklepejte na
         %s.
-    </string>
-    <string name="article_02_bullet_02_text">Druhý způsob: Pro vymazání zařízení potáhněte zařízení doleva anebo
-        doprava.
     </string>
     <string name="article_02_note_text">Poznámka: Vymazání zařízení je možné vrátit zpět do 5 sekund poklepáním na
         tlačítko %s na spodném vyskakovacím panelu.
@@ -117,4 +114,14 @@
     <string name="configuration_import_successful">Konfigurace byla úspěšně importována.</string>
     <string name="configuration_export_error">Při exportu konfigurace nastala chyba!</string>
     <string name="configuration_export_successful">Export konfigurace proběhl úspěšně.</string>
+    <string name="intro_page1_title">Vítejte!</string>
+    <string name="intro_page1_description">Spravujte vaše GSM zařízení s lehkostí.</string>
+    <string name="intro_page2_description">Ovládejte vaše zařízení pomocí předvolené SMS zprávy.</string>
+    <string name="intro_page2_title">Buďte offline!</string>
+    <string name="intro_page3_description">Jednoduchá správa na jedné obrazovce. Pro neomezené množství zařízení.</string>
+    <string name="intro_page3_title">Jedna aplikace vládne všem!</string>
+    <string name="intro_page4_description">Podpora pro více příkazů. Odešlete jeden anebo více příkazů naráz.</string>
+    <string name="intro_page5_description">Přidejte podporu do vašeho embedded zařízení s naší open-source knižnicí.</string>
+    <string name="intro_page4_title">Jedno zařízení, mnoho voleb.</string>
+    <string name="intro_page5_title">Pro vývojáře.</string>
 </resources>

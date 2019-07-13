@@ -12,7 +12,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cz.jscelectronics.adeon.R
+import android.content.Intent
+import cz.jscelectronics.adeon.data.PrefManager
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
+import cz.jscelectronics.adeon.ui.intro.IntroActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +25,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val prefManager = PrefManager(this);
+        if (prefManager.isFirstTimeLaunch()) {
+            prefManager.setFirstTimeLaunch(false);
+            val introIntent = Intent(this@MainActivity, IntroActivity::class.java)
+            startActivity(introIntent)
+        }
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
             R.layout.activity_main

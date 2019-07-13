@@ -2,4 +2,5 @@
 <full-backup-content>
     <include domain="database" path="." requireFlags="deviceToDeviceTransfer"/>
     <include domain="external" path="." requireFlags="deviceToDeviceTransfer"/>
+    <include domain="sharedpref" path="."/>
 </full-backup-content>
