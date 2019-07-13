@@ -78,10 +78,7 @@
     <string name="article_01_note_text">Poznámka: V kontextovom menu zariadenia [MORE_OPTIONS] môžete použiť voľbu %s
         na pridanie dvoch alebo viacerých podobných zariadení.
     </string>
-    <string name="article_02_bullet_01_text">Prvý spôsob: Klepnite na tlačidlo [MORE_OPTIONS] a potom klepnite na %s.
-    </string>
-    <string name="article_02_bullet_02_text">Druhý spôsob: Pre vymazanie zariadenia potiahnite zariadenie doľava alebo
-        doprava.
+    <string name="article_02_bullet_01_text">Klepnite na tlačidlo [MORE_OPTIONS] a potom klepnite na %s.
     </string>
     <string name="article_02_note_text">Poznámka: Vymazanie zariadenia môžete vrátiť späť do 5 sekúnd klepnutím na
         tlačidlo %s v spodnom vyskakovacom paneli.

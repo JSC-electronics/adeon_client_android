@@ -61,7 +61,7 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         ItemTouchHelper(
             RecyclerAttributeTouchHelper(
                 0 /* TODO: Device move not implemented */,
-                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+                0 /* Disable swipe gesture to resolve issue #22 and partially mitigate #21; ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT*/,
                 viewModel
             )
         ).attachToRecyclerView(binding.deviceList)

@@ -108,8 +108,9 @@ private class DeviceDiffCallback : DiffUtil.ItemCallback<Device>() {
          * assume the items are different. This will create new object in proper state. If we find a proper solution,
          * we should uncomment original code below.
          */
-        // return oldItem.deviceId == newItem.deviceId
-        return oldItem === newItem
+        return oldItem.deviceId == newItem.deviceId
+
+        // return oldItem === newItem
     }
 
     override fun areContentsTheSame(oldItem: Device, newItem: Device): Boolean {
