@@ -115,7 +115,7 @@
     <string name="configuration_export_successful">Export konfigurácie prebehol úspešne.</string>
     <string name="intro_page1_title">Vitajte!</string>
     <string name="intro_page1_description">Pohodlne spravujte vaše GSM zariadenia.</string>
-    <string name="intro_page2_description">Ovládajte vaše zariadenie pomocou predvolenej SMS správy.</string>
+    <string name="intro_page2_description">Ovládajte zariadenie pomocou predvolenej SMS správy.</string>
     <string name="intro_page2_title">Buďte offline!</string>
     <string name="intro_page3_description">Jednoduchá správa na jednej obrazovke. Pre neobmedzené množstvo zariadení.</string>
     <string name="intro_page3_title">Jedna aplikácia vládne všetkým!</string>

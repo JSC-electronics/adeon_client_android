@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefManager = PrefManager(this);
+        val prefManager = PrefManager(this)
         if (prefManager.isFirstTimeLaunch()) {
-            prefManager.setFirstTimeLaunch(false);
+            prefManager.setFirstTimeLaunch(false)
             val introIntent = Intent(this@MainActivity, IntroActivity::class.java)
             startActivity(introIntent)
         }
