@@ -45,8 +45,8 @@
     <string name="content_desc_device_item_menu">Device item menu</string>
     <string name="no_attribute_selected">Please select at least one attribute before sending the SMS.</string>
     <string name="message_type">Message type</string>
-    <string name="name_value_type">Array of attributes having name = value pairs</string>
-    <string name="plain_text_type">Plain text within 160 characters</string>
+    <string name="parametric_type">Parametric</string>
+    <string name="plain_text_type">Plain text</string>
     <string name="checkbox_info">Please check all the attributes you would like to send.</string>
     <string name="change_device_image">Change device image</string>
     <string name="take_photo">Take photo</string>
@@ -99,11 +99,10 @@
     <string name="article_01_bullet_05_text">Insert device phone number.</string>
     <string name="article_01_bullet_06_text">Choose command type (see the %s for more information).</string>
     <string name="article_01_bullet_06_text_docs">documentation</string>
-    <string name="article_01_bullet_07_text">Insert command description (standard-text type command) or parameter name
-        (parameter-value type command).
+    <string name="article_01_bullet_07_text">Insert command description (plain text type command) or parameter name
+        (parametric type command).
     </string>
-    <string name="article_01_bullet_08_text">Insert command text (standard-text type command) or value (parameter-value
-        type command).
+    <string name="article_01_bullet_08_text">Insert command text (plain text type command) or value (parametric type command).
     </string>
     <string name="article_01_bullet_09_text">(optional) Add another command by clicking on [FAB] button.</string>
     <string name="article_01_bullet_10_text">Click on %s button.</string>

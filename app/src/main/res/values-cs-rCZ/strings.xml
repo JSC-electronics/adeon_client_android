@@ -31,9 +31,9 @@
     <string name="content_desc_device_item_menu">Menu položky zařízení</string>
     <string name="no_attribute_selected">Vyberte alespoň jednu vlastnost před odesláním SMS.</string>
     <string name="attribute_text">Obyčejný text</string>
-    <string name="name_value_type">Pole vlastností typu název = hodnota</string>
+    <string name="parametric_type">Parametrický</string>
     <string name="message_type">Typ zprávy</string>
-    <string name="plain_text_type">Čistý text do 160 znaků</string>
+    <string name="plain_text_type">Textový</string>
     <string name="checkbox_info">Zaškrtněte, prosím, všechny vlastnosti, které chcete odeslat.</string>
     <string name="attribute_command_description">Popis příkazu</string>
     <string name="attribute_no_description">Příkaz bez názvu</string>
@@ -65,13 +65,14 @@
     </string>
     <string name="article_01_bullet_04_text">(volitelné) Zadejte umístění zařízení.</string>
     <string name="article_01_bullet_05_text">Zadejte telefonní číslo zařízení.</string>
-    <string name="article_01_bullet_06_text">Vyberte typ příkazu (pro více informací si přečtěte %s).</string>
-    <string name="article_01_bullet_06_text_docs">dokumentaci</string>
-    <string name="article_01_bullet_07_text">Zadejte popis příkazu (příkaz typu standardní text) anebo název parametru
-        (příkaz typu název-hodnota).
+    <string name="article_01_bullet_06_text">"Vyberte typ příkazu. Textový typ je vhodný pro komerční GSM zařízení,
+        parametrický typ je vhodný pro vývojaře. Pro více informací vizte %s.\n "
     </string>
-    <string name="article_01_bullet_08_text">Zadejte text příkazu (příkaz typu standardní text) anebo název parametru
-        (příkaz typu název-hodnota).
+    <string name="article_01_bullet_06_text_docs">dokumentaci</string>
+    <string name="article_01_bullet_07_text">Zadejte popis příkazu (textový typ příkazu) anebo název parametru (parametrický typ příkazu).
+    </string>
+    <string name="article_01_bullet_08_text">Zadejte text příkazu (textový typ příkazu) anebo název parametru
+        (parametrický typ příkazu).
     </string>
     <string name="article_01_bullet_09_text">(volitelné) Přidejte další příkaz poklepáním na tlačítko [FAB].</string>
     <string name="article_01_bullet_10_text">Poklepejte na tlačítko %s.</string>

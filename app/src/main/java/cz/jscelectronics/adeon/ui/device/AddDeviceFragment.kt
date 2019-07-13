@@ -148,16 +148,16 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
             binding.deviceNameEditText.setText(device.name)
             binding.phoneNumber.phoneNumber = device.phoneNumber
 
-            if (device.messageType == Device.INT_VALUE_FORMAT) {
-                binding.nameValue.isChecked = true
-            } else {
+            if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
                 binding.plainText.isChecked = true
+            } else {
+                binding.nameValue.isChecked = true
             }
 
             binding.messageTypeSelect.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
-                    binding.nameValue.id -> manageDeviceViewModel.setMessageType(Device.INT_VALUE_FORMAT)
                     binding.plainText.id -> manageDeviceViewModel.setMessageType(Device.PLAIN_TEXT_FORMAT)
+                    binding.nameValue.id -> manageDeviceViewModel.setMessageType(Device.INT_VALUE_FORMAT)
                 }
                 // RecyclerView cannot be focused during its update (e.g. if we click on EditText field),
                 // otherwise its items may not be shown.
