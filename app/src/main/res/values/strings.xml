@@ -36,9 +36,6 @@
     <string name="command_no_description">Unnamed command</string>
     <string name="command_text">Command text</string>
 
-    <string name="device_name_info">Device name: %s</string>
-    <string name="location_info">Location: %s</string>
-    <string name="phone_number_info">Phone number: %s</string>
     <string name="sms_permissions_not_granted">SMS was not sent. Permissions were not granted.</string>
     <string name="content_desc_application_logo">Application Logo</string>
     <string name="content_desc_device_image">Device image</string>
@@ -150,6 +147,8 @@
     <string name="intro_page4_description">Multiple-command support. Send one or more commands at a time.</string>
     <string name="intro_page5_title">For developers.</string>
     <string name="intro_page5_description">Add support into your embedded device with our open-source library.</string>
+    <string name="sim_icon_content_description">SIM icon</string>
+    <string name="location_icon">Location icon</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

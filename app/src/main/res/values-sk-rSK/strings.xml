@@ -21,9 +21,6 @@
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>
     <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
     <string name="send_command_title">Poslať príkaz</string>
-    <string name="device_name_info">Názov zariadenia: %s</string>
-    <string name="location_info">Umiestnenie: %s</string>
-    <string name="phone_number_info">Telefónne číslo: %s</string>
     <string name="no_defined_command_error">Nebol definovaný žiadny príkaz!</string>
     <string name="sms_permissions_not_granted">SMS správa nebola poslaná. Neudelili ste potrebné povolenia.</string>
     <string name="content_desc_application_logo">Logo aplikácie</string>
@@ -122,4 +119,6 @@
     <string name="intro_page5_description">Pridajte podporu do vášho embedded zariadenia s našou open-source knižnicou.</string>
     <string name="intro_page4_title">Jedno zariadenie, veľa možností.</string>
     <string name="intro_page5_title">Pre vývojárov.</string>
+    <string name="sim_icon_content_description">Ikona SIM</string>
+    <string name="location_icon">Ikona umiestnenia</string>
 </resources>
