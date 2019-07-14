@@ -104,7 +104,7 @@
     <string name="article_05_bullet_03_text">Klepnite na tlačidlo %s.</string>
     <string name="help_menu_action_about">Informácie o verzii</string>
     <string name="help_menu_action_licenses">Licencie open source</string>
-    <string name="app_version">Verzia 1.0.0</string>
+    <string name="app_version">Verzia %s</string>
     <string name="invalid_configuration">Neplatný súbor, import neúspešný.</string>
     <string name="configuration_import_successful">Konfigurácia bola úspešne importovaná.</string>
     <string name="configuration_export_error">Počas exportu konfigurácie nastala chyba!</string>

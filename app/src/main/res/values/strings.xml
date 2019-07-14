@@ -134,7 +134,7 @@
     </string>
     <string name="article_05_bullet_03_text">Click on %s button.</string>
     <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
-    <string name="app_version">Version 1.0.0</string>
+    <string name="app_version">Version %s</string>
 
     <!-- Intro activity -->
     <string name="intro_page1_title">Welcome!</string>

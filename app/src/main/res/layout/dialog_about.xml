@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/alert_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -28,13 +29,13 @@
                 android:layout_marginStart="16dp" android:layout_marginTop="32dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:text="@string/app_version"
                 android:textAppearance="?textAppearanceListItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/version" app:layout_constraintStart_toEndOf="@+id/adeon_logo"
                 app:layout_constraintTop_toBottomOf="@+id/app_title"
-                android:layout_marginStart="16dp" android:layout_marginTop="8dp"/>
+                android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+                tools:text="@string/app_version"/>
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:text="@string/app_vendor"
