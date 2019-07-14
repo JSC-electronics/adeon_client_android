@@ -13,14 +13,14 @@
     <string name="edit_device_title">Upraviť zariadenie</string>
     <string name="action_duplicate">Duplikovať</string>
     <string name="action_remove_device">Odstrániť zariadenie</string>
-    <string name="attributes">Vlastnosti</string>
+    <string name="attributes">Definované príkazy</string>
     <string name="attribute_value">Hodnota</string>
     <string name="attribute_name">Názov</string>
     <string name="save_changes_button">Uložiť zmeny</string>
     <string name="invalid_attributes">Niektoré vlastnosti sú neplatné!</string>
     <string name="attribute_value_out_of_range">Nie je v rozsahu 0–65535!</string>
     <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
-    <string name="send_sms_title">Poslať SMS správu</string>
+    <string name="send_command_title">Poslať príkaz</string>
     <string name="device_name_info">Názov zariadenia: %s</string>
     <string name="location_info">Umiestnenie: %s</string>
     <string name="phone_number_info">Telefónne číslo: %s</string>
@@ -29,12 +29,12 @@
     <string name="content_desc_application_logo">Logo aplikácie</string>
     <string name="content_desc_device_image">Obrázok zariadenia</string>
     <string name="content_desc_device_item_menu">Menu položky zariadenia</string>
-    <string name="no_attribute_selected">Vyberte aspoň jednu vlastnosť pred poslaním SMS.</string>
-    <string name="attribute_text">Obyčajný text</string>
+    <string name="no_attribute_selected">Vyberte aspoň jeden príkaz pred poslaním SMS.</string>
+    <string name="attribute_text">Text príkazu</string>
     <string name="parametric_type">Parametrický</string>
-    <string name="message_type">Typ správy</string>
+    <string name="command_type">Typ príkazu</string>
     <string name="plain_text_type">Textový</string>
-    <string name="checkbox_info">Zaškrtnite, prosím, všetky vlastnosti, ktoré chcete poslať.</string>
+    <string name="checkbox_info">Zaškrtnite, prosím, všetky príkazy, ktoré chcete poslať.</string>
     <string name="attribute_command_description">Popis príkazu</string>
     <string name="attribute_no_description">Príkaz bez názvu</string>
     <string name="change_device_image">Zmeniť obrázok zariadenia</string>
@@ -65,12 +65,12 @@
     </string>
     <string name="article_01_bullet_04_text">(voliteľné) Zadajte umiestnenie zariadenia.</string>
     <string name="article_01_bullet_05_text">Zadajte telefónne číslo zariadenia.</string>
-    <string name="article_01_bullet_06_text">Vyberte si typ príkazu (pre viac informácií si pozrite %s).</string>
+    <string name="article_01_bullet_06_text">Vyberte si typ príkazu. Textový typ je vhodný pre komerčné GSM zariadenia, parametrický typ je vhodný pre vývojárov. Pre viac informácií si pozrite %s. \n "</string>
     <string name="article_01_bullet_06_text_docs">dokumentáciu</string>
     <string name="article_01_bullet_07_text">Zadajte popis príkazu (textový typ príkazu) alebo názov parametra
         (parametrický typ príkazu).
     </string>
-    <string name="article_01_bullet_08_text">Zadajte text príkazu (textový typ príkazu) alebo názov parametra
+    <string name="article_01_bullet_08_text">Zadajte text príkazu (textový typ príkazu) alebo hodnotu parametra
         (parametrický typ príkazu).
     </string>
     <string name="article_01_bullet_09_text">(voliteľné) Pridajte ďalší príkaz klepnutím na tlačidlo [FAB].</string>
@@ -90,17 +90,16 @@
     <string name="article_03_bullet_04_text">Upravte názov konfiguračného súboru.</string>
     <string name="article_03_bullet_05_text">Klepnite na tlačidlo %s.</string>
     <string name="article_03_note_text">Poznámka: Obrázky zariadení nie sú exportované.</string>
-    <string name="article_04_bullet_03_text">Pokiaľ už máte nejaké zariadenia pridané, potvrďte, že chcete pokračovať s
-        importom a prísť o aktuálne nastavenia.
+    <string name="article_04_bullet_03_text">"Pokiaľ už máte nejaké zariadenia pridané, potvrďte, že chcete pokračovať s
+        importom. Táto akcia spôsobí stratu aktuálneho nastavenia. "
     </string>
-    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (.json)</string>
+    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (souboru typu .txt)</string>
     <string name="article_04_note_01_text">Import nahradí aktuálnu aplikačnú databázu.</string>
     <string name="article_04_note_02_text">Obrázky zariadení nie sú importované. Pridajte obrázky ručne po každom
         importe.
     </string>
     <string name="article_04_note_text">Poznámka:</string>
-    <string name="article_05_bullet_01_text">Vyberte zariadenie zo zoznamu zariadení. Otvorí sa stránka špecifická pre
-        dané zariadenie.
+    <string name="article_05_bullet_01_text">Vyberte zariadenie klepnutím na príslušné pole v zoznamu zariadení. Otvorí sa stránka se zoznamom definovaných parametrov.
     </string>
     <string name="article_05_bullet_02_text">Pomocou zaškrtávacieho políčka [CHECKBOX] vyberte príkaz (alebo príkazy),
         ktorý sa odošle do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).

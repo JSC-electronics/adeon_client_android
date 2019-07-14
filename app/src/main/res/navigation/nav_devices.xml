@@ -70,7 +70,7 @@
 
     <fragment android:id="@+id/send_sms_fragment"
               android:name="cz.jscelectronics.adeon.ui.device.SendSmsFragment"
-              android:label="@string/send_sms_title"
+              android:label="@string/send_command_title"
               tools:layout="@layout/fragment_send_sms">
 
         <argument
