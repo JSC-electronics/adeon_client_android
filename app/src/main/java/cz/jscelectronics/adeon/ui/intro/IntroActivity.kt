@@ -38,7 +38,7 @@ class IntroActivity: AppIntro2() {
         sliderPage3.description = getString(R.string.intro_page3_description)
         sliderPage3.titleTypefaceFontRes = R.font.opensans_regular
         sliderPage3.descTypefaceFontRes = R.font.opensans_regular
-        sliderPage3.imageDrawable = R.drawable.ic_intro_slide1
+        sliderPage3.imageDrawable = R.drawable.ic_intro_slide3
         sliderPage3.bgDrawable = R.drawable.ic_launcher_background
         addSlide(AppIntroFragment.newInstance(sliderPage3))
 
