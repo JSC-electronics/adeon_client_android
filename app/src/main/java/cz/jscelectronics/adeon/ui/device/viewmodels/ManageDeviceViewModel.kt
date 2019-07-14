@@ -60,7 +60,7 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
 
     private var attributes = mutableListOf<Attribute>()
-    private var messageType: Int = Device.INT_VALUE_FORMAT
+    private var messageType: Int = Device.PLAIN_TEXT_FORMAT
 
     var uriHandler = ImageUriHandler()
 
@@ -180,16 +180,7 @@ class ManageDeviceViewModel internal constructor(
                     // Store which attributes are checked
                     addOrUpdateDevice()
 
-                    if (messageType == Device.INT_VALUE_FORMAT) {
-                        composeMessage(smsAttributes).forEach { message ->
-                            val md5 = computeMd5(message)
-                            val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                            smsManager.sendTextMessage(
-                                device.phoneNumber, null, smsMessage,
-                                null, null
-                            )
-                        }
-                    } else if (messageType == Device.PLAIN_TEXT_FORMAT) {
+                    if (messageType == Device.PLAIN_TEXT_FORMAT) {
                         smsAttributes.forEach {
                             if (it.containsPlainText()) {
                                 smsManager.sendMultipartTextMessage(
@@ -198,6 +189,15 @@ class ManageDeviceViewModel internal constructor(
                                 )
                             }
                         }
+                    }
+                } else if (messageType == Device.INT_VALUE_FORMAT) {
+                    composeMessage(smsAttributes).forEach { message ->
+                        val md5 = computeMd5(message)
+                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                        smsManager.sendTextMessage(
+                            device.phoneNumber, null, smsMessage,
+                            null, null
+                        )
                     }
                 }
             }

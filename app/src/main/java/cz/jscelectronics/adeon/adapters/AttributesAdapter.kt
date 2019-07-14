@@ -16,7 +16,7 @@ import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class AttributesAdapter(private val isEditMode: Boolean = false, private var preferPlainText: Boolean = false) :
+class AttributesAdapter(private val isEditMode: Boolean = false, private var preferPlainText: Boolean = true) :
     ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

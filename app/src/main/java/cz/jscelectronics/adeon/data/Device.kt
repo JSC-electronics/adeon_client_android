@@ -21,7 +21,7 @@ data class Device(
     var phoneNumber: String,
 
     @SerializedName("messageType")
-    var messageType: Int = INT_VALUE_FORMAT,
+    var messageType: Int = PLAIN_TEXT_FORMAT,
 
     @SerializedName("image")
     var image: Uri? = null,
@@ -31,8 +31,8 @@ data class Device(
 ) {
 
     companion object {
-        const val INT_VALUE_FORMAT = 1
-        const val PLAIN_TEXT_FORMAT = 2
+        const val PLAIN_TEXT_FORMAT = 1
+        const val INT_VALUE_FORMAT = 2
     }
 
     override fun toString() = name
