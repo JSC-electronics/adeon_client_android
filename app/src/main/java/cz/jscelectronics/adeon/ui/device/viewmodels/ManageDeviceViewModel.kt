@@ -245,7 +245,7 @@ class ManageDeviceViewModel internal constructor(
         attributesAdapter?.submitList(attributes.toList())
 
         val snackbar = Snackbar.make(viewholder.itemView,
-            context.getString(R.string.attribute_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
+            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
         snackbar.setAction(R.string.undo) {
             attributes.add(position, removedAttribute)
             attributesAdapter?.submitList(attributes.toList())

@@ -19,24 +19,24 @@
     <string name="save_changes_button">Uložit změny</string>
     <string name="invalid_device_name">Název zařízení nesmí být prázdný!</string>
     <string name="attribute_value_out_of_range">Není v rozsahu 0–65535!</string>
-    <string name="invalid_attributes">Některé vlastnosti jsou neplatné!</string>
+    <string name="invalid_defined_commands">Některé definované příkazy jsou neplatné!</string>
     <string name="send_command_title">Odeslat příkaz</string>
     <string name="device_name_info">Název zařízení: %s</string>
     <string name="location_info">Umístění: %s</string>
     <string name="phone_number_info">Telefonní číslo: %s</string>
-    <string name="no_attributes_error">Nebyla přidána žádná vlastnost!</string>
+    <string name="no_defined_command_error">Nebyl definován žádný příkaz!</string>
     <string name="sms_permissions_not_granted">SMS zpráva nebyla odeslána. Neudělili jste potřebná povolení.</string>
     <string name="content_desc_application_logo">Logo aplikace</string>
     <string name="content_desc_device_image">Obrázek zařízení</string>
     <string name="content_desc_device_item_menu">Menu položky zařízení</string>
-    <string name="no_attribute_selected">Vyberte alespoň jeden příkaz před odesláním SMS.</string>
-    <string name="attribute_text">Text příkazu</string>
+    <string name="no_command_selected">Vyberte alespoň jeden příkaz před odesláním SMS.</string>
+    <string name="command_text">Text příkazu</string>
     <string name="parametric_type">Parametrický</string>
     <string name="command_type">Typ příkazu</string>
     <string name="plain_text_type">Textový</string>
     <string name="checkbox_info">Zaškrtněte prosím všechny příkazy, které chcete odeslat.</string>
-    <string name="attribute_command_description">Popis příkazu</string>
-    <string name="attribute_no_description">Příkaz bez názvu</string>
+    <string name="command_description">Popis příkazu</string>
+    <string name="command_no_description">Příkaz bez názvu</string>
     <string name="change_device_image">Změnit obrázek zařízení</string>
     <string name="select_image">Vybrat obrázek</string>
     <string name="take_photo">Pořídit fotografii</string>
@@ -50,7 +50,7 @@
     <string name="delete">Smazat</string>
     <string name="undo">Zpět</string>
     <string name="device_removed">Zařížení %s bylo vymazáno ze seznamu!</string>
-    <string name="attribute_removed">Vlastnost %s byla vymazána ze seznamu!</string>
+    <string name="command_removed">Příkaz %s byl vymazán ze seznamu!</string>
     <string name="favorite_articles">Oblíbené články</string>
     <string name="add_new_device_article">Přidání nového zařízení</string>
     <string name="delete_a_device_article">Vymazání zařízení</string>
@@ -66,7 +66,7 @@
     <string name="article_01_bullet_05_text">Zadejte telefonní číslo zařízení.</string>
     <string name="article_01_bullet_06_text">Vyberte typ příkazu. Textový typ je vhodný pro komerční GSM zařízení, parametrický typ je vhodný pro vývojaře. Pro více informací vizte %s.</string>
     <string name="article_01_bullet_06_text_docs">dokumentaci</string>
-    <string name="article_01_bullet_07_text">Zadejte popis příkazu (textový typ příkazu) anebo název parametru (parametrický typ příkazu).</string>
+    <string name="article_01_bullet_07_text">Zadejte popis příkazu (textový typ příkazu) nebo název parametru (parametrický typ příkazu).</string>
     <string name="article_01_bullet_08_text">Zadejte text příkazu (textový typ příkazu) nebo hodnotu parametru (parametrický typ příkazu).</string>
     <string name="article_01_bullet_09_text">(volitelné) Přidejte další příkaz klepnutím na tlačítko [FAB].</string>
     <string name="article_01_bullet_10_text">Klepněte na tlačítko %s.</string>
@@ -85,10 +85,10 @@
     <string name="article_04_note_02_text">Obrázky zařízení nejsou importovány. Přidejte obrázky ručně po každém importu. </string>
     <string name="article_04_note_01_text">Import nahradí aktuální aplikační databázi.</string>
     <string name="article_04_bullet_04_text">Vyberte vyexportovaný konfigurační soubor (soubor typu .txt)</string>
-    <string name="article_04_bullet_03_text">Pokud už máte nějaké zařízení přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztátu aktuálního nastavení.</string>
+    <string name="article_04_bullet_03_text">Pokuď máte nějaké zařízení už přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztrátu aktuálního nastavení.</string>
     <string name="article_05_bullet_01_text">Vyberte zařízení klepnutím na příslušné pole v seznamu Moje zařízení. Otevře se stránka se seznamem definovaných příkazů.</string>
     <string name="article_05_bullet_02_text">Pomocí zaškrtávacího políčka [CHECKBOX] vyberte příkaz (nebo příkazy),
-        který se odešle do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
+        které se odešlou do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
     <string name="article_05_bullet_03_text">Klepněte na tlačítko %s.</string>
     <string name="help_menu_action_about">Informace o verzi</string>
     <string name="help_menu_action_licenses">Licence open source</string>

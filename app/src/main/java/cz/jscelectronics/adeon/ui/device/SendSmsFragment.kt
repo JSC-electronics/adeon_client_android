@@ -101,7 +101,7 @@ class SendSmsFragment : Fragment() {
                     interstitialAd.show()
                 }
             } else {
-                Snackbar.make(layout, R.string.no_attribute_selected, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -124,7 +124,7 @@ class SendSmsFragment : Fragment() {
                             interstitialAd.show()
                         }
                     } else {
-                        Snackbar.make(layout, R.string.no_attribute_selected, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
                     }
                 } else {
                     Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()

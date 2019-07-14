@@ -15,8 +15,8 @@
     <string name="invalid_phone_number">Please enter a valid phone number</string>
     <string name="invalid_device_name">Device name should not be empty!</string>
     <string name="attribute_value_out_of_range">Not in range 0–65535!</string>
-    <string name="invalid_attributes">Some of the attributes are invalid!</string>
-    <string name="no_attributes_error">No attribute was defined!</string>
+    <string name="invalid_defined_commands">Some of the defined commands are invalid!</string>
+    <string name="no_defined_command_error">No command was defined!</string>
 
     <string name="add_device_title">Add device</string>
     <string name="add_device_button" translatable="false">@string/add_device_title</string>
@@ -32,9 +32,9 @@
 
     <string name="attribute_name">Name</string>
     <string name="attribute_value">Value</string>
-    <string name="attribute_command_description">Command description</string>
-    <string name="attribute_no_description">Unnamed command</string>
-    <string name="attribute_text">Command text</string>
+    <string name="command_description">Command description</string>
+    <string name="command_no_description">Unnamed command</string>
+    <string name="command_text">Command text</string>
 
     <string name="device_name_info">Device name: %s</string>
     <string name="location_info">Location: %s</string>
@@ -43,7 +43,7 @@
     <string name="content_desc_application_logo">Application Logo</string>
     <string name="content_desc_device_image">Device image</string>
     <string name="content_desc_device_item_menu">Device item menu</string>
-    <string name="no_attribute_selected">Please select at least one command before sending the SMS.</string>
+    <string name="no_command_selected">Please select at least one command before sending the SMS.</string>
     <string name="command_type">Command type</string>
     <string name="parametric_type">Parametric</string>
     <string name="plain_text_type">Plain text</string>
@@ -61,7 +61,7 @@
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>
     <string name="device_removed">Device %s removed from list!</string>
-    <string name="attribute_removed">Attribute %s removed from list!</string>
+    <string name="command_removed">Command %s removed from list!</string>
     <string name="favorite_articles">Favorite articles</string>
     <string name="add_new_device_article">Add a new device</string>
     <string name="delete_a_device_article">Delete a device</string>

@@ -126,7 +126,7 @@
                             android:inputType="textAutoComplete"
                             android:longClickable="false"
                             android:textIsSelectable="false"
-                            android:hint="@string/attribute_command_description"
+                            android:hint="@string/command_description"
                             tools:text="Open garage door"
                     />
 
@@ -134,7 +134,7 @@
 
                 <TextView
                         android:id="@+id/command_description"
-                        android:text="@{!TextUtils.isEmpty(attribute.name) ? `` + attribute.name : @string/attribute_no_description}"
+                        android:text="@{!TextUtils.isEmpty(attribute.name) ? `` + attribute.name : @string/command_no_description}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/attribute_checkbox"
@@ -174,7 +174,7 @@
                             android:lines="5"
                             android:longClickable="false"
                             android:textIsSelectable="false"
-                            android:hint="@string/attribute_text"/>
+                            android:hint="@string/command_text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

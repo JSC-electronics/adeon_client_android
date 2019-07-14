@@ -95,12 +95,12 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
                 if (manageDeviceViewModel.isAttributeListEmpty()) {
                     isError = true
-                    Snackbar.make(view, R.string.no_attributes_error, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, R.string.no_defined_command_error, Snackbar.LENGTH_LONG).show()
                 }
 
                 if (!manageDeviceViewModel.isAttributeListValid()) {
                     isError = true
-                    Snackbar.make(view, R.string.invalid_attributes, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, R.string.invalid_defined_commands, Snackbar.LENGTH_LONG).show()
                 }
 
                 if (!isError) {
