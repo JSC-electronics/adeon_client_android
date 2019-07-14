@@ -89,9 +89,9 @@
     <string name="unordered_bullet_point" translatable="false">\u2022</string>
 
     <!-- Help article 01 -->
-    <string name="article_01_bullet_01_text">Click on [FAB] button.</string>
+    <string name="article_01_bullet_01_text">Tap on [FAB] button.</string>
     <string name="article_01_bullet_02_text">Insert device name.</string>
-    <string name="article_01_bullet_03_text">(optional) Set device image by clicking on [CAMERA] button.</string>
+    <string name="article_01_bullet_03_text">(optional) Set device image by tapping on [CAMERA] button.</string>
     <string name="article_01_bullet_04_text">(optional) Insert device location.</string>
     <string name="article_01_bullet_05_text">Insert device phone number.</string>
     <string name="article_01_bullet_06_text">Choose command type. Text type is suitable for commercial GSM devices, parametric type is suitable for developers. For more information the %s.</string>
@@ -100,27 +100,27 @@
     </string>
     <string name="article_01_bullet_08_text">Insert command text (plain text type command) or value (parametric type command).
     </string>
-    <string name="article_01_bullet_09_text">(optional) Add another command by clicking on [FAB] button.</string>
-    <string name="article_01_bullet_10_text">Click on %s button.</string>
+    <string name="article_01_bullet_09_text">(optional) Add another command by tapping on [FAB] button.</string>
+    <string name="article_01_bullet_10_text">Tap on %s button.</string>
     <string name="article_01_note_text">Note: You can use %s option in device context menu [MORE_OPTIONS] for adding two or more similar devices.
     </string>
 
     <!-- Help article 02 -->
-    <string name="article_02_bullet_01_text">Click on [MORE_OPTIONS] button and then click on %s.</string>
-    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by clicking on %s button in bottom pop-up bar.
+    <string name="article_02_bullet_01_text">Tap on [MORE_OPTIONS] button and then tap on %s.</string>
+    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by tapping on %s button in bottom pop-up bar.
     </string>
 
     <!-- Help article 03 -->
-    <string name="article_03_bullet_01_text">Click on [MORE_OPTIONS] button in top bar menu.</string>
+    <string name="article_03_bullet_01_text">Tap on [MORE_OPTIONS] button in top bar menu.</string>
     <string name="article_03_bullet_02_text">Select %s.</string>
     <string name="article_03_bullet_03_text">Choose destination folder.</string>
     <string name="article_03_bullet_04_text">Edit config file name.</string>
-    <string name="article_03_bullet_05_text">Click on %s button.</string>
+    <string name="article_03_bullet_05_text">Tap on %s button.</string>
     <string name="article_03_note_text">Note: Device images are not exported.</string>
 
     <!-- Help article 04 -->
-    <string name="article_04_bullet_03_text">"If you already have some devices added, please confirm that you want to
-        continue with import. Current settings will be lost.\n "
+    <string name="article_04_bullet_03_text">If you already have some devices added, please confirm that you want to
+        continue with import. Current settings will be lost.
     </string>
     <string name="article_04_bullet_04_text">Choose exported configuration file (file type .txt)</string>
     <string name="article_04_note_text">Note:</string>
@@ -132,7 +132,7 @@
     <string name="article_05_bullet_02_text">Use checkbox [CHECKBOX] to choose command (or commands), which will be sent
         into device over cellular network (see the %s for more information).
     </string>
-    <string name="article_05_bullet_03_text">Click on %s button.</string>
+    <string name="article_05_bullet_03_text">Tap on %s button.</string>
     <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Version 1.0.0</string>
 
