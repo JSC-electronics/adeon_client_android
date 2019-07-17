@@ -12,7 +12,7 @@
     <string name="device_name_hint">Device name</string>
     <string name="location_hint">Location</string>
     <string name="phone_hint">Device phone number</string>
-    <string name="invalid_phone_number">Please enter a valid phone number</string>
+    <string name="invalid_phone_number">Please enter a valid phone number.</string>
     <string name="invalid_device_name">Device name should not be empty!</string>
     <string name="attribute_value_out_of_range">Not in range 0–65535!</string>
     <string name="invalid_defined_commands">Some of the defined commands are invalid!</string>
@@ -37,14 +37,14 @@
     <string name="command_text">Command text</string>
 
     <string name="sms_permissions_not_granted">SMS was not sent. Permissions were not granted.</string>
-    <string name="content_desc_application_logo">Application Logo</string>
+    <string name="content_desc_application_logo">Application logo</string>
     <string name="content_desc_device_image">Device image</string>
     <string name="content_desc_device_item_menu">Device item menu</string>
-    <string name="no_command_selected">Please select at least one command before sending the SMS.</string>
+    <string name="no_command_selected">Please select at least one command before sending an SMS.</string>
     <string name="command_type">Command type</string>
     <string name="parametric_type">Parametric</string>
     <string name="plain_text_type">Plain text</string>
-    <string name="checkbox_info">Please check all the commands you would like to send.</string>
+    <string name="checkbox_info">Please check all the commands that you would like to send.</string>
     <string name="change_device_image">Change device image</string>
     <string name="take_photo">Take photo</string>
     <string name="select_image">Select image</string>
@@ -57,17 +57,17 @@
     <string name="content_desc_delete">Delete icon</string>
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>
-    <string name="device_removed">Device %s removed from list!</string>
-    <string name="command_removed">Command %s removed from list!</string>
+    <string name="device_removed">Device %s removed from the list!</string>
+    <string name="command_removed">Command %s removed from the list!</string>
     <string name="favorite_articles">Favorite articles</string>
     <string name="add_new_device_article">Add a new device</string>
-    <string name="delete_a_device_article">Delete a device</string>
+    <string name="delete_a_device_article">Delete device</string>
     <string name="export_configuration_article">Export configuration</string>
     <string name="import_configuration_article">Import configuration</string>
     <string name="send_commands_article">Sending commands</string>
     <string name="browse_all_articles">Browse all articles</string>
     <string name="send_feedback">Send feedback</string>
-    <string name="invalid_configuration">Invalid file, import not successful!</string>
+    <string name="invalid_configuration">Invalid file, import was not successful!</string>
     <string name="configuration_import_successful">Configuration imported successfully.</string>
     <string name="configuration_export_error">An error occurred during configuration export!</string>
     <string name="configuration_export_successful">Configuration export was successful.</string>
@@ -89,33 +89,33 @@
     <string name="unordered_bullet_point" translatable="false">\u2022</string>
 
     <!-- Help article 01 -->
-    <string name="article_01_bullet_01_text">Tap on [FAB] button.</string>
+    <string name="article_01_bullet_01_text">Tap on the [FAB] button.</string>
     <string name="article_01_bullet_02_text">Insert device name.</string>
-    <string name="article_01_bullet_03_text">(optional) Set device image by tapping on [CAMERA] button.</string>
+    <string name="article_01_bullet_03_text">(optional) Set device image by tapping on the [CAMERA] button.</string>
     <string name="article_01_bullet_04_text">(optional) Insert device location.</string>
     <string name="article_01_bullet_05_text">Insert device phone number.</string>
-    <string name="article_01_bullet_06_text">Choose command type. Text type is suitable for commercial GSM devices, parametric type is suitable for developers. For more information the %s.</string>
-    <string name="article_01_bullet_06_text_docs">documentation</string>
-    <string name="article_01_bullet_07_text">Insert command description (plain text type command) or parameter name(parametric type command).
+    <string name="article_01_bullet_06_text">Choose command type. Text type is suitable for commercial GSM devices, while parametric type is suitable for developers. For more information the %s.</string>
+    <string name="article_01_bullet_06_text_docs">Documentation</string>
+    <string name="article_01_bullet_07_text">Insert command description (plain text type command) or parameter name (parametric type command).
     </string>
     <string name="article_01_bullet_08_text">Insert command text (plain text type command) or value (parametric type command).
     </string>
-    <string name="article_01_bullet_09_text">(optional) Add another command by tapping on [FAB] button.</string>
-    <string name="article_01_bullet_10_text">Tap on %s button.</string>
-    <string name="article_01_note_text">Note: You can use %s option in device context menu [MORE_OPTIONS] for adding two or more similar devices.
+    <string name="article_01_bullet_09_text">(optional) Add another command by tapping on the [FAB] button.</string>
+    <string name="article_01_bullet_10_text">Tap on the %s button.</string>
+    <string name="article_01_note_text">Note: You can use the %s option in the device context menu [MORE_OPTIONS] to add two or more similar devices.
     </string>
 
     <!-- Help article 02 -->
-    <string name="article_02_bullet_01_text">Tap on [MORE_OPTIONS] button and then tap on %s.</string>
-    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by tapping on %s button in bottom pop-up bar.
+    <string name="article_02_bullet_01_text">Tap on the [MORE_OPTIONS] button and then tap on %s.</string>
+    <string name="article_02_note_text">Note: You can undo device deletion within next 5 seconds by tapping on the %s button in the bottom pop-up bar.
     </string>
 
     <!-- Help article 03 -->
-    <string name="article_03_bullet_01_text">Tap on [MORE_OPTIONS] button in top bar menu.</string>
+    <string name="article_03_bullet_01_text">Tap on the [MORE_OPTIONS] button in the top bar menu.</string>
     <string name="article_03_bullet_02_text">Select %s.</string>
     <string name="article_03_bullet_03_text">Choose destination folder.</string>
     <string name="article_03_bullet_04_text">Edit config file name.</string>
-    <string name="article_03_bullet_05_text">Tap on %s button.</string>
+    <string name="article_03_bullet_05_text">Tap on the %s button.</string>
     <string name="article_03_note_text">Note: Device images are not exported.</string>
 
     <!-- Help article 04 -->
@@ -128,11 +128,11 @@
     <string name="article_04_note_02_text">Device images are not imported. Add device images manually after every import.</string>
 
     <!-- Help article 05 -->
-    <string name="article_05_bullet_01_text">Select a device by tapping on specific item in the device list. A page with list of defined commands will show up.</string>
+    <string name="article_05_bullet_01_text">Select a device by tapping on the specific item in the device list. A page with a list of defined commands will show up.</string>
     <string name="article_05_bullet_02_text">Use checkbox [CHECKBOX] to choose command (or commands), which will be sent
-        into device over cellular network (see the %s for more information).
+        into device over the cellular network (see the %s for more information).
     </string>
-    <string name="article_05_bullet_03_text">Tap on %s button.</string>
+    <string name="article_05_bullet_03_text">Tap on the %s button.</string>
     <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Version %s</string>
 
@@ -140,9 +140,9 @@
     <string name="intro_page1_title">Welcome!</string>
     <string name="intro_page1_description">Manage your GSM devices easily.</string>
     <string name="intro_page2_title">Go offline!</string>
-    <string name="intro_page2_description">Control your device using predefined SMS.</string>
+    <string name="intro_page2_description">Control your device using a predefined SMS.</string>
     <string name="intro_page3_title">One app to rule them all!</string>
-    <string name="intro_page3_description">Simple management on one screen. For unlimited number of devices.</string>
+    <string name="intro_page3_description">Simple management on one screen. For an unlimited number of devices.</string>
     <string name="intro_page4_title">One device, many options.</string>
     <string name="intro_page4_description">Multiple-command support. Send one or more commands at a time.</string>
     <string name="intro_page5_title">For developers.</string>
