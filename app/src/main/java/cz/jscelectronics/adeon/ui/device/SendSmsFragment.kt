@@ -1,13 +1,10 @@
 package cz.jscelectronics.adeon.ui.device
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -49,7 +46,7 @@ class SendSmsFragment : Fragment() {
             lifecycleOwner = this@SendSmsFragment
 
             sendSmsButton.setOnClickListener {
-                requestSmsPermissions()
+                prepareAndSendSms()
             }
         }
         layout = binding.sendSmsLayout
@@ -79,62 +76,20 @@ class SendSmsFragment : Fragment() {
         })
     }
 
-    private fun requestSmsPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.SEND_SMS
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
+    private fun prepareAndSendSms() {
+        if (manageDeviceViewModel.areAttributesChecked()) {
+            manageDeviceViewModel.sendSmsMessage(requireActivity())
 
-            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
-                REQUEST_SEND_SMS
-            )
+            val direction =
+                SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+            layout.findNavController().navigate(direction)
+            if (interstitialAd.isLoaded) {
+                interstitialAd.show()
+            }
         } else {
-            if (manageDeviceViewModel.areAttributesChecked()) {
-                manageDeviceViewModel.sendSmsMessage()
-
-                val direction =
-                    SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-                layout.findNavController().navigate(direction)
-                if (interstitialAd.isLoaded) {
-                    interstitialAd.show()
-                }
-            } else {
-                Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
-            }
+            Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
 
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>, grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_SEND_SMS -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    if (manageDeviceViewModel.areAttributesChecked()) {
-                        manageDeviceViewModel.sendSmsMessage()
-
-                        val direction =
-                            SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-                        layout.findNavController().navigate(direction)
-                        if (interstitialAd.isLoaded) {
-                            interstitialAd.show()
-                        }
-                    } else {
-                        Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
-                    }
-                } else {
-                    Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()
-                }
-                return
-            }
-            else -> {
-                // Ignore all other requests.
-            }
-        }
     }
 
     override fun onPause() {

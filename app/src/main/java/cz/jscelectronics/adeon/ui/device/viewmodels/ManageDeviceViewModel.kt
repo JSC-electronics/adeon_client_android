@@ -1,11 +1,13 @@
 package cz.jscelectronics.adeon.ui.device.viewmodels
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.os.ParcelFileDescriptor
-import android.telephony.SmsManager
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -31,6 +33,7 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 /**
  * The ViewModel for managing device properties in [AddDeviceFragment] and [SendSmsFragment].
@@ -169,11 +172,9 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage() {
+    fun sendSmsMessage(activity: Activity) {
         viewModelScope.launch {
             device.value?.let { device ->
-                val smsManager = SmsManager.getDefault()
-
                 val smsAttributes = attributes.filter { it.isChecked && it.isValid() }
 
                 if (smsAttributes.isNotEmpty()) {
@@ -181,23 +182,30 @@ class ManageDeviceViewModel internal constructor(
                     addOrUpdateDevice()
 
                     if (messageType == Device.PLAIN_TEXT_FORMAT) {
-                        smsAttributes.forEach {
-                            if (it.containsPlainText()) {
-                                smsManager.sendMultipartTextMessage(
-                                    device.phoneNumber, null,
-                                    smsManager.divideMessage(it.text), null, null
-                                )
+                        // TODO: Allow user to select only one attribute
+                        val attribute = smsAttributes[0]
+                        if (attribute.containsPlainText()) {
+                            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                                data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                                putExtra("sms_body", attribute.text)
+                            }
+
+                            if (intent.resolveActivity(context.packageManager) != null) {
+                                startActivity(activity, intent, null)
                             }
                         }
-                    }
-                } else if (messageType == Device.INT_VALUE_FORMAT) {
-                    composeMessage(smsAttributes).forEach { message ->
-                        val md5 = computeMd5(message)
-                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                        smsManager.sendTextMessage(
-                            device.phoneNumber, null, smsMessage,
-                            null, null
-                        )
+                    } else if (messageType == Device.INT_VALUE_FORMAT) {
+                        val messageData = composeMessage(smsAttributes).joinToString(separator = "")
+                        val md5 = computeMd5(messageData)
+                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $messageData"
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                            putExtra("sms_body", smsMessage)
+                        }
+
+                        if (intent.resolveActivity(context.packageManager) != null) {
+                            startActivity(activity, intent, null)
+                        }
                     }
                 }
             }
@@ -244,8 +252,10 @@ class ManageDeviceViewModel internal constructor(
         val removedAttribute = attributes.removeAt(position)
         attributesAdapter?.submitList(attributes.toList())
 
-        val snackbar = Snackbar.make(viewholder.itemView,
-            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(
+            viewholder.itemView,
+            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
+        )
         snackbar.setAction(R.string.undo) {
             attributes.add(position, removedAttribute)
             attributesAdapter?.submitList(attributes.toList())
