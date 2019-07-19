@@ -6,11 +6,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 
 @BindingAdapter("isGone")
 fun bindIsGone(view: View, isGone: Boolean) {
@@ -21,12 +16,11 @@ fun bindIsGone(view: View, isGone: Boolean) {
     }
 }
 
-@BindingAdapter("imageFromUrl")
-fun bindImageFromUrl(view: ImageView, imageUrl: Uri?) {
-    imageUrl?.apply {
-        Glide.with(view.context)
-            .load(this)
-            .dontAnimate()
-            .into(view)
-    }
+@BindingAdapter("imageUrl", "fallbackDrawable")
+fun bindImageFromUrl(view: ImageView, imageUrl: Uri?, fallbackDrawable: Drawable?) {
+    Glide.with(view.context)
+        .load(imageUrl)
+        .fallback(fallbackDrawable)
+        .dontAnimate()
+        .into(view)
 }
