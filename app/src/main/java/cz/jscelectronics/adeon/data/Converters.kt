@@ -15,7 +15,7 @@ class Converters {
     @TypeConverter
     fun stringToAttributeList(attributeString: String): List<Attribute> {
         val attributeType = object : TypeToken<List<Attribute>>() {}.type
-        return Gson().fromJson<List<Attribute>>(attributeString, attributeType)
+        return Gson().fromJson(attributeString, attributeType)
     }
 
     @TypeConverter
