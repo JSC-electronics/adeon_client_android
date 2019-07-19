@@ -39,8 +39,6 @@ class DeviceListViewModel internal constructor(
 
     fun deleteDeviceWithUndo(device: Device, view: View) {
         deleteDevice(device)
-        // TODO: We don't support full undo. Image is deleted irreversibly.
-        device.image = null
 
         val snackbar = Snackbar.make(
             view,
@@ -58,7 +56,7 @@ class DeviceListViewModel internal constructor(
     private fun deleteDevice(device: Device) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                deviceRepository.deleteDevice(device, context.contentResolver)
+                deviceRepository.deleteDevice(device)
             }
         }
     }
@@ -140,7 +138,7 @@ class DeviceListViewModel internal constructor(
     }
 
     override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
-        // TODO Not impemented
+        // TODO Not implemented
     }
 
     // It doesn't make sense to store reference to internal device image. The image is not part of a backup.
