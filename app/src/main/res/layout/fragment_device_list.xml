@@ -26,6 +26,7 @@
                 android:clipToPadding="false"
                 android:paddingLeft="@dimen/margin_normal"
                 android:paddingRight="@dimen/margin_normal"
+                android:paddingBottom="@dimen/fab_bottom_padding"
                 app:isGone="@{!hasDevices}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_device"/>
