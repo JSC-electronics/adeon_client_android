@@ -26,29 +26,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: Uri?) {
     imageUrl?.apply {
         Glide.with(view.context)
             .load(this)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .listener(object: RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    return false
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    view.setImageDrawable(resource)
-                    return true
-                }
-
-            })
+            .dontAnimate()
             .into(view)
     }
 }
