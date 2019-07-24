@@ -60,8 +60,6 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
     val uriHandler = ImageUriHandler()
 
-    private var attributes = mutableListOf<Attribute>()
-
     // For Singleton instantiation
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
@@ -73,18 +71,13 @@ class ManageDeviceViewModel internal constructor(
 
     fun initAttributes(device: Device) {
         viewModelScope.launch {
-            attributes = device.attributes.map {
-                it.copy(
-                    name = it.name, value = it.value,
-                    text = it.text, isChecked = it.isChecked
-                )
-            }.toMutableList()
+            device.attributes = device.attributes.toMutableList()
 
-            if (attributes.isEmpty()) {
-                attributes.add(Attribute())
+            if (device.attributes.isEmpty()) {
+                (device.attributes as MutableList).add(Attribute())
             }
 
-            attributesAdapter?.submitList(attributes.toList())
+            attributesAdapter?.submitList(device.attributes.toList())
         }
     }
 
@@ -94,25 +87,28 @@ class ManageDeviceViewModel internal constructor(
 
     fun addNewAttribute() {
         viewModelScope.launch {
-            attributes.add(Attribute())
-            attributesAdapter?.submitList(attributes.toList())
+            device.value?.let {
+                (it.attributes as MutableList).add(Attribute())
+                attributesAdapter?.submitList(it.attributes.toList())
+            }
         }
     }
 
     fun isAttributeListValid(): Boolean {
-        attributes.forEach {
+        device.value?.attributes?.forEach {
             if (!it.isValid())
                 return false
         }
+
         return true
     }
 
     fun isAttributeListEmpty(): Boolean {
-        return attributes.isEmpty()
+        return device.value?.attributes.isNullOrEmpty()
     }
 
     fun areAttributesChecked(): Boolean {
-        return attributes.any { it.isChecked }
+        return device.value?.attributes?.any { it.isChecked } ?: false
     }
 
     fun setMessageType(messageType: Int, refreshAttributes: Boolean = true) {
@@ -123,6 +119,8 @@ class ManageDeviceViewModel internal constructor(
                 when {
                     it.messageType != messageType -> {
                         it.messageType = messageType
+
+                        val attributes = it.attributes as MutableList
                         attributes.clear()
                         attributes.add(Attribute())
                         attributesAdapter?.submitList(attributes.toList())
@@ -136,29 +134,9 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun addOrUpdateDevice(overwriteAttributes: Boolean = false) {
+    fun addOrUpdateDevice() {
         viewModelScope.launch {
             device.value?.let { device ->
-                device.attributes = attributes
-
-                if (device.attributes.isEmpty() || device.attributes.size != attributes.size || overwriteAttributes) {
-                    device.attributes = attributes.toList()
-                } else {
-                    val checkedAttributes = attributes.filter { it.isChecked }.toSet()
-
-                    device.attributes.onEach { attribute ->
-                        attribute.name?.let {
-                            if (it.isEmpty()) {
-                                attribute.name = null
-                            }
-                        }
-
-                        attribute.isChecked = checkedAttributes.any {
-                            attribute.hasTheSameContent(it)
-                        }
-                    }
-                }
-
                 if (deviceId == null) {
                     deviceRepository.addDevice(device)
                 } else {
@@ -173,7 +151,7 @@ class ManageDeviceViewModel internal constructor(
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
 
-                val smsAttributes = attributes.filter { it.isChecked && it.isValid() }
+                val smsAttributes = device.attributes.filter { it.isChecked && it.isValid() }
 
                 if (smsAttributes.isNotEmpty()) {
                     // Store which attributes are checked
@@ -240,25 +218,31 @@ class ManageDeviceViewModel internal constructor(
     }
 
     override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
-        val removedAttribute = attributes.removeAt(position)
-        attributesAdapter?.submitList(attributes.toList())
-
-        val snackbar = Snackbar.make(
-            viewholder.itemView,
-            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
-        )
-        snackbar.setAction(R.string.undo) {
-            attributes.add(position, removedAttribute)
+        device.value?.apply {
+            val attributes = this.attributes as MutableList
+            val removedAttribute = attributes.removeAt(position)
             attributesAdapter?.submitList(attributes.toList())
+
+            val snackbar = Snackbar.make(
+                viewholder.itemView,
+                context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
+            )
+            snackbar.setAction(R.string.undo) {
+                attributes.add(position, removedAttribute)
+                attributesAdapter?.submitList(attributes.toList())
+            }
+            snackbar.setActionTextColor(Color.YELLOW)
+            snackbar.show()
         }
-        snackbar.setActionTextColor(Color.YELLOW)
-        snackbar.show()
     }
 
     override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
-        val attribute = attributes.removeAt(from)
-        attributes.add(to, attribute)
-        attributesAdapter?.submitList(attributes.toList())
+        device.value?.apply {
+            val attributes = this.attributes as MutableList
+            val attribute = attributes.removeAt(from)
+            attributes.add(to, attribute)
+            attributesAdapter?.submitList(attributes.toList())
+        }
     }
 
     inner class ImageUriHandler : BaseObservable() {

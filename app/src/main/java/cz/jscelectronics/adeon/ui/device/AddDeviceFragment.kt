@@ -105,7 +105,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                 }
 
                 if (!isError) {
-                    manageDeviceViewModel.addOrUpdateDevice(overwriteAttributes = true)
+                    manageDeviceViewModel.addOrUpdateDevice()
                     view.hideSoftKeyboard()
                     val direction =
                         AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
@@ -184,7 +184,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         // If we don't save the device, it will stay in inconsistent state. Old device image was
         // already replaced and removed. We need to store reference to the new one.
         if (manageDeviceViewModel.uriHandler.isDeviceImageChanged() && manageDeviceViewModel.isEditingDevice()) {
-            manageDeviceViewModel.addOrUpdateDevice(false)
+            manageDeviceViewModel.addOrUpdateDevice()
         }
 
         super.onPause()
