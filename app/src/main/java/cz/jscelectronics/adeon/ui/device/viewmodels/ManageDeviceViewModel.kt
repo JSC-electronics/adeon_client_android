@@ -57,12 +57,10 @@ class ManageDeviceViewModel internal constructor(
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
-    else MutableLiveData(Device(name = "", location = null, phoneNumber = ""))
+    else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
+    val uriHandler = ImageUriHandler()
 
     private var attributes = mutableListOf<Attribute>()
-    private var messageType: Int = Device.PLAIN_TEXT_FORMAT
-
-    var uriHandler = ImageUriHandler()
 
     // For Singleton instantiation
     @Volatile
@@ -74,18 +72,20 @@ class ManageDeviceViewModel internal constructor(
         }
 
     fun initAttributes(device: Device) {
-        attributes = device.attributes.map {
-            it.copy(
-                name = it.name, value = it.value,
-                text = it.text, isChecked = it.isChecked
-            )
-        }.toMutableList()
+        viewModelScope.launch {
+            attributes = device.attributes.map {
+                it.copy(
+                    name = it.name, value = it.value,
+                    text = it.text, isChecked = it.isChecked
+                )
+            }.toMutableList()
 
-        if (attributes.isEmpty()) {
-            attributes.add(Attribute())
+            if (attributes.isEmpty()) {
+                attributes.add(Attribute())
+            }
+
+            attributesAdapter?.submitList(attributes.toList())
         }
-
-        attributesAdapter?.submitList(attributes.toList())
     }
 
     fun isEditingDevice(): Boolean {
@@ -93,8 +93,10 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun addNewAttribute() {
-        attributes.add(Attribute())
-        attributesAdapter?.submitList(attributes.toList())
+        viewModelScope.launch {
+            attributes.add(Attribute())
+            attributesAdapter?.submitList(attributes.toList())
+        }
     }
 
     fun isAttributeListValid(): Boolean {
@@ -114,13 +116,13 @@ class ManageDeviceViewModel internal constructor(
     }
 
     fun setMessageType(messageType: Int, refreshAttributes: Boolean = true) {
-        if (this.messageType != messageType) {
-            this.messageType = messageType
+        viewModelScope.launch {
             attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)
 
             device.value?.let {
                 when {
                     it.messageType != messageType -> {
+                        it.messageType = messageType
                         attributes.clear()
                         attributes.add(Attribute())
                         attributesAdapter?.submitList(attributes.toList())
@@ -137,10 +139,7 @@ class ManageDeviceViewModel internal constructor(
     fun addOrUpdateDevice(overwriteAttributes: Boolean = false) {
         viewModelScope.launch {
             device.value?.let { device ->
-                if (device.messageType != messageType) {
-                    device.messageType = messageType
-                    device.attributes = attributes
-                }
+                device.attributes = attributes
 
                 if (device.attributes.isEmpty() || device.attributes.size != attributes.size || overwriteAttributes) {
                     device.attributes = attributes.toList()
@@ -180,7 +179,7 @@ class ManageDeviceViewModel internal constructor(
                     // Store which attributes are checked
                     addOrUpdateDevice()
 
-                    if (messageType == Device.PLAIN_TEXT_FORMAT) {
+                    if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
                         smsAttributes.forEach {
                             if (it.containsPlainText()) {
                                 smsManager.sendMultipartTextMessage(
@@ -190,7 +189,7 @@ class ManageDeviceViewModel internal constructor(
                             }
                         }
                     }
-                } else if (messageType == Device.INT_VALUE_FORMAT) {
+                } else if (device.messageType == Device.INT_VALUE_FORMAT) {
                     composeMessage(smsAttributes).forEach { message ->
                         val md5 = computeMd5(message)
                         val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
@@ -244,8 +243,10 @@ class ManageDeviceViewModel internal constructor(
         val removedAttribute = attributes.removeAt(position)
         attributesAdapter?.submitList(attributes.toList())
 
-        val snackbar = Snackbar.make(viewholder.itemView,
-            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(
+            viewholder.itemView,
+            context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
+        )
         snackbar.setAction(R.string.undo) {
             attributes.add(position, removedAttribute)
             attributesAdapter?.submitList(attributes.toList())
