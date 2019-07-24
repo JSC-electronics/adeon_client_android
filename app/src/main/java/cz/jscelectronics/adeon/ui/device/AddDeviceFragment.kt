@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -69,7 +70,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                     country = Locale.getDefault().country
                 }
 
-                phoneNumber.setDefaultCountry(country)
+                phoneNumber.defaultCountry = country
             }
 
             fab.setOnClickListener {
@@ -104,14 +105,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                 }
 
                 if (!isError) {
-                    viewModel?.device?.value?.let {
-                        it.name = deviceNameEditText.text.toString()
-                        it.location = locationEditText.text.toString()
-                        it.phoneNumber = phoneNumber.phoneNumber
-
-                        manageDeviceViewModel.addOrUpdateDevice(overwriteAttributes = true)
-                    }
-
+                    manageDeviceViewModel.addOrUpdateDevice()
                     view.hideSoftKeyboard()
                     val direction =
                         AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
@@ -146,7 +140,21 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
     private fun subscribeUi(binding: FragmentAddDeviceBinding) {
         manageDeviceViewModel.device.observe(this, Observer { device ->
             binding.deviceNameEditText.setText(device.name)
+            binding.deviceNameEditText.addTextChangedListener {
+                device.name = binding.deviceNameEditText.text.toString()
+            }
+
+            device.location?.let { location ->
+                binding.locationEditText.setText(location)
+            }
+            binding.locationEditText.addTextChangedListener {
+                device.location = binding.locationEditText.text.toString()
+            }
+
             binding.phoneNumber.phoneNumber = device.phoneNumber
+            binding.phoneNumber.textInputLayout.editText?.addTextChangedListener {
+                device.phoneNumber = binding.phoneNumber.phoneNumber
+            }
 
             if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
                 binding.plainText.isChecked = true
@@ -164,10 +172,6 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                 binding.locationEditText.requestFocus()
             }
 
-            device.location?.let { location ->
-                binding.locationEditText.setText(location)
-            }
-
             manageDeviceViewModel.uriHandler.setUri(device.image)
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
@@ -180,7 +184,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         // If we don't save the device, it will stay in inconsistent state. Old device image was
         // already replaced and removed. We need to store reference to the new one.
         if (manageDeviceViewModel.uriHandler.isDeviceImageChanged() && manageDeviceViewModel.isEditingDevice()) {
-            manageDeviceViewModel.addOrUpdateDevice(false)
+            manageDeviceViewModel.addOrUpdateDevice()
         }
 
         super.onPause()
