@@ -44,6 +44,7 @@
     <string name="parametric_type">Parametric</string>
     <string name="plain_text_type">Plain text</string>
     <string name="checkbox_info">Please check all the commands that you would like to send.</string>
+    <string name="checkbox_tap_info">Please tap on a command that you would like to send.</string>
     <string name="change_device_image">Change device image</string>
     <string name="take_photo">Take photo</string>
     <string name="select_image">Select image</string>
@@ -128,10 +129,11 @@
 
     <!-- Help article 05 -->
     <string name="article_05_bullet_01_text">Select a device by tapping on the specific item in the device list. A page with a list of defined commands will show up.</string>
-    <string name="article_05_bullet_02_text">Use checkbox [CHECKBOX] to choose command (or commands), which will be sent
+    <string name="article_05_bullet_02_text">Tap on a command from the list you\'d like to send, if it\'s a plain text command.</string>
+    <string name="article_05_bullet_03_text">Otherwise, use checkbox [CHECKBOX] to choose parametric command (or commands), which will be sent
         into device over the cellular network (see the %s for more information).
     </string>
-    <string name="article_05_bullet_03_text">Tap on the %s button.</string>
+    <string name="article_05_bullet_04_text">Tap on the %s button.</string>
     <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Version %s</string>
 

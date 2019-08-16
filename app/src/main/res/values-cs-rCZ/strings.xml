@@ -31,6 +31,7 @@
     <string name="command_type">Typ příkazu</string>
     <string name="plain_text_type">Textový</string>
     <string name="checkbox_info">Zaškrtněte prosím všechny příkazy, které chcete odeslat.</string>
+    <string name="checkbox_tap_info">Poklepejte na příkaz, který chcete odeslat.</string>
     <string name="command_description">Popis příkazu</string>
     <string name="command_no_description">Příkaz bez názvu</string>
     <string name="change_device_image">Změnit obrázek zařízení</string>
@@ -83,9 +84,10 @@
     <string name="article_04_bullet_04_text">Vyberte vyexportovaný konfigurační soubor (soubor typu .txt)</string>
     <string name="article_04_bullet_03_text">Pokuď máte nějaké zařízení už přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztrátu aktuálního nastavení.</string>
     <string name="article_05_bullet_01_text">Vyberte zařízení klepnutím na příslušné pole v seznamu Moje zařízení. Otevře se stránka se seznamem definovaných příkazů.</string>
-    <string name="article_05_bullet_02_text">Pomocí zaškrtávacího políčka [CHECKBOX] vyberte příkaz (nebo příkazy),
+    <string name="article_05_bullet_02_text">Poklepejte v seznamu na příkaz, který chcete odeslat, pokud se jedná o textový příkaz.</string>
+    <string name="article_05_bullet_03_text">V opačném případě, pomocí zaškrtávacího políčka [CHECKBOX] vyberte parametrický příkaz (nebo příkazy),
         které se odešlou do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
-    <string name="article_05_bullet_03_text">Klepněte na tlačítko %s.</string>
+    <string name="article_05_bullet_04_text">Klepněte na tlačítko %s.</string>
     <string name="help_menu_action_about">Informace o verzi</string>
     <string name="help_menu_action_licenses">Licence open source</string>
     <string name="app_version">Verze %s</string>

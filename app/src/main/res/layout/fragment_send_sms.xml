@@ -6,6 +6,7 @@
     <data>
         <import type="android.text.TextUtils"/>
         <import type="android.view.View"/>
+        <import type="cz.jscelectronics.adeon.data.Device"/>
 
         <variable
                 name="viewModel"
@@ -135,7 +136,7 @@
                         android:textStyle="bold"/>
 
                 <TextView
-                        android:text="@string/checkbox_info"
+                        android:text="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT ? @string/checkbox_tap_info : @string/checkbox_info}"
                         android:layout_width="0dp"
                         android:textAlignment="textStart"
                         android:layout_height="wrap_content"
@@ -162,6 +163,7 @@
                         android:text="@string/send_sms_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:isGone="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT}"
                         style="@style/Widget.MaterialComponents.Button"
                         android:id="@+id/send_sms_button" app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"

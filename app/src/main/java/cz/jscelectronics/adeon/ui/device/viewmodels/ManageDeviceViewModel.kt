@@ -148,9 +148,21 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage(activity: Activity) {
+    fun sendSmsMessage(activity: Activity, message: String? = null) {
         viewModelScope.launch {
             device.value?.let { device ->
+                if (message != null) {
+                    val intent = Intent(Intent.ACTION_SENDTO).apply {
+                        data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                        putExtra("sms_body", message)
+                    }
+
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        startActivity(activity, intent, null)
+                    }
+                    return@launch
+                }
+
                 val smsAttributes = device.attributes.filter { it.isChecked && it.isValid() }
 
                 if (smsAttributes.isNotEmpty()) {
