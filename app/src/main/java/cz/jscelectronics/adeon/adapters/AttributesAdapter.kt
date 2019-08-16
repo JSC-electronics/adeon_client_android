@@ -19,6 +19,12 @@ import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
 class AttributesAdapter(private val isEditMode: Boolean = false, private var preferPlainText: Boolean = true) :
     ListAdapter<Attribute, AttributesAdapter.ViewHolder>(AttributesDiffCallback()) {
 
+    interface AttributeListener {
+        fun onClicked(attribute: Attribute)
+    }
+
+    var listener: AttributeListener? = null
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val attribute = getItem(position)
         holder.apply {
@@ -87,6 +93,12 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                 attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
                     attribute?.apply {
                         this.isChecked = isChecked
+                    }
+                }
+
+                if (!adapter.isEditMode && item.containsPlainText()) {
+                    viewForeground.setOnClickListener {
+                        adapter.listener?.onClicked(item)
                     }
                 }
             }

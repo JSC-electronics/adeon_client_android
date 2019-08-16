@@ -12,19 +12,29 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
+import cz.jscelectronics.adeon.adapters.AttributesAdapter
+import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
 
-class SendSmsFragment : Fragment() {
+class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
+    override fun onClicked(attribute: Attribute) {
+        if (attribute.containsPlainText()) {
+            messageText = attribute.text
+            requestSmsPermissions()
+        }
+    }
 
+    private var messageText: String? = null
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
     private lateinit var interstitialAd: InterstitialAd
@@ -55,6 +65,7 @@ class SendSmsFragment : Fragment() {
         layout = binding.sendSmsLayout
 
         val adapter = manageDeviceViewModel.getAttributesAdapter()
+        adapter.listener = this
         binding.attributeList.adapter = adapter
 
         subscribeUi()
@@ -91,18 +102,7 @@ class SendSmsFragment : Fragment() {
                 REQUEST_SEND_SMS
             )
         } else {
-            if (manageDeviceViewModel.areAttributesChecked()) {
-                manageDeviceViewModel.sendSmsMessage()
-
-                val direction =
-                    SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-                layout.findNavController().navigate(direction)
-                if (interstitialAd.isLoaded) {
-                    interstitialAd.show()
-                }
-            } else {
-                Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
-            }
+            sendSmsMessage()
         }
 
     }
@@ -114,18 +114,7 @@ class SendSmsFragment : Fragment() {
         when (requestCode) {
             REQUEST_SEND_SMS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    if (manageDeviceViewModel.areAttributesChecked()) {
-                        manageDeviceViewModel.sendSmsMessage()
-
-                        val direction =
-                            SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
-                        layout.findNavController().navigate(direction)
-                        if (interstitialAd.isLoaded) {
-                            interstitialAd.show()
-                        }
-                    } else {
-                        Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
-                    }
+                    sendSmsMessage()
                 } else {
                     Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()
                 }
@@ -134,6 +123,22 @@ class SendSmsFragment : Fragment() {
             else -> {
                 // Ignore all other requests.
             }
+        }
+    }
+
+    private fun sendSmsMessage() {
+        if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
+            manageDeviceViewModel.sendSmsMessage(messageText)
+            messageText = null
+
+            val direction =
+                SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+            layout.findNavController().navigate(direction)
+            if (interstitialAd.isLoaded) {
+                interstitialAd.show()
+            }
+        } else {
+            Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
     }
 

@@ -146,10 +146,17 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage() {
+    fun sendSmsMessage(message: String? = null) {
         viewModelScope.launch {
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
+                if (message != null) {
+                    smsManager.sendMultipartTextMessage(
+                        device.phoneNumber, null,
+                        smsManager.divideMessage(message), null, null
+                    )
+                    return@launch
+                }
 
                 val smsAttributes = device.attributes.filter { it.isChecked && it.isValid() }
 
@@ -166,15 +173,15 @@ class ManageDeviceViewModel internal constructor(
                                 )
                             }
                         }
-                    }
-                } else if (device.messageType == Device.INT_VALUE_FORMAT) {
-                    composeMessage(smsAttributes).forEach { message ->
-                        val md5 = computeMd5(message)
-                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                        smsManager.sendTextMessage(
-                            device.phoneNumber, null, smsMessage,
-                            null, null
-                        )
+                    } else if (device.messageType == Device.INT_VALUE_FORMAT) {
+                        composeMessage(smsAttributes).forEach { message ->
+                            val md5 = computeMd5(message)
+                            val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                            smsManager.sendTextMessage(
+                                device.phoneNumber, null, smsMessage,
+                                null, null
+                            )
+                        }
                     }
                 }
             }

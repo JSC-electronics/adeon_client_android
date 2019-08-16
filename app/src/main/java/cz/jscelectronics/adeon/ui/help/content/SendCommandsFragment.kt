@@ -27,7 +27,7 @@ class SendCommandsFragment : Fragment() {
                 val docsLabel = context.getString(R.string.article_01_bullet_06_text_docs)
                 val urlSpan = URLSpan(DOCUMENTATION_ROOT_URI)
                 val chooseCommandText = SpannableStringBuilder(
-                    context.getString(R.string.article_05_bullet_02_text, docsLabel)
+                    context.getString(R.string.article_05_bullet_03_text, docsLabel)
                 ).apply {
                     var startIdx = this.indexOf(CHECKBOX_PLACEHOLDER)
                     setSpan(
@@ -40,15 +40,15 @@ class SendCommandsFragment : Fragment() {
                         startIdx + docsLabel.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
-                secondBulletPointText.text = chooseCommandText
-                secondBulletPointText.setOnClickListener {
+                thirdBulletPointText.text = chooseCommandText
+                thirdBulletPointText.setOnClickListener {
                     urlSpan.onClick(it)
                 }
 
                 val sendMessageText = context.getString(R.string.send_sms_button)
                 val clickOnSendButtonText = SpannableStringBuilder(
                     context.getString(
-                        R.string.article_05_bullet_03_text,
+                        R.string.article_05_bullet_04_text,
                         sendMessageText
                     )
                 ).apply {
@@ -58,7 +58,7 @@ class SendCommandsFragment : Fragment() {
                         startIdx + sendMessageText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
-                thirdBulletPointText.text = clickOnSendButtonText
+                fourthBulletPointText.text = clickOnSendButtonText
             }
         }
         return binding.root

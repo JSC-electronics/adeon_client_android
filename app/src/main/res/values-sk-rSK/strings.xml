@@ -32,6 +32,7 @@
     <string name="command_type">Typ príkazu</string>
     <string name="plain_text_type">Textový</string>
     <string name="checkbox_info">Zaškrtnite, prosím, všetky príkazy, ktoré chcete poslať.</string>
+    <string name="checkbox_tap_info">Klepnite na príkaz, ktorý chcete poslať.</string>
     <string name="command_description">Popis príkazu</string>
     <string name="command_no_description">Príkaz bez názvu</string>
     <string name="change_device_image">Zmeniť obrázok zariadenia</string>
@@ -98,10 +99,11 @@
     <string name="article_04_note_text">Poznámka:</string>
     <string name="article_05_bullet_01_text">Vyberte zariadenie klepnutím na príslušné pole v zozname zariadení. Otvorí sa stránka so zoznamom definovaných parametrov.
     </string>
-    <string name="article_05_bullet_02_text">Pomocou zaškrtávacieho políčka [CHECKBOX] vyberte príkaz (alebo príkazy),
+    <string name="article_05_bullet_02_text">Klepnite v zozname na príkaz, ktorý chcete odoslať, pokiaľ ide o textový príkaz.</string>
+    <string name="article_05_bullet_03_text">V opačnom prípade, pomocou zaškrtávacieho políčka [CHECKBOX] vyberte parametrický príkaz (alebo príkazy),
         ktoré sa odošlú do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).
     </string>
-    <string name="article_05_bullet_03_text">Klepnite na tlačidlo %s.</string>
+    <string name="article_05_bullet_04_text">Klepnite na tlačidlo %s.</string>
     <string name="help_menu_action_about">Informácie o verzii</string>
     <string name="help_menu_action_licenses">Licencie open source</string>
     <string name="app_version">Verzia %s</string>
