@@ -85,6 +85,23 @@
                     app:layout_constraintTop_toBottomOf="@+id/second_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/fourth_bullet_point_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fourth_bullet_point"
+                    app:layout_constraintBaseline_toBaselineOf="@id/fourth_bullet_point_text"
+                    app:layout_constraintEnd_toStartOf="@+id/listGuideline" android:layout_marginEnd="@dimen/help_bullet_point_end_offset"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/article_05_bullet_04_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fourth_bullet_point_text"
+                    app:layout_constraintStart_toEndOf="@+id/listGuideline" android:layout_marginStart="@dimen/help_article_text_start_offset"
+                    app:layout_constraintTop_toBottomOf="@+id/third_bullet_point_text" android:layout_marginTop="@dimen/help_article_top_offset"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/help_article_text_end_offset"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
