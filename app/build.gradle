@@ -61,6 +61,8 @@ dependencies {
     implementation "cz.jscelectronics.phonefield:phone-field:$rootProject.phoneFieldVersion"
     implementation "com.google.android.gms:play-services-oss-licenses:$rootProject.ossLicensesLibrary"
     implementation "com.github.AppIntro:AppIntro:$rootProject.appIntroVersion"
+    implementation "com.android.billingclient:billing:$rootProject.billingVersion"
+
 
     // Testing dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
