@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/devices_fragment"
-        android:icon="@drawable/ic_devices"
-        android:title="@string/my_devices_title"/>
-    <item
-        android:id="@+id/help_fragment"
-        android:icon="@drawable/ic_outline_help_outline_24px"
-        android:title="@string/help_and_feedback_title"/>
+    <group android:id="@+id/devices">
+        <item
+                android:id="@+id/devices_fragment"
+                android:icon="@drawable/ic_devices"
+                android:title="@string/my_devices_title"/>
+    </group>
+
+    <group android:id="@+id/configuration">
+        <item android:title="@string/configuration">
+            <menu>
+                <item
+                        android:id="@+id/action_import"
+                        android:icon="@drawable/ic_import_24dp"
+                        android:title="@string/import_configuration_short"/>
+
+                <item
+                        android:id="@+id/action_export"
+                        android:icon="@drawable/ic_export_24dp"
+                        android:title="@string/export_configuration_short"/>
+
+                <item
+                        android:id="@+id/action_delete"
+                        android:icon="@drawable/ic_delete_black_24dp"
+                        android:title="@string/delete_configuration_short"/>
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/settings_and_help">
+        <item
+            android:id="@+id/help_fragment"
+            android:icon="@drawable/ic_outline_help_outline_24px"
+            android:title="@string/help_and_feedback_title"/>
+    </group>
 
 </menu>

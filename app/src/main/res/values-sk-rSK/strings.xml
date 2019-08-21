@@ -123,4 +123,7 @@
     <string name="intro_page5_title">Pre vývojárov.</string>
     <string name="sim_icon_content_description">Ikona SIM</string>
     <string name="location_icon">Ikona umiestnenia</string>
+    <string name="configuration">Konfigurácia</string>
+    <string name="export_configuration_short">Exportovať</string>
+    <string name="import_configuration_short">Importovať</string>
 </resources>

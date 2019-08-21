@@ -132,7 +132,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             messageText = null
 
             val direction =
-                SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                SendSmsFragmentDirections.actionGlobalDeviceList()
             layout.findNavController().navigate(direction)
             if (interstitialAd.isLoaded) {
                 interstitialAd.show()

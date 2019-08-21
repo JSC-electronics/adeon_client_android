@@ -108,7 +108,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                     manageDeviceViewModel.addOrUpdateDevice()
                     view.hideSoftKeyboard()
                     val direction =
-                        AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
+                        AddDeviceFragmentDirections.actionGlobalDeviceList()
                     view.findNavController().navigate(direction)
                 }
             }
