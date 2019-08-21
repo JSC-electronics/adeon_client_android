@@ -1,9 +1,19 @@
+import org.ajoberstar.grgit.Grgit
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+/**
+ * Extract Git commit hash of HEAD with number of changed files
+ */
+def getGitHashVersionName = {
+    def git = Grgit.open()
+    return git.head().abbreviatedId
+}
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -15,7 +25,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 4
-        versionName "1.0.0-beta02"
+        versionName "1.0.0-beta03-${getGitHashVersionName()}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true
