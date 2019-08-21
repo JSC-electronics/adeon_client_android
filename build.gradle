@@ -11,6 +11,7 @@ buildscript {
         // App dependencies
         appIntroVersion = '6.0.0-alpha3'
         cardViewVersion = '1.0.0'
+        billingVersion = '2.0.3'
         circleImageViewVersion = '3.0.0'
         constraintLayoutVersion = '2.0.0-beta2'
         coroutinesVersion = "1.1.1"
