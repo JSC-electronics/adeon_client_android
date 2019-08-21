@@ -3,7 +3,7 @@
 
     <group android:id="@+id/devices">
         <item
-                android:id="@+id/devices_fragment"
+                android:id="@+id/device_list_fragment"
                 android:icon="@drawable/ic_devices"
                 android:title="@string/my_devices_title"/>
     </group>

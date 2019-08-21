@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment), drawerLayout)
 
         // Set up ActionBar
         setSupportActionBar(binding.toolbar)
