@@ -8,7 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
@@ -53,7 +53,7 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
 
         val context = context ?: return binding.root
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
-        viewModel = ViewModelProviders.of(this, factory).get(DeviceListViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(DeviceListViewModel::class.java)
 
         layout = binding.devices
         val adapter = DeviceAdapter(viewModel)

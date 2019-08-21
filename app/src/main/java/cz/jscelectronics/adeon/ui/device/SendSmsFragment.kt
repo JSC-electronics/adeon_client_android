@@ -10,9 +10,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
@@ -52,7 +51,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProviders.of(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel

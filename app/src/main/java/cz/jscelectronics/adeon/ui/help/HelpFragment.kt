@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpBinding
-import cz.jscelectronics.adeon.ui.device.dialogs.ImageCaptureDialogFragment
 import cz.jscelectronics.adeon.ui.help.content.dialogs.AboutDialogFragment
 
 
@@ -87,7 +86,7 @@ class HelpFragment : Fragment() {
             }
             R.id.action_licences -> {
                 startActivity(Intent(this.context, OssLicensesMenuActivity::class.java))
-                OssLicensesMenuActivity.setActivityTitle(getString(R.string.help_menu_action_licenses));
+                OssLicensesMenuActivity.setActivityTitle(getString(R.string.help_menu_action_licenses))
                 return true
             }
             else -> super.onOptionsItemSelected(item)
