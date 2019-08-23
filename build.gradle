@@ -27,7 +27,7 @@ buildscript {
         lifecycleVersion = '2.2.0-alpha03'
         materialVersion = '1.0.0'
         multiDexLibraryVersion = '2.0.1'
-        navigationVersion = '1.0.0'
+        navigationVersion = '2.2.0-alpha01'
         ossLicensesLibrary = '17.0.0'
         ossLicensesPlugin = '0.9.5'
         phoneFieldVersion = '0.1.4'
@@ -45,7 +45,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
         classpath "org.ajoberstar.grgit:grgit-gradle:$grgitVersion"
         // NOTE: Do not place your application dependencies here; they belong
