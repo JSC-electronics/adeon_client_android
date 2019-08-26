@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import cz.jscelectronics.adeon.R
 
-class ImportDialogFragment(private val fragment: Fragment) : DialogFragment() {
+class WipeDialogFragment(private val fragment: Fragment) : DialogFragment() {
 
     internal lateinit var listener: OnDialogClickListener
 
@@ -28,9 +28,9 @@ class ImportDialogFragment(private val fragment: Fragment) : DialogFragment() {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
                 .setTitle(R.string.warning)
-                .setMessage(R.string.import_overwrite_msg)
+                .setMessage(R.string.wipe_msg)
                 .setPositiveButton(
-                    R.string.import_btn_label
+                    R.string.wipe_btn_label
                 ) { _, _ ->
                     listener.onDialogPositiveClick(this)
                 }

@@ -53,11 +53,15 @@
     <string name="import_configuration">Import configuration</string>
     <string name="export_configuration_short">Export</string>
     <string name="export_configuration">Export configuration</string>
-    <string name="delete_configuration_short" translatable="false">@string/delete</string>
+    <string name="wipe_configuration_short">Wipe</string>
     <string name="warning">Warning</string>
     <string name="import_overwrite_msg">Existing configuration will be overwritten! Do you want to continue?</string>
     <string name="import_btn_label">Import</string>
+    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
+    <string name="wipe_msg">All your device profiles will be erased and cannot be recovered! Do you want to continue?</string>
+    <string name="configuration_wiped">Configuration has been wiped.</string>
     <string name="nothing_to_export">There is nothing to export! Please add some devices first.</string>
+    <string name="nothing_to_wipe">Your configuration is already empty!</string>
     <string name="content_desc_delete">Delete icon</string>
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>

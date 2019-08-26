@@ -131,6 +131,15 @@ class DeviceListViewModel internal constructor(
         }
     }
 
+    fun wipeConfiguration(view: View) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                deviceRepository.deleteAllDevices(context.contentResolver)
+                Snackbar.make(view, R.string.configuration_wiped, Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
+
     override fun onSwiped(viewholder: RecyclerView.ViewHolder, position: Int) {
         deviceList.value?.let {
             deleteDeviceWithUndo(it[position], viewholder.itemView)

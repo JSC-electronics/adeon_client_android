@@ -44,6 +44,7 @@
     <string name="import_overwrite_msg">Existujúca konfigurácia bude prepísaná! Chcete pokračovať?</string>
     <string name="import_btn_label">Importovať</string>
     <string name="nothing_to_export">Nie je čo exportovať! Najprv pridajte nejaké zariadenie.</string>
+    <string name="nothing_to_wipe">Vaša konfigurácia už je prázdna!</string>
     <string name="content_desc_delete">Ikona pre vymazanie</string>
     <string name="delete">Vymazať</string>
     <string name="undo">Späť</string>
@@ -126,4 +127,7 @@
     <string name="configuration">Konfigurácia</string>
     <string name="export_configuration_short">Exportovať</string>
     <string name="import_configuration_short">Importovať</string>
+    <string name="wipe_configuration_short">Vymazať</string>
+    <string name="wipe_msg">Všetky vaše profily zariadení budú vymazané a nebude možné ich obnoviť! Chcete pokračovať?</string>
+    <string name="configuration_wiped">Konfigurácia bola vymazaná.</string>
 </resources>
