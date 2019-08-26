@@ -37,6 +37,8 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
         const val REQUEST_GALLERY_IMAGE = 2
+
+        private const val IMAGE_CAPTURE_DIALOG_TAG = "Image Capture Dialog"
     }
 
     private lateinit var layout: CoordinatorLayout
@@ -116,7 +118,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
         binding.deviceImage.setOnClickListener {
             this.fragmentManager?.let {
-                ImageCaptureDialogFragment(this).show(it, "Image Select Dialog")
+                val dialog = ImageCaptureDialogFragment()
+                dialog.setTargetFragment(this, 0)
+                dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
             }
         }
 

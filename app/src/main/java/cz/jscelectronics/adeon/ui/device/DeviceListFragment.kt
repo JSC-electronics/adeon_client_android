@@ -119,7 +119,9 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     private fun importConfiguration() {
         if (!viewModel.getDevices().value.isNullOrEmpty()) {
             this.fragmentManager?.let { manager ->
-                ImportDialogFragment(this).show(manager, IMPORT_DIALOG_TAG)
+                val importDialog = ImportDialogFragment()
+                importDialog.setTargetFragment(this, 0)
+                importDialog.show(manager, IMPORT_DIALOG_TAG)
             }
         } else {
             readConfiguration()
@@ -166,7 +168,9 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     private fun deleteConfiguration() {
         if (!viewModel.getDevices().value.isNullOrEmpty()) {
             this.fragmentManager?.let { manager ->
-                WipeDialogFragment(this).show(manager, WIPE_DIALOG_TAG)
+                val wipeDialog = WipeDialogFragment()
+                wipeDialog.setTargetFragment(this, 0)
+                wipeDialog.show(manager, WIPE_DIALOG_TAG)
             }
         } else {
             Snackbar.make(layout, R.string.nothing_to_wipe, Snackbar.LENGTH_LONG).show()
