@@ -112,6 +112,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
                     R.id.action_delete -> deleteConfiguration()
                 }
             }
+            arguments?.clear()
         })
     }
 

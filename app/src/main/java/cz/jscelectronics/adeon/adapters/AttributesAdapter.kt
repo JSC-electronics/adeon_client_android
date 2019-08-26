@@ -96,8 +96,8 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                     }
                 }
 
-                if (!adapter.isEditMode && item.containsPlainText()) {
-                    viewForeground.setOnClickListener {
+                if (!adapter.isEditMode && !item.containsNameValuePair()) {
+                    fab.setOnClickListener {
                         adapter.listener?.onClicked(item)
                     }
                 }
