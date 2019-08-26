@@ -60,6 +60,8 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
     val uriHandler = ImageUriHandler()
 
+    private var attributesCopy: List<Attribute>? = null
+
     // For Singleton instantiation
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
@@ -78,6 +80,8 @@ class ManageDeviceViewModel internal constructor(
             }
 
             attributesAdapter?.submitList(device.attributes.toList())
+
+            attributesCopy = device.attributes.map { it.copy() }.toList()
         }
     }
 
@@ -138,13 +142,25 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun addOrUpdateDevice() {
+    fun addOrUpdateDevice(updateCheckFlagsOnly: Boolean = false) {
         viewModelScope.launch {
             device.value?.let { device ->
                 if (deviceId == null) {
                     deviceRepository.addDevice(device)
                 } else {
-                    deviceRepository.updateDevice(device)
+                    if (updateCheckFlagsOnly) {
+                        attributesCopy?.let {
+                            var index = 0
+                            while (index < it.size) {
+                                it[index].isChecked = device.attributes[index].isChecked
+                                index++
+
+                                device.attributes = it
+                            }
+                        }
+                    } else {
+                        deviceRepository.updateDevice(device)
+                    }
                 }
             }
         }
@@ -166,7 +182,7 @@ class ManageDeviceViewModel internal constructor(
 
                 if (smsAttributes.isNotEmpty()) {
                     // Store which attributes are checked
-                    addOrUpdateDevice()
+                    addOrUpdateDevice(true)
 
                     if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
                         smsAttributes.forEach {
