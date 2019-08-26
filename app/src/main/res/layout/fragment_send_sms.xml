@@ -124,7 +124,7 @@
                         app:layout_constraintStart_toEndOf="@+id/simIcon"/>
 
                 <TextView
-                        android:text="@string/attributes"
+                        android:text="@string/commands"
                         android:layout_width="match_parent"
                         android:textAlignment="viewStart"
                         android:layout_height="wrap_content"

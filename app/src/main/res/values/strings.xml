@@ -14,7 +14,7 @@
     <string name="phone_hint">Device phone number</string>
     <string name="invalid_phone_number">Please enter a valid phone number.</string>
     <string name="invalid_device_name">Device name should not be empty!</string>
-    <string name="attribute_value_out_of_range">Not in range 0–65535!</string>
+    <string name="command_value_out_of_range">Not in range 0–65535!</string>
     <string name="invalid_defined_commands">Some of the defined commands are invalid!</string>
     <string name="no_defined_command_error">No command was defined!</string>
 
@@ -26,12 +26,12 @@
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
-    <string name="attributes">Defined commands</string>
+    <string name="commands">Defined commands</string>
     <string name="send_command_title">Send command</string>
     <string name="send_sms_button" translatable="false">@string/send_command_title</string>
 
-    <string name="attribute_name">Name</string>
-    <string name="attribute_value">Value</string>
+    <string name="command_name">Name</string>
+    <string name="command_value">Value</string>
     <string name="command_description">Command description</string>
     <string name="command_no_description">Unnamed command</string>
     <string name="command_text">Command text</string>
@@ -159,6 +159,7 @@
     <string name="sim_icon_content_description">SIM icon</string>
     <string name="location_icon">Location icon</string>
     <string name="configuration">Configuration</string>
+    <string name="invalid_command_value">Invalid command value!</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

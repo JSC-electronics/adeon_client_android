@@ -13,12 +13,12 @@
     <string name="edit_device_title">Upravit zařízení</string>
     <string name="action_duplicate">Duplikovat</string>
     <string name="action_remove_device">Vymazat zařízení</string>
-    <string name="attributes">Definované příkazy</string>
-    <string name="attribute_name">Název</string>
-    <string name="attribute_value">Hodnota</string>
+    <string name="commands">Definované příkazy</string>
+    <string name="command_name">Název</string>
+    <string name="command_value">Hodnota</string>
     <string name="save_changes_button">Uložit změny</string>
     <string name="invalid_device_name">Název zařízení nesmí být prázdný!</string>
-    <string name="attribute_value_out_of_range">Není v rozsahu 0–65535!</string>
+    <string name="command_value_out_of_range">Není v rozsahu 0–65535!</string>
     <string name="invalid_defined_commands">Některé definované příkazy jsou neplatné!</string>
     <string name="send_command_title">Odeslat příkaz</string>
     <string name="no_defined_command_error">Nebyl definován žádný příkaz!</string>
@@ -115,4 +115,5 @@
     <string name="wipe_configuration_short">Vymazat</string>
     <string name="wipe_msg">Všechny vaše profily zařízení budou vymazány a nebude možné je obnovit! Chcete pokračovat?</string>
     <string name="configuration_wiped">Konfigurace byla vymazána.</string>
+    <string name="invalid_command_value">Neplatná hodnota příkazu!</string>
 </resources>

@@ -111,6 +111,10 @@ class ManageDeviceViewModel internal constructor(
         return device.value?.attributes?.any { it.isChecked } ?: false
     }
 
+    fun areAttributesCheckedAndValid(): Boolean {
+        return device.value?.attributes?.none { it.isChecked && !it.isValid() } ?: true
+    }
+
     fun setMessageType(messageType: Int, refreshAttributes: Boolean = true) {
         viewModelScope.launch {
             attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)

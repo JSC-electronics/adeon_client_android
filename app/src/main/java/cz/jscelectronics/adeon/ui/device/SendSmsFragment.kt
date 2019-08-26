@@ -127,6 +127,12 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
 
     private fun sendSmsMessage() {
         if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
+
+            if (!manageDeviceViewModel.areAttributesCheckedAndValid()) {
+                Snackbar.make(layout, getString(R.string.invalid_command_value), Snackbar.LENGTH_LONG).show()
+                return
+            }
+
             manageDeviceViewModel.sendSmsMessage(messageText)
             messageText = null
 

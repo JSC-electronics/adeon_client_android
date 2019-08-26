@@ -65,7 +65,7 @@
                         android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/attribute_value" app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="8dp"
-                        android:hint="@string/attribute_name">
+                        android:hint="@string/command_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name_edit_text"
@@ -89,7 +89,7 @@
                         android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="8dp"
-                        android:hint="@string/attribute_value">
+                        android:hint="@string/command_value">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/value_edit_text"
