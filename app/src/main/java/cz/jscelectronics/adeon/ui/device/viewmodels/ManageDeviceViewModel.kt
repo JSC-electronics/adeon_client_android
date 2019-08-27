@@ -286,10 +286,6 @@ class ManageDeviceViewModel internal constructor(
 
         @Bindable
         fun setUri(uri: Uri?) {
-            currentUri?.let {
-                deleteImage(it)
-            }
-
             currentUri = uri
 
             device.value?.let {

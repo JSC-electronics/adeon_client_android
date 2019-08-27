@@ -184,13 +184,6 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
     override fun onPause() {
         layout.hideSoftKeyboard()
-
-        // If we don't save the device, it will stay in inconsistent state. Old device image was
-        // already replaced and removed. We need to store reference to the new one.
-        if (manageDeviceViewModel.uriHandler.isDeviceImageChanged() && manageDeviceViewModel.isEditingDevice()) {
-            manageDeviceViewModel.addOrUpdateDevice()
-        }
-
         super.onPause()
     }
 
