@@ -137,7 +137,7 @@
 
     <!-- Help article 05 -->
     <string name="article_05_bullet_01_text">Select a device by tapping on the specific item in the device list. A page with a list of defined commands will show up.</string>
-    <string name="article_05_bullet_02_text">Tap on a command from the list you\'d like to send, if it\'s a plain text command.</string>
+    <string name="article_05_bullet_02_text">If you want to send a text command, inside a list, tap on a [SEND_COMMAND] button under this command.</string>
     <string name="article_05_bullet_03_text">Otherwise, use checkbox [CHECKBOX] to choose parametric command (or commands), which will be sent
         into device over the cellular network (see the %s for more information).
     </string>

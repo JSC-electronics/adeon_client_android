@@ -154,13 +154,13 @@ class ManageDeviceViewModel internal constructor(
                             while (index < it.size) {
                                 it[index].isChecked = device.attributes[index].isChecked
                                 index++
-
-                                device.attributes = it
                             }
+
+                            device.attributes = it
                         }
-                    } else {
-                        deviceRepository.updateDevice(device)
                     }
+
+                    deviceRepository.updateDevice(device)
                 }
             }
         }

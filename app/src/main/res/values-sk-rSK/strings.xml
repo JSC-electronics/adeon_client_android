@@ -100,7 +100,7 @@
     <string name="article_04_note_text">Poznámka:</string>
     <string name="article_05_bullet_01_text">Vyberte zariadenie klepnutím na príslušné pole v zozname zariadení. Otvorí sa stránka so zoznamom definovaných parametrov.
     </string>
-    <string name="article_05_bullet_02_text">Klepnite v zozname na príkaz, ktorý chcete odoslať, pokiaľ ide o textový príkaz.</string>
+    <string name="article_05_bullet_02_text">Pokiaľ chcete odoslať textový príkaz, klepnite v zozname na tlačidlo [SEND_COMMAND] pod týmto príkazom.</string>
     <string name="article_05_bullet_03_text">V opačnom prípade, pomocou zaškrtávacieho políčka [CHECKBOX] vyberte parametrický príkaz (alebo príkazy),
         ktoré sa odošlú do zariadenia cez mobilnú sieť (pre viac informácií si pozrite %s).
     </string>
