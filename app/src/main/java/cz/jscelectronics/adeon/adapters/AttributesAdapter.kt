@@ -73,7 +73,7 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                         value?.let {
                             if (it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
                                 attributeValue.error =
-                                    binding.root.context.getString(R.string.attribute_value_out_of_range)
+                                    binding.root.context.getString(R.string.command_value_out_of_range)
                             } else {
                                 attributeValue.error = null
                             }
@@ -96,8 +96,8 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                     }
                 }
 
-                if (!adapter.isEditMode && item.containsPlainText()) {
-                    viewForeground.setOnClickListener {
+                if (!adapter.isEditMode && !item.containsNameValuePair()) {
+                    fab.setOnClickListener {
                         adapter.listener?.onClicked(item)
                     }
                 }

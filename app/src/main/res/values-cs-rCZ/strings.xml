@@ -13,12 +13,12 @@
     <string name="edit_device_title">Upravit zařízení</string>
     <string name="action_duplicate">Duplikovat</string>
     <string name="action_remove_device">Vymazat zařízení</string>
-    <string name="attributes">Definované příkazy</string>
-    <string name="attribute_name">Název</string>
-    <string name="attribute_value">Hodnota</string>
+    <string name="commands">Definované příkazy</string>
+    <string name="command_name">Název</string>
+    <string name="command_value">Hodnota</string>
     <string name="save_changes_button">Uložit změny</string>
     <string name="invalid_device_name">Název zařízení nesmí být prázdný!</string>
-    <string name="attribute_value_out_of_range">Není v rozsahu 0–65535!</string>
+    <string name="command_value_out_of_range">Není v rozsahu 0–65535!</string>
     <string name="invalid_defined_commands">Některé definované příkazy jsou neplatné!</string>
     <string name="send_command_title">Odeslat příkaz</string>
     <string name="no_defined_command_error">Nebyl definován žádný příkaz!</string>
@@ -43,6 +43,7 @@
     <string name="import_overwrite_msg">Existující konfigurace bude přepsána! Přejete si pokračovat?</string>
     <string name="import_btn_label">Importovat</string>
     <string name="nothing_to_export">Není co exportovat! Nejprve přidejte nějaké zařízení.</string>
+    <string name="nothing_to_wipe">Vaše konfigurace je již prázdná!</string>
     <string name="content_desc_delete">Ikona pro smazání</string>
     <string name="delete">Smazat</string>
     <string name="undo">Zpět</string>
@@ -84,7 +85,7 @@
     <string name="article_04_bullet_04_text">Vyberte vyexportovaný konfigurační soubor (soubor typu .txt)</string>
     <string name="article_04_bullet_03_text">Pokuď máte nějaké zařízení už přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztrátu aktuálního nastavení.</string>
     <string name="article_05_bullet_01_text">Vyberte zařízení klepnutím na příslušné pole v seznamu Moje zařízení. Otevře se stránka se seznamem definovaných příkazů.</string>
-    <string name="article_05_bullet_02_text">Poklepejte v seznamu na příkaz, který chcete odeslat, pokud se jedná o textový příkaz.</string>
+    <string name="article_05_bullet_02_text">Pokud chcete odeslat textový příkaz, poklepejte v seznamu na tlačítko [SEND_COMMAND] pod tímto příkazem.</string>
     <string name="article_05_bullet_03_text">V opačném případě, pomocí zaškrtávacího políčka [CHECKBOX] vyberte parametrický příkaz (nebo příkazy),
         které se odešlou do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
     <string name="article_05_bullet_04_text">Klepněte na tlačítko %s.</string>
@@ -107,4 +108,11 @@
     <string name="intro_page5_title">Pro vývojáře.</string>
     <string name="sim_icon_content_description">Ikona SIM</string>
     <string name="location_icon">Ikona umístění</string>
+    <string name="configuration">Konfigurace</string>
+    <string name="export_configuration_short">Exportovat</string>
+    <string name="import_configuration_short">Importovat</string>
+    <string name="wipe_configuration_short">Vymazat</string>
+    <string name="wipe_msg">Všechny vaše profily zařízení budou vymazány a nebude možné je obnovit! Chcete pokračovat?</string>
+    <string name="configuration_wiped">Konfigurace byla vymazána.</string>
+    <string name="invalid_command_value">Neplatná hodnota příkazu!</string>
 </resources>

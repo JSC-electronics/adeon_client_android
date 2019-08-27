@@ -62,6 +62,8 @@ class ManageDeviceViewModel internal constructor(
     else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
     val uriHandler = ImageUriHandler()
 
+    private var attributesCopy: List<Attribute>? = null
+
     // For Singleton instantiation
     @Volatile
     private var attributesAdapter: AttributesAdapter? = null
@@ -80,6 +82,8 @@ class ManageDeviceViewModel internal constructor(
             }
 
             attributesAdapter?.submitList(device.attributes.toList())
+
+            attributesCopy = device.attributes.map { it.copy() }.toList()
         }
     }
 
@@ -113,6 +117,10 @@ class ManageDeviceViewModel internal constructor(
         return device.value?.attributes?.any { it.isChecked } ?: false
     }
 
+    fun areAttributesCheckedAndValid(): Boolean {
+        return device.value?.attributes?.none { it.isChecked && !it.isValid() } ?: true
+    }
+
     fun setMessageType(messageType: Int, refreshAttributes: Boolean = true) {
         viewModelScope.launch {
             attributesAdapter?.setAttributeFormat(messageType == Device.PLAIN_TEXT_FORMAT)
@@ -136,12 +144,24 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun addOrUpdateDevice() {
+    fun addOrUpdateDevice(updateCheckFlagsOnly: Boolean = false) {
         viewModelScope.launch {
             device.value?.let { device ->
                 if (deviceId == null) {
                     deviceRepository.addDevice(device)
                 } else {
+                    if (updateCheckFlagsOnly) {
+                        attributesCopy?.let {
+                            var index = 0
+                            while (index < it.size) {
+                                it[index].isChecked = device.attributes[index].isChecked
+                                index++
+                            }
+
+                            device.attributes = it
+                        }
+                    }
+
                     deviceRepository.updateDevice(device)
                 }
             }
@@ -167,7 +187,7 @@ class ManageDeviceViewModel internal constructor(
 
                 if (smsAttributes.isNotEmpty()) {
                     // Store which attributes are checked
-                    addOrUpdateDevice()
+                    addOrUpdateDevice(true)
 
                     if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
                         // TODO: Allow user to select only one attribute
@@ -278,10 +298,6 @@ class ManageDeviceViewModel internal constructor(
 
         @Bindable
         fun setUri(uri: Uri?) {
-            currentUri?.let {
-                deleteImage(it)
-            }
-
             currentUri = uri
 
             device.value?.let {

@@ -8,7 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
@@ -17,13 +17,15 @@ import cz.jscelectronics.adeon.adapters.DeviceAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
 import cz.jscelectronics.adeon.ui.device.dialogs.ImportDialogFragment
+import cz.jscelectronics.adeon.ui.device.dialogs.OnDialogClickListener
+import cz.jscelectronics.adeon.ui.device.dialogs.WipeDialogFragment
 import cz.jscelectronics.adeon.ui.device.viewmodels.DeviceListViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener {
+class DeviceListFragment : Fragment(), OnDialogClickListener {
 
     companion object {
         // As a workaround for SAF, where JSON MIME type is not supported on some devices,
@@ -33,6 +35,9 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         private const val DEFAULT_CONFIG_NAME_TEMPLATE = "adeon_config_%s.txt"
         private const val READ_CONFIG_REQUEST_CODE: Int = 42
         private const val WRITE_CONFIG_REQUEST_CODE: Int = 43
+
+        private const val IMPORT_DIALOG_TAG = "Import Dialog"
+        private const val WIPE_DIALOG_TAG = "Wipe Dialog"
     }
 
     private lateinit var viewModel: DeviceListViewModel
@@ -53,7 +58,7 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
 
         val context = context ?: return binding.root
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
-        viewModel = ViewModelProviders.of(this, factory).get(DeviceListViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(DeviceListViewModel::class.java)
 
         layout = binding.devices
         val adapter = DeviceAdapter(viewModel)
@@ -80,23 +85,11 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_import -> {
-                if (!viewModel.getDevices().value.isNullOrEmpty()) {
-                    this.fragmentManager?.let { manager ->
-                        ImportDialogFragment(this).show(manager, "Import Dialog")
-                    }
-                } else {
-                    readConfiguration()
-                }
-
+                importConfiguration()
                 return true
             }
             R.id.action_export -> {
-                if (!viewModel.getDevices().value.isNullOrEmpty()) {
-                    writeConfiguration()
-                } else {
-                    Snackbar.make(layout, R.string.nothing_to_export, Snackbar.LENGTH_LONG).show()
-                }
-
+                exportConfiguration()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -111,11 +104,28 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
             } else {
                 binding.hasDevices = false
             }
+
+            arguments?.getInt("action")?.let { action ->
+                when (action) {
+                    R.id.action_import -> importConfiguration()
+                    R.id.action_export -> exportConfiguration()
+                    R.id.action_delete -> deleteConfiguration()
+                }
+            }
+            arguments?.clear()
         })
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        readConfiguration()
+    private fun importConfiguration() {
+        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+            this.fragmentManager?.let { manager ->
+                val importDialog = ImportDialogFragment()
+                importDialog.setTargetFragment(this, 0)
+                importDialog.show(manager, IMPORT_DIALOG_TAG)
+            }
+        } else {
+            readConfiguration()
+        }
     }
 
     private fun readConfiguration() {
@@ -127,6 +137,14 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         startActivityForResult(intent,
             READ_CONFIG_REQUEST_CODE
         )
+    }
+
+    private fun exportConfiguration() {
+        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+            writeConfiguration()
+        } else {
+            Snackbar.make(layout, R.string.nothing_to_export, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun writeConfiguration() {
@@ -147,6 +165,18 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
         )
     }
 
+    private fun deleteConfiguration() {
+        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+            this.fragmentManager?.let { manager ->
+                val wipeDialog = WipeDialogFragment()
+                wipeDialog.setTargetFragment(this, 0)
+                wipeDialog.show(manager, WIPE_DIALOG_TAG)
+            }
+        } else {
+            Snackbar.make(layout, R.string.nothing_to_wipe, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
@@ -161,6 +191,13 @@ class DeviceListFragment : Fragment(), ImportDialogFragment.ImportDialogListener
                     }
                 }
             }
+        }
+    }
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        when (dialog) {
+            is ImportDialogFragment -> readConfiguration()
+            is WipeDialogFragment -> viewModel.wipeConfiguration(layout)
         }
     }
 }

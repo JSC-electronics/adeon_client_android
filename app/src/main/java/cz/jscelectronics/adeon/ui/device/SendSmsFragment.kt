@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -48,7 +48,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProviders.of(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -88,10 +88,16 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
 
     private fun prepareAndSendSms() {
         if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
+            if (!manageDeviceViewModel.areAttributesCheckedAndValid()) {
+                Snackbar.make(layout, getString(R.string.invalid_command_value), Snackbar.LENGTH_LONG).show()
+                return
+            }
+
             manageDeviceViewModel.sendSmsMessage(requireActivity(), messageText)
+            messageText = null
 
             val direction =
-                SendSmsFragmentDirections.actionSendSmsFragmentToDeviceListFragment()
+                SendSmsFragmentDirections.actionGlobalDeviceList()
             layout.findNavController().navigate(direction)
             if (interstitialAd.isLoaded) {
                 interstitialAd.show()
@@ -99,7 +105,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
-
     }
 
     override fun onPause() {

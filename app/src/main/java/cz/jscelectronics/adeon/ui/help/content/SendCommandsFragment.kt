@@ -13,6 +13,7 @@ import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpSendCommandsBinding
 import cz.jscelectronics.adeon.ui.help.CHECKBOX_PLACEHOLDER
 import cz.jscelectronics.adeon.ui.help.DOCUMENTATION_ROOT_URI
+import cz.jscelectronics.adeon.ui.help.SEND_COMMAND_PLACEHOLDER
 import cz.jscelectronics.adeon.ui.widget.CenteredImageSpan
 
 class SendCommandsFragment : Fragment() {
@@ -24,6 +25,16 @@ class SendCommandsFragment : Fragment() {
     ): View? {
         val binding = FragmentHelpSendCommandsBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
+                val sendTextCommand = SpannableStringBuilder(
+                    context.getString(R.string.article_05_bullet_02_text)).apply {
+                    val startIdx = this.indexOf(SEND_COMMAND_PLACEHOLDER)
+                    setSpan(
+                        CenteredImageSpan(context, R.drawable.ic_send_text_command_help_24px, ImageSpan.ALIGN_BASELINE),
+                        startIdx, startIdx + SEND_COMMAND_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                secondBulletPointText.text = sendTextCommand
+
                 val docsLabel = context.getString(R.string.article_01_bullet_06_text_docs)
                 val urlSpan = URLSpan(DOCUMENTATION_ROOT_URI)
                 val chooseCommandText = SpannableStringBuilder(

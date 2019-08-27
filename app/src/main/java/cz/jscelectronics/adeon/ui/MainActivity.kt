@@ -1,18 +1,16 @@
 package cz.jscelectronics.adeon.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import cz.jscelectronics.adeon.R
-import android.content.Intent
 import cz.jscelectronics.adeon.data.PrefManager
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
 import cz.jscelectronics.adeon.ui.intro.IntroActivity
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment), drawerLayout)
 
         // Set up ActionBar
         setSupportActionBar(binding.toolbar)
@@ -47,6 +45,36 @@ class MainActivity : AppCompatActivity() {
 
         // Set up navigation menu
         binding.navigationView.setupWithNavController(navController)
+
+        binding.navigationView.setNavigationItemSelectedListener { item ->
+            val bundle = bundleOf("action" to item.itemId)
+
+            val handled = when(item.itemId) {
+                R.id.action_import -> {
+                    navController.navigate(R.id.device_list_fragment, bundle)
+                    true
+                }
+                R.id.action_export -> {
+                    navController.navigate(R.id.device_list_fragment, bundle)
+                    true
+                }
+                R.id.action_delete -> {
+                    navController.navigate(R.id.device_list_fragment, bundle)
+                    true
+                }
+                else -> {
+                    // Fallback for all other (normal) cases.
+                    NavigationUI.onNavDestinationSelected(item, navController)
+                }
+            }
+
+            // This is usually done by the default ItemSelectedListener.
+            // But there can only be one! Unfortunately.
+            if (handled) binding.drawerLayout.closeDrawer(binding.navigationView)
+
+            // return whether the action was consumed
+            handled
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

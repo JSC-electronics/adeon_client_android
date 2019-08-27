@@ -1,32 +1,17 @@
 package cz.jscelectronics.adeon.ui.device.dialogs
 
 import android.app.Dialog
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import cz.jscelectronics.adeon.R
 
-class ImageCaptureDialogFragment(private val fragment: Fragment) : DialogFragment() {
-
-    internal lateinit var listener: ImageCaptureDialogListener
+class ImageCaptureDialogFragment : DialogFragment() {
 
     interface ImageCaptureDialogListener {
         fun onDialogTakePhotoActionClick(dialog: DialogFragment)
         fun onDialogSelectImageActionClick(dialog: DialogFragment)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            listener = fragment as ImageCaptureDialogListener
-        } catch (e: ClassCastException) {
-            // The fragment doesn't implement the interface, throw exception
-            throw ClassCastException((context.toString() +
-                    " must implement ImageCaptureDialogListener"))
-        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -44,8 +29,14 @@ class ImageCaptureDialogFragment(private val fragment: Fragment) : DialogFragmen
                     // The 'which' argument contains the index position
                     // of the selected item
                     when (which) {
-                        0 -> listener.onDialogSelectImageActionClick(this)
-                        1 -> listener.onDialogTakePhotoActionClick(this)
+                        0 -> {
+                            (targetFragment as ImageCaptureDialogListener)
+                                .onDialogSelectImageActionClick(this)
+                        }
+                        1 -> {
+                            (targetFragment as ImageCaptureDialogListener)
+                                .onDialogTakePhotoActionClick(this)
+                        }
                     }
                 }
                 .setNegativeButton(

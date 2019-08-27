@@ -14,7 +14,7 @@
     <string name="phone_hint">Device phone number</string>
     <string name="invalid_phone_number">Please enter a valid phone number.</string>
     <string name="invalid_device_name">Device name should not be empty!</string>
-    <string name="attribute_value_out_of_range">Not in range 0–65535!</string>
+    <string name="command_value_out_of_range">Not in range 0–65535!</string>
     <string name="invalid_defined_commands">Some of the defined commands are invalid!</string>
     <string name="no_defined_command_error">No command was defined!</string>
 
@@ -26,12 +26,12 @@
     <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicate</string>
     <string name="action_remove_device">Remove device</string>
-    <string name="attributes">Defined commands</string>
+    <string name="commands">Defined commands</string>
     <string name="send_command_title">Send command</string>
     <string name="send_sms_button" translatable="false">@string/send_command_title</string>
 
-    <string name="attribute_name">Name</string>
-    <string name="attribute_value">Value</string>
+    <string name="command_name">Name</string>
+    <string name="command_value">Value</string>
     <string name="command_description">Command description</string>
     <string name="command_no_description">Unnamed command</string>
     <string name="command_text">Command text</string>
@@ -48,12 +48,19 @@
     <string name="change_device_image">Change device image</string>
     <string name="take_photo">Take photo</string>
     <string name="select_image">Select image</string>
+    <string name="import_configuration_short">Import</string>
     <string name="import_configuration">Import configuration</string>
+    <string name="export_configuration_short">Export</string>
     <string name="export_configuration">Export configuration</string>
+    <string name="wipe_configuration_short">Wipe</string>
     <string name="warning">Warning</string>
     <string name="import_overwrite_msg">Existing configuration will be overwritten! Do you want to continue?</string>
     <string name="import_btn_label">Import</string>
+    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
+    <string name="wipe_msg">All your device profiles will be erased and cannot be recovered! Do you want to continue?</string>
+    <string name="configuration_wiped">Configuration has been wiped.</string>
     <string name="nothing_to_export">There is nothing to export! Please add some devices first.</string>
+    <string name="nothing_to_wipe">Your configuration is already empty!</string>
     <string name="content_desc_delete">Delete icon</string>
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>
@@ -129,7 +136,7 @@
 
     <!-- Help article 05 -->
     <string name="article_05_bullet_01_text">Select a device by tapping on the specific item in the device list. A page with a list of defined commands will show up.</string>
-    <string name="article_05_bullet_02_text">Tap on a command from the list you\'d like to send, if it\'s a plain text command.</string>
+    <string name="article_05_bullet_02_text">If you want to send a text command, inside a list, tap on a [SEND_COMMAND] button under this command.</string>
     <string name="article_05_bullet_03_text">Otherwise, use checkbox [CHECKBOX] to choose parametric command (or commands), which will be sent
         into device over the cellular network (see the %s for more information).
     </string>
@@ -150,6 +157,8 @@
     <string name="intro_page5_description">Add support into your embedded device with our open-source library.</string>
     <string name="sim_icon_content_description">SIM icon</string>
     <string name="location_icon">Location icon</string>
+    <string name="configuration">Configuration</string>
+    <string name="invalid_command_value">Invalid command value!</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

@@ -18,7 +18,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
@@ -37,6 +37,8 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
         const val REQUEST_GALLERY_IMAGE = 2
+
+        private const val IMAGE_CAPTURE_DIALOG_TAG = "Image Capture Dialog"
     }
 
     private lateinit var layout: CoordinatorLayout
@@ -53,7 +55,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         }
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProviders.of(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentAddDeviceBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -108,7 +110,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                     manageDeviceViewModel.addOrUpdateDevice()
                     view.hideSoftKeyboard()
                     val direction =
-                        AddDeviceFragmentDirections.actionAddDeviceFragmentToDeviceListFragment()
+                        AddDeviceFragmentDirections.actionGlobalDeviceList()
                     view.findNavController().navigate(direction)
                 }
             }
@@ -116,7 +118,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
         binding.deviceImage.setOnClickListener {
             this.fragmentManager?.let {
-                ImageCaptureDialogFragment(this).show(it, "Image Select Dialog")
+                val dialog = ImageCaptureDialogFragment()
+                dialog.setTargetFragment(this, 0)
+                dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
             }
         }
 
@@ -180,13 +184,6 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
     override fun onPause() {
         layout.hideSoftKeyboard()
-
-        // If we don't save the device, it will stay in inconsistent state. Old device image was
-        // already replaced and removed. We need to store reference to the new one.
-        if (manageDeviceViewModel.uriHandler.isDeviceImageChanged() && manageDeviceViewModel.isEditingDevice()) {
-            manageDeviceViewModel.addOrUpdateDevice()
-        }
-
         super.onPause()
     }
 

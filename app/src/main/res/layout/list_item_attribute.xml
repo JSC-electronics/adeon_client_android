@@ -48,7 +48,7 @@
                         android:id="@+id/attribute_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:isGone="@{isEditMode || showPlainText}"
+                        app:isGone="@{isEditMode || !attribute.containsNameValuePair}"
                         android:checked="@{attribute.checked}"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="8dp"
@@ -65,7 +65,7 @@
                         android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/attribute_value" app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="8dp"
-                        android:hint="@string/attribute_name">
+                        android:hint="@string/command_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name_edit_text"
@@ -89,7 +89,7 @@
                         android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="8dp"
-                        android:hint="@string/attribute_value">
+                        android:hint="@string/command_value">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/value_edit_text"
@@ -154,7 +154,7 @@
                         android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/first_row_barrier"
-                        android:layout_marginTop="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="16dp" app:layout_constraintBottom_toTopOf="@+id/fab"
                         app:counterEnabled="true"
                         app:counterMaxLength="160"
                         app:isGone="@{safeUnbox(!attribute.containsPlainText &amp;&amp; !showPlainText)}"
@@ -174,6 +174,19 @@
                             android:textIsSelectable="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab"
+                        style="@style/Widget.MaterialComponents.FloatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:tint="@android:color/white"
+                        app:isGone="@{isEditMode || attribute.containsNameValuePair}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/ic_send_command" />
 
                 <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"

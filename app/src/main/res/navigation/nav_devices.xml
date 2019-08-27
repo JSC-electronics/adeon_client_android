@@ -2,7 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav"
             app:startDestination="@+id/device_list_fragment">
+
+    <action
+            android:id="@+id/action_global_device_list"
+            app:destination="@id/device_list_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
 
     <fragment
             android:id="@+id/device_list_fragment"
@@ -40,14 +49,6 @@
               android:name="cz.jscelectronics.adeon.ui.device.AddDeviceFragment"
               android:label="@string/add_device_title"
               tools:layout="@layout/fragment_add_device">
-
-        <action
-                android:id="@+id/action_add_device_fragment_to_device_list_fragment"
-                app:destination="@id/device_list_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment android:id="@+id/edit_device_fragment"
@@ -58,14 +59,6 @@
         <argument
                 android:name="deviceId"
                 app:argType="long"/>
-
-        <action
-                android:id="@+id/action_add_device_fragment_to_device_list_fragment"
-                app:destination="@id/device_list_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment android:id="@+id/send_sms_fragment"
@@ -76,14 +69,6 @@
         <argument
                 android:name="deviceId"
                 app:argType="long"/>
-
-        <action
-                android:id="@+id/action_send_sms_fragment_to_device_list_fragment"
-                app:destination="@id/device_list_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment

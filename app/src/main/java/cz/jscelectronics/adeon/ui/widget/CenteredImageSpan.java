@@ -18,16 +18,8 @@ public class CenteredImageSpan extends ImageSpan {
     private int initialDescent = 0;
     private int extraSpace = 0;
 
-    public CenteredImageSpan(Context context, final int drawableRes) {
-        super(context, drawableRes);
-    }
-
-    public CenteredImageSpan(Drawable drawableRes, int verticalAlignment) {
-        super(drawableRes, verticalAlignment);
-    }
-
     public CenteredImageSpan(@NonNull Context context, @DrawableRes int resourceId,
-                     int verticalAlignment) {
+                             int verticalAlignment) {
         super(context, resourceId, verticalAlignment);
     }
 
@@ -37,15 +29,6 @@ public class CenteredImageSpan extends ImageSpan {
                        Paint.FontMetricsInt fm) {
         Drawable d = getCachedDrawable();
         Rect rect = d.getBounds();
-
-//        if (fm != null) {
-//            Paint.FontMetricsInt pfm = paint.getFontMetricsInt();
-//            // keep it the same as paint's fm
-//            fm.ascent = pfm.ascent;
-//            fm.descent = pfm.descent;
-//            fm.top = pfm.top;
-//            fm.bottom = pfm.bottom;
-//        }
 
         if (fm != null) {
             // Centers the text with the ImageSpan
@@ -72,28 +55,14 @@ public class CenteredImageSpan extends ImageSpan {
         Drawable b = getCachedDrawable();
         canvas.save();
 
-//        int drawableHeight = b.getIntrinsicHeight();
-//        int fontAscent = paint.getFontMetricsInt().ascent;
-//        int fontDescent = paint.getFontMetricsInt().descent;
-//        int transY = bottom - b.getBounds().bottom +  // align bottom to bottom
-//                (drawableHeight - fontDescent + fontAscent) / 2;  // align center to center
-
         int transY = bottom - b.getBounds().bottom;
         // this is the key
         transY -= (paint.getFontMetricsInt().descent / 2 - 8);
-
-//        int bCenter = b.getIntrinsicHeight() / 2;
-//        int fontTop = paint.getFontMetricsInt().top;
-//        int fontBottom = paint.getFontMetricsInt().bottom;
-//        int transY = (bottom - b.getBounds().bottom) -
-//                (((fontBottom - fontTop) / 2) - bCenter);
-
 
         canvas.translate(x, transY);
         b.draw(canvas);
         canvas.restore();
     }
-
 
     // Redefined locally because it is a private member from DynamicDrawableSpan
     private Drawable getCachedDrawable() {
