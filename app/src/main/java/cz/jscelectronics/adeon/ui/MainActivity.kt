@@ -62,6 +62,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.device_list_fragment, bundle)
                     true
                 }
+                R.id.action_remove_ads -> {
+                    // TODO: Show app purchase dialog
+                    true
+                }
                 else -> {
                     // Fallback for all other (normal) cases.
                     NavigationUI.onNavDestinationSelected(item, navController)

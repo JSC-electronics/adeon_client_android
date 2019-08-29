@@ -116,4 +116,5 @@
     <string name="wipe_msg">Všechny vaše profily zařízení budou vymazány a nebude možné je obnovit! Chcete pokračovat?</string>
     <string name="configuration_wiped">Konfigurace byla vymazána.</string>
     <string name="invalid_command_value">Neplatná hodnota příkazu!</string>
+    <string name="remove_ads">Odstranit reklamy</string>
 </resources>
