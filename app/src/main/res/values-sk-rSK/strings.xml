@@ -131,4 +131,7 @@
     <string name="wipe_msg">Všetky vaše profily zariadení budú vymazané a nebude možné ich obnoviť! Chcete pokračovať?</string>
     <string name="configuration_wiped">Konfigurácia bola vymazaná.</string>
     <string name="invalid_command_value">Neplatná hodnota príkazu!</string>
+    <string name="remove_ads">Odstrániť reklamy</string>
+    <string name="purchases">Nákupy</string>
+    <string name="purchases_unavailable">Nákupy nie sú vo vašej krajine dostupné.</string>
 </resources>
