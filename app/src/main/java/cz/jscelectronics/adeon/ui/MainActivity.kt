@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment, R.id.makePurchaseFragment), drawerLayout)
 
         // Set up ActionBar
         setSupportActionBar(binding.toolbar)
@@ -60,10 +60,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.action_delete -> {
                     navController.navigate(R.id.device_list_fragment, bundle)
-                    true
-                }
-                R.id.action_remove_ads -> {
-                    // TODO: Show app purchase dialog
                     true
                 }
                 else -> {

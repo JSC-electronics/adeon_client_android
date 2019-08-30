@@ -161,6 +161,8 @@
     <string name="configuration">Configuration</string>
     <string name="invalid_command_value">Invalid command value!</string>
     <string name="remove_ads">Remove advertisements</string>
+    <string name="purchases">Purchases</string>
+    <string name="purchases_unavailable">Purchases are not available in your country.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_image</item>

@@ -3,7 +3,7 @@
 
     <group android:id="@+id/store">
         <item
-                android:id="@+id/action_remove_ads"
+                android:id="@+id/makePurchaseFragment"
                 android:icon="@drawable/ic_no_ads"
                 android:title="@string/remove_ads"/>
     </group>

@@ -153,4 +153,10 @@
             tools:layout="@layout/fragment_help_send_commands">
     </fragment>
 
+    <fragment
+            android:id="@+id/makePurchaseFragment"
+            android:name="cz.jscelectronics.adeon.ui.billing.MakePurchaseFragment"
+            android:label="@string/purchases" tools:layout="@layout/fragment_make_purchase">
+    </fragment>
+
 </navigation>

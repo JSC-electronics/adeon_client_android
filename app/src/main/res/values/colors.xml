@@ -12,4 +12,8 @@
     <color name="help_separator_color">#d7d9dd</color>
 
     <color name="ic_launcher_background">#454545</color>
+
+    <color name="textDisabledHint">#90A4AE</color>
+    <color name="imgDisableHint">#DDDDDD</color>
+    <color name="textColor">#263238</color>
 </resources>
