@@ -29,20 +29,13 @@ class BillingViewModel(application: Application) : AndroidViewModel(application)
 
     private val LOG_TAG = "BillingViewModel"
     private val viewModelScope = CoroutineScope(Job() + Dispatchers.Main)
-    private val repository: BillingRepository
+    private val repository: BillingRepository = BillingRepository.getInstance(application)
 
     init {
-        repository = BillingRepository.getInstance(application)
         repository.startDataSourceConnections()
         noAdvertisementsLiveData = repository.noAdvertisementsLiveData
         inappSkuDetailsListLiveData = repository.inappSkuDetailsListLiveData
     }
-
-    /**
-     * Not used in this sample app. But you may want to force refresh in your own app (e.g.
-     * pull-to-refresh)
-     */
-    fun queryPurchases() = repository.queryPurchasesAsync()
 
     override fun onCleared() {
         super.onCleared()
