@@ -21,6 +21,7 @@ import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
+import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
@@ -36,7 +37,9 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private var messageText: String? = null
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
+    private lateinit var billingViewModel: BillingViewModel
     private lateinit var interstitialAd: InterstitialAd
+    private var disableAdvertisements = false
 
 
     companion object {
@@ -52,6 +55,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
         manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+        billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -87,6 +91,14 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
+
+        billingViewModel.noAdvertisementsLiveData.observe(this, Observer {
+            it?.apply { disableAdvertisements(entitled) }
+        })
+    }
+
+    private fun disableAdvertisements(entitled: Boolean) {
+        disableAdvertisements = entitled
     }
 
     private fun requestSmsPermissions() {
@@ -139,7 +151,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             val direction =
                 SendSmsFragmentDirections.actionGlobalDeviceList()
             layout.findNavController().navigate(direction)
-            if (interstitialAd.isLoaded) {
+            if (!disableAdvertisements && interstitialAd.isLoaded) {
                 interstitialAd.show()
             }
         } else {
