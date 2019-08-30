@@ -18,6 +18,7 @@ import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
+import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
@@ -33,8 +34,8 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private var messageText: String? = null
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
-    private lateinit var interstitialAd: InterstitialAd
-
+    private lateinit var billingViewModel: BillingViewModel
+    private var interstitialAd: InterstitialAd? = null
 
     companion object {
         const val REQUEST_SEND_SMS = 187
@@ -48,7 +49,9 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel =
+            ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+        billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -65,17 +68,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         binding.attributeList.adapter = adapter
 
         subscribeUi()
-        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
-
-        interstitialAd = InterstitialAd(this.requireContext())
-        interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-        interstitialAd.loadAd(AdRequest.Builder().build())
-        interstitialAd.adListener = object : AdListener() {
-            override fun onAdClosed() {
-                interstitialAd.loadAd(AdRequest.Builder().build())
-            }
-        }
-
         return binding.root
     }
 
@@ -84,12 +76,35 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
+
+        billingViewModel.noAdvertisementsLiveData.observe(this, Observer {
+            if (it == null || !it.entitled) {
+                enableAdvertisements()
+            }
+        })
+    }
+
+    private fun enableAdvertisements() {
+        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
+        interstitialAd = InterstitialAd(this.requireContext()).apply {
+            this.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            this.loadAd(AdRequest.Builder().build())
+            this.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    interstitialAd?.loadAd(AdRequest.Builder().build())
+                }
+            }
+        }
     }
 
     private fun prepareAndSendSms() {
         if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
             if (!manageDeviceViewModel.areAttributesCheckedAndValid()) {
-                Snackbar.make(layout, getString(R.string.invalid_command_value), Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    layout,
+                    getString(R.string.invalid_command_value),
+                    Snackbar.LENGTH_LONG
+                ).show()
                 return
             }
 
@@ -99,8 +114,10 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             val direction =
                 SendSmsFragmentDirections.actionGlobalDeviceList()
             layout.findNavController().navigate(direction)
-            if (interstitialAd.isLoaded) {
-                interstitialAd.show()
+            interstitialAd?.apply {
+                if (this.isLoaded) {
+                    this.show()
+                }
             }
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
