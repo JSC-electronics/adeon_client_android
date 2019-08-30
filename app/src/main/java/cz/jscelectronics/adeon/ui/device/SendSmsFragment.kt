@@ -38,9 +38,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
     private lateinit var billingViewModel: BillingViewModel
-    private lateinit var interstitialAd: InterstitialAd
-    private var disableAdvertisements = false
-
+    private var interstitialAd: InterstitialAd? = null
 
     companion object {
         const val REQUEST_SEND_SMS = 187
@@ -54,7 +52,8 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel =
+            ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
         billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
@@ -72,17 +71,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         binding.attributeList.adapter = adapter
 
         subscribeUi()
-        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
-
-        interstitialAd = InterstitialAd(this.requireContext())
-        interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-        interstitialAd.loadAd(AdRequest.Builder().build())
-        interstitialAd.adListener = object : AdListener() {
-            override fun onAdClosed() {
-                interstitialAd.loadAd(AdRequest.Builder().build())
-            }
-        }
-
         return binding.root
     }
 
@@ -93,12 +81,23 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         })
 
         billingViewModel.noAdvertisementsLiveData.observe(this, Observer {
-            it?.apply { disableAdvertisements(entitled) }
+            if (it == null || !it.entitled) {
+                enableAdvertisements()
+            }
         })
     }
 
-    private fun disableAdvertisements(entitled: Boolean) {
-        disableAdvertisements = entitled
+    private fun enableAdvertisements() {
+        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
+        interstitialAd = InterstitialAd(this.requireContext()).apply {
+            this.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            this.loadAd(AdRequest.Builder().build())
+            this.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    interstitialAd?.loadAd(AdRequest.Builder().build())
+                }
+            }
+        }
     }
 
     private fun requestSmsPermissions() {
@@ -109,7 +108,8 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             != PackageManager.PERMISSION_GRANTED
         ) {
 
-            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
+            requestPermissions(
+                arrayOf(Manifest.permission.SEND_SMS),
                 REQUEST_SEND_SMS
             )
         } else {
@@ -127,7 +127,11 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     sendSmsMessage()
                 } else {
-                    Snackbar.make(layout, R.string.sms_permissions_not_granted, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(
+                        layout,
+                        R.string.sms_permissions_not_granted,
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
                 return
             }
@@ -141,7 +145,11 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
 
             if (!manageDeviceViewModel.areAttributesCheckedAndValid()) {
-                Snackbar.make(layout, getString(R.string.invalid_command_value), Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    layout,
+                    getString(R.string.invalid_command_value),
+                    Snackbar.LENGTH_LONG
+                ).show()
                 return
             }
 
@@ -151,8 +159,10 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             val direction =
                 SendSmsFragmentDirections.actionGlobalDeviceList()
             layout.findNavController().navigate(direction)
-            if (!disableAdvertisements && interstitialAd.isLoaded) {
-                interstitialAd.show()
+            interstitialAd?.apply {
+                if (this.isLoaded) {
+                    this.show()
+                }
             }
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
