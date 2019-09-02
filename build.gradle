@@ -30,7 +30,7 @@ buildscript {
         ossLicensesLibrary = '17.0.0'
         ossLicensesPlugin = '0.9.5'
         phoneFieldVersion = '0.1.4'
-        playServicesAddsVersion = '18.2.0'
+        playServicesAddsVersion = '18.1.1'
         recyclerViewVersion = '1.1.0-beta03'
         roomVersion = '2.1.0'
         supportLibraryVersion = '1.1.0-rc01'
