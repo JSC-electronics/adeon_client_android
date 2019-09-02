@@ -88,9 +88,9 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     }
 
     private fun enableAdvertisements() {
-        MobileAds.initialize(this.requireContext(), "ca-app-pub-3940256099942544~3347511713")
+        MobileAds.initialize(this.requireContext(), "ca-app-pub-7647102948654129~2785935234")
         interstitialAd = InterstitialAd(this.requireContext()).apply {
-            this.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            this.adUnitId = "ca-app-pub-7647102948654129/6655848049"
             this.loadAd(AdRequest.Builder().build())
             this.adListener = object : AdListener() {
                 override fun onAdClosed() {
