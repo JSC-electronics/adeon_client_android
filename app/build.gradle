@@ -24,7 +24,7 @@ android {
         applicationId "cz.jscelectronics.adeon"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 8
+        versionCode 9
         versionName "1.0.0-${getGitHashVersionName()}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
