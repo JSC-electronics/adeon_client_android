@@ -10,11 +10,9 @@ fun computeMd5(s: String): String {
         val messageDigest = digest.digest()
 
         // Create Hex String
-        val hexString = StringBuffer()
-        for (i in messageDigest.indices)
-            hexString.append(Integer.toHexString(0xFF and messageDigest[i].toInt()))
-        return hexString.toString()
-
+        return messageDigest.joinToString(separator = "") {
+            String.format("%02X", it)
+        }
     } catch (e: NoSuchAlgorithmException) {
         e.printStackTrace()
     }
