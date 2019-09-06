@@ -83,11 +83,11 @@
     <string name="article_04_note_02_text">Obrázky zařízení nejsou importovány. Přidejte obrázky ručně po každém importu. </string>
     <string name="article_04_note_01_text">Import nahradí aktuální aplikační databázi.</string>
     <string name="article_04_bullet_04_text">Vyberte vyexportovaný konfigurační soubor (soubor typu .txt)</string>
-    <string name="article_04_bullet_03_text">Pokuď máte nějaké zařízení už přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztrátu aktuálního nastavení.</string>
+    <string name="article_04_bullet_03_text">Pokud máte nějaké zařízení už přidané, potvrďte, že chcete pokračovat s importem. Tato akce způsobí ztrátu aktuálního nastavení.</string>
     <string name="article_05_bullet_01_text">Vyberte zařízení klepnutím na příslušné pole v seznamu Moje zařízení. Otevře se stránka se seznamem definovaných příkazů.</string>
     <string name="article_05_bullet_02_text">Pokud chcete odeslat textový příkaz, poklepejte v seznamu na tlačítko [SEND_COMMAND] pod tímto příkazem.</string>
-    <string name="article_05_bullet_03_text">V opačném případě, pomocí zaškrtávacího políčka [CHECKBOX] vyberte parametrický příkaz (nebo příkazy),
-        které se odešlou do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
+    <string name="article_05_bullet_03_text">V opačném případě, pomocí zaškrtávacího políčka [CHECKBOX], vyberte parametrický příkaz (nebo příkazy),
+        který se odešle do zařízení přes mobilní síť (pro více informací si přečtěte %s).</string>
     <string name="article_05_bullet_04_text">Klepněte na tlačítko %s.</string>
     <string name="help_menu_action_about">Informace o verzi</string>
     <string name="help_menu_action_licenses">Licence open source</string>
