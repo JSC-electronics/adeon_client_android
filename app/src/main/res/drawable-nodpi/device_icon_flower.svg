@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46666"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="flower.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="C:\Users\Robert\Bitová mapa.png"
+   inkscape:export-xdpi="25.4"
+   inkscape:export-ydpi="25.4">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.20664229"
+     inkscape:cx="1120.3914"
+     inkscape:cy="1089.6701"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg8"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     units="px" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-161.53334)" />
+  <g
+     id="g969"
+     transform="matrix(0.26458332,0,0,0.26458332,0,-1e-5)">
+    <rect
+       y="0"
+       x="2.1316282e-14"
+       height="512"
+       width="512"
+       id="rect815"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:16.78231621;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g850"
+       transform="translate(2)">
+      <g
+         id="g843">
+        <path
+           id="path933"
+           d="m 254,431 c 82.83333,0 150,-67.16667 150,-150 -82.83333,0 -150,67.16667 -150,150 z"
+           style="fill:#00cb00;fill-opacity:0.86666667;stroke:#006400;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <path
+           id="path931"
+           d="m 147.33333,235.16667 c 0,23 18.66667,41.66666 41.66667,41.66666 8.83333,0 16.83333,-2.66666 23.66667,-7.33333 l -0.33334,3.16667 c 0,23 18.66667,41.66666 41.66667,41.66666 23,0 41.66667,-18.66666 41.66667,-41.66666 L 295.33333,269.5 c 6.66667,4.66667 14.83334,7.33333 23.66667,7.33333 23,0 41.66667,-18.66666 41.66667,-41.66666 0,-16.66667 -9.83334,-30.83334 -23.83334,-37.5 14,-6.66667 23.83334,-20.83334 23.83334,-37.5 C 360.66667,137.16667 342,118.5 319,118.5 c -8.83333,0 -16.83333,2.66667 -23.66667,7.33333 l 0.33334,-3.16666 C 295.66667,99.66667 277,81 254,81 c -23,0 -41.66667,18.66667 -41.66667,41.66667 l 0.33334,3.16666 C 206,121.16667 197.83333,118.5 189,118.5 c -23,0 -41.66667,18.66667 -41.66667,41.66667 0,16.66666 9.83334,30.83333 23.83334,37.5 -14,6.66666 -23.83334,20.83333 -23.83334,37.5 z"
+           style="fill:#ff911f;fill-opacity:1;stroke:#ff6a04;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <path
+           id="path4"
+           d="m 104,281 c 0,82.83333 67.16667,150 150,150 0,-82.83333 -67.16667,-150 -150,-150 z"
+           style="fill:#00cb00;fill-opacity:0.86666667;stroke:#006400;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <path
+           id="path929"
+           d="m 254,156 c 23,0 41.66667,18.66667 41.66667,41.66667 0,23 -18.66667,41.66666 -41.66667,41.66666 -23,0 -41.66667,-18.66666 -41.66667,-41.66666 C 212.33333,174.66667 231,156 254,156 Z"
+           style="fill:#ffff55;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+</svg>
