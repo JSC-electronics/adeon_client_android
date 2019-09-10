@@ -17,7 +17,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -194,7 +193,7 @@ class AddDeviceFragment : Fragment(),
         super.onPause()
     }
 
-    override fun onDialogSelectFromAdeonLibraryActionClick(dialog: DialogFragment) {
+    override fun onDialogSelectFromAdeonLibraryActionClick() {
         this.fragmentManager?.let {
             val dialog = AdeonGalleryDialogFragment()
             dialog.setTargetFragment(this, 0)
@@ -202,7 +201,7 @@ class AddDeviceFragment : Fragment(),
         }
     }
 
-    override fun onDialogSelectImageActionClick(dialog: DialogFragment) {
+    override fun onDialogSelectImageActionClick() {
         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { getImageIntent ->
             this.context?.let {
                 getImageIntent.resolveActivity(it.packageManager)?.also {
@@ -214,7 +213,7 @@ class AddDeviceFragment : Fragment(),
         }
     }
 
-    override fun onDialogTakePhotoActionClick(dialog: DialogFragment) {
+    override fun onDialogTakePhotoActionClick() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             this.context?.let { context ->
                 // Ensure that there's a camera activity to handle the intent
