@@ -10,8 +10,9 @@ import cz.jscelectronics.adeon.R
 class ImageCaptureDialogFragment : DialogFragment() {
 
     interface ImageCaptureDialogListener {
-        fun onDialogTakePhotoActionClick(dialog: DialogFragment)
+        fun onDialogSelectFromAdeonLibraryActionClick(dialog: DialogFragment)
         fun onDialogSelectImageActionClick(dialog: DialogFragment)
+        fun onDialogTakePhotoActionClick(dialog: DialogFragment)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -31,9 +32,13 @@ class ImageCaptureDialogFragment : DialogFragment() {
                     when (which) {
                         0 -> {
                             (targetFragment as ImageCaptureDialogListener)
-                                .onDialogSelectImageActionClick(this)
+                                .onDialogSelectFromAdeonLibraryActionClick(this)
                         }
                         1 -> {
+                            (targetFragment as ImageCaptureDialogListener)
+                                .onDialogSelectImageActionClick(this)
+                        }
+                        2 -> {
                             (targetFragment as ImageCaptureDialogListener)
                                 .onDialogTakePhotoActionClick(this)
                         }

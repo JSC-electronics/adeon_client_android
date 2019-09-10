@@ -1,7 +1,5 @@
 package cz.jscelectronics.adeon.adapters
 
-import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +10,7 @@ import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class GalleryAdapter(private val dataSet: TypedArray) :
+class GalleryAdapter(private val dataSet: List<Int>) :
     RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +23,7 @@ class GalleryAdapter(private val dataSet: TypedArray) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            dataSet.getDrawable(position)?.let {
+            dataSet[position].let {
                 bind(it)
                 itemView.tag = it
             }
@@ -33,14 +31,14 @@ class GalleryAdapter(private val dataSet: TypedArray) :
     }
 
     override fun getItemCount(): Int {
-        return dataSet.length()
+        return dataSet.size
     }
 
     class ViewHolder(private val binding: ListItemGalleryIconBinding) :
         RecyclerView.ViewHolder(binding.galleryCard) {
-        fun bind(item: Drawable) {
+        fun bind(imageId: Int) {
             binding.apply {
-                deviceImage.setImageDrawable(item)
+                deviceImage.setImageResource(imageId)
             }
         }
     }
