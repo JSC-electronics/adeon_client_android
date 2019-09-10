@@ -3,9 +3,11 @@ package cz.jscelectronics.adeon.ui.device
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.ClipData
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,17 +17,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
+import cz.jscelectronics.adeon.ui.device.dialogs.AdeonGalleryDialogFragment
 import cz.jscelectronics.adeon.ui.device.dialogs.ImageCaptureDialogFragment
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
@@ -33,26 +36,29 @@ import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
 import java.util.*
 
 
-class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDialogListener {
+class AddDeviceFragment : Fragment(),
+    ImageCaptureDialogFragment.ImageCaptureDialogListener,
+    AdeonGalleryDialogFragment.AdeonGalleryDialogListener {
+
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
         const val REQUEST_GALLERY_IMAGE = 2
 
         private const val IMAGE_CAPTURE_DIALOG_TAG = "Image Capture Dialog"
+        private const val ADEON_GALLERY_DIALOG_TAG = "Adeon Gallery Dialog"
     }
 
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
+    private val args: AddDeviceFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var deviceId: Long? = null
-        if (arguments!!.size() > 0) {
-            deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
-        }
+        val deviceId: Long? = if (args.deviceId < 0) null else args.deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
         manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
@@ -187,7 +193,15 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         super.onPause()
     }
 
-    override fun onDialogSelectImageActionClick(dialog: DialogFragment) {
+    override fun onDialogSelectFromAdeonLibraryActionClick() {
+        this.fragmentManager?.let {
+            val dialog = AdeonGalleryDialogFragment()
+            dialog.setTargetFragment(this, 0)
+            dialog.show(it, ADEON_GALLERY_DIALOG_TAG)
+        }
+    }
+
+    override fun onDialogSelectImageActionClick() {
         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { getImageIntent ->
             this.context?.let {
                 getImageIntent.resolveActivity(it.packageManager)?.also {
@@ -199,7 +213,7 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
         }
     }
 
-    override fun onDialogTakePhotoActionClick(dialog: DialogFragment) {
+    override fun onDialogTakePhotoActionClick() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             this.context?.let { context ->
                 // Ensure that there's a camera activity to handle the intent
@@ -226,6 +240,14 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
                     }
                 }
             }
+        }
+    }
+
+    override fun onAdeonImageClick(iconResId: Int) {
+        context?.resources?.let {
+            val uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                    it.getResourceName(iconResId).replace(":", "/"))
+                manageDeviceViewModel.uriHandler.setUri(uri)
         }
     }
 

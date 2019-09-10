@@ -51,7 +51,8 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
         val binding = FragmentDeviceListBinding.inflate(inflater, container, false).apply {
             fab.setOnClickListener { view ->
                 val direction =
-                    DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment()
+                    DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment(
+                        view.resources.getString(R.string.add_device_title))
                 view.findNavController().navigate(direction)
             }
         }

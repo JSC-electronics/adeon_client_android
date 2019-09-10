@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="device_icons">
+        <item>@drawable/device_icon_animal</item>
+        <item>@drawable/device_icon_bus</item>
+        <item>@drawable/device_icon_business</item>
+        <item>@drawable/device_icon_camera</item>
+        <item>@drawable/device_icon_car</item>
+        <item>@drawable/device_icon_door</item>
+        <item>@drawable/device_icon_envelope</item>
+        <item>@drawable/device_icon_factory</item>
+        <item>@drawable/device_icon_flower</item>
+        <item>@drawable/device_icon_garage</item>
+        <item>@drawable/device_icon_gate</item>
+        <item>@drawable/device_icon_heating</item>
+        <item>@drawable/device_icon_house</item>
+        <item>@drawable/device_icon_key</item>
+        <item>@drawable/device_icon_light_bulb</item>
+        <item>@drawable/device_icon_mobile_phone</item>
+        <item>@drawable/device_icon_music_note</item>
+        <item>@drawable/device_icon_person_purple</item>
+        <item>@drawable/device_icon_shield</item>
+        <item>@drawable/device_icon_sms_bubble</item>
+        <item>@drawable/device_icon_snowflake</item>
+        <item>@drawable/device_icon_subway</item>
+        <item>@drawable/device_icon_thermometer_blue</item>
+        <item>@drawable/device_icon_thermometer_red</item>
+        <item>@drawable/device_icon_warning_light</item>
+        <item>@drawable/device_icon_water_drop</item>
+        <item>@drawable/device_icon_window</item>
+    </array>
+</resources>
