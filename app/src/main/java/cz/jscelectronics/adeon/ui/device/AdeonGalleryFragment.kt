@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.GalleryAdapter
 import cz.jscelectronics.adeon.databinding.FragmentAdeonGalleryBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class AdeonGalleryFragment : Fragment() {
@@ -28,16 +26,14 @@ class AdeonGalleryFragment : Fragment() {
     }
 
     private fun initializeDeviceIcons(adapter: GalleryAdapter) {
-        GlobalScope.launch {
-            val icons = ArrayList<Int>()
+        val icons = ArrayList<Int>()
 
-            val list = resources.obtainTypedArray(R.array.device_icons)
-            for (i in 0 until list.length()) {
-                icons.add(list.getResourceId(i, -1))
-            }
-            list.recycle()
-
-            adapter.submitList(icons)
+        val list = resources.obtainTypedArray(R.array.device_icons)
+        for (i in 0 until list.length()) {
+            icons.add(list.getResourceId(i, -1))
         }
+        list.recycle()
+
+        adapter.submitList(icons)
     }
 }

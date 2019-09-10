@@ -36,8 +36,10 @@ class GalleryAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imageId: Int) {
             binding.apply {
-                deviceImage.setImageResource(imageId)
-
+//                deviceImage.setImageResource(imageId)
+//                deviceImage.setOnClickListener {
+//                    it.findNavController().navigateUp()
+//                }
             }
         }
     }

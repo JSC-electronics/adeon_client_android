@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
@@ -188,9 +189,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
     }
 
     override fun onDialogSelectFromAdeonLibraryActionClick(dialog: DialogFragment) {
-//        val direction =
-//            AddDeviceFragmentDirections.actionGlobalAdeonGallery()
-//        findNavController().navigate(direction)
+        val direction =
+            AddDeviceFragmentDirections.actionDeviceFragmentToGalleryFragment()
+        findNavController().navigate(direction)
     }
 
     override fun onDialogSelectImageActionClick(dialog: DialogFragment) {

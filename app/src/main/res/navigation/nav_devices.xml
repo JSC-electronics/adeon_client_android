@@ -51,13 +51,31 @@
                 android:name="title"
                 app:argType="string"/>
 
+        <action
+                android:id="@+id/action_device_fragment_to_gallery_fragment"
+                app:destination="@id/adeon_gallery_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
             android:id="@+id/adeon_gallery_fragment"
             android:name="cz.jscelectronics.adeon.ui.device.AdeonGalleryFragment"
             android:label="@string/select_image"
-            tools:layout="@layout/fragment_adeon_gallery"/>
+            tools:layout="@layout/fragment_adeon_gallery">
+
+        <action
+                android:id="@+id/action_gallery_fragment_to_add_device_fragment"
+                app:destination="@id/add_device_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
 
     <fragment
             android:id="@+id/send_sms_fragment"
