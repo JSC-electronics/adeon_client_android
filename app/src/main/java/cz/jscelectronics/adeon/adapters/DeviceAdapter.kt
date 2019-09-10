@@ -78,7 +78,10 @@ class DeviceAdapter(private val viewModel: DeviceListViewModel) :
                 when (it.itemId) {
                     R.id.action_edit_device_entry -> {
                         val direction =
-                            DeviceListFragmentDirections.actionDeviceListFragmentToEditDeviceFragment(device.deviceId)
+                            DeviceListFragmentDirections.
+                                actionDeviceListFragmentToAddDeviceFragment(
+                                    view.resources.getString(R.string.edit_device_title)).
+                                setDeviceId(device.deviceId)
                         view.findNavController().navigate(direction)
                         true
                     }

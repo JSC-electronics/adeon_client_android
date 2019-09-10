@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
@@ -44,16 +44,15 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
 
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
+    private val args: AddDeviceFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var deviceId: Long? = null
-        if (arguments!!.size() > 0) {
-            deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
-        }
+        val deviceId: Long? = if (args.deviceId < 0) null else args.deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
         manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
@@ -189,9 +188,9 @@ class AddDeviceFragment : Fragment(), ImageCaptureDialogFragment.ImageCaptureDia
     }
 
     override fun onDialogSelectFromAdeonLibraryActionClick(dialog: DialogFragment) {
-        val direction =
-            AddDeviceFragmentDirections.actionGlobalAdeonGallery()
-        findNavController().navigate(direction)
+//        val direction =
+//            AddDeviceFragmentDirections.actionGlobalAdeonGallery()
+//        findNavController().navigate(direction)
     }
 
     override fun onDialogSelectImageActionClick(dialog: DialogFragment) {
