@@ -12,5 +12,6 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
             tools:listitem="@layout/list_item_gallery_icon"/>
 </layout>
