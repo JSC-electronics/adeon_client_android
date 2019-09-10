@@ -1,6 +1,7 @@
 package cz.jscelectronics.adeon.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,14 +13,14 @@ import cz.jscelectronics.adeon.ui.device.AddDeviceFragment
 /**
  * Adapter for the [RecyclerView] in [AddDeviceFragment].
  */
-class GalleryAdapter :
+open class GalleryAdapter :
     ListAdapter<Int, GalleryAdapter.ViewHolder>(ImagesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ListItemGalleryIconBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
+            ), this
         )
     }
 
@@ -31,16 +32,22 @@ class GalleryAdapter :
         }
     }
 
+    open fun onClick(iconResId: Int) {}
+
     class ViewHolder(
-        private val binding: ListItemGalleryIconBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        private val binding: ListItemGalleryIconBinding,
+        private val adapter: GalleryAdapter
+    ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bind(imageId: Int) {
             binding.apply {
-//                deviceImage.setImageResource(imageId)
-//                deviceImage.setOnClickListener {
-//                    it.findNavController().navigateUp()
-//                }
+                deviceImage.setImageResource(imageId)
             }
+
+            binding.deviceImage.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View?) {
+            adapter.onClick(adapter.getItem(adapterPosition))
         }
     }
 }

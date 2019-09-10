@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
@@ -39,6 +40,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
     private lateinit var billingViewModel: BillingViewModel
     private var interstitialAd: InterstitialAd? = null
+    private val args: SendSmsFragmentArgs by navArgs()
 
     companion object {
         const val REQUEST_SEND_SMS = 187
@@ -49,9 +51,8 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val deviceId = AddDeviceFragmentArgs.fromBundle(arguments!!).deviceId
-
-        val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
+        val factory =
+            InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), args.deviceId)
         manageDeviceViewModel =
             ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
         billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)

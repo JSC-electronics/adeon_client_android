@@ -11,7 +11,8 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true" />
 
     <fragment
             android:id="@+id/device_list_fragment"
@@ -44,37 +45,12 @@
 
         <argument
                 android:name="deviceId"
-                app:argType="long"
-                android:defaultValue="-1L"/>
+                android:defaultValue="-1L"
+                app:argType="long" />
 
         <argument
                 android:name="title"
-                app:argType="string"/>
-
-        <action
-                android:id="@+id/action_device_fragment_to_gallery_fragment"
-                app:destination="@id/adeon_gallery_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
-
-    </fragment>
-
-    <fragment
-            android:id="@+id/adeon_gallery_fragment"
-            android:name="cz.jscelectronics.adeon.ui.device.AdeonGalleryFragment"
-            android:label="@string/select_image"
-            tools:layout="@layout/fragment_adeon_gallery">
-
-        <action
-                android:id="@+id/action_gallery_fragment_to_add_device_fragment"
-                app:destination="@id/add_device_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
-
+                app:argType="string" />
     </fragment>
 
     <fragment
@@ -139,36 +115,36 @@
             android:id="@+id/help_add_new_device_fragment"
             android:name="cz.jscelectronics.adeon.ui.help.content.AddNewDeviceFragment"
             android:label="@string/support_title"
-            tools:layout="@layout/fragment_help_add_new_device"/>
+            tools:layout="@layout/fragment_help_add_new_device" />
 
     <fragment
             android:id="@+id/help_delete_device_fragment"
             android:name="cz.jscelectronics.adeon.ui.help.content.DeleteDeviceFragment"
             android:label="@string/support_title"
-            tools:layout="@layout/fragment_help_delete_device"/>
+            tools:layout="@layout/fragment_help_delete_device" />
 
     <fragment
             android:id="@+id/help_export_configuration_fragment"
             android:name="cz.jscelectronics.adeon.ui.help.content.ExportConfigurationFragment"
             android:label="@string/support_title"
-            tools:layout="@layout/fragment_help_export_configuration"/>
+            tools:layout="@layout/fragment_help_export_configuration" />
 
     <fragment
             android:id="@+id/help_import_configuration_fragment"
             android:name="cz.jscelectronics.adeon.ui.help.content.ImportConfigurationFragment"
             android:label="@string/support_title"
-            tools:layout="@layout/fragment_help_import_configuration"/>
+            tools:layout="@layout/fragment_help_import_configuration" />
 
     <fragment
             android:id="@+id/help_send_commands_fragment"
             android:name="cz.jscelectronics.adeon.ui.help.content.SendCommandsFragment"
             android:label="@string/support_title"
-            tools:layout="@layout/fragment_help_send_commands"/>
+            tools:layout="@layout/fragment_help_send_commands" />
 
     <fragment
             android:id="@+id/makePurchaseFragment"
             android:name="cz.jscelectronics.adeon.ui.billing.MakePurchaseFragment"
             android:label="@string/purchases"
-            tools:layout="@layout/fragment_make_purchase"/>
+            tools:layout="@layout/fragment_make_purchase" />
 
 </navigation>
