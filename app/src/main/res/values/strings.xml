@@ -47,8 +47,9 @@
     <string name="checkbox_info">Please check all the commands that you would like to send.</string>
     <string name="checkbox_tap_info">Please tap on a command that you would like to send.</string>
     <string name="change_device_image">Change device image</string>
-    <string name="take_photo">Take photo</string>
+    <string name="select_from_adeon_library">Select from Adeon library</string>
     <string name="select_image">Select image</string>
+    <string name="take_photo">Take photo</string>
     <string name="import_configuration_short">Import</string>
     <string name="import_configuration">Import configuration</string>
     <string name="export_configuration_short">Export</string>
@@ -165,11 +166,13 @@
     <string name="purchases_unavailable">Purchases are not available in your country.</string>
 
     <string-array name="change_device_image_actions">
+        <item>@string/select_from_adeon_library</item>
         <item>@string/select_image</item>
         <item>@string/take_photo</item>
     </string-array>
 
     <string-array name="change_device_image_no_camera_actions">
+        <item>@string/select_from_adeon_library</item>
         <item>@string/select_image</item>
     </string-array>
 </resources>
