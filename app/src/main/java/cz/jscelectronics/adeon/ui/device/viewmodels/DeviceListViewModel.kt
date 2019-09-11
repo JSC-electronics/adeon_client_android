@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.ExclusionStrategy
-import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -18,6 +16,7 @@ import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.data.DeviceRepository
 import cz.jscelectronics.adeon.ui.device.DeviceListFragment
+import cz.jscelectronics.adeon.utilities.GsonUriTypeAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -84,7 +83,8 @@ class DeviceListViewModel internal constructor(
                             reader.close()
 
                             val attributeType = object : TypeToken<List<Device>>() {}.type
-                            val devices = Gson().fromJson<List<Device>>(json, attributeType)
+                            val devices = GsonBuilder().registerTypeAdapter(Uri::class.java, GsonUriTypeAdapter())
+                                .create().fromJson<List<Device>>(json, attributeType)
                             deviceRepository.deleteAllDevices(context.contentResolver)
                             deviceRepository.addDevices(devices)
                         }
@@ -112,7 +112,7 @@ class DeviceListViewModel internal constructor(
                     context.contentResolver.openFileDescriptor(uri, "w")?.use {
                         FileOutputStream(it.fileDescriptor).use { outputStream ->
                             outputStream.write(
-                                GsonBuilder().addSerializationExclusionStrategy(GsonExludeImageStrategy())
+                                GsonBuilder().registerTypeAdapter(Uri::class.java, GsonUriTypeAdapter())
                                     .create().toJson(devices).toByteArray()
                             )
                         }
@@ -148,13 +148,5 @@ class DeviceListViewModel internal constructor(
 
     override fun onMove(viewholder: RecyclerView.ViewHolder, from: Int, to: Int) {
         // TODO Not implemented
-    }
-
-    // It doesn't make sense to store reference to internal device image. The image is not part of a backup.
-    private class GsonExludeImageStrategy : ExclusionStrategy {
-        override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
-
-        override fun shouldSkipField(f: FieldAttributes?): Boolean = "image" == f?.name
-
     }
 }
