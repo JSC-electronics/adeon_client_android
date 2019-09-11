@@ -37,7 +37,7 @@ class DeviceRepository private constructor(private val deviceDao: DeviceDao) {
         withContext(Dispatchers.IO) {
             resolver?.let {
                 deviceDao.getAllDeviceUris().forEach { uri ->
-                    if (uri != null) {
+                    if (uri != null && !uri.toString().contains(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
                         it.delete(uri, null, null)
                     }
                 }
