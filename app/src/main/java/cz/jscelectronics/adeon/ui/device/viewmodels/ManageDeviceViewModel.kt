@@ -1,11 +1,14 @@
 package cz.jscelectronics.adeon.ui.device.viewmodels
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.os.ParcelFileDescriptor
 import android.telephony.SmsManager
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -32,6 +35,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 /**
  * The ViewModel for managing device properties in [AddDeviceFragment] and [SendSmsFragment].
  */
@@ -57,7 +61,14 @@ class ManageDeviceViewModel internal constructor(
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
-    else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
+    else MutableLiveData(
+        Device(
+            name = "",
+            location = null,
+            phoneNumber = "",
+            attributes = mutableListOf()
+        )
+    )
     val uriHandler = ImageUriHandler()
 
     private var attributesCopy: List<Attribute>? = null
@@ -196,7 +207,8 @@ class ManageDeviceViewModel internal constructor(
                     } else if (device.messageType == Device.INT_VALUE_FORMAT) {
                         composeMessage(smsAttributes).forEach { message ->
                             val md5 = computeMd5(message)
-                            val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
+                            val smsMessage =
+                                "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
                             smsManager.sendTextMessage(
                                 device.phoneNumber, null, smsMessage,
                                 null, null
@@ -204,6 +216,18 @@ class ManageDeviceViewModel internal constructor(
                         }
                     }
                 }
+            }
+        }
+    }
+
+    fun callDevice(activity: Activity) {
+        viewModelScope.launch {
+            device.value?.let { device ->
+                val intent = Intent(
+                    Intent.ACTION_DIAL,
+                    Uri.fromParts("tel", device.phoneNumber, null)
+                )
+                startActivity(activity, intent, null)
             }
         }
     }
@@ -252,7 +276,8 @@ class ManageDeviceViewModel internal constructor(
 
             val snackbar = Snackbar.make(
                 viewholder.itemView,
-                context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
+                context.getString(R.string.command_removed, removedAttribute.name),
+                Snackbar.LENGTH_LONG
             )
             snackbar.setAction(R.string.undo) {
                 attributes.add(position, removedAttribute)
@@ -361,12 +386,16 @@ class ManageDeviceViewModel internal constructor(
                     var success = true
 
                     try {
-                        srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
-                        dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+                        srcFileDescriptor =
+                            context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                        dstFileDescriptor =
+                            context.contentResolver?.openFileDescriptor(destUri, "w")
 
                         if (srcFileDescriptor != null && dstFileDescriptor != null) {
-                            bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
-                            bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
+                            bis =
+                                BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
+                            bos =
+                                BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
 
                             val buf = ByteArray(size = 1024)
                             bis.read(buf)

@@ -64,6 +64,10 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             sendSmsButton.setOnClickListener {
                 requestSmsPermissions()
             }
+
+            dialButton.setOnClickListener {
+                manageDeviceViewModel.callDevice(requireActivity())
+            }
         }
         layout = binding.sendSmsLayout
 
