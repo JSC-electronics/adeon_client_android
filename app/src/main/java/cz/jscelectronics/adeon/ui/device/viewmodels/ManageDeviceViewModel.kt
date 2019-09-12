@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 /**
  * The ViewModel for managing device properties in [AddDeviceFragment] and [SendSmsFragment].
  */
@@ -59,7 +60,14 @@ class ManageDeviceViewModel internal constructor(
     }
 
     val device: LiveData<Device> = if (deviceId != null) deviceRepository.getDevice(deviceId)
-    else MutableLiveData(Device(name = "", location = null, phoneNumber = "", attributes = mutableListOf()))
+    else MutableLiveData(
+        Device(
+            name = "",
+            location = null,
+            phoneNumber = "",
+            attributes = mutableListOf()
+        )
+    )
     val uriHandler = ImageUriHandler()
 
     private var attributesCopy: List<Attribute>? = null
@@ -220,6 +228,18 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
+    fun callDevice(activity: Activity) {
+        viewModelScope.launch {
+            device.value?.let { device ->
+                val intent = Intent(
+                    Intent.ACTION_DIAL,
+                    Uri.fromParts("tel", device.phoneNumber, null)
+                )
+                startActivity(activity, intent, null)
+            }
+        }
+    }
+
     private fun composeMessage(attributes: List<Attribute>): List<String> {
         val messages = ArrayList<String>()
         var message = ""
@@ -264,7 +284,8 @@ class ManageDeviceViewModel internal constructor(
 
             val snackbar = Snackbar.make(
                 viewholder.itemView,
-                context.getString(R.string.command_removed, removedAttribute.name), Snackbar.LENGTH_LONG
+                context.getString(R.string.command_removed, removedAttribute.name),
+                Snackbar.LENGTH_LONG
             )
             snackbar.setAction(R.string.undo) {
                 attributes.add(position, removedAttribute)
@@ -373,12 +394,16 @@ class ManageDeviceViewModel internal constructor(
                     var success = true
 
                     try {
-                        srcFileDescriptor = context.contentResolver?.openFileDescriptor(sourceUri, "r")
-                        dstFileDescriptor = context.contentResolver?.openFileDescriptor(destUri, "w")
+                        srcFileDescriptor =
+                            context.contentResolver?.openFileDescriptor(sourceUri, "r")
+                        dstFileDescriptor =
+                            context.contentResolver?.openFileDescriptor(destUri, "w")
 
                         if (srcFileDescriptor != null && dstFileDescriptor != null) {
-                            bis = BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
-                            bos = BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
+                            bis =
+                                BufferedInputStream(FileInputStream(srcFileDescriptor.fileDescriptor))
+                            bos =
+                                BufferedOutputStream(FileOutputStream(dstFileDescriptor.fileDescriptor))
 
                             val buf = ByteArray(size = 1024)
                             bis.read(buf)

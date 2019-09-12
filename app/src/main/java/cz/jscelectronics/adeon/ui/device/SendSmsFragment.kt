@@ -61,6 +61,10 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             sendSmsButton.setOnClickListener {
                 prepareAndSendSms()
             }
+
+            dialButton.setOnClickListener {
+                manageDeviceViewModel.callDevice(requireActivity())
+            }
         }
         layout = binding.sendSmsLayout
 
