@@ -30,6 +30,7 @@ import cz.jscelectronics.adeon.data.Device
 import cz.jscelectronics.adeon.databinding.FragmentAddDeviceBinding
 import cz.jscelectronics.adeon.ui.device.dialogs.AdeonGalleryDialogFragment
 import cz.jscelectronics.adeon.ui.device.dialogs.ImageCaptureDialogFragment
+import cz.jscelectronics.adeon.ui.device.dialogs.PaidNumberDialogFragment
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
@@ -95,8 +96,20 @@ class AddDeviceFragment : Fragment(),
                     deviceName.error = null
                 }
 
-                if (phoneNumber.isValid) {
+                if (phoneNumber.isValid || phoneNumber.isShortNumber) {
+                    // Make sure phone number is up-to-date
+                    // (e.g. user could change country without changing the number)
+                    manageDeviceViewModel.device.value?.phoneNumber = phoneNumber.phoneNumber
                     phoneNumber.setError(null)
+
+                    if(phoneNumber.isShortNumber && deviceId == null && !manageDeviceViewModel.paidSmsWarningShown) {
+                        this@AddDeviceFragment.fragmentManager?.let {
+                            manageDeviceViewModel.paidSmsWarningShown = true
+                            val dialog = PaidNumberDialogFragment()
+                            dialog.setTargetFragment(this@AddDeviceFragment, 0)
+                            dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
+                        }
+                    }
                 } else {
                     isError = true
                     phoneNumber.setError(getString(R.string.invalid_phone_number))

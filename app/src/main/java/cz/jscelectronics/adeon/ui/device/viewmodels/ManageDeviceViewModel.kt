@@ -70,6 +70,7 @@ class ManageDeviceViewModel internal constructor(
         )
     )
     val uriHandler = ImageUriHandler()
+    var paidSmsWarningShown = false
 
     private var attributesCopy: List<Attribute>? = null
 

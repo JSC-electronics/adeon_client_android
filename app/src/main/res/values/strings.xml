@@ -80,6 +80,7 @@
     <string name="configuration_import_successful">Configuration imported successfully.</string>
     <string name="configuration_export_error">An error occurred during configuration export!</string>
     <string name="configuration_export_successful">Configuration export was successful.</string>
+    <string name="premium_sms">You may be charged for sending a message to the SMS number you entered.</string>
 
     <string name="help_menu_action_about">Version information</string>
     <string name="help_menu_action_licenses">Open source licenses</string>
