@@ -159,20 +159,34 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 return
             }
 
-            manageDeviceViewModel.sendSmsMessage(getPhoneNumber(), messageText)
-            messageText = null
-
-            val direction =
-                SendSmsFragmentDirections.actionGlobalDeviceList()
-            layout.findNavController().navigate(direction)
-            interstitialAd?.apply {
-                if (this.isLoaded) {
-                    this.show()
+            if (interstitialAd == null) {
+                sendSmsToDevice()
+            } else {
+                interstitialAd?.apply {
+                    if (this.isLoaded) {
+                        this.show()
+                        this.adListener = object: AdListener() {
+                            override fun onAdClosed() {
+                                sendSmsToDevice()
+                            }
+                        }
+                    } else {
+                        sendSmsToDevice()
+                    }
                 }
             }
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    private fun sendSmsToDevice() {
+        manageDeviceViewModel.sendSmsMessage(getPhoneNumber(), messageText)
+        messageText = null
+
+        val direction =
+            SendSmsFragmentDirections.actionGlobalDeviceList()
+        layout.findNavController().navigate(direction)
     }
 
     private fun getPhoneNumber(): String {
