@@ -69,6 +69,7 @@ class ManageDeviceViewModel internal constructor(
         )
     )
     val uriHandler = ImageUriHandler()
+    var paidSmsWarningShown = false
 
     private var attributesCopy: List<Attribute>? = null
 
@@ -176,12 +177,12 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage(activity: Activity, message: String? = null) {
+    fun sendSmsMessage(activity: Activity, phoneNumber: String, message: String? = null) {
         viewModelScope.launch {
             device.value?.let { device ->
                 if (message != null) {
                     val intent = Intent(Intent.ACTION_SENDTO).apply {
-                        data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                        data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
                         putExtra("sms_body", message)
                     }
 
@@ -202,7 +203,7 @@ class ManageDeviceViewModel internal constructor(
                         val attribute = smsAttributes[0]
                         if (attribute.containsPlainText()) {
                             val intent = Intent(Intent.ACTION_SENDTO).apply {
-                                data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                                data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
                                 putExtra("sms_body", attribute.text)
                             }
 
@@ -215,7 +216,7 @@ class ManageDeviceViewModel internal constructor(
                         val md5 = computeMd5(messageData)
                         val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $messageData"
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("smsto:${device.phoneNumber}")  // This ensures only SMS apps respond
+                            data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
                             putExtra("sms_body", smsMessage)
                         }
 
@@ -228,15 +229,13 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun callDevice(activity: Activity) {
+    fun callDevice(activity: Activity, phoneNumber: String) {
         viewModelScope.launch {
-            device.value?.let { device ->
-                val intent = Intent(
-                    Intent.ACTION_DIAL,
-                    Uri.fromParts("tel", device.phoneNumber, null)
-                )
-                startActivity(activity, intent, null)
-            }
+            val intent = Intent(
+                Intent.ACTION_DIAL,
+                Uri.fromParts("tel", phoneNumber, null)
+            )
+            startActivity(activity, intent, null)
         }
     }
 

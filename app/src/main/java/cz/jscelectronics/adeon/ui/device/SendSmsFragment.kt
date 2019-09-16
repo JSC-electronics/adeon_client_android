@@ -23,6 +23,7 @@ import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
+import kotlinx.android.synthetic.main.fragment_send_sms.view.*
 
 class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     override fun onClicked(attribute: Attribute) {
@@ -63,7 +64,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             }
 
             dialButton.setOnClickListener {
-                manageDeviceViewModel.callDevice(requireActivity())
+                manageDeviceViewModel.callDevice(requireActivity(), getPhoneNumber())
             }
         }
         layout = binding.sendSmsLayout
@@ -113,7 +114,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 return
             }
 
-            manageDeviceViewModel.sendSmsMessage(requireActivity(), messageText)
+            manageDeviceViewModel.sendSmsMessage(requireActivity(), getPhoneNumber(), messageText)
             messageText = null
 
             val direction =
@@ -127,6 +128,10 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    private fun getPhoneNumber(): String {
+        return layout.phone_number.getPhoneNumber(layout.phone_number.isShortNumber)
     }
 
     override fun onPause() {

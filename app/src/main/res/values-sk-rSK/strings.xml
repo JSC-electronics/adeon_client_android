@@ -134,4 +134,5 @@
     <string name="purchases">Nákupy</string>
     <string name="purchases_unavailable">Nákupy nie sú vo vašej krajine dostupné.</string>
     <string name="select_from_adeon_library">Vybrať z knižnice Adeon</string>
+    <string name="premium_sms">Poslanie správy na SMS číslo, ktoré ste zadali, môže byť spoplatnené.</string>
 </resources>
