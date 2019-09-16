@@ -178,13 +178,13 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage(message: String? = null) {
+    fun sendSmsMessage(phoneNumber: String, message: String? = null) {
         viewModelScope.launch {
             device.value?.let { device ->
                 val smsManager = SmsManager.getDefault()
                 if (message != null) {
                     smsManager.sendMultipartTextMessage(
-                        device.phoneNumber, null,
+                        phoneNumber, null,
                         smsManager.divideMessage(message), null, null
                     )
                     return@launch
@@ -200,7 +200,7 @@ class ManageDeviceViewModel internal constructor(
                         smsAttributes.forEach {
                             if (it.containsPlainText()) {
                                 smsManager.sendMultipartTextMessage(
-                                    device.phoneNumber, null,
+                                    phoneNumber, null,
                                     smsManager.divideMessage(it.text), null, null
                                 )
                             }
@@ -211,7 +211,7 @@ class ManageDeviceViewModel internal constructor(
                             val smsMessage =
                                 "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
                             smsManager.sendTextMessage(
-                                device.phoneNumber, null, smsMessage,
+                                phoneNumber, null, smsMessage,
                                 null, null
                             )
                         }
@@ -221,15 +221,13 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun callDevice(activity: Activity) {
+    fun callDevice(activity: Activity, phoneNumber: String) {
         viewModelScope.launch {
-            device.value?.let { device ->
-                val intent = Intent(
-                    Intent.ACTION_DIAL,
-                    Uri.fromParts("tel", device.phoneNumber, null)
-                )
-                startActivity(activity, intent, null)
-            }
+            val intent = Intent(
+                Intent.ACTION_DIAL,
+                Uri.fromParts("tel", phoneNumber, null)
+            )
+            startActivity(activity, intent, null)
         }
     }
 

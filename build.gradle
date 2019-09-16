@@ -29,7 +29,7 @@ buildscript {
         navigationVersion = '2.2.0-alpha02'
         ossLicensesLibrary = '17.0.0'
         ossLicensesPlugin = '0.9.5'
-        phoneFieldVersion = '0.1.5'
+        phoneFieldVersion = '0.1.7'
         playServicesAddsVersion = '18.2.0'
         recyclerViewVersion = '1.1.0-beta04'
         roomVersion = '2.1.0'
