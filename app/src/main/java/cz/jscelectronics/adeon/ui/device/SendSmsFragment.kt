@@ -40,10 +40,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private var interstitialAd: InterstitialAd? = null
     private val args: SendSmsFragmentArgs by navArgs()
 
-    companion object {
-        const val REQUEST_SEND_SMS = 187
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
