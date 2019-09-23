@@ -1,10 +1,8 @@
 package cz.jscelectronics.adeon.adapters
 
 import android.graphics.Canvas
-import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import cz.jscelectronics.adeon.R
 
 class RecyclerAttributeTouchHelper(
     dragDirs: Int,

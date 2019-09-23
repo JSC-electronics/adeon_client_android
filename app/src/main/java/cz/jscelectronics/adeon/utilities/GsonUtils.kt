@@ -2,20 +2,10 @@ package cz.jscelectronics.adeon.utilities
 
 import android.content.ContentResolver
 import android.net.Uri
-import com.google.gson.ExclusionStrategy
-import com.google.gson.FieldAttributes
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
-
-// It doesn't make sense to store reference to internal device image. The image is not part of a backup.
-class GsonExludeImageStrategy : ExclusionStrategy {
-    override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
-
-    override fun shouldSkipField(f: FieldAttributes?): Boolean = "image" == f?.name
-
-}
 
 /**
  * Custom type adapter to de/serialize Uri links. If Uri points to internal resource image,

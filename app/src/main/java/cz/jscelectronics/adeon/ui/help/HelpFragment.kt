@@ -79,8 +79,12 @@ class HelpFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_about -> {
-                this.fragmentManager?.let {
-                    AboutDialogFragment().show(it, "About Dialog")
+                try {
+                    this.parentFragmentManager.let {
+                        AboutDialogFragment().show(it, "About Dialog")
+                    }
+                } catch (e: IllegalStateException) {
+
                 }
                 return true
             }

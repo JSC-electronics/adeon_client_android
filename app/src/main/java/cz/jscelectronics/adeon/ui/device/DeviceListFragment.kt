@@ -52,7 +52,8 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
             fab.setOnClickListener { view ->
                 val direction =
                     DeviceListFragmentDirections.actionDeviceListFragmentToAddDeviceFragment(
-                        view.resources.getString(R.string.add_device_title))
+                        view.resources.getString(R.string.add_device_title)
+                    )
                 view.findNavController().navigate(direction)
             }
         }
@@ -119,10 +120,14 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
 
     private fun importConfiguration() {
         if (!viewModel.getDevices().value.isNullOrEmpty()) {
-            this.fragmentManager?.let { manager ->
-                val importDialog = ImportDialogFragment()
-                importDialog.setTargetFragment(this, 0)
-                importDialog.show(manager, IMPORT_DIALOG_TAG)
+            try {
+                this.parentFragmentManager.let { manager ->
+                    val importDialog = ImportDialogFragment()
+                    importDialog.setTargetFragment(this, 0)
+                    importDialog.show(manager, IMPORT_DIALOG_TAG)
+                }
+            } catch (e: IllegalStateException) {
+
             }
         } else {
             readConfiguration()
@@ -135,7 +140,8 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
             type = JSON_MIME_TYPE
         }
 
-        startActivityForResult(intent,
+        startActivityForResult(
+            intent,
             READ_CONFIG_REQUEST_CODE
         )
     }
@@ -156,22 +162,28 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
             type = JSON_MIME_TYPE
-            putExtra(Intent.EXTRA_TITLE,
+            putExtra(
+                Intent.EXTRA_TITLE,
                 configFileName
             )
         }
 
-        startActivityForResult(intent,
+        startActivityForResult(
+            intent,
             WRITE_CONFIG_REQUEST_CODE
         )
     }
 
     private fun deleteConfiguration() {
         if (!viewModel.getDevices().value.isNullOrEmpty()) {
-            this.fragmentManager?.let { manager ->
-                val wipeDialog = WipeDialogFragment()
-                wipeDialog.setTargetFragment(this, 0)
-                wipeDialog.show(manager, WIPE_DIALOG_TAG)
+            try {
+                this.parentFragmentManager.let { manager ->
+                    val wipeDialog = WipeDialogFragment()
+                    wipeDialog.setTargetFragment(this, 0)
+                    wipeDialog.show(manager, WIPE_DIALOG_TAG)
+                }
+            } catch (e: IllegalStateException) {
+
             }
         } else {
             Snackbar.make(layout, R.string.nothing_to_wipe, Snackbar.LENGTH_LONG).show()

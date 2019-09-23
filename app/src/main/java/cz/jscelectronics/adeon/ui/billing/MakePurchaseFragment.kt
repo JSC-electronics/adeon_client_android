@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_make_purchase.view.*
  */
 class MakePurchaseFragment : Fragment() {
 
-    val LOG_TAG = "MakePurchaseFragment"
+    private val TAG = "MakePurchaseFragment"
     private lateinit var billingViewModel: BillingViewModel
     private lateinit var binding: FragmentMakePurchaseBinding
 
@@ -43,11 +43,11 @@ class MakePurchaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(LOG_TAG, "onViewCreated")
+        Log.d(TAG, "onViewCreated")
 
         val inappAdapter = object : SkuDetailsAdapter() {
             override fun onSkuDetailsClicked(item: AugmentedSkuDetails) {
-                onPurchase(view, item)
+                onPurchase(item)
             }
         }
         attachAdapterToRecyclerView(view.inapp_inventory, inappAdapter)
@@ -66,8 +66,8 @@ class MakePurchaseFragment : Fragment() {
         }
     }
 
-    private fun onPurchase(view: View, item: AugmentedSkuDetails) {
+    private fun onPurchase(item: AugmentedSkuDetails) {
         billingViewModel.makePurchase(activity as Activity, item)
-        Log.d(LOG_TAG, "starting purchase flow for SkuDetail:\n ${item}")
+        Log.d(TAG, "starting purchase flow for SkuDetail:\n $item")
     }
 }

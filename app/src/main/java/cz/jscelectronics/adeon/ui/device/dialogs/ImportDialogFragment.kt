@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import cz.jscelectronics.adeon.R
 
-class ImportDialogFragment() : DialogFragment() {
+class ImportDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return context?.let {
