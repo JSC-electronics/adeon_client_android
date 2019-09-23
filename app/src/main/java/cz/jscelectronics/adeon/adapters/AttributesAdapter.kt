@@ -88,6 +88,12 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                 plainEditText.addTextChangedListener {
                     attribute?.apply {
                         text = plainEditText.text.toString()
+                        if (text.isNullOrEmpty()) {
+                            attributeText.error =
+                                binding.root.context.getString(R.string.command_text_empty)
+                        } else {
+                            attributeText.error = null
+                        }
                     }
                 }
                 attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->
