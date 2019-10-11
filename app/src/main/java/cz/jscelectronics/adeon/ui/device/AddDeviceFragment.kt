@@ -62,7 +62,8 @@ class AddDeviceFragment : Fragment(),
         val deviceId: Long? = if (args.deviceId < 0) null else args.deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
-        manageDeviceViewModel = ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+        manageDeviceViewModel =
+            ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
 
         val binding = FragmentAddDeviceBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -102,12 +103,15 @@ class AddDeviceFragment : Fragment(),
                     manageDeviceViewModel.device.value?.phoneNumber = phoneNumber.phoneNumber
                     phoneNumber.setError(null)
 
-                    if(phoneNumber.isShortNumber && deviceId == null && !manageDeviceViewModel.paidSmsWarningShown) {
-                        this@AddDeviceFragment.fragmentManager?.let {
-                            manageDeviceViewModel.paidSmsWarningShown = true
-                            val dialog = PaidNumberDialogFragment()
-                            dialog.setTargetFragment(this@AddDeviceFragment, 0)
-                            dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
+                    if (phoneNumber.isShortNumber && deviceId == null && !manageDeviceViewModel.paidSmsWarningShown) {
+                        try {
+                            this@AddDeviceFragment.parentFragmentManager.let {
+                                manageDeviceViewModel.paidSmsWarningShown = true
+                                val dialog = PaidNumberDialogFragment()
+                                dialog.setTargetFragment(this@AddDeviceFragment, 0)
+                                dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
+                            }
+                        } catch (e: IllegalStateException) {
                         }
                     }
                 } else {
@@ -117,12 +121,14 @@ class AddDeviceFragment : Fragment(),
 
                 if (manageDeviceViewModel.isAttributeListEmpty()) {
                     isError = true
-                    Snackbar.make(view, R.string.no_defined_command_error, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, R.string.no_defined_command_error, Snackbar.LENGTH_LONG)
+                        .show()
                 }
 
                 if (!manageDeviceViewModel.isAttributeListValid()) {
                     isError = true
-                    Snackbar.make(view, R.string.invalid_defined_commands, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, R.string.invalid_defined_commands, Snackbar.LENGTH_LONG)
+                        .show()
                 }
 
                 if (!isError) {
@@ -136,10 +142,13 @@ class AddDeviceFragment : Fragment(),
         }
 
         binding.deviceImage.setOnClickListener {
-            this.fragmentManager?.let {
-                val dialog = ImageCaptureDialogFragment()
-                dialog.setTargetFragment(this, 0)
-                dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
+            try {
+                this.parentFragmentManager.let {
+                    val dialog = ImageCaptureDialogFragment()
+                    dialog.setTargetFragment(this, 0)
+                    dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
+                }
+            } catch (e: IllegalStateException) {
             }
         }
 
@@ -207,18 +216,25 @@ class AddDeviceFragment : Fragment(),
     }
 
     override fun onDialogSelectFromAdeonLibraryActionClick() {
-        this.fragmentManager?.let {
-            val dialog = AdeonGalleryDialogFragment()
-            dialog.setTargetFragment(this, 0)
-            dialog.show(it, ADEON_GALLERY_DIALOG_TAG)
+        try {
+            this.parentFragmentManager.let {
+                val dialog = AdeonGalleryDialogFragment()
+                dialog.setTargetFragment(this, 0)
+                dialog.show(it, ADEON_GALLERY_DIALOG_TAG)
+            }
+        } catch (e: IllegalStateException) {
         }
     }
 
     override fun onDialogSelectImageActionClick() {
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { getImageIntent ->
+        Intent(
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        ).also { getImageIntent ->
             this.context?.let {
                 getImageIntent.resolveActivity(it.packageManager)?.also {
-                    startActivityForResult(getImageIntent,
+                    startActivityForResult(
+                        getImageIntent,
                         REQUEST_GALLERY_IMAGE
                     )
                 }
@@ -247,7 +263,8 @@ class AddDeviceFragment : Fragment(),
                             takePictureIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION)
                         }
 
-                        startActivityForResult(takePictureIntent,
+                        startActivityForResult(
+                            takePictureIntent,
                             REQUEST_TAKE_PHOTO
                         )
                     }
@@ -258,9 +275,11 @@ class AddDeviceFragment : Fragment(),
 
     override fun onAdeonImageClick(iconResId: Int) {
         context?.resources?.let {
-            val uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
-                    it.getResourceName(iconResId).replace(":", "/"))
-                manageDeviceViewModel.uriHandler.setUri(uri)
+            val uri = Uri.parse(
+                ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                        it.getResourceName(iconResId).replace(":", "/")
+            )
+            manageDeviceViewModel.uriHandler.setUri(uri)
         }
     }
 

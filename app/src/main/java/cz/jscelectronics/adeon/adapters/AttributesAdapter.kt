@@ -70,8 +70,8 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                 valueEditText.addTextChangedListener {
                     attribute?.apply {
                         value = valueEditText.text.toString().toIntOrNull()
-                        value?.let {
-                            if (it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
+                        value.let {
+                            if (it == null || it > Attribute.ATTRIBUTE_VAL_MAX || it < Attribute.ATTRIBUTE_VAL_MIN) {
                                 attributeValue.error =
                                     binding.root.context.getString(R.string.command_value_out_of_range)
                             } else {
@@ -88,6 +88,12 @@ class AttributesAdapter(private val isEditMode: Boolean = false, private var pre
                 plainEditText.addTextChangedListener {
                     attribute?.apply {
                         text = plainEditText.text.toString()
+                        if (text.isNullOrEmpty()) {
+                            attributeText.error =
+                                binding.root.context.getString(R.string.command_text_empty)
+                        } else {
+                            attributeText.error = null
+                        }
                     }
                 }
                 attributeCheckbox.setOnCheckedChangeListener { _, isChecked ->

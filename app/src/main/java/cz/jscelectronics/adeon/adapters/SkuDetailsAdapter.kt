@@ -1,9 +1,9 @@
 package cz.jscelectronics.adeon.adapters
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.billingrepo.localdb.AugmentedSkuDetails
@@ -65,22 +65,22 @@ open class SkuDetailsAdapter : RecyclerView.Adapter<SkuDetailsAdapter.SkuDetails
                     val drawableId = getSkuDrawableId(sku, this)
                     sku_image.setImageResource(drawableId)
                     isEnabled = canPurchase
-                    onDisabled(canPurchase, resources)
+                    onDisabled(canPurchase)
                 }
             }
         }
 
-        private fun onDisabled(enabled: Boolean, res: Resources) {
+        private fun onDisabled(enabled: Boolean) {
             if (enabled) {
                 itemView.apply {
-                    sku_title.setTextColor(res.getColor(R.color.textColor))
-                    sku_description.setTextColor(res.getColor(R.color.textColor))
-                    sku_price.setTextColor(res.getColor(R.color.textColor))
+                    sku_title.setTextColor(ContextCompat.getColor(context, R.color.textColor))
+                    sku_description.setTextColor(ContextCompat.getColor(context, R.color.textColor))
+                    sku_price.setTextColor(ContextCompat.getColor(context, R.color.textColor))
                 }
             } else {
                 itemView.apply {
-                    setBackgroundColor(res.getColor(R.color.imgDisableHint))
-                    val color = res.getColor(R.color.textDisabledHint)
+                    setBackgroundColor(ContextCompat.getColor(context, R.color.imgDisableHint))
+                    val color = ContextCompat.getColor(context, R.color.textDisabledHint)
                     sku_title.setTextColor(color)
                     sku_description.setTextColor(color)
                     sku_price.setTextColor(color)

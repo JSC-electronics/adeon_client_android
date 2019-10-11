@@ -317,7 +317,7 @@ class BillingRepository private constructor(private val application: Application
      * (re)created for each [Activity] or [Fragment] or is kept open for the life of the application
      * is a matter of choice.
      */
-    lateinit private var playStoreBillingClient: BillingClient
+    private lateinit var playStoreBillingClient: BillingClient
 
     /**
      * A local cache billing client is important in that the Play Store may be temporarily
@@ -333,7 +333,7 @@ class BillingRepository private constructor(private val application: Application
      * The data that lives here should be refreshed at regular intervals so that it reflects what's
      * in the Google Play Store.
      */
-    lateinit private var localCacheBillingClient: LocalBillingDb
+    private lateinit var localCacheBillingClient: LocalBillingDb
 
     /**
      * This list tells clients what subscriptions are available for sale
@@ -349,7 +349,7 @@ class BillingRepository private constructor(private val application: Application
      * This list tells clients what in-app products are available for sale
      */
     val inappSkuDetailsListLiveData: LiveData<List<AugmentedSkuDetails>> by lazy {
-        if (::localCacheBillingClient.isInitialized == false) {
+        if (!::localCacheBillingClient.isInitialized) {
             localCacheBillingClient = LocalBillingDb.getInstance(application)
         }
         localCacheBillingClient.skuDetailsDao().getInappSkuDetails()
@@ -449,8 +449,8 @@ class BillingRepository private constructor(private val application: Application
         when (billingResult.responseCode) {
             BillingClient.BillingResponseCode.OK -> {
                 Log.d(LOG_TAG, "onBillingSetupFinished successfully")
-                querySkuDetailsAsync(BillingClient.SkuType.INAPP, AdeonSku.INAPP_SKUS)
-                querySkuDetailsAsync(BillingClient.SkuType.SUBS, AdeonSku.SUBS_SKUS)
+                querySkuDetailsAsync(BillingClient.SkuType.INAPP, INAPP_SKUS)
+                querySkuDetailsAsync(BillingClient.SkuType.SUBS, SUBS_SKUS)
                 queryPurchasesAsync()
             }
             BillingClient.BillingResponseCode.BILLING_UNAVAILABLE -> {
@@ -505,7 +505,7 @@ class BillingRepository private constructor(private val application: Application
      * owned," which can happen if a user buys the item around the same time
      * on a different device.
      */
-    fun queryPurchasesAsync() {
+    private fun queryPurchasesAsync() {
         Log.d(LOG_TAG, "queryPurchasesAsync called")
         val purchasesResult = HashSet<Purchase>()
         var result = playStoreBillingClient.queryPurchases(BillingClient.SkuType.INAPP)
@@ -536,7 +536,7 @@ class BillingRepository private constructor(private val application: Application
                     }
                 }
                 val (consumables, nonConsumables) = validPurchases.partition {
-                    AdeonSku.CONSUMABLE_SKUS.contains(it.sku)
+                    CONSUMABLE_SKUS.contains(it.sku)
                 }
                 Log.d(LOG_TAG, "processPurchases consumables content $consumables")
                 Log.d(LOG_TAG, "processPurchases non-consumables content $nonConsumables")
@@ -549,7 +549,7 @@ class BillingRepository private constructor(private val application: Application
                   disbursement.
                  */
                 val testing = localCacheBillingClient.purchaseDao().getPurchases()
-                Log.d(LOG_TAG, "processPurchases purchases in the lcl db ${testing?.size}")
+                Log.d(LOG_TAG, "processPurchases purchases in the lcl db ${testing.size}")
                 localCacheBillingClient.purchaseDao().insert(*validPurchases.toTypedArray())
                 acknowledgeNonConsumablePurchasesAsync(nonConsumables)
             }
@@ -657,7 +657,7 @@ class BillingRepository private constructor(private val application: Application
     fun launchBillingFlow(activity: Activity, augmentedSkuDetails: AugmentedSkuDetails) =
             launchBillingFlow(activity, SkuDetails(augmentedSkuDetails.originalJson))
 
-    fun launchBillingFlow(activity: Activity, skuDetails: SkuDetails) {
+    private fun launchBillingFlow(activity: Activity, skuDetails: SkuDetails) {
         val oldSku: String? = getOldSku(skuDetails.sku)
         val purchaseParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails)
                 .setOldSku(oldSku).build()
@@ -743,7 +743,7 @@ class BillingRepository private constructor(private val application: Application
      */
 
     private object AdeonSku {
-        val NO_ADVERTISEMENTS = "no_advertisements"
+        const val NO_ADVERTISEMENTS = "no_advertisements"
 
         val INAPP_SKUS = listOf(NO_ADVERTISEMENTS)
         val SUBS_SKUS = emptyList<String>()

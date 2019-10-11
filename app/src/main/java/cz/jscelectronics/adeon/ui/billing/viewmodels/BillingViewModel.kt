@@ -27,7 +27,7 @@ class BillingViewModel(application: Application) : AndroidViewModel(application)
     val noAdvertisementsLiveData: LiveData<NoAdvertisements>
     val inappSkuDetailsListLiveData: LiveData<List<AugmentedSkuDetails>>
 
-    private val LOG_TAG = "BillingViewModel"
+    private val TAG = "BillingViewModel"
     private val viewModelScope = CoroutineScope(Job() + Dispatchers.Main)
     private val repository: BillingRepository = BillingRepository.getInstance(application)
 
@@ -39,7 +39,7 @@ class BillingViewModel(application: Application) : AndroidViewModel(application)
 
     override fun onCleared() {
         super.onCleared()
-        Log.d(LOG_TAG, "onCleared")
+        Log.d(TAG, "onCleared")
         repository.endDataSourceConnections()
         viewModelScope.coroutineContext.cancel()
     }
