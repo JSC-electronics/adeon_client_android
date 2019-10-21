@@ -3,7 +3,6 @@ package cz.jscelectronics.adeon.ui.help.content
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.ImageSpan
 import android.text.style.URLSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class SendCommandsFragment : Fragment() {
                     context.getString(R.string.article_05_bullet_02_text)).apply {
                     val startIdx = this.indexOf(SEND_COMMAND_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_send_text_command_help_24px, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_send_text_command_help_24px),
                         startIdx, startIdx + SEND_COMMAND_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
@@ -42,7 +41,7 @@ class SendCommandsFragment : Fragment() {
                 ).apply {
                     var startIdx = this.indexOf(CHECKBOX_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_baseline_check_box_24px, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_baseline_check_box_24px),
                         startIdx, startIdx + CHECKBOX_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     startIdx = this.indexOf(docsLabel)

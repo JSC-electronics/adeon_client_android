@@ -3,7 +3,6 @@ package cz.jscelectronics.adeon.ui.help.content
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.ImageSpan
 import android.text.style.URLSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,7 @@ class AddNewDeviceFragment : Fragment() {
                 ).apply {
                     val startIdx = this.indexOf(FAB_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_baseline_add_circle_24px, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_baseline_add_circle_24px),
                         startIdx, startIdx + FAB_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
@@ -42,7 +41,7 @@ class AddNewDeviceFragment : Fragment() {
                 ).apply {
                     val startIdx = this.indexOf(CAMERA_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_baseline_camera_alt_24px, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_baseline_camera_alt_24px),
                         startIdx, startIdx + CAMERA_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
@@ -73,7 +72,7 @@ class AddNewDeviceFragment : Fragment() {
                 ).apply {
                     val startIdx = this.indexOf(FAB_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_baseline_add_circle_24px, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_baseline_add_circle_24px),
                         startIdx, startIdx + FAB_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
@@ -108,7 +107,7 @@ class AddNewDeviceFragment : Fragment() {
                     )
                     startIdx = this.indexOf(MORE_OPTIONS_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_more_options, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_more_options),
                         startIdx, startIdx + MORE_OPTIONS_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
