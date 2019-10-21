@@ -3,7 +3,6 @@ package cz.jscelectronics.adeon.ui.help.content
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,7 @@ class DeleteDeviceFragment : Fragment() {
                     )
                     startIdx = this.indexOf(MORE_OPTIONS_PLACEHOLDER)
                     setSpan(
-                        CenteredImageSpan(context, R.drawable.ic_more_options, ImageSpan.ALIGN_BASELINE),
+                        CenteredImageSpan.getInstance(context, R.drawable.ic_more_options),
                         startIdx, startIdx + MORE_OPTIONS_PLACEHOLDER.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
