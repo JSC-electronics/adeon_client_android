@@ -658,19 +658,9 @@ class BillingRepository private constructor(private val application: Application
             launchBillingFlow(activity, SkuDetails(augmentedSkuDetails.originalJson))
 
     private fun launchBillingFlow(activity: Activity, skuDetails: SkuDetails) {
-        val oldSku: String? = getOldSku(skuDetails.sku)
         val purchaseParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails)
-                .setOldSku(oldSku).build()
+                .setOldSku(null).build()
         playStoreBillingClient.launchBillingFlow(activity, purchaseParams)
-    }
-
-    /**
-     * This sample app offers only one item for subscription: GoldStatus. And there are two
-     * ways a user can subscribe to GoldStatus: monthly or yearly. The BillingRepository can access
-     * the old SKU if one exists.
-     */
-    private fun getOldSku(sku: String?): String? {
-        return null
     }
 
     /**
