@@ -170,7 +170,7 @@ class AddDeviceFragment : Fragment(),
     }
 
     private fun subscribeUi(binding: FragmentAddDeviceBinding) {
-        manageDeviceViewModel.device.observe(this, Observer { device ->
+        manageDeviceViewModel.device.observe(this.viewLifecycleOwner, Observer { device ->
             binding.deviceNameEditText.setText(device.name)
             binding.deviceNameEditText.addTextChangedListener {
                 device.name = binding.deviceNameEditText.text.toString()

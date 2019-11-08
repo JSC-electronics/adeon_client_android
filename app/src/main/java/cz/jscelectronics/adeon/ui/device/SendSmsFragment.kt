@@ -74,12 +74,12 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     }
 
     private fun subscribeUi() {
-        manageDeviceViewModel.device.observe(this, Observer { device ->
+        manageDeviceViewModel.device.observe(this.viewLifecycleOwner, Observer { device ->
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
 
-        billingViewModel.noAdvertisementsLiveData.observe(this, Observer {
+        billingViewModel.noAdvertisementsLiveData.observe(this.viewLifecycleOwner, Observer {
             if (it == null || !it.entitled) {
                 enableAdvertisements()
             }
