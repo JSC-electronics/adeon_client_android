@@ -48,7 +48,7 @@
     <string name="content_desc_delete">Ikona pro smazání</string>
     <string name="delete">Smazat</string>
     <string name="undo">Zpět</string>
-    <string name="device_removed">Zařížení %s bylo vymazáno ze seznamu!</string>
+    <string name="device_removed">Zařízení %s bylo vymazáno ze seznamu!</string>
     <string name="command_removed">Příkaz %s byl vymazán ze seznamu!</string>
     <string name="favorite_articles">Oblíbené články</string>
     <string name="add_new_device_article">Přidání nového zařízení</string>
@@ -63,13 +63,13 @@
     <string name="article_01_bullet_03_text">(volitelné) Nastavte obrázek zařízení klepnutím na tlačítko [CAMERA].</string>
     <string name="article_01_bullet_04_text">(volitelné) Zadejte umístění zařízení.</string>
     <string name="article_01_bullet_05_text">Zadejte telefonní číslo zařízení.</string>
-    <string name="article_01_bullet_06_text">Vyberte typ příkazu. Textový typ je vhodný pro komerční GSM zařízení, parametrický typ je vhodný pro vývojaře. Pro více informací vizte %s.</string>
+    <string name="article_01_bullet_06_text">Vyberte typ příkazu. Textový typ je vhodný pro komerční GSM zařízení, parametrický typ je vhodný pro vývojáře. Pro více informací vizte %s.</string>
     <string name="article_01_bullet_06_text_docs">dokumentaci</string>
     <string name="article_01_bullet_07_text">Zadejte popis příkazu (textový typ příkazu) nebo název parametru (parametrický typ příkazu).</string>
     <string name="article_01_bullet_08_text">Zadejte text příkazu (textový typ příkazu) nebo hodnotu parametru (parametrický typ příkazu).</string>
     <string name="article_01_bullet_09_text">(volitelné) Přidejte další příkaz klepnutím na tlačítko [FAB].</string>
     <string name="article_01_bullet_10_text">Klepněte na tlačítko %s.</string>
-    <string name="article_01_note_text">Poznámka: V kontextovém menu zařízení [MORE_OPTIONS] můžete použít volbu %s pro přídání dvou nebo více podobných zařízení.
+    <string name="article_01_note_text">Poznámka: V kontextovém menu zařízení [MORE_OPTIONS] můžete použít volbu %s pro přidání dvou nebo více podobných zařízení.
     </string>
     <string name="article_02_bullet_01_text">Klepněte na tlačítko [MORE_OPTIONS] a potom klepněte na %s.</string>
     <string name="article_02_note_text">Poznámka: Vymazání zařízení je možné vrátit zpět do 5 sekund klepnutím na tlačítko %s na spodním vyskakovacím panelu.</string>
@@ -104,7 +104,7 @@
     <string name="intro_page3_description">Jednoduchá správa na jedné obrazovce. Pro neomezené množství zařízení.</string>
     <string name="intro_page3_title">Jedna aplikace vládne všem!</string>
     <string name="intro_page4_description">Podpora pro více příkazů. Odešlete jeden nebo více příkazů najednou.</string>
-    <string name="intro_page5_description">Přidejte podporu do vašeho embedded zařízení s naší open-source knihovnou.</string>
+    <string name="intro_page5_description">Přidejte podporu do vašeho vestavného (embedded) zařízení s naší open-source knihovnou.</string>
     <string name="intro_page4_title">Jedno zařízení, mnoho voleb.</string>
     <string name="intro_page5_title">Pro vývojáře.</string>
     <string name="sim_icon_content_description">Ikona SIM</string>
