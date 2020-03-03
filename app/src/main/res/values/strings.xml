@@ -133,7 +133,7 @@
     <string name="article_04_bullet_03_text">If you already have some devices added, please confirm that you want to
         continue with import. Current settings will be lost.
     </string>
-    <string name="article_04_bullet_04_text">Choose exported configuration file (file type .txt)</string>
+    <string name="article_04_bullet_04_text">Choose exported configuration file (file type .txt).</string>
     <string name="article_04_note_text">Note:</string>
     <string name="article_04_note_01_text">Import will override current app database.</string>
     <string name="article_04_note_02_text">Device images are not imported. Add device images manually after every import.</string>

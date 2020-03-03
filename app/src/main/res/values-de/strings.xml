@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Adeon</string>
+    <string name="my_devices_title">Meine Geräte</string>
+    <string name="help_and_feedback_title">Hilfe und Feedback</string>
+    <string name="support_title">Unterstützung</string>
+    <string name="navigation_drawer_header_content_description"
+            translation_description="Content description for the image that is shown at the top of the navigation drawer.">
+        Kopfzeilenlogo der Navigationsschublade
+    </string>
+    <string name="empty_device_list">Bitte fügen Sie ein Gerät hinzu.</string>
+    <string name="device_name_hint">Gerätename</string>
+    <string name="location_hint">Ort</string>
+    <string name="phone_hint">Telefonnummer des Geräts</string>
+    <string name="invalid_phone_number">Bitte geben Sie eine gültige Telefonnummer ein.</string>
+    <string name="invalid_device_name">Gerätename sollte nicht leer sein!</string>
+    <string name="command_value_out_of_range">Nicht im Bereich 0–65535!</string>
+    <string name="invalid_defined_commands">Einige der definierten Befehle sind ungültig!</string>
+    <string name="no_defined_command_error">Es wurde kein Befehl definiert!</string>
+    <string name="command_text_empty">Befehlstext ist leer!</string>
+
+    <string name="add_device_title">Gerät hinzufügen</string>
+    <string name="add_device_button" translatable="false">@string/add_device_title</string>
+    <string name="edit_device_title">Gerät bearbeiten</string>
+    <string name="save_changes_button">Änderungen speichern</string>
+    <string name="save_button">Speichern</string>
+    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
+    <string name="action_duplicate">Vervielfältigen</string>
+    <string name="action_remove_device">Gerät entfernen</string>
+    <string name="commands">Definierte Befehle</string>
+    <string name="send_command_title">Befehl senden</string>
+    <string name="send_sms_button" translatable="false">@string/send_command_title</string>
+
+    <string name="command_name">Name</string>
+    <string name="command_value">Wert</string>
+    <string name="command_description">Befehlsbeschreibung</string>
+    <string name="command_no_description">Unbenannter Befehl</string>
+    <string name="command_text">Befehlstext</string>
+
+    <string name="sms_permissions_not_granted">SMS wurde nicht gesendet. Berechtigungen wurden nicht erteilt.</string>
+    <string name="content_desc_application_logo">Anwendungslogo</string>
+    <string name="content_desc_device_image">Gerätebild</string>
+    <string name="content_desc_device_item_menu">Menü für Geräteelemente</string>
+    <string name="no_command_selected">Bitte wählen Sie mindestens einen Befehl aus, bevor Sie eine SMS senden.</string>
+    <string name="command_type">Befehlstyp</string>
+    <string name="parametric_type">Parametrisch</string>
+    <string name="plain_text_type">Klartext</string>
+    <string name="checkbox_info">Bitte überprüfen Sie alle Befehle, die Sie senden möchten.</string>
+    <string name="checkbox_tap_info">Bitte tippen Sie auf einen Befehl, den Sie senden möchten.</string>
+    <string name="change_device_image">Gerätebild ändern</string>
+    <string name="select_from_adeon_library">Aus der Adeon-Bibliothek auswählen</string>
+    <string name="select_image">Bild auswählen</string>
+    <string name="take_photo">Foto machen</string>
+    <string name="import_configuration_short">Importieren</string>
+    <string name="import_configuration">Konfiguration importieren</string>
+    <string name="export_configuration_short">Exportieren</string>
+    <string name="export_configuration">Konfiguration exportieren</string>
+    <string name="wipe_configuration_short">Wischen</string>
+    <string name="warning">Warnung</string>
+    <string name="import_overwrite_msg">Bestehende Konfiguration wird überschrieben! Möchten Sie diesen Vorgang fortsetzen?</string>
+    <string name="import_btn_label">Importieren</string>
+    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
+    <string name="wipe_msg">Alle Ihre Geräteprofile werden gelöscht und können nicht wiederhergestellt werden! Möchten Sie diesen Vorgang fortsetzen?</string>
+    <string name="configuration_wiped">Die Konfiguration wurde gelöscht.</string>
+    <string name="nothing_to_export">Es gibt nichts zu exportieren! Bitte fügen Sie zuerst einige Geräte hinzu.</string>
+    <string name="nothing_to_wipe">Ihre Konfiguration ist bereits leer!</string>
+    <string name="content_desc_delete">Symbol löschen</string>
+    <string name="delete">Löschen</string>
+    <string name="undo">Rückgängig machen</string>
+    <string name="device_removed">Gerät %s von der Liste entfernt!</string>
+    <string name="command_removed">Befehl %s von der Liste entfernt!</string>
+    <string name="favorite_articles">Lieblingsartikel</string>
+    <string name="add_new_device_article">Ein neues Gerät hinzufügen</string>
+    <string name="delete_a_device_article">Löschen des Geräts</string>
+    <string name="export_configuration_article">Exportieren der Konfiguration</string>
+    <string name="import_configuration_article">Inportieren der Konfiguration</string>
+    <string name="send_commands_article">Befehle senden</string>
+    <string name="browse_all_articles">Alle Artikel durchsuchen</string>
+    <string name="send_feedback">Feedback schicken</string>
+    <string name="invalid_configuration">Ungültige Datei, Import war nicht erfolgreich!</string>
+    <string name="configuration_import_successful">Konfiguration erfolgreich importiert.</string>
+    <string name="configuration_export_error">Beim Konfigurationsexport ist ein Fehler aufgetreten!</string>
+    <string name="configuration_export_successful">Der Konfigurationsexport war erfolgreich.</string>
+    <string name="premium_sms">Möglicherweise wird Ihnen das Senden einer Nachricht an die von Ihnen eingegebene SMS-Nummer in Rechnung gestellt.</string>
+
+    <string name="help_menu_action_about">Versionsinformation</string>
+    <string name="help_menu_action_licenses">Open Source Lizenzen</string>
+
+    <!-- Help article bullet point IDs -->
+    <string name="first_bullet_point_id" translatable="false">1.</string>
+    <string name="second_bullet_point_id" translatable="false">2.</string>
+    <string name="third_bullet_point_id" translatable="false">3.</string>
+    <string name="fourth_bullet_point_id" translatable="false">4.</string>
+    <string name="fifth_bullet_point_id" translatable="false">5.</string>
+    <string name="sixth_bullet_point_id" translatable="false">6.</string>
+    <string name="seventh_bullet_point_id" translatable="false">7.</string>
+    <string name="eight_bullet_point_id" translatable="false">8.</string>
+    <string name="ninth_bullet_point_id" translatable="false">9.</string>
+    <string name="tenth_bullet_point_id" translatable="false">10.</string>
+    <string name="unordered_bullet_point" translatable="false">\u2022</string>
+
+    <!-- Help article 01 -->
+    <string name="article_01_bullet_01_text">Tippen Sie auf die Schaltfläche [FAB].</string>
+    <string name="article_01_bullet_02_text">Geben Sie den Gerätenamen ein.</string>
+    <string name="article_01_bullet_03_text">(optional) Stellen Sie das Gerätebild ein, indem Sie auf die Schaltfläche [CAMERA] tippen.</string>
+    <string name="article_01_bullet_04_text">(optional) Geben Sie den Gerätestandort ein.</string>
+    <string name="article_01_bullet_05_text">Geben Sie die Telefonnummer des Geräts ein.</string>
+    <string name="article_01_bullet_06_text">Wählen Sie den Befehlstyp. Klartext ist für kommerzielle GSM-Geräte geeignet, während der parametrische Typ für Entwickler geeignet ist. Weitere Informationen finden Sie in der %s.</string>
+    <string name="article_01_bullet_06_text_docs">Dokumentation</string>
+    <string name="article_01_bullet_07_text">Insert command description (plaintext type command) or parameter name (parametric type command).
+    </string>
+    <string name="article_01_bullet_08_text">Insert command text (plaintext type command) or value (parametric type command).
+    </string>
+    <string name="article_01_bullet_09_text">(optional) Fügen Sie einen weiteren Befehl hinzu, indem Sie auf die Schaltfläche [FAB] tippen.</string>
+    <string name="article_01_bullet_10_text">Tippen Sie auf die Schaltfläche %s.</string>
+    <string name="article_01_note_text">Hinweis: Mit der Option %s im Gerätekontextmenü [MORE_OPTIONS] können Sie zwei oder mehr ähnliche Geräte hinzufügen.
+    </string>
+
+    <!-- Help article 02 -->
+    <string name="article_02_bullet_01_text">Tippen Sie auf die Schaltfläche [MORE_OPTIONS] und anschließend auf %s.</string>
+    <string name="article_02_note_text">Hinweis: Sie können das Löschen des Geräts innerhalb der nächsten 5 Sekunden rückgängig machen, indem Sie auf die Schaltfläche %s in der unteren Popup-Leiste tippen.
+    </string>
+
+    <!-- Help article 03 -->
+    <string name="article_03_bullet_01_text">Tippen Sie im Menü der oberen Leiste auf die Schaltfläche [MORE_OPTIONS].</string>
+    <string name="article_03_bullet_02_text">Wählen Sie %s.</string>
+    <string name="article_03_bullet_03_text">Wählen Sie den Zielordner.</string>
+    <string name="article_03_bullet_04_text">Bearbeiten Sie den Namen der Konfigurationsdatei.</string>
+    <string name="article_03_bullet_05_text">Tippen Sie auf die Schaltfläche %s.</string>
+    <string name="article_03_note_text">Hinweis: Gerätebilder werden nicht exportiert.</string>
+
+    <!-- Help article 04 -->
+    <string name="article_04_bullet_03_text">Wenn Sie bereits einige Geräte hinzugefügt haben,
+        bestätigen Sie bitte, dass Sie mit dem Import fortfahren möchten. Aktuelle Einstellungen gehen verloren.
+    </string>
+    <string name="article_04_bullet_04_text">Wählen Sie die exportierte Konfigurationsdatei (Dateityp .txt).</string>
+    <string name="article_04_note_text">Hinweis:</string>
+    <string name="article_04_note_01_text">Der Import überschreibt die aktuelle App-Datenbank.</string>
+    <string name="article_04_note_02_text">Gerätebilder werden nicht importiert. Fügen Sie Gerätebilder nach jedem Import manuell hinzu.</string>
+
+    <!-- Help article 05 -->
+    <string name="article_05_bullet_01_text">Wählen Sie ein Gerät aus, indem Sie auf das bestimmte Element in der Geräteliste tippen.
+        Eine Seite mit einer Liste definierter Befehle wird angezeigt.</string>
+    <string name="article_05_bullet_02_text">Wenn Sie einen Textbefehl senden möchten, tippen Sie in einer Liste unter diesem Befehl auf die Schaltfläche [SEND_COMMAND].</string>
+    <string name="article_05_bullet_03_text">Verwenden Sie andernfalls das Kontrollkästchen [CHECKBOX], um einen parametrischen Befehl (oder Befehle) auszuwählen,
+        der über das Mobilfunknetz an das Gerät gesendet wird (weitere Informationen finden Sie in der %s).
+    </string>
+    <string name="article_05_bullet_04_text">Tippen Sie auf die Schaltfläche %s.</string>
+    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
+    <string name="app_version">Version %s</string>
+
+    <!-- Intro activity -->
+    <string name="intro_page1_title">Herzlich willkommen!</string>
+    <string name="intro_page1_description">Verwalten Sie Ihre GSM-Geräte mühelos.</string>
+    <string name="intro_page2_title">Gehen Sie offline!</string>
+    <string name="intro_page2_description">Steuern Sie Ihr Gerät mit einer vordefinierten SMS.</string>
+    <string name="intro_page3_title">Eine App, um sie alle zu regieren!</string>
+    <string name="intro_page3_description">Einfache Verwaltung auf einem Bildschirm. Für die unbegrenzte Anzahl von Geräten.</string>
+    <string name="intro_page4_title">Ein Gerät, viele Optionen.</string>
+    <string name="intro_page4_description">Unterstützung mehrerer Befehle. Senden Sie einen oder mehrere Befehle gleichzeitig.</string>
+    <string name="intro_page5_title">Für Entwickler.</string>
+    <string name="intro_page5_description">Fügen Sie Ihrem Embedded-Gerät mit unserer Open-Source-Bibliothek Unterstützung hinzu.</string>
+    <string name="sim_icon_content_description">SIM-Symbol</string>
+    <string name="location_icon">Standortsymbol</string>
+    <string name="configuration">Konfiguration</string>
+    <string name="invalid_command_value">Ungültiger Befehlswert!</string>
+    <string name="remove_ads">Werbung entfernen</string>
+    <string name="purchases">Einkäufe</string>
+    <string name="purchases_unavailable">Einkäufe sind in Ihrem Land nicht möglich.</string>
+
+    <string-array name="change_device_image_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+        <item>@string/take_photo</item>
+    </string-array>
+
+    <string-array name="change_device_image_no_camera_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+    </string-array>
+</resources>

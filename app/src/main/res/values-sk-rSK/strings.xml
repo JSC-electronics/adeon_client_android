@@ -92,7 +92,7 @@
     <string name="article_04_bullet_03_text">Pokiaľ už máte nejaké zariadenia pridané, potvrďte, že chcete pokračovať s
         importom. Táto akcia spôsobí stratu aktuálneho nastavenia.
     </string>
-    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (súbor typu .txt)</string>
+    <string name="article_04_bullet_04_text">Vyberte si vyexportovaný konfiguračný súbor (súbor typu .txt).</string>
     <string name="article_04_note_01_text">Import nahradí aktuálnu aplikačnú databázu.</string>
     <string name="article_04_note_02_text">Obrázky zariadení nie sú importované. Pridajte obrázky ručne po každom
         importe.
