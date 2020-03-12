@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Adeon</string>
+    <string name="my_devices_title">Mes appareils</string>
+    <string name="help_and_feedback_title">Aide et commentaires</string>
+    <string name="support_title">Soutien</string>
+    <string name="navigation_drawer_header_content_description"
+            translation_description="Content description for the image that is shown at the top of the navigation drawer.">
+        Logo d\'en-tête de tiroir de navigation
+    </string>
+    <string name="empty_device_list">Veuillez ajouter un appareil.</string>
+    <string name="device_name_hint">Nom de l\'appareil</string>
+    <string name="location_hint">Emplacement</string>
+    <string name="phone_hint">Numéro de téléphone de l\'appareil</string>
+    <string name="invalid_phone_number">Veuillez saisir un numéro de téléphone valide.</string>
+    <string name="invalid_device_name">Le nom de l\'appareil ne doit pas être vide !</string>
+    <string name="command_value_out_of_range">Pas dans la plage 0–65535 !</string>
+    <string name="invalid_defined_commands">Certaines des commandes définies ne sont pas valides !</string>
+    <string name="no_defined_command_error">Aucune commande n\'a été définie !</string>
+    <string name="command_text_empty">Le texte de la commande est vide !</string>
+
+    <string name="add_device_title">Ajouter un appareil</string>
+    <string name="add_device_button" translatable="false">@string/add_device_title</string>
+    <string name="edit_device_title">Modifier l\'appareil</string>
+    <string name="save_changes_button">Sauvegarder les modifications</string>
+    <string name="save_button">Sauvegarder</string>
+    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
+    <string name="action_duplicate">Dupliquer</string>
+    <string name="action_remove_device">Supprimer l\'appareil</string>
+    <string name="commands">Commandes définies</string>
+    <string name="send_command_title">Envoyer une commande</string>
+    <string name="send_sms_button" translatable="false">@string/send_command_title</string>
+
+    <string name="command_name">Nom</string>
+    <string name="command_value">Valeur</string>
+    <string name="command_description">Description de la commande</string>
+    <string name="command_no_description">Commande sans nom</string>
+    <string name="command_text">Texte de commande</string>
+
+    <string name="sms_permissions_not_granted">Aucun SMS n\'a été envoyé. Aucune autorisation n\'a été accordée.</string>
+    <string name="content_desc_application_logo">Logo de l\'application</string>
+    <string name="content_desc_device_image">Image de l\'appareil</string>
+    <string name="content_desc_device_item_menu">L\'entrée de menu appareil</string>
+    <string name="no_command_selected">Veuillez sélectionner au moins une commande avant d\'envoyer un SMS.</string>
+    <string name="command_type">Type de commande</string>
+    <string name="parametric_type">Paramétrique</string>
+    <string name="plain_text_type">Texte brut</string>
+    <string name="checkbox_info">Veuillez cocher toutes les commandes que vous souhaitez envoyer.</string>
+    <string name="checkbox_tap_info">Veuillez appuyer sur une commande que vous souhaitez envoyer.</string>
+    <string name="change_device_image">Changer l\'image de l\'appareil</string>
+    <string name="select_from_adeon_library">Sélectionner dans la bibliothèque Adeon</string>
+    <string name="select_image">Sélectionner l\'image</string>
+    <string name="take_photo">Prendre une photo</string>
+    <string name="import_configuration_short">Importer</string>
+    <string name="import_configuration">Importer la configuration</string>
+    <string name="export_configuration_short">Exporter</string>
+    <string name="export_configuration">Exporter la configuration</string>
+    <string name="wipe_configuration_short">Effacer</string>
+    <string name="warning">Avertissement</string>
+    <string name="import_overwrite_msg">La configuration existante sera effacée ! Voulez-vous continuer ?</string>
+    <string name="import_btn_label">Importer</string>
+    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
+    <string name="wipe_msg">Tous les profils de votre appareil seront effacés et ne pourront pas être récupérés ! Voulez-vous continuer ?</string>
+    <string name="configuration_wiped">La configuration a été effacée.</string>
+    <string name="nothing_to_export">Il n\'y a rien à exporter ! Veuillez d\'abord ajouter certains appareils.</string>
+    <string name="nothing_to_wipe">Votre configuration est déjà vide !</string>
+    <string name="content_desc_delete">Supprimer l\'icône</string>
+    <string name="delete">Supprimer</string>
+    <string name="undo">Annuler</string>
+    <string name="device_removed">L\'appareil %s a été supprimé de la liste !</string>
+    <string name="command_removed">La commande %s a été supprimée de la liste !</string>
+    <string name="favorite_articles">Articles préférés</string>
+    <string name="add_new_device_article">Ajouter un nouvel appareil</string>
+    <string name="delete_a_device_article">Supprimer l\'appareil</string>
+    <string name="export_configuration_article">Exporter la configuration</string>
+    <string name="import_configuration_article">Importer la configuration</string>
+    <string name="send_commands_article">Envoi de commandes</string>
+    <string name="browse_all_articles">Parcourir tous les articles</string>
+    <string name="send_feedback">Envoyer des commentaires</string>
+    <string name="invalid_configuration">Fichier non valide, l\'importation n\'a pas réussi !</string>
+    <string name="configuration_import_successful">Configuration importée avec succès.</string>
+    <string name="configuration_export_error">Une erreur s\'est produite lors de l\'exportation de la configuration !</string>
+    <string name="configuration_export_successful">L\'exportation de la configuration a réussi.</string>
+    <string name="premium_sms">Vous pourriez être facturé pour l\'envoi d\'un message au numéro SMS que vous avez saisi.</string>
+
+    <string name="help_menu_action_about">Information sur la version</string>
+    <string name="help_menu_action_licenses">Licences à code source libre</string>
+
+    <!-- Help article bullet point IDs -->
+    <string name="first_bullet_point_id" translatable="false">1.</string>
+    <string name="second_bullet_point_id" translatable="false">2.</string>
+    <string name="third_bullet_point_id" translatable="false">3.</string>
+    <string name="fourth_bullet_point_id" translatable="false">4.</string>
+    <string name="fifth_bullet_point_id" translatable="false">5.</string>
+    <string name="sixth_bullet_point_id" translatable="false">6.</string>
+    <string name="seventh_bullet_point_id" translatable="false">7.</string>
+    <string name="eight_bullet_point_id" translatable="false">8.</string>
+    <string name="ninth_bullet_point_id" translatable="false">9.</string>
+    <string name="tenth_bullet_point_id" translatable="false">10.</string>
+    <string name="unordered_bullet_point" translatable="false">\u2022</string>
+
+    <!-- Help article 01 -->
+    <string name="article_01_bullet_01_text">Taper sur le bouton [FAB].</string>
+    <string name="article_01_bullet_02_text">Insérer le nom de l\'appareil.</string>
+    <string name="article_01_bullet_03_text">(facultatif) Définir l\'image de l\'appareil en tapant sur le bouton [CAMERA].</string>
+    <string name="article_01_bullet_04_text">(facultatif) Insérer l\'emplacement de l\'appareil.</string>
+    <string name="article_01_bullet_05_text">Insérer le numéro de téléphone de l\'appareil.</string>
+    <string name="article_01_bullet_06_text">Choisir le type de commande. Le type de texte convient aux appareils GSM commerciaux, tandis que le type paramétrique convient aux développeurs. Pour plus d\'informations, le %s.</string>
+    <string name="article_01_bullet_06_text_docs">Documentation</string>
+    <string name="article_01_bullet_07_text">Insérer une description de commande (commande de type texte brut) ou un nom de paramètre (commande de type paramétrique).
+    </string>
+    <string name="article_01_bullet_08_text">Insérer un texte de commande (commande de type texte brut) ou une valeur (commande de type paramétrique).
+    </string>
+    <string name="article_01_bullet_09_text">(facultatif) Ajouter une autre commande en tapant sur le bouton [FAB].</string>
+    <string name="article_01_bullet_10_text">Taper sur le bouton %s.</string>
+    <string name="article_01_note_text">Remarque: Vous pouvez utiliser l\'option %s dans le menu contextuel de l\'appareil [MORE_OPTIONS] pour ajouter deux ou plusieurs appareils similaires.
+    </string>
+
+    <!-- Help article 02 -->
+    <string name="article_02_bullet_01_text">Taper sur le bouton [MORE_OPTIONS] puis tapez sur %s.</string>
+    <string name="article_02_note_text">Remarque: vous pouvez annuler la suppression de l\'appareil dans les 5 secondes qui suivent en tapant sur le bouton %s dans la barre contextuelle inférieure.
+    </string>
+
+    <!-- Help article 03 -->
+    <string name="article_03_bullet_01_text">Taper sur le bouton [PLUS_OPTIONS] dans le menu de la barre supérieure.</string>
+    <string name="article_03_bullet_02_text">Sélectionner %s.</string>
+    <string name="article_03_bullet_03_text">Choisir le dossier de destination.</string>
+    <string name="article_03_bullet_04_text">Modifier le nom du fichier de configuration.</string>
+    <string name="article_03_bullet_05_text">Taper sur le bouton %s.</string>
+    <string name="article_03_note_text">Remarque: Les images de l\'appareil ne sont pas exportées.</string>
+
+    <!-- Help article 04 -->
+    <string name="article_04_bullet_03_text">Si certains appareils ont déjà été ajoutés, veuillez confirmer que vous souhaitez poursuivre l\'importation. Les paramètres actuels seront perdus.
+    </string>
+    <string name="article_04_bullet_04_text">Choisir le fichier de configuration exporté (type de fichier .txt)</string>
+    <string name="article_04_note_text">Remarque:</string>
+    <string name="article_04_note_01_text">L\'importation remplacera la base de données d\'application actuelle.</string>
+    <string name="article_04_note_02_text">Les images de l\'appareil ne sont pas importées. Ajoutez des images de l\'appareil manuellement après chaque importation.</string>
+
+    <!-- Help article 05 -->
+    <string name="article_05_bullet_01_text">Sélectionner un appareil en tapant sur l\'élément spécifique dans la liste des appareils. Une page avec une liste de commandes définies apparaîtra.</string>
+    <string name="article_05_bullet_02_text">Si vous souhaitez envoyer une commande de texte, dans une liste, tapez sur un bouton [SEND_COMMAND] sous cette commande.</string>
+    <string name="article_05_bullet_03_text">Sinon, utilisez la case à cocher [CHECKBOX] pour choisir la commande (ou les commandes) paramétrique(s), qui sera envoyée au périphérique via le réseau cellulaire (voir %s pour plus d\'informations).
+    </string>
+    <string name="article_05_bullet_04_text">Taper sur le bouton %s.</string>
+    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
+    <string name="app_version">Version %s</string>
+
+    <!-- Intro activity -->
+    <string name="intro_page1_title">Bienvenu(e) !</string>
+    <string name="intro_page1_description">Gérez facilement vos appareils GSM.</string>
+    <string name="intro_page2_title">Se déconnecter !</string>
+    <string name="intro_page2_description">Contrôlez votre appareil à l\'aide d\'un SMS prédéfini.</string>
+    <string name="intro_page3_title">Une application pour les gouverner tous !</string>
+    <string name="intro_page3_description">Gestion simple sur un seul écran. Pour un nombre illimité d\'appareils.</string>
+    <string name="intro_page4_title">Un appareil, de nombreuses options.</string>
+    <string name="intro_page4_description">Prise en charge de plusieurs commandes. Envoyez une ou plusieurs commandes à la fois.</string>
+    <string name="intro_page5_title">Pour les développeurs.</string>
+    <string name="intro_page5_description">Ajoutez du support à votre appareil intégré avec notre bibliothèque open-source.</string>
+    <string name="sim_icon_content_description">Icône SIM</string>
+    <string name="location_icon">Icône de localisation</string>
+    <string name="configuration">Configuration</string>
+    <string name="invalid_command_value">Valeur de commande non valide !</string>
+    <string name="remove_ads">Supprimer les publicités</string>
+    <string name="purchases">Achats</string>
+    <string name="purchases_unavailable">Les achats ne sont pas disponibles dans votre pays.</string>
+
+    <string-array name="change_device_image_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+        <item>@string/take_photo</item>
+    </string-array>
+
+    <string-array name="change_device_image_no_camera_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+    </string-array>
+</resources>
