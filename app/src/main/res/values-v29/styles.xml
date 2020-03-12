@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="BaseAppTheme">
+    <style name="Theme.Adeon" parent="Base.Theme.Adeon">
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
         <!-- Optional, but recommended for full edge-to-edge rendering -->

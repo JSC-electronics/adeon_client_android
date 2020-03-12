@@ -17,11 +17,7 @@
 
     <style name="Theme.Adeon.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
-    <style name="Theme.Adeon.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
-
-    <style name="Theme.Adeon.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="tint">@android:color/white</item>
-    </style>
+    <style name="Theme.Adeon.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark"/>
 
     <style name="TextAppearance.Adeon.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
         <item name="android:textColor">?attr/colorOnSurface</item>
