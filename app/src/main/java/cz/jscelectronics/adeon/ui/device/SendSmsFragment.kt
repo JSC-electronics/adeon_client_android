@@ -13,16 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.AttributesAdapter
 import cz.jscelectronics.adeon.data.Attribute
 import cz.jscelectronics.adeon.databinding.FragmentSendSmsBinding
-import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel
 import cz.jscelectronics.adeon.utilities.InjectorUtils
 import cz.jscelectronics.adeon.utilities.hideSoftKeyboard
@@ -39,8 +34,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private var messageText: String? = null
     private lateinit var layout: CoordinatorLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
-    private lateinit var billingViewModel: BillingViewModel
-    private var interstitialAd: InterstitialAd? = null
     private val args: SendSmsFragmentArgs by navArgs()
 
     companion object {
@@ -56,7 +49,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), args.deviceId)
         manageDeviceViewModel =
             ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
-        billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
 
         val binding = FragmentSendSmsBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -85,25 +77,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
         })
-
-        billingViewModel.noAdvertisementsLiveData.observe(this.viewLifecycleOwner, Observer {
-            if (it == null || !it.entitled) {
-                enableAdvertisements()
-            }
-        })
-    }
-
-    private fun enableAdvertisements() {
-        MobileAds.initialize(this.requireContext(), "ca-app-pub-7647102948654129~2785935234")
-        interstitialAd = InterstitialAd(this.requireContext()).apply {
-            this.adUnitId = "ca-app-pub-7647102948654129/6655848049"
-            this.loadAd(AdRequest.Builder().build())
-            this.adListener = object : AdListener() {
-                override fun onAdClosed() {
-                    interstitialAd?.loadAd(AdRequest.Builder().build())
-                }
-            }
-        }
     }
 
     private fun requestSmsPermissions() {
@@ -158,23 +131,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 ).show()
                 return
             }
-
-            if (interstitialAd == null) {
-                sendSmsToDevice()
-            } else {
-                interstitialAd?.apply {
-                    if (this.isLoaded) {
-                        this.show()
-                        this.adListener = object: AdListener() {
-                            override fun onAdClosed() {
-                                sendSmsToDevice()
-                            }
-                        }
-                    } else {
-                        sendSmsToDevice()
-                    }
-                }
-            }
+            sendSmsToDevice()
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
