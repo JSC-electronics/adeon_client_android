@@ -11,11 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.DeviceAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
+import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.dialogs.ImportDialogFragment
 import cz.jscelectronics.adeon.ui.device.dialogs.OnDialogClickListener
 import cz.jscelectronics.adeon.ui.device.dialogs.WipeDialogFragment
@@ -40,8 +44,10 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
         private const val WIPE_DIALOG_TAG = "Wipe Dialog"
     }
 
-    private lateinit var viewModel: DeviceListViewModel
+    private lateinit var deviceListViewModel: DeviceListViewModel
+    private lateinit var billingViewModel: BillingViewModel
     private lateinit var layout: CoordinatorLayout
+    private lateinit var adView: AdView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,16 +66,18 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
 
         val context = context ?: return binding.root
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
-        viewModel = ViewModelProvider(this, factory).get(DeviceListViewModel::class.java)
+        deviceListViewModel = ViewModelProvider(this, factory).get(DeviceListViewModel::class.java)
+        billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
 
+        adView = binding.adView
         layout = binding.devices
-        val adapter = DeviceAdapter(viewModel)
+        val adapter = DeviceAdapter(deviceListViewModel)
         binding.deviceList.adapter = adapter
         ItemTouchHelper(
             RecyclerAttributeTouchHelper(
                 0 /* TODO: Device move not implemented */,
                 0 /* Disable swipe gesture to resolve issue #22 and partially mitigate #21; ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT*/,
-                viewModel
+                deviceListViewModel
             )
         ).attachToRecyclerView(binding.deviceList)
 
@@ -99,7 +107,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     }
 
     private fun subscribeUi(adapter: DeviceAdapter, binding: FragmentDeviceListBinding) {
-        viewModel.getDevices().observe(viewLifecycleOwner, Observer { devices ->
+        deviceListViewModel.getDevices().observe(viewLifecycleOwner, Observer { devices ->
             if (devices != null && devices.isNotEmpty()) {
                 binding.hasDevices = true
                 adapter.submitList(devices)
@@ -116,10 +124,24 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
             }
             arguments?.clear()
         })
+
+        billingViewModel.noAdvertisementsLiveData.observe(this.viewLifecycleOwner, Observer {
+            if (it == null || !it.entitled) {
+                enableAdvertisements()
+            } else {
+                adView.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun enableAdvertisements() {
+        MobileAds.initialize(this.requireContext()) {}
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     private fun importConfiguration() {
-        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+        if (!deviceListViewModel.getDevices().value.isNullOrEmpty()) {
             try {
                 this.parentFragmentManager.let { manager ->
                     val importDialog = ImportDialogFragment()
@@ -147,7 +169,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     }
 
     private fun exportConfiguration() {
-        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+        if (!deviceListViewModel.getDevices().value.isNullOrEmpty()) {
             writeConfiguration()
         } else {
             Snackbar.make(layout, R.string.nothing_to_export, Snackbar.LENGTH_LONG).show()
@@ -175,7 +197,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     }
 
     private fun deleteConfiguration() {
-        if (!viewModel.getDevices().value.isNullOrEmpty()) {
+        if (!deviceListViewModel.getDevices().value.isNullOrEmpty()) {
             try {
                 this.parentFragmentManager.let { manager ->
                     val wipeDialog = WipeDialogFragment()
@@ -195,12 +217,12 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
             when (requestCode) {
                 READ_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        viewModel.importConfiguration(uri, layout)
+                        deviceListViewModel.importConfiguration(uri, layout)
                     }
                 }
                 WRITE_CONFIG_REQUEST_CODE -> {
                     data?.data?.also { uri ->
-                        viewModel.exportConfiguration(uri, layout)
+                        deviceListViewModel.exportConfiguration(uri, layout)
                     }
                 }
             }
@@ -210,7 +232,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     override fun onDialogPositiveClick(dialog: DialogFragment) {
         when (dialog) {
             is ImportDialogFragment -> readConfiguration()
-            is WipeDialogFragment -> viewModel.wipeConfiguration(layout)
+            is WipeDialogFragment -> deviceListViewModel.wipeConfiguration(layout)
         }
     }
 }
