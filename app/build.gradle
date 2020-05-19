@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.google.gms.google-services'
 
 /**
  * Extract Git commit hash of HEAD with number of changed files
@@ -72,7 +73,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-oss-licenses:$rootProject.ossLicensesLibrary"
     implementation "com.github.AppIntro:AppIntro:$rootProject.appIntroVersion"
     implementation "com.android.billingclient:billing:$rootProject.billingVersion"
-
+    implementation "com.google.firebase:firebase-analytics:$rootProject.firebaseAnalyticsVersion"
 
     // Testing dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"

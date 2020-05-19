@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "2499381656",
+    "firebase_url": "https://adeon-60c87.firebaseio.com",
+    "project_id": "adeon-60c87",
+    "storage_bucket": "adeon-60c87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2499381656:android:b2e955174a6d555dd703ed",
+        "android_client_info": {
+          "package_name": "cz.jscelectronics.adeon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2499381656-c4ra136ipkfuproeoi78lhqkrnrv4c00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5dBpEDfKIsK_UBZJCxW3AjCuXKuPh8LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2499381656-c4ra136ipkfuproeoi78lhqkrnrv4c00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,7 +15,9 @@ buildscript {
         constraintLayoutVersion = '2.0.0-beta5'
         coroutinesVersion = "1.1.1"
         espressoVersion = '3.2.0-beta01'
+        firebaseAnalyticsVersion = '17.4.1'
         glideVersion = '4.10.0'
+        googleServicesVersion = '4.3.3'
         gradleVersion = '3.6.3'
         grgitVersion = '3.1.1'
         gsonVersion = '2.8.5'
@@ -47,6 +49,7 @@ buildscript {
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
         classpath "org.ajoberstar.grgit:grgit-gradle:$grgitVersion"
+        classpath "com.google.gms:google-services:$googleServicesVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
