@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="cz.jscelectronics.adeon.data.Device"/>
+
+        <variable
+                name="viewModel"
+                type="cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel"/>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:id="@+id/send_sms_layout"
+            tools:context="cz.jscelectronics.adeon.ui.device.SendSmsFragment"
+            tools:ignore="MergeRootFrame">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar_height"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:background="?attr/colorAccent">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:title="Add device"
+                    app:toolbarId="@+id/toolbar">
+
+                <ImageView
+                        android:id="@+id/device_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/content_desc_device_image"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{viewModel.device.image}"
+                        app:fallbackDrawable="@{@drawable/ic_device_icon_legacy_bg}"
+                        app:layout_collapseMode="parallax"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+                android:id="@+id/send_sms_scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/send_sms_content_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".ui.device.SendSmsFragment"
+            >
+
+                <TextView
+                        android:id="@+id/device_name"
+                        android:text="@{viewModel.device.name}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="40dp" android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="24dp"
+                        tools:text="Cool device"
+                        android:textSize="20sp" android:textStyle="bold"/>
+
+                <TextView
+                        android:id="@+id/location"
+                        android:text="@{viewModel.device.location}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        android:layout_marginStart="8dp" android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/device_name"
+                        android:layout_marginTop="4dp"
+                        tools:text="Cool location"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/locationIcon"/>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/ic_location"
+                        android:id="@+id/locationIcon"
+                        android:tint="@color/colorAccent"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="40dp"
+                        app:layout_constraintEnd_toStartOf="@+id/location"
+                        app:layout_constraintTop_toTopOf="@+id/location"
+                        android:contentDescription="@string/location_icon"/>
+
+                <cz.jscelectronics.phonefield.PhoneTextView
+                        android:id="@+id/phone_number"
+                        app:phoneNumber="@{viewModel.device.phoneNumber}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/location"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/simIcon">
+
+                    <ImageView
+                            android:id="@+id/simIcon"
+                            android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:contentDescription="@string/sim_icon_content_description"
+                        android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/ic_sim_icon" />
+                </cz.jscelectronics.phonefield.PhoneTextView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/dial_button"
+                        style="@style/Theme.Adeon.Fab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="48dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/device_name"
+                        app:srcCompat="@drawable/ic_call_24dp" />
+
+                <TextView
+                        android:text="@string/commands"
+                        android:layout_width="match_parent"
+                        android:textAlignment="viewStart"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/attributes_title"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="40dp" android:layout_marginEnd="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/phone_number" android:layout_marginTop="24dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:text="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT ? @string/checkbox_tap_info : @string/checkbox_info}"
+                        android:layout_width="0dp"
+                        android:textAlignment="textStart"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkbox_info"
+                        android:textAppearance="?attr/textAppearanceListItemSecondary"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="40dp" android:layout_marginEnd="40dp"
+                        app:layout_constraintTop_toBottomOf="@+id/attributes_title" android:layout_marginTop="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/attribute_list" android:layout_marginBottom="8dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/attribute_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingLeft="@dimen/margin_normal"
+                        android:paddingRight="@dimen/margin_normal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/list_item_attribute" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/send_sms_button" android:layout_marginBottom="32dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                        android:text="@string/send_sms_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isGone="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT}"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:id="@+id/send_sms_button" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+
+                <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/locationGroup"
+                                                        android:visibility="@{!TextUtils.isEmpty(viewModel.device.location) ? View.VISIBLE : View.GONE}"
+                                                        app:constraint_referenced_ids="location,locationIcon"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
