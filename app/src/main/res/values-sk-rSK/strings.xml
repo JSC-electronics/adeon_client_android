@@ -137,4 +137,8 @@
     <string name="select_from_adeon_library">Vybrať z knižnice Adeon</string>
     <string name="premium_sms">Poslanie správy na SMS číslo, ktoré ste zadali, môže byť spoplatnené.</string>
     <string name="command_text_empty">Text príkazu je prázdny!</string>
+    <string name="whatsnew_title">Verzia 1.2.0 vám prináša</string>
+    <string name="whatsnew_page1_description">Nové jazyky.</string>
+    <string name="whatsnew_page2_description">Nové rozmiestnenie prvkov v UI.</string>
+    <string name="whatsnew_page3_description">Podporu tmavého režimu.</string>
 </resources>

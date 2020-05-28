@@ -15,7 +15,8 @@ import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.billingrepo.BillingRepository
 import cz.jscelectronics.adeon.data.PrefManager
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
-import cz.jscelectronics.adeon.ui.intro.IntroActivity
+import cz.jscelectronics.adeon.ui.onboarding.IntroActivity
+import cz.jscelectronics.adeon.ui.onboarding.WhatsNewActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,11 +30,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Onboarding
         val prefManager = PrefManager(this)
-        if (prefManager.isFirstTimeLaunch()) {
-            prefManager.setFirstTimeLaunch(false)
-            val introIntent = Intent(this@MainActivity, IntroActivity::class.java)
-            startActivity(introIntent)
+        if (!prefManager.firstTimeOnboardingShown()) {
+            prefManager.setOnboardingCompleted()
+            val onboardingIntent = Intent(this@MainActivity, IntroActivity::class.java)
+            startActivity(onboardingIntent)
+        } else if (!prefManager.whatsNewOnboardingShown()) {
+            prefManager.setOnboardingCompleted()
+            val onboardingIntent = Intent(this@MainActivity, WhatsNewActivity::class.java)
+            startActivity(onboardingIntent)
         }
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
