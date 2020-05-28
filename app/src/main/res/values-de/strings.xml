@@ -161,8 +161,8 @@
         <item>@string/select_from_adeon_library</item>
         <item>@string/select_image</item>
     </string-array>
-    <string name="whatsnew_title">Version 1.2.0 bringt Sie</string>
-    <string name="whatsnew_page1_description">" Neue Sprachen."</string>
+    <string name="whatsnew_title">Version 1.2.0 bringt Ihnen</string>
+    <string name="whatsnew_page1_description">"Neue Sprachen."</string>
     <string name="whatsnew_page2_description">Neues Layout.</string>
-    <string name="whatsnew_page3_description">Die dunkel Design Unterstützung.</string>
+    <string name="whatsnew_page3_description">Unterstützung für den dunklen Modus.</string>
 </resources>

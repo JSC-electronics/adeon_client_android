@@ -169,7 +169,7 @@
     <string name="whatsnew_title">Version 1.2.0 brings you</string>
     <string name="whatsnew_page1_description">New languages.</string>
     <string name="whatsnew_page2_description">New layout.</string>
-    <string name="whatsnew_page3_description">The dark mode support.</string>
+    <string name="whatsnew_page3_description">Dark mode support.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_from_adeon_library</item>

@@ -139,6 +139,6 @@
     <string name="command_text_empty">Text príkazu je prázdny!</string>
     <string name="whatsnew_title">Verzia 1.2.0 vám prináša</string>
     <string name="whatsnew_page1_description">Nové jazyky.</string>
-    <string name="whatsnew_page2_description">Nové rozvrhnutie.</string>
-    <string name="whatsnew_page3_description">Podpora tmavého režimu.</string>
+    <string name="whatsnew_page2_description">Nové rozmiestnenie prvkov v UI.</string>
+    <string name="whatsnew_page3_description">Podporu tmavého režimu.</string>
 </resources>
