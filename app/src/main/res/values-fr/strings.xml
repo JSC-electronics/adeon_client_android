@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Adeon</string>
     <string name="my_devices_title">Mes appareils</string>
     <string name="help_and_feedback_title">Aide et commentaires</string>
     <string name="support_title">Soutien</string>
@@ -20,16 +19,13 @@
     <string name="command_text_empty">Le texte de la commande est vide !</string>
 
     <string name="add_device_title">Ajouter un appareil</string>
-    <string name="add_device_button" translatable="false">@string/add_device_title</string>
     <string name="edit_device_title">Modifier l\'appareil</string>
     <string name="save_changes_button">Sauvegarder les modifications</string>
     <string name="save_button">Sauvegarder</string>
-    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Dupliquer</string>
     <string name="action_remove_device">Supprimer l\'appareil</string>
     <string name="commands">Commandes définies</string>
     <string name="send_command_title">Envoyer une commande</string>
-    <string name="send_sms_button" translatable="false">@string/send_command_title</string>
 
     <string name="command_name">Nom</string>
     <string name="command_value">Valeur</string>
@@ -59,7 +55,6 @@
     <string name="warning">Avertissement</string>
     <string name="import_overwrite_msg">La configuration existante sera effacée ! Voulez-vous continuer ?</string>
     <string name="import_btn_label">Importer</string>
-    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
     <string name="wipe_msg">Tous les profils de votre appareil seront effacés et ne pourront pas être récupérés ! Voulez-vous continuer ?</string>
     <string name="configuration_wiped">La configuration a été effacée.</string>
     <string name="nothing_to_export">Il n\'y a rien à exporter ! Veuillez d\'abord ajouter certains appareils.</string>
@@ -87,17 +82,6 @@
     <string name="help_menu_action_licenses">Licences à code source libre</string>
 
     <!-- Help article bullet point IDs -->
-    <string name="first_bullet_point_id" translatable="false">1.</string>
-    <string name="second_bullet_point_id" translatable="false">2.</string>
-    <string name="third_bullet_point_id" translatable="false">3.</string>
-    <string name="fourth_bullet_point_id" translatable="false">4.</string>
-    <string name="fifth_bullet_point_id" translatable="false">5.</string>
-    <string name="sixth_bullet_point_id" translatable="false">6.</string>
-    <string name="seventh_bullet_point_id" translatable="false">7.</string>
-    <string name="eight_bullet_point_id" translatable="false">8.</string>
-    <string name="ninth_bullet_point_id" translatable="false">9.</string>
-    <string name="tenth_bullet_point_id" translatable="false">10.</string>
-    <string name="unordered_bullet_point" translatable="false">\u2022</string>
 
     <!-- Help article 01 -->
     <string name="article_01_bullet_01_text">Taper sur le bouton [FAB].</string>
@@ -143,7 +127,6 @@
     <string name="article_05_bullet_03_text">Sinon, utilisez la case à cocher [CHECKBOX] pour choisir la commande (ou les commandes) paramétrique(s), qui sera envoyée au périphérique via le réseau cellulaire (voir %s pour plus d\'informations).
     </string>
     <string name="article_05_bullet_04_text">Taper sur le bouton %s.</string>
-    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Version %s</string>
 
     <!-- Intro activity -->
@@ -175,4 +158,8 @@
         <item>@string/select_from_adeon_library</item>
         <item>@string/select_image</item>
     </string-array>
+    <string name="whatsnew_title">La version 1.2.0 vous apporte</string>
+    <string name="whatsnew_page1_description">De nouvelles langues.</string>
+    <string name="whatsnew_page2_description">Nouvelle disposition.</string>
+    <string name="whatsnew_page3_description">Le support du mode nuit.</string>
 </resources>

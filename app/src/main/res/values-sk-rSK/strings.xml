@@ -22,7 +22,6 @@
     <string name="invalid_device_name">Názov zariadenia nesmie byť prázdny!</string>
     <string name="send_command_title">Poslať príkaz</string>
     <string name="no_defined_command_error">Nebol definovaný žiadny príkaz!</string>
-    <string name="sms_permissions_not_granted">SMS správa nebola poslaná. Neudelili ste potrebné povolenia.</string>
     <string name="content_desc_application_logo">Logo aplikácie</string>
     <string name="content_desc_device_image">Obrázok zariadenia</string>
     <string name="content_desc_device_item_menu">Menu položky zariadenia</string>
@@ -137,4 +136,8 @@
     <string name="select_from_adeon_library">Vybrať z knižnice Adeon</string>
     <string name="premium_sms">Poslanie správy na SMS číslo, ktoré ste zadali, môže byť spoplatnené.</string>
     <string name="command_text_empty">Text príkazu je prázdny!</string>
+    <string name="whatsnew_title">Verzia 1.2.0 vám prináša</string>
+    <string name="whatsnew_page1_description">Nové jazyky.</string>
+    <string name="whatsnew_page2_description">Nové rozmiestnenie prvkov v UI.</string>
+    <string name="whatsnew_page3_description">Podporu tmavého režimu.</string>
 </resources>

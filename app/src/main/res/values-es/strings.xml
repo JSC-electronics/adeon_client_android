@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Adeon</string>
     <string name="my_devices_title">Mis dispositivos</string>
     <string name="help_and_feedback_title">Ayuda y comentarios</string>
     <string name="support_title">Soporte</string>
@@ -20,16 +19,13 @@
     <string name="command_text_empty">¡El texto del comando está vacío!</string>
 
     <string name="add_device_title">Añadir dispositivo</string>
-    <string name="add_device_button" translatable="false">@string/add_device_title</string>
     <string name="edit_device_title">Editar dispositivo</string>
     <string name="save_changes_button">Guardar cambios</string>
     <string name="save_button">Guardar</string>
-    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
     <string name="action_duplicate">Duplicar</string>
     <string name="action_remove_device">Eliminar dispositivo</string>
     <string name="commands">Comandos definidos</string>
     <string name="send_command_title">Enviar comando</string>
-    <string name="send_sms_button" translatable="false">@string/send_command_title</string>
 
     <string name="command_name">Nombre</string>
     <string name="command_value">Valor</string>
@@ -59,7 +55,6 @@
     <string name="warning">Advertencia</string>
     <string name="import_overwrite_msg">¡La configuración existente se sobrescribirá! ¿Quieres continuar?</string>
     <string name="import_btn_label">Importar</string>
-    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
     <string name="wipe_msg">¡Todos los perfiles de su dispositivo se borrarán y no se podrán recuperar! ¿Quieres continuar?</string>
     <string name="configuration_wiped">La configuración ha sido borrada.</string>
     <string name="nothing_to_export">¡No hay nada para exportar! Por favor agregue algunos dispositivos primero.</string>
@@ -87,17 +82,6 @@
     <string name="help_menu_action_licenses">Licencias de código abierto</string>
 
     <!-- Help article bullet point IDs -->
-    <string name="first_bullet_point_id" translatable="false">1.</string>
-    <string name="second_bullet_point_id" translatable="false">2.</string>
-    <string name="third_bullet_point_id" translatable="false">3.</string>
-    <string name="fourth_bullet_point_id" translatable="false">4.</string>
-    <string name="fifth_bullet_point_id" translatable="false">5.</string>
-    <string name="sixth_bullet_point_id" translatable="false">6.</string>
-    <string name="seventh_bullet_point_id" translatable="false">7.</string>
-    <string name="eight_bullet_point_id" translatable="false">8.</string>
-    <string name="ninth_bullet_point_id" translatable="false">9.</string>
-    <string name="tenth_bullet_point_id" translatable="false">10.</string>
-    <string name="unordered_bullet_point" translatable="false">\u2022</string>
 
     <!-- Help article 01 -->
     <string name="article_01_bullet_01_text">Toque el botón [FAB].</string>
@@ -143,7 +127,6 @@
     <string name="article_05_bullet_03_text">De lo contrario, use la casilla de verificación [CHECKBOX] para elegir el comando (o comandos) paramétricos, que se enviarán al dispositivo a través de la red celular (consulte el %s para obtener más información).
     </string>
     <string name="article_05_bullet_04_text">Toque el botón %s.</string>
-    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
     <string name="app_version">Versión %s</string>
 
     <!-- Intro activity -->
@@ -175,4 +158,8 @@
         <item>@string/select_from_adeon_library</item>
         <item>@string/select_image</item>
     </string-array>
+    <string name="whatsnew_title">La versión 1.2.0 te trae</string>
+    <string name="whatsnew_page1_description">"Nuevos lenguajes. "</string>
+    <string name="whatsnew_page2_description">Nueva disposición.</string>
+    <string name="whatsnew_page3_description">El apoyo del modo oscuro.</string>
 </resources>

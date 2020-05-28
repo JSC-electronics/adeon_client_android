@@ -1,14 +1,11 @@
 package cz.jscelectronics.adeon.ui.device
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +25,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     override fun onClicked(attribute: Attribute) {
         if (attribute.containsPlainText()) {
             messageText = attribute.text
-            requestSmsPermissions()
+            prepareAndSendSms()
         }
     }
 
@@ -36,10 +33,6 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
     private lateinit var layout: ConstraintLayout
     private lateinit var manageDeviceViewModel: ManageDeviceViewModel
     private val args: SendSmsFragmentArgs by navArgs()
-
-    companion object {
-        const val REQUEST_SEND_SMS = 187
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +49,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             lifecycleOwner = this@SendSmsFragment
 
             sendSmsButton.setOnClickListener {
-                requestSmsPermissions()
+                prepareAndSendSms()
             }
 
             dialButton.setOnClickListener {
@@ -82,50 +75,8 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         })
     }
 
-    private fun requestSmsPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.SEND_SMS
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            requestPermissions(
-                arrayOf(Manifest.permission.SEND_SMS),
-                REQUEST_SEND_SMS
-            )
-        } else {
-            sendSmsMessage()
-        }
-
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>, grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_SEND_SMS -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    sendSmsMessage()
-                } else {
-                    Snackbar.make(
-                        layout,
-                        R.string.sms_permissions_not_granted,
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
-                return
-            }
-            else -> {
-                // Ignore all other requests.
-            }
-        }
-    }
-
-    private fun sendSmsMessage() {
+    private fun prepareAndSendSms() {
         if (manageDeviceViewModel.areAttributesChecked() || messageText != null) {
-
             if (!manageDeviceViewModel.areAttributesCheckedAndValid()) {
                 Snackbar.make(
                     layout,
@@ -134,7 +85,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 ).show()
                 return
             }
-            manageDeviceViewModel.sendSmsMessage(getPhoneNumber(), messageText)
+            manageDeviceViewModel.sendSmsMessage(requireActivity(), getPhoneNumber(), messageText)
             messageText = null
             layout.findNavController().popBackStack()
         } else {

@@ -37,7 +37,6 @@
     <string name="command_no_description">Unnamed command</string>
     <string name="command_text">Command text</string>
 
-    <string name="sms_permissions_not_granted">SMS was not sent. Permissions were not granted.</string>
     <string name="content_desc_application_logo">Application logo</string>
     <string name="content_desc_device_image">Device image</string>
     <string name="content_desc_device_item_menu">Device item menu</string>
@@ -166,6 +165,10 @@
     <string name="remove_ads">Remove advertisements</string>
     <string name="purchases">Purchases</string>
     <string name="purchases_unavailable">Purchases are not available in your country.</string>
+    <string name="whatsnew_title">Version 1.2.0 brings you</string>
+    <string name="whatsnew_page1_description">New languages.</string>
+    <string name="whatsnew_page2_description">New layout.</string>
+    <string name="whatsnew_page3_description">Dark mode support.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_from_adeon_library</item>
