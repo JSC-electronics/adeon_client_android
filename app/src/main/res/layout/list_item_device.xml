@@ -25,14 +25,16 @@
         />
 
         <com.google.android.material.card.MaterialCardView
-                android:id="@+id/view_foreground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/card_layout_margin"
-                style="@style/Widget.MaterialComponents.CardView"
-                android:onClick="@{clickListener}"
-                app:cardElevation="3dp"
-                app:cardCornerRadius="@dimen/card_corner_radius">
+            android:id="@+id/view_foreground"
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/card_layout_margin"
+            android:background="#FFFFFF"
+            android:onClick="@{clickListener}"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

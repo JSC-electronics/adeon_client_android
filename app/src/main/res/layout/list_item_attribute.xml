@@ -176,16 +176,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/fab"
-                        style="@style/Theme.Adeon.Fab"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/fab_margin"
-                        app:isGone="@{isEditMode || attribute.containsNameValuePair}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_send_command" />
+                    android:id="@+id/fab"
+                    style="@style/Theme.Adeon.Fab.SMS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:isGone="@{isEditMode || attribute.containsNameValuePair}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_send_command" />
 
                 <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"

@@ -19,8 +19,14 @@
 
     <style name="Theme.Adeon.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
 
-    <style name="Theme.Adeon.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+    <style name="Theme.Adeon.Fab.Phone" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/colorPrimary</item>
+        <item name="backgroundTint">@color/ic_launcher_background</item>
+    </style>
+
+    <style name="Theme.Adeon.Fab.SMS" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="tint">@android:color/white</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
     </style>
 
     <style name="TextAppearance.Adeon.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >

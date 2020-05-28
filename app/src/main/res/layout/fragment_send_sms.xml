@@ -1,122 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainPage"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="cz.jscelectronics.adeon.data.Device"/>
+
+        <variable
+            name="viewModel"
+            type="cz.jscelectronics.adeon.ui.device.viewmodels.ManageDeviceViewModel"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header"
+        android:id="@+id/send_sms_layout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_background">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/dial_button"
-            style="@style/Theme.Adeon.Fab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_call_24dp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/device_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:contentDescription="@string/content_desc_device_image"
-            android:fitsSystemWindows="true"
-            android:focusable="true"
-            android:src="@drawable/device_icon_car"
-            app:layout_collapseMode="parallax"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/device_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/device_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{viewModel.device.name}"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/dial_button"
-            app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Cool device" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/dial_button"
+                style="@style/Theme.Adeon.Fab.Phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_call_24dp" />
 
-        <ImageView
-            android:id="@+id/simIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/sim_icon_content_description"
-            android:tint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/device_image"
-            app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:srcCompat="@drawable/ic_sim_icon" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/device_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:contentDescription="@string/content_desc_device_image"
+                android:fitsSystemWindows="true"
+                android:focusable="true"
+                android:src="@drawable/device_icon_car"
+                app:layout_collapseMode="parallax"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/device_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/locationIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/location_icon"
-            android:tint="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/simIcon"
-            app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:srcCompat="@drawable/ic_location" />
+            <TextView
+                android:id="@+id/device_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{viewModel.device.name}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/dial_button"
+                app:layout_constraintStart_toEndOf="@+id/device_image"
+                app:layout_constraintTop_toTopOf="@id/device_image"
+                tools:text="Cool device" />
 
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@{viewModel.device.location}"
-            android:textAppearance="?attr/textAppearanceListItem"
-            app:layout_constraintStart_toEndOf="@+id/locationIcon"
-            app:layout_constraintTop_toTopOf="@+id/locationIcon"
-            tools:text="Cool location" />
+            <ImageView
+                android:id="@+id/simIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/sim_icon_content_description"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/device_image"
+                app:layout_constraintStart_toEndOf="@+id/device_image"
+                app:srcCompat="@drawable/ic_sim_icon" />
 
-        <cz.jscelectronics.phonefield.PhoneTextView
-            android:id="@+id/phone_number"
-            android:layout_width="243dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/simIcon"
-            app:layout_constraintTop_toTopOf="@+id/simIcon"
-            app:phoneNumber="@{viewModel.device.phoneNumber}">
+            <ImageView
+                android:id="@+id/locationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/location_icon"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/simIcon"
+                app:layout_constraintStart_toEndOf="@+id/device_image"
+                app:srcCompat="@drawable/ic_location" />
 
-        </cz.jscelectronics.phonefield.PhoneTextView>
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{viewModel.device.location}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toEndOf="@+id/locationIcon"
+                app:layout_constraintTop_toTopOf="@+id/locationIcon"
+                tools:text="Cool location" />
 
-        <ScrollView
+            <cz.jscelectronics.phonefield.PhoneTextView
+                android:id="@+id/phone_number"
+                android:layout_width="243dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:theme="@style/Base.Theme.Adeon"
+                app:layout_constraintStart_toEndOf="@+id/simIcon"
+                app:layout_constraintTop_toTopOf="@+id/simIcon"
+                app:phoneNumber="@{viewModel.device.phoneNumber}">
+
+            </cz.jscelectronics.phonefield.PhoneTextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/send_sms_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/header">
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/header">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/command_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:context=".ui.device.SendSmsFragment">
 
                 <TextView
                     android:id="@+id/attributes_title"
@@ -126,25 +148,29 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/commands"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="center"
                     android:textAppearance="?attr/textAppearanceListItem"
+                    android:textColor="@color/textColor"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/commands" />
 
                 <TextView
                     android:id="@+id/checkbox_info"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT ? @string/checkbox_tap_info : @string/checkbox_info}"
-                    android:textAlignment="textStart"
+                    android:text="@string/checkbox_tap_info"
+                    android:textAlignment="center"
                     android:textAppearance="?attr/textAppearanceListItemSecondary"
+                    android:textColor="@color/textColor"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/attributes_title"
-                    app:layout_constraintTop_toBottomOf="@id/attributes_title"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/attributes_title"
+                    tools:text="@string/checkbox_tap_info" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/attribute_list"
@@ -157,9 +183,9 @@
                     android:paddingLeft="@dimen/margin_normal"
                     android:paddingRight="@dimen/margin_normal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/checkbox_info"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbox_info"
                     tools:listitem="@layout/list_item_attribute" />
 
                 <com.google.android.material.button.MaterialButton
@@ -171,12 +197,12 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/send_sms_button"
+                    app:isGone="@{viewModel.device.messageType == Device.PLAIN_TEXT_FORMAT}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
