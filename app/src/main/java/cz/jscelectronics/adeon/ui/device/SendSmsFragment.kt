@@ -131,19 +131,12 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
                 ).show()
                 return
             }
-            sendSmsToDevice()
+            manageDeviceViewModel.sendSmsMessage(getPhoneNumber(), messageText)
+            messageText = null
+            layout.findNavController().popBackStack()
         } else {
             Snackbar.make(layout, R.string.no_command_selected, Snackbar.LENGTH_LONG).show()
         }
-    }
-
-    private fun sendSmsToDevice() {
-        manageDeviceViewModel.sendSmsMessage(getPhoneNumber(), messageText)
-        messageText = null
-
-        val direction =
-            SendSmsFragmentDirections.actionGlobalDeviceList()
-        layout.findNavController().navigate(direction)
     }
 
     private fun getPhoneNumber(): String {

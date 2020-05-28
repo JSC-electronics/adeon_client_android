@@ -36,20 +36,18 @@
                     app:toolbarId="@+id/toolbar">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/device_image"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/content_desc_device_image"
-                        android:fitsSystemWindows="true"
-                        app:imageUrl="@{viewModel.uriHandler.uri}"
-                        app:fallbackDrawable="@{@drawable/ic_camera_legacy}"
-                        android:foreground="@drawable/app_icon_selector"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#35000000"
-                        app:layout_collapseMode="parallax"/>
+                    android:id="@+id/device_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_desc_device_image"
+                    android:fitsSystemWindows="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/app_icon_selector"
+                    app:fallbackDrawable="@{@drawable/ic_camera_legacy}"
+                    app:imageUrl="@{viewModel.uriHandler.uri}"
+                    app:layout_collapseMode="parallax" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
