@@ -36,9 +36,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="cz.jscelectronics.adeon.ui.intro.IntroActivity"
+        <activity android:name="cz.jscelectronics.adeon.ui.onboarding.IntroActivity"
                   android:label="@string/app_name"
                   android:theme="@style/Theme.Adeon.NoActionBar"/>
+
+        <activity android:name="cz.jscelectronics.adeon.ui.onboarding.WhatsNewActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Adeon.NoActionBar"/>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
