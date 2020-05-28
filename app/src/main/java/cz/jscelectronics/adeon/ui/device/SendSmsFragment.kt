@@ -55,15 +55,13 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
             dialButton.setOnClickListener {
                 manageDeviceViewModel.callDevice(requireActivity(), getPhoneNumber())
             }
-
-            layout.phone_number.textView.setTextColor(resources.getColor(android.R.color.white))
         }
         layout = binding.sendSmsLayout
 
         val adapter = manageDeviceViewModel.getAttributesAdapter()
         adapter.listener = this
         binding.attributeList.adapter = adapter
-
+        layout.phone_number.textView.setTextColor(resources.getColor(android.R.color.white))
         subscribeUi()
         return binding.root
     }

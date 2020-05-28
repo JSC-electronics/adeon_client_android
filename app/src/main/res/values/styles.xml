@@ -21,7 +21,7 @@
 
     <style name="Theme.Adeon.Fab.Phone" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="tint">@color/colorPrimary</item>
-        <item name="backgroundTint">@color/ic_launcher_background</item>
+        <item name="backgroundTint">#FF424242</item>
     </style>
 
     <style name="Theme.Adeon.Fab.SMS" parent="Widget.MaterialComponents.FloatingActionButton">
