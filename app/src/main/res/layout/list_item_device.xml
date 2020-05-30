@@ -30,13 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_layout_margin"
-            android:background="#FFFFFF"
             android:onClick="@{clickListener}"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/ListItem"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/Theme.Adeon.LightDarkMode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

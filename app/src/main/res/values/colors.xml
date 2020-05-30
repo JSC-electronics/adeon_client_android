@@ -5,8 +5,8 @@
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="colorAppIconBackground">#F1F1F1</color>
 
-    <!-- Attribute list -->
-    <color name="bg_row_background">@color/colorAccent</color>
+    <!-- Light mode -->
+    <color name="bg_row_background">@color/SecondaryDM</color>
 
     <color name="help_icon_tint">#1c72e5</color>
     <color name="help_separator_color">#d7d9dd</color>
@@ -15,5 +15,24 @@
 
     <color name="textDisabledHint">#90A4AE</color>
     <color name="imgDisableHint">#DDDDDD</color>
-    <color name="textColor">#263238</color>
+
+    <color name="Secondary">#FF424242</color>
+    <color name="Background">@android:color/white</color>
+    <color name="Text">@color/Secondary</color>
+    <color name="ListItem">@android:color/white</color>
+    <color name="Button">@color/colorPrimary</color>
+    <color name="ButtonInverted">@color/Secondary</color>
+    <color name="ButtonContent">@android:color/white</color>
+    <color name="ButtonContentInverted">@color/ButtonInverted</color>
+
+    <!-- Dark mode -->
+    <color name="SecondaryDM">#FF424242</color>
+    <color name="BackgroundDM">#FF303030</color>
+    <color name="TextDM">@android:color/white</color>
+    <color name="ListItemDM">@color/SecondaryDM</color>
+    <color name="ButtonDM">@color/colorPrimaryDark</color>
+    <color name="ButtonInvertedDM">@color/SecondaryDM</color>
+    <color name="ButtonContentDM">@color/SecondaryDM</color>
+    <color name="ButtonContentInvertedDM">@color/SecondaryDM</color>
+
 </resources>

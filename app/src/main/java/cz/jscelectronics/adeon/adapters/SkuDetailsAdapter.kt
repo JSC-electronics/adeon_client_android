@@ -73,9 +73,9 @@ open class SkuDetailsAdapter : RecyclerView.Adapter<SkuDetailsAdapter.SkuDetails
         private fun onDisabled(enabled: Boolean) {
             if (enabled) {
                 itemView.apply {
-                    sku_title.setTextColor(ContextCompat.getColor(context, R.color.textColor))
-                    sku_description.setTextColor(ContextCompat.getColor(context, R.color.textColor))
-                    sku_price.setTextColor(ContextCompat.getColor(context, R.color.textColor))
+                    sku_title.setTextColor(ContextCompat.getColor(context, R.color.Text))
+                    sku_description.setTextColor(ContextCompat.getColor(context, R.color.Text))
+                    sku_price.setTextColor(ContextCompat.getColor(context, R.color.Text))
                 }
             } else {
                 itemView.apply {
