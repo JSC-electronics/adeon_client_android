@@ -18,7 +18,7 @@ buildscript {
         firebaseAnalyticsVersion = '17.4.1'
         glideVersion = '4.10.0'
         googleServicesVersion = '4.3.3'
-        gradleVersion = '3.6.3'
+        gradleVersion = '4.0.0'
         grgitVersion = '3.1.1'
         gsonVersion = '2.8.5'
         junitVersion = '4.12'
