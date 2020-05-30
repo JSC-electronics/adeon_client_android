@@ -22,7 +22,6 @@
     <string name="invalid_defined_commands">Některé definované příkazy jsou neplatné!</string>
     <string name="send_command_title">Odeslat příkaz</string>
     <string name="no_defined_command_error">Nebyl definován žádný příkaz!</string>
-    <string name="sms_permissions_not_granted">SMS zpráva nebyla odeslána. Neudělili jste potřebná povolení.</string>
     <string name="content_desc_application_logo">Logo aplikace</string>
     <string name="content_desc_device_image">Obrázek zařízení</string>
     <string name="content_desc_device_item_menu">Menu položky zařízení</string>

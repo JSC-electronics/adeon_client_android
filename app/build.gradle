@@ -78,4 +78,5 @@ dependencies {
     // Testing dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

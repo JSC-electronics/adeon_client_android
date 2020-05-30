@@ -36,7 +36,8 @@
                 android:paddingRight="@dimen/margin_normal"
                 android:paddingBottom="@dimen/fab_bottom_padding"
                 app:isGone="@{!hasDevices}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
                 tools:listitem="@layout/list_item_device" />
 
             <TextView

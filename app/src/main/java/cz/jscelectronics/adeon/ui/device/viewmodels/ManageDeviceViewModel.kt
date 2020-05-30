@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.os.ParcelFileDescriptor
-import android.telephony.SmsManager
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.BaseObservable
@@ -178,15 +177,18 @@ class ManageDeviceViewModel internal constructor(
         }
     }
 
-    fun sendSmsMessage(phoneNumber: String, message: String? = null) {
+    fun sendSmsMessage(activity: Activity, phoneNumber: String, message: String? = null) {
         viewModelScope.launch {
             device.value?.let { device ->
-                val smsManager = SmsManager.getDefault()
                 if (message != null) {
-                    smsManager.sendMultipartTextMessage(
-                        phoneNumber, null,
-                        smsManager.divideMessage(message), null, null
-                    )
+                    val intent = Intent(Intent.ACTION_SENDTO).apply {
+                        data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
+                        putExtra("sms_body", message)
+                    }
+
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        startActivity(activity, intent, null)
+                    }
                     return@launch
                 }
 
@@ -197,23 +199,29 @@ class ManageDeviceViewModel internal constructor(
                     addOrUpdateDevice(true)
 
                     if (device.messageType == Device.PLAIN_TEXT_FORMAT) {
-                        smsAttributes.forEach {
-                            if (it.containsPlainText()) {
-                                smsManager.sendMultipartTextMessage(
-                                    phoneNumber, null,
-                                    smsManager.divideMessage(it.text), null, null
-                                )
+                        // TODO: Allow user to select only one attribute
+                        val attribute = smsAttributes[0]
+                        if (attribute.containsPlainText()) {
+                            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                                data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
+                                putExtra("sms_body", attribute.text)
+                            }
+
+                            if (intent.resolveActivity(context.packageManager) != null) {
+                                startActivity(activity, intent, null)
                             }
                         }
                     } else if (device.messageType == Device.INT_VALUE_FORMAT) {
-                        composeMessage(smsAttributes).forEach { message ->
-                            val md5 = computeMd5(message)
-                            val smsMessage =
-                                "${md5.substring(md5.length - CHECKSUM_SIZE)}: $message"
-                            smsManager.sendTextMessage(
-                                phoneNumber, null, smsMessage,
-                                null, null
-                            )
+                        val messageData = composeMessage(smsAttributes).joinToString(separator = "")
+                        val md5 = computeMd5(messageData)
+                        val smsMessage = "${md5.substring(md5.length - CHECKSUM_SIZE)}: $messageData"
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("smsto:${phoneNumber}")  // This ensures only SMS apps respond
+                            putExtra("sms_body", smsMessage)
+                        }
+
+                        if (intent.resolveActivity(context.packageManager) != null) {
+                            startActivity(activity, intent, null)
                         }
                     }
                 }
