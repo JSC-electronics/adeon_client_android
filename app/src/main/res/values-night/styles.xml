@@ -2,9 +2,9 @@
 
     <!-- Base application theme. -->
     <style name="Base.Theme.Adeon" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#1871a7</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
@@ -29,6 +29,11 @@
     </style>
 
     <style name="Theme.Adeon.Fab.SMS" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/ButtonContentInvertedDM</item>
+        <item name="backgroundTint">@color/ButtonDM</item>
+    </style>
+
+    <style name="Theme.Adeon.Fab.SMS.Text" parent="Widget.MaterialComponents.Button">
         <item name="tint">@color/ButtonContentInvertedDM</item>
         <item name="backgroundTint">@color/ButtonDM</item>
     </style>

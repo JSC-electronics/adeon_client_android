@@ -30,7 +30,7 @@
     <color name="BackgroundDM">#FF303030</color>
     <color name="TextDM">@android:color/white</color>
     <color name="ListItemDM">@color/SecondaryDM</color>
-    <color name="ButtonDM">@color/colorPrimaryDark</color>
+    <color name="ButtonDM">@color/colorPrimary</color>
     <color name="ButtonInvertedDM">@color/SecondaryDM</color>
     <color name="ButtonContentDM">@color/SecondaryDM</color>
     <color name="ButtonContentInvertedDM">@color/SecondaryDM</color>
