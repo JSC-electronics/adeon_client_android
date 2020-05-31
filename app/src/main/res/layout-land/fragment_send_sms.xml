@@ -93,6 +93,7 @@
                 android:contentDescription="@string/location_icon"
                 android:tint="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="@id/device_image"
+                app:layout_constraintEnd_toStartOf="@+id/location"
                 app:layout_constraintStart_toEndOf="@id/device_image"
                 app:srcCompat="@drawable/ic_location" />
 
