@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -68,7 +69,7 @@ class SendSmsFragment : Fragment(), AttributesAdapter.AttributeListener {
         val adapter = manageDeviceViewModel.getAttributesAdapter()
         adapter.listener = this
         binding.attributeList.adapter = adapter
-        layout.phone_number.textView.setTextColor(resources.getColor(android.R.color.white))
+        layout.phone_number.textView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
         subscribeUi()
         return binding.root
     }

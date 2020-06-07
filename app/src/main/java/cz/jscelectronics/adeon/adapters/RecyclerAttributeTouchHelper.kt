@@ -17,7 +17,7 @@ class RecyclerAttributeTouchHelper(
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        listener.onSwiped(viewHolder, viewHolder.adapterPosition)
+        listener.onSwiped(viewHolder, viewHolder.absoluteAdapterPosition)
     }
 
     override fun onMove(
@@ -25,7 +25,7 @@ class RecyclerAttributeTouchHelper(
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        listener.onMove(viewHolder, viewHolder.adapterPosition, target.adapterPosition)
+        listener.onMove(viewHolder, viewHolder.absoluteAdapterPosition, target.absoluteAdapterPosition)
         return true
     }
 

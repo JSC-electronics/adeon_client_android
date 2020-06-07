@@ -47,7 +47,7 @@ open class GalleryAdapter :
         }
 
         override fun onClick(view: View?) {
-            adapter.onClick(adapter.getItem(adapterPosition))
+            adapter.onClick(adapter.getItem(absoluteAdapterPosition))
         }
     }
 }

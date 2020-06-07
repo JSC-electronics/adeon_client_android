@@ -51,7 +51,7 @@ open class SkuDetailsAdapter : RecyclerView.Adapter<SkuDetailsAdapter.SkuDetails
     inner class SkuDetailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
-                getItem(adapterPosition)?.let { onSkuDetailsClicked(it) }
+                getItem(absoluteAdapterPosition)?.let { onSkuDetailsClicked(it) }
             }
         }
 

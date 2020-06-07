@@ -28,6 +28,11 @@
         <item name="backgroundTint">@color/Button</item>
     </style>
 
+    <style name="Theme.Adeon.Fab.SMS.Text" parent="Widget.MaterialComponents.Button">
+        <item name="tint">@color/ButtonContent</item>
+        <item name="backgroundTint">@color/Button</item>
+    </style>
+
     <style name="TextAppearance.Adeon.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>

@@ -5,7 +5,6 @@
         <item name="colorPrimary">#1871a7</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Theme.Adeon" parent="Base.Theme.Adeon"/>

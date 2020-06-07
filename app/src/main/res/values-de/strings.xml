@@ -33,7 +33,6 @@
     <string name="command_no_description">Unbenannter Befehl</string>
     <string name="command_text">Befehlstext</string>
 
-    <string name="sms_permissions_not_granted">SMS wurde nicht gesendet. Berechtigungen wurden nicht erteilt.</string>
     <string name="content_desc_application_logo">Anwendungslogo</string>
     <string name="content_desc_device_image">Gerätebild</string>
     <string name="content_desc_device_item_menu">Menü für Geräteelemente</string>

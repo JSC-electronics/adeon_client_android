@@ -33,7 +33,6 @@
     <string name="command_no_description">Commande sans nom</string>
     <string name="command_text">Texte de commande</string>
 
-    <string name="sms_permissions_not_granted">Aucun SMS n\'a été envoyé. Aucune autorisation n\'a été accordée.</string>
     <string name="content_desc_application_logo">Logo de l\'application</string>
     <string name="content_desc_device_image">Image de l\'appareil</string>
     <string name="content_desc_device_item_menu">L\'entrée de menu appareil</string>
