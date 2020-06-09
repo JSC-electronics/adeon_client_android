@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <string name="app_name" translatable="false">Adeon</string>
+    <string name="my_devices_title">Мои устройства</string>
+    <string name="help_and_feedback_title">Помощь и обратная связь</string>
+    <string name="support_title">Служба поддержки</string>
+    <string name="navigation_drawer_header_content_description" translation_description="Content description for the image that is shown at the top of the navigation drawer.">Логотип заголовка панели навигации</string>
+    <string name="empty_device_list">Добавьте устройство.</string>
+    <string name="device_name_hint">Название устройства</string>
+    <string name="location_hint">Местоположение</string>
+    <string name="phone_hint">Номер телефона устройства</string>
+    <string name="invalid_phone_number">Введите действующий телефонный номер.</string>
+    <string name="invalid_device_name">Название устройства не должно быть пустым!</string>
+    <string name="command_value_out_of_range">Не в диапазоне 0–65535!</string>
+    <string name="invalid_defined_commands">Некоторые из определенных команд недействительны!</string>
+    <string name="no_defined_command_error">Не определено ни одной команды!</string>
+    <string name="command_text_empty">Текст команды пуст!</string>
+
+    <string name="add_device_title">Добавить устройство</string>
+    <string name="add_device_button" translatable="false">@string/add_device_title</string>
+    <string name="edit_device_title">Редактировать устройство</string>
+    <string name="save_changes_button">Сохранить изменения</string>
+    <string name="save_button">Сохранить</string>
+    <string name="action_edit_device" translatable="false">@string/edit_device_title</string>
+    <string name="action_duplicate">Дублировать</string>
+    <string name="action_remove_device">Удалить устройство</string>
+    <string name="commands">Определенные команды</string>
+    <string name="send_command_title">Отправить команду</string>
+    <string name="send_sms_button" translatable="false">@string/send_command_title</string>
+
+    <string name="command_name">Название</string>
+    <string name="command_value">Значение</string>
+    <string name="command_description">Описание команды</string>
+    <string name="command_no_description">Команда без названия</string>
+    <string name="command_text">Текст команды</string>
+
+    <string name="content_desc_application_logo">Логотип приложения</string>
+    <string name="content_desc_device_image">Изображение устройства</string>
+    <string name="content_desc_device_item_menu">Меню пункта устройства</string>
+    <string name="no_command_selected">Выберите хотя бы одну команду перед отправкой SMS.</string>
+    <string name="command_type">Тип команды</string>
+    <string name="parametric_type">Параметрический</string>
+    <string name="plain_text_type">Простой текст</string>
+    <string name="checkbox_info">Отметьте все команды, которые вы хотели бы отправить.</string>
+    <string name="checkbox_tap_info">Нажмите на команду, которую вы хотели бы отправить.</string>
+    <string name="change_device_image">Изменить изображение устройства</string>
+    <string name="select_from_adeon_library">Выбрать из библиотеки Adeon</string>
+    <string name="select_image">Выбрать изображение</string>
+    <string name="take_photo">Сфотографировать</string>
+    <string name="import_configuration_short">Импортировать</string>
+    <string name="import_configuration">Импортировать конфигурацию</string>
+    <string name="export_configuration_short">Экспортировать</string>
+    <string name="export_configuration">Экспортировать конфигурацию</string>
+    <string name="wipe_configuration_short">Стереть</string>
+    <string name="warning">Предупреждение</string>
+    <string name="import_overwrite_msg">Существующая конфигурация будет перезаписана! Вы хотите продолжить?</string>
+    <string name="import_btn_label">Импортировать</string>
+    <string name="wipe_btn_label" translatable="false">@string/wipe_configuration_short</string>
+    <string name="wipe_msg">Все ваши профили устройства будут удалены и не смогут быть восстановлены! Вы хотите продолжить?</string>
+    <string name="configuration_wiped">Конфигурация была стерта.</string>
+    <string name="nothing_to_export">Нечего экспортировать! Сначала добавьте несколько устройств.</string>
+    <string name="nothing_to_wipe">Ваша конфигурация уже пуста!</string>
+    <string name="content_desc_delete">Удалить значок</string>
+    <string name="delete">Удалить</string>
+    <string name="undo">Отменить действие</string>
+    <string name="device_removed">Устройство %s удалено из списка!</string>
+    <string name="command_removed">Команда %s удалена из списка!</string>
+    <string name="favorite_articles">Любимые статьи</string>
+    <string name="add_new_device_article">Добавить новое устройство</string>
+    <string name="delete_a_device_article">Удалить устройство</string>
+    <string name="export_configuration_article">Экспортировать конфигурацию</string>
+    <string name="import_configuration_article">Импортировать конфигурацию</string>
+    <string name="send_commands_article">Отправка команд</string>
+    <string name="browse_all_articles">Просмотреть все статьи</string>
+    <string name="send_feedback">Отправить отзыв</string>
+    <string name="invalid_configuration">Недействительный файл. Ошибка импорта!</string>
+    <string name="configuration_import_successful">Конфигурация успешно импортирована.</string>
+    <string name="configuration_export_error">Произошла ошибка при экспорте конфигурации!</string>
+    <string name="configuration_export_successful">Конфигурация успешно экспортирована.</string>
+    <string name="premium_sms">С вас может взиматься плата за отправку SMS-сообщения на указанный вами номер.</string>
+
+    <string name="help_menu_action_about">Информация о версии</string>
+    <string name="help_menu_action_licenses">Лицензии с открытым исходным кодом</string>
+
+    <!-- Help article bullet point IDs -->
+    <string name="first_bullet_point_id" translatable="false">1.</string>
+    <string name="second_bullet_point_id" translatable="false">2.</string>
+    <string name="third_bullet_point_id" translatable="false">3.</string>
+    <string name="fourth_bullet_point_id" translatable="false">4.</string>
+    <string name="fifth_bullet_point_id" translatable="false">5.</string>
+    <string name="sixth_bullet_point_id" translatable="false">6.</string>
+    <string name="seventh_bullet_point_id" translatable="false">7.</string>
+    <string name="eight_bullet_point_id" translatable="false">8.</string>
+    <string name="ninth_bullet_point_id" translatable="false">9.</string>
+    <string name="tenth_bullet_point_id" translatable="false">10.</string>
+    <string name="unordered_bullet_point" translatable="false">\u2022</string>
+
+    <!-- Help article 01 -->
+    <string name="article_01_bullet_01_text">Нажмите на кнопку [FAB].</string>
+    <string name="article_01_bullet_02_text">Введите название устройства.</string>
+    <string name="article_01_bullet_03_text">(необязательно) Установите изображение устройства, нажав на кнопку [CAMERA].</string>
+    <string name="article_01_bullet_04_text">(необязательно) Укажите местоположение устройства.</string>
+    <string name="article_01_bullet_05_text">Введите номер телефона устройства.</string>
+    <string name="article_01_bullet_06_text">Выберите тип команды. Текстовый тип подходит для коммерческих устройств GSM, а параметрический - для разработчиков. Для получения дополнительной информации %s.</string>
+    <string name="article_01_bullet_06_text_docs">Документация</string>
+    <string name="article_01_bullet_07_text">Введите описание команды (команда в виде простого текста) или имя параметра (команда в виде параметрического типа).</string>
+    <string name="article_01_bullet_08_text">Введите текст команды (команда в виде простого текста) или значение (команда в виде параметрического типа).</string>
+    <string name="article_01_bullet_09_text">(необязательно) Добавьте другую команду, нажав на кнопку [FAB].</string>
+    <string name="article_01_bullet_10_text">Нажмите на кнопку %s.</string>
+    <string name="article_01_note_text">Примечание. Вы можете использовать опцию %s в контекстном меню [MORE_OPTIONS] устройства, чтобы добавить два или более одинаковых устройства.</string>
+
+    <!-- Help article 02 -->
+    <string name="article_02_bullet_01_text">Нажмите на кнопку [MORE_OPTIONS], а затем нажмите на %s.</string>
+    <string name="article_02_note_text">Примечание. Удаление устройства можно отменить в течение следующих 5 секунд, нажав на кнопку %s в нижней всплывающей панели.</string>
+
+    <!-- Help article 03 -->
+    <string name="article_03_bullet_01_text">Нажмите на кнопку [MORE_OPTIONS] в меню верхней панели.</string>
+    <string name="article_03_bullet_02_text">Выберите %s.</string>
+    <string name="article_03_bullet_03_text">Выберите папку назначения.</string>
+    <string name="article_03_bullet_04_text">Измените имя файла конфигурации.</string>
+    <string name="article_03_bullet_05_text">Нажмите на кнопку %s.</string>
+    <string name="article_03_note_text">Примечание. Изображения устройств не экспортируются.</string>
+
+    <!-- Help article 04 -->
+    <string name="article_04_bullet_03_text">Если вы уже добавили несколько устройств, подтвердите, что вы хотите продолжить импорт. Текущие настройки будут потеряны.</string>
+    <string name="article_04_bullet_04_text">Выберите экспортированный файл конфигурации (тип файла .txt).</string>
+    <string name="article_04_note_text">Примечание:</string>
+    <string name="article_04_note_01_text">При импорте будет переопределена текущая база данных приложения.</string>
+    <string name="article_04_note_02_text">Изображения устройства не импортируются. Добавляйте изображения устройств вручную после каждого импорта.</string>
+
+    <!-- Help article 05 -->
+    <string name="article_05_bullet_01_text">Выберите устройство, нажав на определенный элемент в списке устройств. Откроется страница со списком определенных команд.</string>
+    <string name="article_05_bullet_02_text">Если вы хотите отправить текстовую команду, в списке нажмите на кнопку [SEND_COMMAND] под этой командой.</string>
+    <string name="article_05_bullet_03_text">В противном случае используйте флажок [CHECKBOX], чтобы выбрать параметрическую команду (или команды), которая будет отправлена на устройство через сотовую сеть (см. %s для получения дополнительной информации).</string>
+    <string name="article_05_bullet_04_text">Нажмите на кнопку %s.</string>
+    <string name="app_vendor" translatable="false">©2019 JSC electronics s.r.o.</string>
+    <string name="app_version">Версия %s</string>
+
+    <!-- Intro activity -->
+    <string name="intro_page1_title">Добро пожаловать!</string>
+    <string name="intro_page1_description">С легкостью управляйте своими устройствами GSM.</string>
+    <string name="intro_page2_title">Перейдите в автономный режим!</string>
+    <string name="intro_page2_description">Управляйте своим устройством с помощью предварительно определенных SMS.</string>
+    <string name="intro_page3_title">Одно приложение, чтобы управлять всеми устройствами сразу!</string>
+    <string name="intro_page3_description">Простое управление на одном экране. Для неограниченного количества устройств.</string>
+    <string name="intro_page4_title">Одно устройство, много вариантов.</string>
+    <string name="intro_page4_description">Поддержка нескольких команд. Отправляйте одну или несколько команд за раз.</string>
+    <string name="intro_page5_title">Для разработчиков.</string>
+    <string name="intro_page5_description">Добавьте поддержку в ваше встроенное устройство с помощью нашей библиотеки с открытым исходным кодом.</string>
+    <string name="sim_icon_content_description">Значок SIM</string>
+    <string name="location_icon">Значок местоположения</string>
+    <string name="configuration">Конфигурация</string>
+    <string name="invalid_command_value">Недействительное значение команды!</string>
+    <string name="remove_ads">Удалить рекламу</string>
+    <string name="purchases">Покупки</string>
+    <string name="purchases_unavailable">Покупки не доступны в вашей стране.</string>
+    <string name="whatsnew_title">Версия 1.2.0 дает вам</string>
+    <string name="whatsnew_page1_description">Новые языки.</string>
+    <string name="whatsnew_page2_description">Новое оформление.</string>
+    <string name="whatsnew_page3_description">Поддержка темного режима.</string>
+
+    <string-array name="change_device_image_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+        <item>@string/take_photo</item>
+    </string-array>
+
+    <string-array name="change_device_image_no_camera_actions">
+        <item>@string/select_from_adeon_library</item>
+        <item>@string/select_image</item>
+    </string-array>
+</resources>
