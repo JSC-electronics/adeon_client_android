@@ -46,5 +46,5 @@ data class AugmentedSkuDetails(
     val price: String?,
     val title: String?,
     val description: String?,
-    val originalJson: String?
+    val originalJson: String
 )
