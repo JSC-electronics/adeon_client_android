@@ -4,51 +4,49 @@ buildscript {
     // Define versions in a single place
     ext {
         // Sdk and tools
-        compileSdkVersion = 29
+        compileSdkVersion = 33
         minSdkVersion = 19
-        targetSdkVersion = 29
+        targetSdkVersion = 33
 
         // App dependencies
         appIntroVersion = '6.0.0-alpha3'
-        billingVersion = '3.0.3'
+        billingVersion = '5.1.0'
         circleImageViewVersion = '3.0.0'
-        constraintLayoutVersion = '2.1.0-beta01'
+        constraintLayoutVersion = '2.2.0-alpha04'
         coroutinesVersion = "1.3.4"
-        espressoVersion = '3.4.0-alpha05'
-        firebaseAnalyticsVersion = '18.0.3'
+        espressoVersion = '3.5.0'
+        firebaseAnalyticsVersion = '21.2.0'
         glideVersion = '4.10.0'
-        googleServicesVersion = '4.3.3'
-        gradleVersion = '4.1.3'
+        googleServicesVersion = '4.3.10'
+        gradleVersion = '7.3.1'
         grgitVersion = '3.1.1'
-        gsonVersion = '2.8.6'
-        junitVersion = '4.12'
-        kotlinVersion = '1.4.32'
+        gsonVersion = '2.9.0'
+        junitVersion = '4.13.2'
+        kotlinVersion = '1.6.21'
         ktlintVersion = '0.30.0'
-        ktxVersion = '1.6.0-alpha02'
-        lifecycleVersion = '2.3.1'
-        materialVersion = '1.3.0'
+        ktxVersion = '1.9.0'
+        lifecycleVersion = '2.5.1'
+        materialVersion = '1.8.0-alpha02'
         multiDexLibraryVersion = '2.0.1'
-        navigationVersion = '2.3.5'
+        navigationVersion = '2.5.3'
         ossLicensesLibrary = '17.0.0'
-        ossLicensesPlugin = '0.10.0'
+        ossLicensesPlugin = '0.10.4'
         phoneFieldVersion = '0.1.8'
-        playServicesAddsVersion = '20.0.0'
-        recyclerViewVersion = '1.2.0'
-        roomVersion = '2.2.6'
-        supportLibraryVersion = '1.2.0'
+        playServicesAddsVersion = '21.3.0'
+        recyclerViewVersion = '1.2.1'
+        roomVersion = '2.4.3'
+        supportLibraryVersion = '1.5.1'
     }
 
     repositories {
         google()
-        jcenter()
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
-        classpath "org.ajoberstar.grgit:grgit-gradle:$grgitVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -58,8 +56,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven { url 'https://dl.bintray.com/jsc-electronics/maven' }
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
