@@ -21,7 +21,7 @@ class SendCommandsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHelpSendCommandsBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
                 val sendTextCommand = SpannableStringBuilder(

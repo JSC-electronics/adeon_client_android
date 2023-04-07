@@ -143,9 +143,6 @@
     <string name="location_icon">Ícono de localidad</string>
     <string name="configuration">Configuración</string>
     <string name="invalid_command_value">¡Valor de comando no válido!</string>
-    <string name="remove_ads">Eliminar anuncios</string>
-    <string name="purchases">Compras</string>
-    <string name="purchases_unavailable">Las compras no están disponibles en su país.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_from_adeon_library</item>

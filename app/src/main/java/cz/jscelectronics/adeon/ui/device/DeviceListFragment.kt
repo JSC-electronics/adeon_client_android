@@ -3,23 +3,19 @@ package cz.jscelectronics.adeon.ui.device
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.adapters.DeviceAdapter
 import cz.jscelectronics.adeon.adapters.RecyclerAttributeTouchHelper
 import cz.jscelectronics.adeon.databinding.FragmentDeviceListBinding
-import cz.jscelectronics.adeon.ui.billing.viewmodels.BillingViewModel
 import cz.jscelectronics.adeon.ui.device.dialogs.ImportDialogFragment
 import cz.jscelectronics.adeon.ui.device.dialogs.OnDialogClickListener
 import cz.jscelectronics.adeon.ui.device.dialogs.WipeDialogFragment
@@ -45,15 +41,13 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     }
 
     private lateinit var deviceListViewModel: DeviceListViewModel
-    private lateinit var billingViewModel: BillingViewModel
     private lateinit var layout: CoordinatorLayout
-    private lateinit var adView: AdView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentDeviceListBinding.inflate(inflater, container, false).apply {
             fab.setOnClickListener { view ->
                 val direction =
@@ -66,10 +60,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
 
         val context = context ?: return binding.root
         val factory = InjectorUtils.provideDeviceListViewModelFactory(context)
-        deviceListViewModel = ViewModelProvider(this, factory).get(DeviceListViewModel::class.java)
-        billingViewModel = ViewModelProvider(this).get(BillingViewModel::class.java)
-
-        adView = binding.adView
+        deviceListViewModel = ViewModelProvider(this, factory)[DeviceListViewModel::class.java]
         layout = binding.devices
         val adapter = DeviceAdapter(deviceListViewModel)
         binding.deviceList.adapter = adapter
@@ -87,11 +78,13 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_import_export, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_import -> {
@@ -107,7 +100,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
     }
 
     private fun subscribeUi(adapter: DeviceAdapter, binding: FragmentDeviceListBinding) {
-        deviceListViewModel.getDevices().observe(viewLifecycleOwner, Observer { devices ->
+        deviceListViewModel.getDevices().observe(viewLifecycleOwner) { devices ->
             if (devices != null && devices.isNotEmpty()) {
                 binding.hasDevices = true
                 adapter.submitList(devices)
@@ -123,21 +116,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
                 }
             }
             arguments?.clear()
-        })
-
-        billingViewModel.noAdvertisementsLiveData.observe(this.viewLifecycleOwner, Observer {
-            if (it == null || !it.entitled) {
-                enableAdvertisements()
-            } else {
-                adView.visibility = View.GONE
-            }
-        })
-    }
-
-    private fun enableAdvertisements() {
-        MobileAds.initialize(this.requireContext()) {}
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        }
     }
 
     private fun importConfiguration() {
@@ -149,7 +128,7 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
                     importDialog.show(manager, IMPORT_DIALOG_TAG)
                 }
             } catch (e: IllegalStateException) {
-
+                Log.e(DeviceListFragment::class.toString(), e.stackTraceToString())
             }
         } else {
             readConfiguration()
@@ -205,13 +184,14 @@ class DeviceListFragment : Fragment(), OnDialogClickListener {
                     wipeDialog.show(manager, WIPE_DIALOG_TAG)
                 }
             } catch (e: IllegalStateException) {
-
+                Log.e(DeviceListFragment::class.toString(), e.stackTraceToString())
             }
         } else {
             Snackbar.make(layout, R.string.nothing_to_wipe, Snackbar.LENGTH_LONG).show()
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {

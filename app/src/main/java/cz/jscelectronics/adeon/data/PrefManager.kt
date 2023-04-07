@@ -6,7 +6,6 @@ import cz.jscelectronics.adeon.utilities.ONBOARDING_PREF_FILE_NAME
 
 class PrefManager(val context: Context) {
     companion object {
-        private const val PRIVATE_MODE = 0
         // We can't redefine the value. Otherwise, users receiving Adeon update
         // would see First Launch Screen again
         private const val ONBOARDING_FIRST_LAUNCH = "IsFirstTimeLaunch"
@@ -24,26 +23,26 @@ class PrefManager(val context: Context) {
      * can differentiate new users from the old ones who saw the intro onboarding.
      */
     fun firstTimeOnboardingShown(): Boolean {
-        return if (context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE)
+        return if (context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE)
                 .contains(ONBOARDING_FIRST_LAUNCH) &&
-            !context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE)
+            !context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE)
                 .contains(ONBOARDING_WHATS_NEW)
         ) {
-            !context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE)
+            !context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(ONBOARDING_FIRST_LAUNCH, false)
         } else {
-            context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE)
+            context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(ONBOARDING_FIRST_LAUNCH, false)
         }
     }
 
     fun whatsNewOnboardingShown(): Boolean {
-        return context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE)
+        return context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE)
             .getBoolean(ONBOARDING_WHATS_NEW, false)
     }
 
     fun setOnboardingCompleted() {
-        val editor = context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, PRIVATE_MODE).edit()
+        val editor = context.getSharedPreferences(ONBOARDING_PREF_FILE_NAME, Context.MODE_PRIVATE).edit()
         editor.putBoolean(ONBOARDING_FIRST_LAUNCH, true)
         editor.putBoolean(ONBOARDING_WHATS_NEW, true)
         editor.apply()

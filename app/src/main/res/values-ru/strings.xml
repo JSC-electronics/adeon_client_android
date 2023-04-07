@@ -150,9 +150,6 @@
     <string name="location_icon">Значок местоположения</string>
     <string name="configuration">Конфигурация</string>
     <string name="invalid_command_value">Недействительное значение команды!</string>
-    <string name="remove_ads">Удалить рекламу</string>
-    <string name="purchases">Покупки</string>
-    <string name="purchases_unavailable">Покупки не доступны в вашей стране.</string>
     <string name="whatsnew_title">Версия 1.2.0 дает вам</string>
     <string name="whatsnew_page1_description">Новые языки.</string>
     <string name="whatsnew_page2_description">Новое оформление.</string>

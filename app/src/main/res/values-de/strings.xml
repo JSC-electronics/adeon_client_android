@@ -146,9 +146,6 @@
     <string name="location_icon">Standortsymbol</string>
     <string name="configuration">Konfiguration</string>
     <string name="invalid_command_value">Ungültiger Befehlswert!</string>
-    <string name="remove_ads">Werbung entfernen</string>
-    <string name="purchases">Einkäufe</string>
-    <string name="purchases_unavailable">Einkäufe sind in Ihrem Land nicht möglich.</string>
 
     <string-array name="change_device_image_actions">
         <item>@string/select_from_adeon_library</item>

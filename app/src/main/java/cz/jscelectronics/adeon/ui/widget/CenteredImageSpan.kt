@@ -8,7 +8,6 @@ import android.os.Build
 import android.text.style.ImageSpan
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntRange
-import androidx.annotation.NonNull
 import androidx.appcompat.content.res.AppCompatResources
 import java.lang.ref.WeakReference
 
@@ -36,7 +35,7 @@ class CenteredImageSpan : ImageSpan {
     private var initialDescent = 0
     private var extraSpace = 0
 
-    private constructor(@NonNull drawable: Drawable, verticalAlignment: Int = ALIGN_BASELINE) :
+    private constructor(drawable: Drawable, verticalAlignment: Int = ALIGN_BASELINE) :
             super(drawable, verticalAlignment)
 
     private constructor(

@@ -18,7 +18,7 @@ class ImportConfigurationFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHelpImportConfigurationBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
                 val clickOnMoreText = SpannableStringBuilder(

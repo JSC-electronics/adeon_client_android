@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:id="@+id/store">
-        <item
-                android:id="@+id/makePurchaseFragment"
-                android:icon="@drawable/ic_no_ads"
-                android:title="@string/remove_ads"/>
-    </group>
-
     <group android:id="@+id/devices">
         <item
                 android:id="@+id/device_list_fragment"

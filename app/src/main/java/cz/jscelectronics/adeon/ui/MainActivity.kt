@@ -7,12 +7,10 @@ import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.*
 import cz.jscelectronics.adeon.R
-import cz.jscelectronics.adeon.billingrepo.BillingRepository
 import cz.jscelectronics.adeon.data.PrefManager
 import cz.jscelectronics.adeon.databinding.ActivityMainBinding
 import cz.jscelectronics.adeon.ui.onboarding.IntroActivity
@@ -23,9 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private val repository: BillingRepository by lazy {
-        BillingRepository.getInstance(application)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.device_list_nav_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment, R.id.makePurchaseFragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.device_list_fragment, R.id.help_fragment), drawerLayout)
 
         // Set up ActionBar
         setSupportActionBar(binding.toolbar)
@@ -86,20 +81,13 @@ class MainActivity : AppCompatActivity() {
             // return whether the action was consumed
             handled
         }
-
-        repository.noAdvertisementsLiveData.observe(this, Observer {
-            it?.apply {
-                if (entitled) {
-                    binding.navigationView.menu.removeGroup(R.id.store)
-                }
-            }
-        })
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)

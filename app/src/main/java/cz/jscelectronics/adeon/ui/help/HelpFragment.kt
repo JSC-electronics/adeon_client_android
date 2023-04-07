@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import cz.jscelectronics.adeon.R
 import cz.jscelectronics.adeon.databinding.FragmentHelpBinding
+import cz.jscelectronics.adeon.ui.device.DeviceListFragment
 import cz.jscelectronics.adeon.ui.help.content.dialogs.AboutDialogFragment
 
 
@@ -21,7 +22,7 @@ class HelpFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHelpBinding.inflate(inflater, container, false).apply {
             addDevice.setOnClickListener { view ->
                 val direction =
@@ -71,11 +72,13 @@ class HelpFragment : Fragment() {
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_help, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_about -> {
@@ -84,7 +87,7 @@ class HelpFragment : Fragment() {
                         AboutDialogFragment().show(it, "About Dialog")
                     }
                 } catch (e: IllegalStateException) {
-
+                    Log.e(HelpFragment::class.toString(), e.stackTraceToString())
                 }
                 return true
             }

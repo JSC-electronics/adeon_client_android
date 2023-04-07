@@ -18,7 +18,7 @@ class DeleteDeviceFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHelpDeleteDeviceBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
                 val deleteDeviceText = context.getString(R.string.action_remove_device)

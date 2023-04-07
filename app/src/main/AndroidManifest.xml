@@ -25,6 +25,7 @@
                 android:value="ca-app-pub-7647102948654129~2785935234"/>
 
         <activity
+                android:exported="true"
                 android:name=".ui.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/Theme.Adeon.NoActionBar"

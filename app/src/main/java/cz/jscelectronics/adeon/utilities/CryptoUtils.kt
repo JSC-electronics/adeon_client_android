@@ -12,7 +12,7 @@ fun computeMd5(s: String): String {
 
         // Create Hex String
         return messageDigest.joinToString(separator = "") {
-            String.format("%02X", it).toLowerCase(Locale.US)
+            String.format("%02X", it).lowercase(Locale.US)
         }
     } catch (e: NoSuchAlgorithmException) {
         e.printStackTrace()

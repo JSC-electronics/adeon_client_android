@@ -22,7 +22,7 @@ class AddNewDeviceFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHelpAddNewDeviceBinding.inflate(inflater, container, false).apply {
             context?.let { context ->
                 val clickOnFabHelpText = SpannableStringBuilder(

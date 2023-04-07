@@ -12,13 +12,13 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -58,12 +58,12 @@ class AddDeviceFragment : Fragment(),
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val deviceId: Long? = if (args.deviceId < 0) null else args.deviceId
 
         val factory = InjectorUtils.provideManageDeviceViewModelFactory(requireActivity(), deviceId)
         manageDeviceViewModel =
-            ViewModelProvider(this, factory).get(ManageDeviceViewModel::class.java)
+            ViewModelProvider(this, factory)[ManageDeviceViewModel::class.java]
 
         val binding = FragmentAddDeviceBinding.inflate(inflater, container, false).apply {
             viewModel = manageDeviceViewModel
@@ -112,6 +112,7 @@ class AddDeviceFragment : Fragment(),
                                 dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
                             }
                         } catch (e: IllegalStateException) {
+                            Log.e(AddDeviceFragment::class.toString(), e.stackTraceToString())
                         }
                     }
                 } else {
@@ -149,6 +150,7 @@ class AddDeviceFragment : Fragment(),
                     dialog.show(it, IMAGE_CAPTURE_DIALOG_TAG)
                 }
             } catch (e: IllegalStateException) {
+                Log.e(AddDeviceFragment::class.toString(), e.stackTraceToString())
             }
         }
 
@@ -170,7 +172,7 @@ class AddDeviceFragment : Fragment(),
     }
 
     private fun subscribeUi(binding: FragmentAddDeviceBinding) {
-        manageDeviceViewModel.device.observe(this.viewLifecycleOwner, Observer { device ->
+        manageDeviceViewModel.device.observe(this.viewLifecycleOwner) { device ->
             binding.deviceNameEditText.setText(device.name)
             binding.deviceNameEditText.addTextChangedListener {
                 device.name = binding.deviceNameEditText.text.toString()
@@ -207,7 +209,7 @@ class AddDeviceFragment : Fragment(),
             manageDeviceViewModel.uriHandler.setUri(device.image)
             manageDeviceViewModel.setMessageType(device.messageType, refreshAttributes = false)
             manageDeviceViewModel.initAttributes(device)
-        })
+        }
     }
 
     override fun onPause() {
@@ -223,6 +225,7 @@ class AddDeviceFragment : Fragment(),
                 dialog.show(it, ADEON_GALLERY_DIALOG_TAG)
             }
         } catch (e: IllegalStateException) {
+            Log.e(AddDeviceFragment::class.toString(), e.stackTraceToString())
         }
     }
 
@@ -283,6 +286,7 @@ class AddDeviceFragment : Fragment(),
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_TAKE_PHOTO -> {
