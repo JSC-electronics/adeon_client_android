@@ -1,10 +1,28 @@
 # Adeon
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://github.com/JSC-electronics/adeon_client_android/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/JSC-electronics/adeon_client_android.svg?maxAge=3600)](https://github.com/JSC-electronics/adeon_client_android/releases)
+[![JSC electronics](https://img.shields.io/badge/JSC-electronics-green.svg)](https://www.jsce.cz/)
+[![Donate](https://img.shields.io/badge/donate-PayPal-blueviolet.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SESX9ABM7V8KA&source=url)
 
 Control Arduino over SMS using your Android phone.
 
-This client app was made as our official client for [Adeon](https://github.com/JSC-electronics/Adeon). Because this project is inactive, we decided to make it fully open-source. Currently our code needs some care in order to successfully build it.
+This client app was made as our official client for [Adeon](https://github.com/JSC-electronics/Adeon). At the moment, we no longer actively maintain this project. But we updated the sources to support latest Android 13 and we also removed the Ads. Source code is now fully available and anyone can build this using latest Android Studio.
 
-In the meantime, check out [this app](https://play.google.com/store/apps/details?id=cz.jscelectronics.adeon) in our Google Play Store.
+## Building Adeon
+This app uses a custom library for phone widget. It is published as a public GitHub package and you can download the AAR file [here](https://github.com/JSC-electronics/android-phone-field/packages/1832983). Due to the GitHub limitations, it is not possible to download this library from their Maven repo without authenticating. So using the downloaded file as a dependency should solve this problem for you.
+
+Besides solving the dependency problem, you should be able to build this application with no issues. We've also included pre-compiled APKs which you can find [here](https://github.com/JSC-electronics/adeon_client_android/releases/tag/v1.4.0).
+
+Check out [this app](https://play.google.com/store/apps/details?id=cz.jscelectronics.adeon) in our Google Play Store.
 
 ## License
-TBD
+
+Copyright (c) JSC electronics. All rights reserved.
+
+Licensed under the [Apache-2.0](LICENSE) license.
+
+## Support
+
+We hope our library helped to speed up your project development. You can support our effort to convert coffe and pizza into a code with a small donation. Any support is much appreciated.
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SESX9ABM7V8KA&source=url)
