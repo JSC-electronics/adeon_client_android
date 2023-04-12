@@ -59,7 +59,7 @@ allprojects {
 
             credentials {
                 username = "JSC-electronics"
-                password = "changeme"
+                password = "$System.env.TOKEN"
             }
         }
     }
