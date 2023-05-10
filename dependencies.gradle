@@ -1,0 +1,6 @@
+ext {
+
+    compileSdkVer = 33
+    minSdkVer = 19
+    targetSdkVer = 33
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="phonefield_edittext" type="string"/>
+    <public name="phonefield_flag_spinner" type="string"/>
+    <public name="phonefield_til_phone" type="string"/>
+</resources>

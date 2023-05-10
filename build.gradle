@@ -12,26 +12,25 @@ buildscript {
         appIntroVersion = '6.2.0'
         circleImageViewVersion = '3.1.0'
         constraintLayoutVersion = '2.2.0-alpha09'
-        coroutinesVersion = "1.3.4"
+        coroutinesVersion = '1.7.0'
         espressoVersion = '3.5.1'
-        glideVersion = '4.10.0'
+        glideVersion = '4.15.1'
         gradleVersion = '7.4.1'
         grgitVersion = '3.1.1'
-        gsonVersion = '2.10'
+        gsonVersion = '2.10.1'
         junitVersion = '4.13.2'
         kotlinVersion = '1.8.0'
         ktlintVersion = '0.30.0'
         ktxVersion = '1.10.0'
         lifecycleVersion = '2.6.1'
-        materialVersion = '1.8.0-alpha02'
+        materialVersion = '1.9.0'
         multiDexLibraryVersion = '2.0.1'
         navigationVersion = '2.5.3'
-        ossLicensesLibrary = '17.0.0'
+        ossLicensesLibrary = '17.0.1'
         ossLicensesPlugin = '0.10.4'
-        phoneFieldVersion = '0.1.9'
         recyclerViewVersion = '1.3.0'
         roomVersion = '2.5.1'
-        supportLibraryVersion = '1.5.1'
+        supportLibraryVersion = '1.6.1'
     }
 
     repositories {
@@ -39,7 +38,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "com.android.tools.build:gradle:8.0.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
@@ -53,15 +52,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/JSC-electronics/android-phone-field")
-
-            credentials {
-                username = "JSC-electronics"
-                password = "$System.env.TOKEN"
-            }
-        }
     }
 }
 

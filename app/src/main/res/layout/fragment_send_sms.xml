@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:contentDescription="@string/sim_icon_content_description"
-                android:tint="@android:color/white"
+                app:tint="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/device_image"
                 app:layout_constraintStart_toEndOf="@+id/device_image"
                 app:srcCompat="@drawable/ic_sim_icon" />
@@ -95,7 +95,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/location_icon"
-                android:tint="@android:color/white"
+                app:tint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/simIcon"
                 app:layout_constraintStart_toEndOf="@+id/device_image"
                 app:srcCompat="@drawable/ic_location" />
@@ -112,7 +112,7 @@
                 app:layout_constraintTop_toTopOf="@+id/locationIcon"
                 tools:text="Cool location" />
 
-            <cz.jscelectronics.phonefield.PhoneTextView
+            <cz.jscelectronics.adeon.phonefield.PhoneTextView
                 android:id="@+id/phone_number"
                 android:layout_width="243dp"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 app:layout_constraintTop_toTopOf="@+id/simIcon"
                 app:phoneNumber="@{viewModel.device.phoneNumber}">
 
-            </cz.jscelectronics.phonefield.PhoneTextView>
+            </cz.jscelectronics.adeon.phonefield.PhoneTextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

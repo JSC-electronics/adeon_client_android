@@ -9,9 +9,9 @@ Control Arduino over SMS using your Android phone.
 This client app was made as our official client for [Adeon](https://github.com/JSC-electronics/Adeon). At the moment, we no longer actively maintain this project. But we updated the sources to support latest Android 13 and we also removed the Ads. Source code is now fully available and anyone can build this using latest Android Studio.
 
 ## Building Adeon
-This app uses a custom library for phone widget. It is published as a public GitHub package and you can download the AAR file [here](https://github.com/JSC-electronics/android-phone-field/packages/1832983). Due to the GitHub limitations, it is not possible to download this library from their Maven repo without authenticating. So using the downloaded file as a dependency should solve this problem for you.
+This app uses includes a modified version of [android-phone-field](https://github.com/lamudi-gmbh/android-phone-field) library for phone widget. It has been added as a local module to simplify the build process.
 
-Besides solving the dependency problem, you should be able to build this application with no issues. We've also included pre-compiled APKs which you can find [here](https://github.com/JSC-electronics/adeon_client_android/releases/tag/v1.4.0).
+You should be able to build this application with no issues. We've also included pre-compiled APKs which you can find [here](https://github.com/JSC-electronics/adeon_client_android/releases/).
 
 Check out [this app](https://play.google.com/store/apps/details?id=cz.jscelectronics.adeon) in our Google Play Store.
 

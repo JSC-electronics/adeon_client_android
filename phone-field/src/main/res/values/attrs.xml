@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PhoneField">
+        <attr format="string" name="defaultCountry"/>
+        <attr format="string" name="countryLocale"/>
+        <attr format="reference" name="countries"/>
+        <attr format="string" name="phoneNumber"/>
+        <attr format="boolean" name="hideCountryFlag"/>
+    </declare-styleable>
+</resources>
